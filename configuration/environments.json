@@ -1,0 +1,179 @@
+{
+	"production": {
+		"learnPortalBaseUrl": "https://learn.concord.org",
+		"laraBaseUrl": "https://authoring.concord.org",
+		"schoolName": "Concord Consortium",
+		"teacher": {
+			"username": "TejalTeacher",
+			"firstName": "Tejal",
+			"lastName": "Teacher",
+			"email": "tejal.teacher@mailinator.com"
+		},
+		"researcher": {
+			"username": "researcher",
+			"firstName": "joe",
+			"lastName": "user",
+			"email": "researcher@concord.org"
+		},
+		"author": {
+			"username": "author",
+			"firstName": "joe",
+			"lastName": "user",
+			"email": "author@concord.org"
+		},
+		"manager": {
+			"username": "manager",
+			"firstName": "joe",
+			"lastName": "user",
+			"email": "manager@concord.org"
+		},
+		"admin": {
+			"username": "TejalAdmin",
+			"firstName": "Tejal",
+			"lastName": "Admin",
+			"email": "tejal.stg@mailinator.com"
+		},
+		"student": {
+			"username": "student",
+			"firstName": "Alfred",
+			"lastName": "Robert",
+			"email": "student@mailinator.com"
+		},
+		"student1": {
+			"username": "stest1",
+			"firstName": "Student1",
+			"lastName": "Test",
+			"email": "student1.test@mailinator.com"
+		},
+		"student2": {
+			"username": "stest2",
+			"firstName": "Student2",
+			"lastName": "Test",
+			"email": "student2.test@mailinator.com"
+		},
+		"student3": {
+			"username": "stest3",
+			"firstName": "Student3",
+			"lastName": "Test",
+			"email": "student3.test@mailinator.com"
+		}
+	},
+	"staging": {
+		"learnPortalBaseUrl": "https://learn.staging.concord.org",
+		"laraBaseUrl": "https://authoring.staging.concord.org",
+		"schoolName": "Concord Consortium",
+		"teacher": {
+			"username": "TejalTeacher",
+			"firstName": "Tejal",
+			"lastName": "Teacher",
+			"email": "tejal.teacher@mailinator.com"
+		},
+		"researcher": {
+			"username": "researcher",
+			"firstName": "joe",
+			"lastName": "user",
+			"email": "researcher@concord.org"
+		},
+		"author": {
+			"username": "author",
+			"firstName": "joe",
+			"lastName": "user",
+			"email": "author@concord.org"
+		},
+		"manager": {
+			"username": "manager",
+			"firstName": "joe",
+			"lastName": "user",
+			"email": "manager@concord.org"
+		},
+		"admin": {
+			"username": "TejalAdmin",
+			"firstName": "Tejal",
+			"lastName": "Admin",
+			"email": "tejal.stg@mailinator.com"
+		},
+		"student": {
+			"username": "student",
+			"firstName": "Alfred",
+			"lastName": "Robert",
+			"email": "student@mailinator.com"
+		},
+		"student1": {
+			"username": "stest1",
+			"firstName": "Student1",
+			"lastName": "Test",
+			"email": "student1.test@mailinator.com"
+		},
+		"student2": {
+			"username": "stest2",
+			"firstName": "Student2",
+			"lastName": "Test",
+			"email": "student2.test@mailinator.com"
+		},
+		"student3": {
+			"username": "stest3",
+			"firstName": "Student3",
+			"lastName": "Test",
+			"email": "student3.test@mailinator.com"
+		}
+	},
+	"dev": {
+		"learnPortalBaseUrl": "http://app.portal.docker/",
+		"laraBaseUrl": "http://app.lara.docker/",
+		"schoolName": "Rails Portal-school",
+		"teacher": {
+			"username": "teacher",
+			"firstName": "Valerie",
+			"lastName": "Frizzle",
+			"email": "teacher@concord.org"
+		},
+		"researcher": {
+			"username": "researcher",
+			"firstName": "Researcher",
+			"lastName": "User",
+			"email": "researcher@concord.org"
+		},
+		"author": {
+			"username": "author",
+			"firstName": "Author",
+			"lastName": "User",
+			"email": "author@concord.org"
+		},
+		"manager": {
+			"username": "manager",
+			"firstName": "Manager",
+			"lastName": "User",
+			"email": "manager@concord.org"
+		},
+		"admin": {
+			"username": "admin",
+			"firstName": "Admin",
+			"lastName": "Admin",
+			"email": "admin@concord.org"
+		},
+		"student": {
+			"username": "stest",
+			"firstName": "Student",
+			"lastName": "Test",
+			"email": "student.test@mailinator.com"
+		},
+		"student1": {
+			"username": "stest1",
+			"firstName": "Student1",
+			"lastName": "Test",
+			"email": "student1.test@mailinator.com"
+		},
+		"student2": {
+			"username": "stest2",
+			"firstName": "Student2",
+			"lastName": "Test",
+			"email": "student2.test@mailinator.com"
+		},
+		"student3": {
+			"username": "stest3",
+			"firstName": "Student3",
+			"lastName": "Test",
+			"email": "student3.test@mailinator.com"
+		}
+	}
+}
