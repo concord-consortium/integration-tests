@@ -1,1 +1,16 @@
-{}
+{
+	"reporter": "./node_modules/mochawesome/src/mochawesome.js",
+  "reporterOptions": {
+      "reportDir": "cypress/results/json",
+      "overwrite": false,
+      "html": false,
+      "json": true
+  },
+	"chromeWebSecurity": false,
+	"video": false,
+	"screenshotOnRunFailure": false,
+	"retries": {
+		"runMode": 0,
+		"openMode": 0
+	}
+}
