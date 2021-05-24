@@ -23,3 +23,77 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// Define the command
+import landingPageElements from './elements/landing_page_elements.js'
+import signinPageElements from './elements/signin_page_elements.js'
+import signupPageElements from './elements/signup_page_elements.js'
+import userHomePageElements from './elements/user_home_page_elements.js'
+import flashNoticePageElements from './elements/flash_notice_page_elements.js'
+
+Cypress.Commands.add('login', (username, password) => {
+  cy.log("Logging in as user : " + username);
+  cy.get(landingPageElements.LOGIN_BUTTON).click();
+  cy.get(signinPageElements.USERNAME_FIELD).type(username);
+  cy.get(signinPageElements.PASSWORD_FIELD).type(password);
+  cy.get(signinPageElements.LOGIN_BUTTON).click();
+});
+
+Cypress.Commands.add('retryLogin', (username, password) => {
+  cy.log("Logging in as user : " + username);
+  cy.get(signinPageElements.USERNAME_FIELD).type('{selectall}{backspace}' + username);
+  cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password);
+  cy.get(signinPageElements.LOGIN_BUTTON).click();
+});
+
+Cypress.Commands.add('logout', () => {
+  cy.log("Logout");
+  cy.get(userHomePageElements.LOGOUT_BUTTON).click();
+  cy.contains(flashNoticePageElements.BANNER, 'Signed out successfully.');
+});
+
+Cypress.Commands.add('alert', (message) => {
+  cy.log("Verify browser window:alert");
+  cy.on('window:alert', alertText => {
+    expect(alertText).to.eql(message);
+  });
+});
+
+Cypress.Commands.add('confirm', (message) => {
+  cy.log("Accept browser window:confirm");
+  cy.on('window:confirm', confirmText => {
+    expect(confirmText).to.eql(message);
+  });
+});
+
+Cypress.Commands.add('setTinyMceContent', (tinyMceId, content) => {
+  cy.log("Setting text into TinyMceEditor");
+  cy.window().then((win) => {
+    const editor = win.tinymce.editors[tinyMceId];
+    editor.setContent(content);
+  });
+});
+
+Cypress.Commands.add('getTinyMceContent', (tinyMceId, content) => {
+  cy.log("Getting text from TinyMceEditor");
+  cy.window().then((win) => {
+    const editor = win.tinymce.editors[tinyMceId];
+    return editor.getContent();
+  });
+});
+
+Cypress.Commands.overwrite(
+  'contains',
+  (originalFn, subject, filter, text, options = {}) => {
+    // determine if a filter argument was passed
+    if (typeof text === 'object') {
+      options = text
+      text = filter
+      filter = undefined
+    }
+
+    options.matchCase = false
+
+    return originalFn(subject, filter, text, options)
+  }
+)

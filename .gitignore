@@ -1,3 +1,5 @@
-./node_modules/
-./cypress/reports/
-./cypress/results/
+node_modules/
+cypress/reports/
+cypress/results/
+3.1.2
+npm

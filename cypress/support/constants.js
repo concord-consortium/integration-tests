@@ -1,50 +1,52 @@
 import { uid } from 'uid';
 
+const config = Cypress.config();
+
 const constants = {
   // learn portal base url
-  LEARN_PORTAL_BASE_URL : `${Cypress.config("learnPortalBaseUrl")}`,
+  LEARN_PORTAL_BASE_URL : config.learnPortalBaseUrl,
   // authoring base url
-  AUTHORING_BASE_URL : `${Cypress.config("laraBaseUrl")}`,
+  AUTHORING_BASE_URL : config.laraBaseUrl,
   // admin user details
-  ADMIN_USERNAME : `${Cypress.config("admin")["username"]}`,
-  ADMIN_PASSWORD : `${Cypress.config("password")}`,
+  ADMIN_USERNAME : config.admin.username,
+  ADMIN_PASSWORD : config.password,
   // author user details
-  AUTHOR_USERNAME : `${Cypress.config("author")["username"]}`,
-  AUTHOR_PASSWORD : `${Cypress.config("password")}`,
+  AUTHOR_USERNAME : config.author.username,
+  AUTHOR_PASSWORD : config.password,
   // researcher user details
-  RESEARCHER_USERNAME : `${Cypress.config("researcher")["username"]}`,
-  RESEARCHER_PASSWORD : `${Cypress.config("password")}`,
+  RESEARCHER_USERNAME : config.researcher.username,
+  RESEARCHER_PASSWORD : config.password,
   // teacher user details
-  TEACHER_USERNAME : `${Cypress.config("teacher")["username"]}`,
-  TEACHER_PASSWORD : `${Cypress.config("password")}`,
-  TEACHER_FIRSTNAME : `${Cypress.config("teacher")["firstName"]}`,
-  TEACHER_LASTNAME : `${Cypress.config("teacher")["lastName"]}`,
-  TEACHER_EMAIL : `${Cypress.config("teacher")["email"]}`,
+  TEACHER_USERNAME : config.teacher.username,
+  TEACHER_PASSWORD : config.password,
+  TEACHER_FIRSTNAME : config.teacher.firstName,
+  TEACHER_LASTNAME : config.teacher.lastName,
+  TEACHER_EMAIL : config.teacher.email,
   // student user details
-  STUDENT_USERNAME : `${Cypress.config("student")["username"]}`,
-  STUDENT_PASSWORD : `${Cypress.config("password")}`,
-  STUDENT_FIRSTNAME : `${Cypress.config("student")["firstName"]}`,
-  STUDENT_LASTNAME : `${Cypress.config("student")["lastName"]}`,
+  STUDENT_USERNAME : config.student.username,
+  STUDENT_PASSWORD : config.password,
+  STUDENT_FIRSTNAME : config.student.firstName,
+  STUDENT_LASTNAME : config.student.lastName,
   // student 1 user details
-  STUDENT_ONE_USERNAME : `${Cypress.config("student1")["username"]}`,
-  STUDENT_ONE_PASSWORD : `${Cypress.config("password")}`,
-  STUDENT_ONE_FIRSTNAME : `${Cypress.config("student1")["firstName"]}`,
-  STUDENT_ONE_LASTNAME : `${Cypress.config("student1")["lastName"]}`,
+  STUDENT_ONE_USERNAME : config.student1.username,
+  STUDENT_ONE_PASSWORD : config.password,
+  STUDENT_ONE_FIRSTNAME : config.student1.firstName,
+  STUDENT_ONE_LASTNAME : config.student1.lastName,
   // student 2 user details
-  STUDENT_TWO_USERNAME : `${Cypress.config("student2")["username"]}`,
-  STUDENT_TWO_PASSWORD : `${Cypress.config("password")}`,
-  STUDENT_TWO_FIRSTNAME : `${Cypress.config("student2")["firstName"]}`,
-  STUDENT_TWO_LASTNAME : `${Cypress.config("student2")["lastName"]}`,
+  STUDENT_TWO_USERNAME : config.student2.username,
+  STUDENT_TWO_PASSWORD : config.password,
+  STUDENT_TWO_FIRSTNAME : config.student2.firstName,
+  STUDENT_TWO_LASTNAME : config.student2.lastName,
   // student user details
-  STUDENT_THREE_USERNAME : `${Cypress.config("student3")["username"]}`,
-  STUDENT_THREE_PASSWORD : `${Cypress.config("password")}`,
-  STUDENT_THREE_FIRSTNAME : `${Cypress.config("student3")["firstName"]}`,
-  STUDENT_THREE_LASTNAME : `${Cypress.config("student3")["lastName"]}`,
+  STUDENT_THREE_USERNAME : config.student3.username,
+  STUDENT_THREE_PASSWORD : config.password,
+  STUDENT_THREE_FIRSTNAME : config.student3.firstName,
+  STUDENT_THREE_LASTNAME : config.student3.lastName,
   // manager user details
-  MANAGER_USERNAME : `${Cypress.config("manager")["username"]}`,
-  MANAGER_PASSWORD : `${Cypress.config("password")}`,
+  MANAGER_USERNAME : config.manager.username,
+  MANAGER_PASSWORD : config.password,
   // school details
-  SCHOOL_NAME : `${Cypress.config("schoolName")}`,
+  SCHOOL_NAME : config.schoolName,
   // other misc details
   CLASS_WORD : uid(),
   CLASS_DESC : 'test class',

@@ -1,21 +1,9 @@
+// Landing page elements
 const landingPageElements = {
-  // Landing page elements
-  COLLECTIONS_LINK : {
-    selector : '.portal-pages-main-nav-collections',
-    description : 'Landing page Collections link'
-  },
-  ABOUT_LINK : {
-    selector : '.portal-pages-main-nav-about',
-    description : 'Landing page About link'
-  },
-  REGISTER_BUTTON : {
-    selector : '.button.register',
-    dscription : 'Landing page Register button'
-  },
-  LOGIN_BUTTON : {
-    selector : '.button.log-in',
-    description : 'Landing page Login button'
-  }
+  COLLECTIONS_LINK : '.portal-pages-main-nav-collections',
+  ABOUT_LINK : '.portal-pages-main-nav-about',
+  REGISTER_BUTTON : '.button.register',
+  LOGIN_BUTTON : '.button.log-in'
 }
 
 export default landingPageElements;
