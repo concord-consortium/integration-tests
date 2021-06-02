@@ -30,13 +30,23 @@ import signinPageElements from './elements/signin_page_elements.js'
 import signupPageElements from './elements/signup_page_elements.js'
 import userHomePageElements from './elements/user_home_page_elements.js'
 import flashNoticePageElements from './elements/flash_notice_page_elements.js'
+import laraPageElements from './elements/lara_page_elements.js'
 
+// LEARN Portal Login Form
 Cypress.Commands.add('login', (username, password) => {
   cy.log("Logging in as user : " + username);
   cy.get(landingPageElements.LOGIN_BUTTON).click();
   cy.get(signinPageElements.USERNAME_FIELD).type(username);
   cy.get(signinPageElements.PASSWORD_FIELD).type(password);
   cy.get(signinPageElements.LOGIN_BUTTON).click();
+});
+
+// LEARN Portal Login Page
+Cypress.Commands.add('loginPortal', (username, password) => {
+  cy.log("Logging in as user : " + username);
+  cy.get(signinPageElements.USERNAME_FIELD_SIGNIN_PAGE).type(username);
+  cy.get(signinPageElements.PASSWORD_FIELD_SIGNIN_PAGE).type(password);
+  cy.get(signinPageElements.SUBMIT_BUTTON_SIGNIN_PAGE).click();
 });
 
 Cypress.Commands.add('retryLogin', (username, password) => {
@@ -97,3 +107,80 @@ Cypress.Commands.overwrite(
     return originalFn(subject, filter, text, options)
   }
 )
+
+// LARA Authoring
+Cypress.Commands.add("loginLARA", (username, password) => {
+  cy.log("Logging in as user : " + username);
+  cy.get(laraPageElements.USERNAME_FIELD).type(username);
+  cy.get(laraPageElements.PASSWORD_FIELD).type(password);
+  cy.get(laraPageElements.LOGIN_BUTTON).click();
+});
+
+Cypress.Commands.add("laraRequestWithCSRF", (options) => {
+  return cy.get('meta[name="csrf-token"]', {log: false}).then(token => {
+    const newOptions = Object.assign({}, options)
+    if (!newOptions.headers) {
+      newOptions.headers = {}
+    }
+    newOptions.headers['X-CSRF-Token'] = token.attr('content');
+    return cy.request(newOptions)
+  })
+});
+
+Cypress.Commands.add("importMaterial", (baseUrl, fixturePath) => {
+  const url = baseUrl + '/api/v1/import';
+
+  Cypress.log({
+    name: "importMaterial",
+    displayName: "import",
+    message: fixturePath,
+    consoleProps: () => {
+      return {
+        fixturePath: fixturePath,
+        importUrl: url
+      }
+    }
+  });
+
+
+  return cy.fixture(fixturePath).then(materialJSON => {
+    return cy.laraRequestWithCSRF({
+      url: url,
+      method: "POST",
+      body: {"import": materialJSON},
+      followRedirect: false,
+      log: false
+    }).then(response => {
+      if (response.status !== 200){
+        throw Error("Import response status was: " + response.status + " instead of 200. " +
+          "The url was: " + url);
+      }
+      const body = response.body;
+      if (!body.success) {
+        throw Error("Import has failed " + response.body.error);
+      }
+      return body.url;
+    });
+  });
+});
+
+Cypress.Commands.add("deleteMaterial", materialUrl => {
+  let type
+  if (materialUrl.indexOf("/activities/") !== -1) {
+    type = "activities"
+  } else {
+    type = "sequences"
+  }
+  // E.g. "https://authoring.concord.org/activities/123 => ["https://authoring.concord.org", "123"]
+  const [ baseUrl, id ] = materialUrl.split(`/${type}/`)
+  // This visit does not seem to be necessary. However, it seems that on some pages CSRF token can't be found.
+  // Do it for safety, as we don't want to leave test materials around.
+  return cy.laraRequestWithCSRF({
+    url: `${baseUrl}/api/v1/${type}/${id}`,
+    method: "DELETE",
+  });
+});
+
+Cypress.Commands.add("logoutLARA", () => {
+  cy.get(laraPageElements.LOGOUT_LINK).click();
+});

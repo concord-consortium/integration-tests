@@ -1,17 +1,18 @@
 import * as c from '../support/constants.js'
-import teacherHomePageElements from '../support/elements/teacher_home_page_elements.js'
 import addClassPageElements from '../support/elements/add_class_page_elements.js'
 import assignmentsPageElements from '../support/elements/assignments_page_elements.js'
-import studentRosterPageElements from '../support/elements/student_roster_page_elements.js'
 import classSetupPageElements from '../support/elements/class_setup_page_elements.js'
 import flashNoticePageElements from '../support/elements/flash_notice_page_elements.js'
 import manageClassesPageElements from '../support/elements/manage_classes_page_elements.js'
+import studentRosterPageElements from '../support/elements/student_roster_page_elements.js'
+import teacherHomePageElements from '../support/elements/teacher_home_page_elements.js'
 import userHomePageElements from '../support/elements/user_home_page_elements.js'
 
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 
 const TEACHER_NAME = c.TEACHER_FIRSTNAME + " " + c.TEACHER_LASTNAME;
-const CLASS_NAME = 'Class ' + c.CLASS_WORD;
+const CLASS_WORD = c.CLASS_WORD
+const CLASS_NAME = 'Class ' + CLASS_WORD;
 
 context("Verify teacher can add and edit a class", () => {
 
@@ -29,7 +30,7 @@ context("Verify teacher can add and edit a class", () => {
     cy.get(teacherHomePageElements.LEFT_NAV_ADD_CLASS).click(); // Click 'Add Class'
     cy.get(addClassPageElements.CLASS_NAME).type(CLASS_NAME); // Type into class name field
     cy.get(addClassPageElements.CLASS_DESCRIPTION).type(c.CLASS_DESC); // Type into class description field
-    cy.get(addClassPageElements.CLASS_WORD).type(c.CLASS_WORD); // Type into class word field
+    cy.get(addClassPageElements.CLASS_WORD).type(CLASS_WORD); // Type into class word field
     cy.get(addClassPageElements.SUBMIT_BUTTON).click(); // Click 'Submit' button
   });
 
@@ -40,7 +41,7 @@ context("Verify teacher can add and edit a class", () => {
     });
     cy.contains(assignmentsPageElements.HEADING, "Assignments for "+ CLASS_NAME); // Check heading of the 'Assignments' page
     cy.contains(assignmentsPageElements.TEACHER_NAME, TEACHER_NAME); // Check teacher name in 'Assignments' page
-    cy.contains(assignmentsPageElements.CLASS_WORD, c.CLASS_WORD); // Check class word in the 'Assignments' page
+    cy.contains(assignmentsPageElements.CLASS_WORD, CLASS_WORD); // Check class word in the 'Assignments' page
   });
 
   it("Verify Student Roster page of newly added class is displayed properly", () => {
@@ -49,7 +50,7 @@ context("Verify teacher can add and edit a class", () => {
     });
     cy.get(studentRosterPageElements.HEADING).should("have.text", "Student Roster"); // Check heading of the 'Student Roster' page
     cy.contains(studentRosterPageElements.TEACHER_NAME, TEACHER_NAME); // Check teacher name in the 'Student Roster'  page
-    cy.contains(studentRosterPageElements.CLASS_WORD, c.CLASS_WORD); // Check class word in the 'Student Roster' page
+    cy.contains(studentRosterPageElements.CLASS_WORD, CLASS_WORD); // Check class word in the 'Student Roster' page
     cy.get(studentRosterPageElements.CLASS_COUNT).should("have.text", "0"); // Check Student count is '0' in the 'Student Roster' page
   });
 
@@ -58,7 +59,7 @@ context("Verify teacher can add and edit a class", () => {
       cy.get(teacherHomePageElements.LEFT_NAV_CLASS_SETUP).click(); // Click 'Class Setup' section
     });
     cy.get(classSetupPageElements.HEADING).should("have.text", "Class Setup Information"); // Check heading of the 'Class Setup' page
-    cy.contains(classSetupPageElements.CLASS_WORD, c.CLASS_WORD); // Check class word in the 'Class Setup' page
+    cy.contains(classSetupPageElements.CLASS_WORD, CLASS_WORD); // Check class word in the 'Class Setup' page
   });
 
   it("Verify teacher is able to edit class", () => {
@@ -78,10 +79,10 @@ context("Verify teacher can add and edit a class", () => {
       cy.get(teacherHomePageElements.LEFT_NAV_CLASS_SETUP).click(); // Click 'Class Setup' section
     });
     cy.get(classSetupPageElements.CLASS_NAME_FIELD).type('{selectall}{backspace}' + CLASS_NAME); // Revert class name to original name
-    cy.get(classSetupPageElements.CLASS_WORD_FIELD).type('{selectall}{backspace}' + c.CLASS_WORD); // Revert class word to original word
+    cy.get(classSetupPageElements.CLASS_WORD_FIELD).type('{selectall}{backspace}' + CLASS_WORD); // Revert class word to original word
     cy.get(classSetupPageElements.SUBMIT_BUTTON).click(); // Click 'Submit' button
     cy.get(assignmentsPageElements.HEADING).should("have.text", "Assignments for "+ CLASS_NAME); // Check name of class in the Assignments page
-    cy.contains(assignmentsPageElements.CLASS_WORD, c.CLASS_WORD); // Check Class word in the Assignments page
+    cy.contains(assignmentsPageElements.CLASS_WORD, CLASS_WORD); // Check Class word in the Assignments page
   });
 
   it("Verify teacher is able to archive the class", () => {
