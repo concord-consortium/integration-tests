@@ -47,7 +47,12 @@ const constants = {
   MANAGER_PASSWORD : config.password,
   // school details
   SCHOOL_NAME : config.schoolName,
+  // LARA Admin Username
+  LARA_ADMIN_USERNAME : config.lara.username,
+  LARA_ADMIN_PASSWORD : config.password,
   // other misc details
+  PUBLISH_ENV : config.publishEnvironment,
+  LARA_PORTAL_ENV : config.laraPortalEnvironment,
   CLASS_WORD : uid(),
   CLASS_DESC : 'test class',
   NOTICE_TEXT : "This is a new notice"

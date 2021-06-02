@@ -1,8 +1,8 @@
 import * as c from '../support/constants.js'
-import userSettingsPageElements from '../support/elements/user_settings_page_elements.js'
-import userHomePageElements from '../support/elements/user_home_page_elements.js'
 import changePasswordPageElements from '../support/elements/change_password_page_elements.js'
 import flashNoticePageElements from '../support/elements/flash_notice_page_elements.js'
+import userHomePageElements from '../support/elements/user_home_page_elements.js'
+import userSettingsPageElements from '../support/elements/user_settings_page_elements.js'
 
 // Note for db tracking : No db tracking required, using existing records
 

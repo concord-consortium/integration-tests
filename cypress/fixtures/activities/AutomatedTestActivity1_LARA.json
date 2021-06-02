@@ -1,0 +1,180 @@
+{
+	"description": "",
+	"editor_mode": 0,
+	"id": 3,
+	"layout": 0,
+	"name": "AutomatedTestActivity1_LARA",
+	"notes": "",
+	"project_id": null,
+	"related": "",
+	"runtime": "LARA",
+	"student_report_enabled": true,
+	"thumbnail_url": "",
+	"time_to_complete": null,
+	"version": 1,
+	"theme_name": null,
+	"pages": [{
+		"additional_sections": null,
+		"embeddable_display_mode": "stacked",
+		"id": 13,
+		"is_completion": false,
+		"is_hidden": false,
+		"layout": "l-6040",
+		"name": "Page 1",
+		"position": 1,
+		"show_header": true,
+		"show_info_assessment": true,
+		"show_interactive": false,
+		"show_sidebar": false,
+		"sidebar": null,
+		"sidebar_title": "Did you know?",
+		"toggle_info_assessment": false,
+		"embeddables": [{
+			"embeddable": {
+				"default_text": "start here",
+				"give_prediction_feedback": false,
+				"hint": "",
+				"is_full_width": false,
+				"is_hidden": false,
+				"is_prediction": false,
+				"name": "",
+				"prediction_feedback": "",
+				"prompt": "\u003Cp\u003EWrite here:\u003C/p\u003E",
+				"show_in_featured_question_report": true,
+				"type": "Embeddable::OpenResponse",
+				"ref_id": "8-Embeddable::OpenResponse"
+			},
+			"section": null
+		}, {
+			"embeddable": {
+				"default_text": "start here",
+				"give_prediction_feedback": false,
+				"hint": "\u003Cp\u003Ethis is a hint\u003C/p\u003E",
+				"is_full_width": false,
+				"is_hidden": false,
+				"is_prediction": false,
+				"name": "This is a heading",
+				"prediction_feedback": "",
+				"prompt": "\u003Cp\u003E\u003Cspan style=\"text-decoration: underline;\"\u003E\u003Cem\u003E\u003Cstrong\u003EWrite here\u003C/strong\u003E\u003C/em\u003E\u003C/span\u003E\u003C/p\u003E",
+				"show_in_featured_question_report": true,
+				"type": "Embeddable::OpenResponse",
+				"ref_id": "9-Embeddable::OpenResponse"
+			},
+			"section": null
+		}]
+	}, {
+		"additional_sections": null,
+		"embeddable_display_mode": "stacked",
+		"id": 14,
+		"is_completion": false,
+		"is_hidden": false,
+		"layout": "l-6040",
+		"name": "Page 2",
+		"position": 2,
+		"show_header": false,
+		"show_info_assessment": true,
+		"show_interactive": false,
+		"show_sidebar": false,
+		"sidebar": null,
+		"sidebar_title": "Did you know?",
+		"toggle_info_assessment": false,
+		"embeddables": [{
+			"embeddable": {
+				"custom": true,
+				"enable_check_answer": true,
+				"give_prediction_feedback": false,
+				"hint": "\u003Cp\u003Ethis is a hint\u003C/p\u003E",
+				"is_full_width": false,
+				"is_hidden": false,
+				"is_prediction": true,
+				"layout": "vertical",
+				"multi_answer": true,
+				"name": "Multiple Choice Question element",
+				"prediction_feedback": "",
+				"prompt": "\u003Cp\u003Ewhy does ...\u003C/p\u003E",
+				"show_as_menu": false,
+				"show_in_featured_question_report": true,
+				"choices": [{
+					"choice": "a",
+					"is_correct": true,
+					"prompt": "Good job."
+				}, {
+					"choice": "b",
+					"is_correct": true,
+					"prompt": "Nice work."
+				}, {
+					"choice": "c",
+					"is_correct": false,
+					"prompt": "Nope."
+				}],
+				"type": "Embeddable::MultipleChoice",
+				"ref_id": "8-Embeddable::MultipleChoice"
+			},
+			"section": null
+		}, {
+			"embeddable": {
+				"custom": false,
+				"enable_check_answer": false,
+				"give_prediction_feedback": false,
+				"hint": "",
+				"is_full_width": false,
+				"is_hidden": false,
+				"is_prediction": false,
+				"layout": "horizontal",
+				"multi_answer": false,
+				"name": "Multiple Choice Question element",
+				"prediction_feedback": "",
+				"prompt": "\u003Cp\u003E\u003Cspan style=\"text-decoration: underline;\"\u003E\u003Cem\u003E\u003Cstrong\u003Ewhy does ...\u003C/strong\u003E\u003C/em\u003E\u003C/span\u003E\u003C/p\u003E",
+				"show_as_menu": false,
+				"show_in_featured_question_report": true,
+				"choices": [{
+					"choice": "a",
+					"is_correct": true,
+					"prompt": ""
+				}, {
+					"choice": "b",
+					"is_correct": false,
+					"prompt": ""
+				}, {
+					"choice": "c",
+					"is_correct": false,
+					"prompt": ""
+				}],
+				"type": "Embeddable::MultipleChoice",
+				"ref_id": "9-Embeddable::MultipleChoice"
+			},
+			"section": null
+		}]
+	}, {
+		"additional_sections": null,
+		"embeddable_display_mode": "stacked",
+		"id": 15,
+		"is_completion": false,
+		"is_hidden": false,
+		"layout": "l-6040",
+		"name": "Page 3",
+		"position": 3,
+		"show_header": false,
+		"show_info_assessment": true,
+		"show_interactive": false,
+		"show_sidebar": false,
+		"sidebar": null,
+		"sidebar_title": "Did you know?",
+		"toggle_info_assessment": false,
+		"embeddables": [{
+			"embeddable": {
+				"content": "\u003Cp\u003E\u003Cspan style=\"text-decoration: underline;\"\u003E\u003Cem\u003E\u003Cstrong\u003EThis is a text block.\u003C/strong\u003E\u003C/em\u003E\u003C/span\u003E\u003C/p\u003E",
+				"is_callout": true,
+				"is_full_width": false,
+				"is_hidden": false,
+				"name": "This is a heading",
+				"type": "Embeddable::Xhtml",
+				"ref_id": "7-Embeddable::Xhtml"
+			},
+			"section": null
+		}]
+	}],
+	"plugins": [],
+	"type": "LightweightActivity",
+	"export_site": "Lightweight Activities Runtime and Authoring"
+}

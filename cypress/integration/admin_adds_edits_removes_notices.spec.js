@@ -1,7 +1,7 @@
 import * as c from '../support/constants.js';
-import userHomePageElements from '../support/elements/user_home_page_elements.js'
 import adminPageElements from '../support/elements/admin_page_elements.js'
 import noticesPageElements from '../support/elements/notices_page_elements.js'
+import userHomePageElements from '../support/elements/user_home_page_elements.js'
 
 // Note for db tracking : No db tracking required, using existing records (except for notices, which are added and then deleted at the end)
 

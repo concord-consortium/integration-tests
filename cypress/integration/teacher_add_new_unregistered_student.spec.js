@@ -1,16 +1,17 @@
 import * as c from '../support/constants.js'
-import teacherHomePageElements from '../support/elements/teacher_home_page_elements.js'
 import addClassPageElements from '../support/elements/add_class_page_elements.js'
-import studentRosterPageElements from '../support/elements/student_roster_page_elements.js'
-import flashNoticePageElements from '../support/elements/flash_notice_page_elements.js'
-import manageClassesPageElements from '../support/elements/manage_classes_page_elements.js'
-import userHomePageElements from '../support/elements/user_home_page_elements.js'
-import changePasswordPageElements from '../support/elements/change_password_page_elements.js'
-import studentHomePageElements from '../support/elements/student_home_page_elements.js'
-import registerAddStudentPageElements from '../support/elements/register_add_student_page_elements.js'
 import adminPageElements from '../support/elements/admin_page_elements.js'
 import adminSettingsUsersPageElements from '../support/elements/admin_settings_users_page_elements.js'
+import changePasswordPageElements from '../support/elements/change_password_page_elements.js'
+import flashNoticePageElements from '../support/elements/flash_notice_page_elements.js'
+import manageClassesPageElements from '../support/elements/manage_classes_page_elements.js'
+import registerAddStudentPageElements from '../support/elements/register_add_student_page_elements.js'
+import studentHomePageElements from '../support/elements/student_home_page_elements.js'
+import studentRosterPageElements from '../support/elements/student_roster_page_elements.js'
+import teacherHomePageElements from '../support/elements/teacher_home_page_elements.js'
+import userHomePageElements from '../support/elements/user_home_page_elements.js'
 
+// Note for db tracking : This test adds a class at the start and then archives it at the end
 // Note for db tracking : No db tracking required, using existing records (except for 2 student accounts, which are added and then deleted at the end)
 
 const STUDENT_TWO_NAME = c.STUDENT_TWO_LASTNAME + ", " + c.STUDENT_TWO_FIRSTNAME;
@@ -22,7 +23,8 @@ const STUDENT_THREE_FULLNAME = c.STUDENT_THREE_FIRSTNAME + " " + c.STUDENT_THREE
 const STUDENT_THREE_USERNAME = c.STUDENT_THREE_USERNAME;
 const STUDENT_THREE_PASSWORD = c.STUDENT_THREE_PASSWORD;
 const STUDENT_NEW_PASSWORD = STUDENT_TWO_PASSWORD + "1";
-let className = undefined;
+const CLASS_WORD = c.CLASS_WORD
+const CLASS_NAME = 'Class ' + CLASS_WORD;
 
 context("Verify teacher can add a new student to a class", () => {
 
@@ -35,20 +37,18 @@ context("Verify teacher can add a new student to a class", () => {
     cy.logout();
   });
 
-  it("Verify teacher is able to unarchive a class", () => {
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Click 'Classes' Section
-    cy.get(teacherHomePageElements.LEFT_NAV_MANAGE_CLASSES).click(); // Click 'Manage Classes' Section
-    cy.contains(manageClassesPageElements.LAST_CLASS_ARCHIVE_UNARCHIVE, "Unarchive").click(); // Unarchive the last class in the list
-    cy.get(manageClassesPageElements.LAST_CLASS_NAME).then(($lastclass) => {
-      className = $lastclass.text(); // Get the class name of the unarchived class
-    });
-    cy.get(userHomePageElements.HEADER_MYCLASSES).click(); // Click 'My Classes' in the top header
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Expand 'Classes' in the left nav
-    cy.get(teacherHomePageElements.LEFT_NAV_CLASS_NAME).click(); // Expand unarchived class in the left nav
+  it("Verify teacher is able to add a class", () => {
+    cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Expand 'Classes' in left nav
+    cy.get(teacherHomePageElements.LEFT_NAV_ADD_CLASS).click(); // Click 'Add Class'
+    cy.get(addClassPageElements.CLASS_NAME).type(CLASS_NAME); // Type into class name field
+    cy.get(addClassPageElements.CLASS_DESCRIPTION).type(c.CLASS_DESC); // Type into class description field
+    cy.get(addClassPageElements.CLASS_WORD).type(CLASS_WORD); // Type into class word field
+    cy.get(addClassPageElements.SUBMIT_BUTTON).click(); // Click 'Submit' button
+
   });
 
   it("Verify teacher is able to add new students to the class", () => {
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, className).within(() => {
+    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).within(() => {
       cy.get(teacherHomePageElements.LEFT_NAV_STUDENT_ROSTER).click(); // Click 'Student Roster' for the current class
     });
     cy.get(studentRosterPageElements.CLASS_COUNT).should("have.text", "0"); // Check 'Student Count' is '0'
@@ -90,10 +90,10 @@ context("Verify teacher can add a new student to a class", () => {
   it("Verify registered student is able to use the new password", () => {
     cy.logout(); // Logout as teacher user
     cy.login(STUDENT_TWO_USERNAME, STUDENT_NEW_PASSWORD); // Login as student 1 with the new password
-    cy.contains(studentHomePageElements.LEFT_NAV_CLASS, className); // Check the current class is present in the student left nav
+    cy.contains(studentHomePageElements.LEFT_NAV_CLASS, CLASS_NAME); // Check the current class is present in the student left nav
     cy.logout(); // Logout as student
     cy.login(STUDENT_THREE_USERNAME, STUDENT_THREE_PASSWORD); // Login as student 2
-    cy.contains(studentHomePageElements.LEFT_NAV_CLASS, className); // Check the current class is present in the student left nav
+    cy.contains(studentHomePageElements.LEFT_NAV_CLASS, CLASS_NAME); // Check the current class is present in the student left nav
     cy.logout(); // Logout as student
     cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login as teacher
   });
@@ -101,7 +101,7 @@ context("Verify teacher can add a new student to a class", () => {
   it("Verify teacher is able to revert the student's password", () => {
       cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Expand 'Classes' section in left nav
       cy.get(teacherHomePageElements.LEFT_NAV_CLASS_NAME).click(); // Expand current class in the left nav
-      cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, className).within(() => {
+      cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).within(() => {
         cy.get(teacherHomePageElements.LEFT_NAV_STUDENT_ROSTER).click(); // Click 'Student Roster' for current class in the left nav
       });
       cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE_CHANGE_PASSWORD).click(); // Click 'Change Password' in the student roster tabel for student 1 entry
@@ -111,7 +111,7 @@ context("Verify teacher can add a new student to a class", () => {
       cy.contains(flashNoticePageElements.BANNER, "Password for " + STUDENT_TWO_USERNAME + " was successfully updated."); // Check banner for password change success message
       cy.logout(); // Logout as teacher
       cy.login(STUDENT_TWO_USERNAME, STUDENT_TWO_PASSWORD); // Login as student 1 with the original password
-      cy.contains(studentHomePageElements.LEFT_NAV_CLASS, className); // Check the current class is present in the student left nav
+      cy.contains(studentHomePageElements.LEFT_NAV_CLASS, CLASS_NAME); // Check the current class is present in the student left nav
       cy.logout(); // Logout as student
       cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login as teacher
   });
@@ -119,18 +119,18 @@ context("Verify teacher can add a new student to a class", () => {
   it("Verify teacher is able to remove one student from the roster", () => {
     cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Expand 'Classes' section in left nav
     cy.get(teacherHomePageElements.LEFT_NAV_CLASS_NAME).click(); // Expand current class in the left nav
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, className).within(() => {
+    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).within(() => {
       cy.get(teacherHomePageElements.LEFT_NAV_STUDENT_ROSTER).click(); // Click 'Student Roster' for current class in the left nav
     });
     cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE_REMOVE_STUDENT_TWO).click(); // Click 'Remove Student' in the student roster tabel for student 1 entry
     cy.get(studentRosterPageElements.CLASS_COUNT).should("have.text", "1"); // 'Class Count' in the 'Student Roster' page should now be '1'
-    cy.confirm("This will remove the student: \'" + STUDENT_THREE_NAME + "\' from the class: " + className + ".\\n\\nAre you sure you want to do this?"); // Confirm student removal from class
+    cy.confirm("This will remove the student: \'" + STUDENT_THREE_NAME + "\' from the class: " + CLASS_NAME + ".\\n\\nAre you sure you want to do this?"); // Confirm student removal from class
   });
 
   it("Verify teacher is able to remove second student from the roster", () => {
     cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE_REMOVE_STUDENT).click(); // Click 'Remove Student' in the student roster tabel for student 1 entry
     cy.get(studentRosterPageElements.CLASS_COUNT).should("have.text", "0"); // 'Class Count' in the 'Student Roster' page should now be '0'
-    cy.confirm("This will remove the student: \'" + STUDENT_TWO_NAME + "\' from the class: " + className + ".\\n\\nAre you sure you want to do this?"); // Confirm student removal from class
+    cy.confirm("This will remove the student: \'" + STUDENT_TWO_NAME + "\' from the class: " + CLASS_NAME + ".\\n\\nAre you sure you want to do this?"); // Confirm student removal from class
     cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).should("not.exist"); // Student roster table should not exist anymore
   });
 

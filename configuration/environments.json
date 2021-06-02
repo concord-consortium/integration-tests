@@ -2,6 +2,8 @@
 	"production": {
 		"learnPortalBaseUrl": "https://learn.concord.org",
 		"laraBaseUrl": "https://authoring.concord.org",
+		"publishEnvironment": "cc_portal_learn",
+		"laraPortalEnvironment" : "Learn",
 		"schoolName": "Concord Consortium",
 		"teacher": {
 			"username": "TejalTeacher",
@@ -61,6 +63,8 @@
 	"staging": {
 		"learnPortalBaseUrl": "https://learn.staging.concord.org",
 		"laraBaseUrl": "https://authoring.staging.concord.org",
+		"publishEnvironment": "cc_portal_learn_staging",
+		"laraPortalEnvironment" : "Learn Staging",
 		"schoolName": "Concord Consortium",
 		"teacher": {
 			"username": "TejalTeacher",
@@ -118,8 +122,10 @@
 		}
 	},
 	"dev": {
-		"learnPortalBaseUrl": "http://app.portal.docker/",
-		"laraBaseUrl": "http://app.lara.docker/",
+		"learnPortalBaseUrl": "https://app.portal.docker/",
+		"laraBaseUrl": "https://app.lara.docker/",
+		"publishEnvironment": "cc_portal_localhost",
+		"laraPortalEnvironment" : "Localhost",
 		"schoolName": "Rails Portal-school",
 		"teacher": {
 			"username": "teacher",
@@ -174,6 +180,9 @@
 			"firstName": "Student3",
 			"lastName": "Test",
 			"email": "student3.test@mailinator.com"
+		},
+		"lara": {
+			"username": "dev_test_user@test.email"
 		}
 	}
 }
