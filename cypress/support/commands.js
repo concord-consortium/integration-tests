@@ -171,10 +171,7 @@ Cypress.Commands.add("deleteMaterial", materialUrl => {
   } else {
     type = "sequences"
   }
-  // E.g. "https://authoring.concord.org/activities/123 => ["https://authoring.concord.org", "123"]
   const [ baseUrl, id ] = materialUrl.split(`/${type}/`)
-  // This visit does not seem to be necessary. However, it seems that on some pages CSRF token can't be found.
-  // Do it for safety, as we don't want to leave test materials around.
   return cy.laraRequestWithCSRF({
     url: `${baseUrl}/api/v1/${type}/${id}`,
     method: "DELETE",
