@@ -26,13 +26,13 @@ context("Teardown : Remove student accounts added at the start of tests", () => 
 
     cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type(c.STUDENT_USERNAME); // Type student 1's username in the search input field
     cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click(); // Click 'Search' button
-    cy.contains(adminSettingsUsersPageElements.SEARCH_RESULT, "User: " + STUDENT_FULLNAME); // The search result should contain 1 entry with student 1's info
+    cy.contains(adminSettingsUsersPageElements.SEARCH_RESULT_FIXED, "User: " + STUDENT_FULLNAME); // The search result should contain 1 entry with student 1's info
 
     cy.window().then((win) => {
       cy.stub(win, 'prompt').returns("DELETE");
       cy.get(adminSettingsUsersPageElements.DELETE_USER).click(); // Click Delete link and confirm by entering DELETE in the browser prompt
     });
-    cy.contains(flashNoticePageElements.BANNER, "User: " + STUDENT_FULLNAME + " successfully deleted!"); // Verify banner that shows that user is successfully deleted
+    cy.contains(flashNoticePageElements.BANNER, " successfully deleted!"); // Verify banner that shows that user is successfully deleted
   });
 
   it("Admin removes second student account", () => {

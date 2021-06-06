@@ -7,6 +7,7 @@ import manageClassesPageElements from '../support/elements/manage_classes_page_e
 import studentRosterPageElements from '../support/elements/student_roster_page_elements.js'
 import teacherHomePageElements from '../support/elements/teacher_home_page_elements.js'
 import userHomePageElements from '../support/elements/user_home_page_elements.js'
+import * as teacherHelper from "../support/helpers/teacherHelper"
 
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 
@@ -36,18 +37,15 @@ context("Verify teacher can add and edit a class", () => {
 
   it("Verify Assignments page of newly added class is displayed properly", () => {
     cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).click(); // Class with the given class name should be added to left nav
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).within(() => {
-      cy.get(teacherHomePageElements.LEFT_NAV_CLASS_ASSIGNMENTS).click(); // Click 'Assignments' section
-    });
+    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).contains('li a', 'Assignments') .click();
     cy.contains(assignmentsPageElements.HEADING, "Assignments for "+ CLASS_NAME); // Check heading of the 'Assignments' page
     cy.contains(assignmentsPageElements.TEACHER_NAME, TEACHER_NAME); // Check teacher name in 'Assignments' page
     cy.contains(assignmentsPageElements.CLASS_WORD, CLASS_WORD); // Check class word in the 'Assignments' page
   });
 
   it("Verify Student Roster page of newly added class is displayed properly", () => {
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).within(() => {
-      cy.get(teacherHomePageElements.LEFT_NAV_STUDENT_ROSTER).click(); // Click 'Student Roster' section
-    });
+    cy.get(teacherHomePageElements.NAV_CLASSES).contains('li', CLASS_NAME).click(); // Expand current class in the left nav
+    cy.get(teacherHomePageElements.NAV_CLASSES).contains('li', CLASS_NAME).contains('Student Roster').click();
     cy.get(studentRosterPageElements.HEADING).should("have.text", "Student Roster"); // Check heading of the 'Student Roster' page
     cy.contains(studentRosterPageElements.TEACHER_NAME, TEACHER_NAME); // Check teacher name in the 'Student Roster'  page
     cy.contains(studentRosterPageElements.CLASS_WORD, CLASS_WORD); // Check class word in the 'Student Roster' page
@@ -55,9 +53,8 @@ context("Verify teacher can add and edit a class", () => {
   });
 
   it("Verify Class Setup page of newly added class is displayed properly", () => {
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).within(() => {
-      cy.get(teacherHomePageElements.LEFT_NAV_CLASS_SETUP).click(); // Click 'Class Setup' section
-    });
+    cy.get(teacherHomePageElements.NAV_CLASSES).contains('li', CLASS_NAME).click(); // Expand current class in the left nav
+    cy.get(teacherHomePageElements.NAV_CLASSES).contains('li', CLASS_NAME).contains('li a', "Class Setup").click();
     cy.get(classSetupPageElements.HEADING).should("have.text", "Class Setup Information"); // Check heading of the 'Class Setup' page
     cy.contains(classSetupPageElements.CLASS_WORD, CLASS_WORD); // Check class word in the 'Class Setup' page
   });
@@ -75,9 +72,8 @@ context("Verify teacher can add and edit a class", () => {
   });
 
   it("Verify edits made to class can be reverted", () => {
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME + "-1a").within(() => {
-      cy.get(teacherHomePageElements.LEFT_NAV_CLASS_SETUP).click(); // Click 'Class Setup' section
-    });
+    cy.get(teacherHomePageElements.NAV_CLASSES).contains('li', CLASS_NAME + "-1a").click(); // Expand current class in the left nav
+    cy.get(teacherHomePageElements.NAV_CLASSES).contains('li', CLASS_NAME + "-1a").contains('li a', "Class Setup").click();
     cy.get(classSetupPageElements.CLASS_NAME_FIELD).type('{selectall}{backspace}' + CLASS_NAME); // Revert class name to original name
     cy.get(classSetupPageElements.CLASS_WORD_FIELD).type('{selectall}{backspace}' + CLASS_WORD); // Revert class word to original word
     cy.get(classSetupPageElements.SUBMIT_BUTTON).click(); // Click 'Submit' button

@@ -122,8 +122,8 @@
 		}
 	},
 	"dev": {
-		"learnPortalBaseUrl": "https://app.portal.docker/",
-		"laraBaseUrl": "https://app.lara.docker/",
+		"learnPortalBaseUrl": "https://learn.dev.docker/",
+		"laraBaseUrl": "https://authoring.dev.docker/",
 		"publishEnvironment": "cc_portal_localhost",
 		"laraPortalEnvironment" : "Localhost",
 		"schoolName": "Rails Portal-school",
