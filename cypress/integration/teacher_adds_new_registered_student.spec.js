@@ -7,6 +7,7 @@ import studentHomePageElements from '../support/elements/student_home_page_eleme
 import studentRosterPageElements from '../support/elements/student_roster_page_elements.js'
 import teacherHomePageElements from '../support/elements/teacher_home_page_elements.js'
 import userHomePageElements from '../support/elements/user_home_page_elements.js'
+import * as teachersHelper from '../support/helpers/teacherHelper'
 
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 
@@ -68,10 +69,8 @@ context("Verify teacher can add a new student to a class", () => {
 
   it("Verify teacher is able to revert the student's password", () => {
       cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Expand Classes section in the left nav bar
-      cy.get(teacherHomePageElements.LEFT_NAV_CLASS_NAME).click(); // Expand current class
-      cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).within(() => {
-        cy.get(teacherHomePageElements.LEFT_NAV_STUDENT_ROSTER).click(); // Click 'Student Roster' in the left nav bar
-      });
+      cy.get(teacherHomePageElements.NAV_CLASSES).contains('li', CLASS_NAME).click(); // Expand current class in the left nav
+      cy.contains('li',CLASS_NAME).contains('Student Roster').click();
       cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE_CHANGE_PASSWORD).click(); // Click 'Change Password' link
       cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(STUDENT_PASSWORD); // Type password into Password field
       cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(STUDENT_PASSWORD); // Type password into Confirm password field
@@ -85,20 +84,19 @@ context("Verify teacher can add a new student to a class", () => {
 
   it("Verify teacher is able to remove student from the roster", () => {
     cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Expand Classes section in the left nav bar
-    cy.get(teacherHomePageElements.LEFT_NAV_CLASS_NAME).click(); // Expand the current class
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).within(() => {
-      cy.get(teacherHomePageElements.LEFT_NAV_STUDENT_ROSTER).click(); // Click 'Student Roster' in the left nav bar
-    });
+    cy.get(teacherHomePageElements.NAV_CLASSES).contains('li', CLASS_NAME).click(); // Expand current class in the left nav
+    cy.contains('li',CLASS_NAME).contains('Student Roster').click();
     cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE_REMOVE_STUDENT).click(); // Click Remove Student link
     cy.confirm("This will remove the student: " + STUDENT_NAME + " from the class: " + CLASS_NAME + ". Are you sure you want to do this?"); // Confirm browser alert
     cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).should("not.exist"); // Student Roster table should be displayed
   });
 
   it("Verify teacher is able to archive the class", () => {
-    cy.get(teacherHomePageElements.LEFT_NAV_MANAGE_CLASSES).click(); // Click Manage Classes in the left nav bar
-    cy.get(manageClassesPageElements.LAST_CLASS_ARCHIVE_UNARCHIVE).should("have.text", "Archive").click(); // Click Archive button on the last added class
-    cy.get(userHomePageElements.HEADER_MYCLASSES).click(); // Navigate to the Getting Started page
-    cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Expand Classes section in the left nav bar
-    cy.get(teacherHomePageElements.LEFT_NAV_CLASS_NAME).should("not.exist"); // The archived class should not exist in the left nav bar
+    teachersHelper.archiveClass(CLASS_NAME);
+    // cy.get(teacherHomePageElements.LEFT_NAV_MANAGE_CLASSES).click(); // Click Manage Classes in the left nav bar
+    // cy.get(manageClassesPageElements.LAST_CLASS_ARCHIVE_UNARCHIVE).should("have.text", "Archive").click(); // Click Archive button on the last added class
+    // cy.get(userHomePageElements.HEADER_MYCLASSES).click(); // Navigate to the Getting Started page
+    // cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Expand Classes section in the left nav bar
+    // cy.get(teacherHomePageElements.LEFT_NAV_CLASS_NAME).should("not.exist"); // The archived class should not exist in the left nav bar
   });
 });

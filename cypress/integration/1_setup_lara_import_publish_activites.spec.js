@@ -18,6 +18,10 @@ context("Setup : Import and publish activities and sequences into LARA", () => {
     cy.logoutLARA(); // Logout from LARA
   });
 
+  after(() => {
+    cy.clearCookies();
+  });
+
   it("Import and publish activity 1", () => {
     cy.importMaterial(c.AUTHORING_BASE_URL, 'activities/AutomatedTestActivity1_AP.json').then(url => { // Import AutomatedTestActivity1_AP.json from fixtures into LARA
       activityUrl = url

@@ -18,7 +18,6 @@ context("Setup : Add student accounts for use in tests", () => {
 
   before(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
-    cy.logout(); // Logout so as to clear cookies from previous test
     cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login as teacher user
   });
 

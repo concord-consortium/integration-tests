@@ -27,10 +27,10 @@
 // Define the command
 import landingPageElements from './elements/landing_page_elements.js'
 import signinPageElements from './elements/signin_page_elements.js'
-import signupPageElements from './elements/signup_page_elements.js'
 import userHomePageElements from './elements/user_home_page_elements.js'
 import flashNoticePageElements from './elements/flash_notice_page_elements.js'
 import laraPageElements from './elements/lara_page_elements.js'
+
 
 // LEARN Portal Login Form
 Cypress.Commands.add('login', (username, password) => {
@@ -39,6 +39,7 @@ Cypress.Commands.add('login', (username, password) => {
   cy.get(signinPageElements.USERNAME_FIELD).type(username);
   cy.get(signinPageElements.PASSWORD_FIELD).type(password);
   cy.get(signinPageElements.LOGIN_BUTTON).click();
+  // cy.contains(flashNoticePageElements.BANNER, 'Signed in successfully.');
 });
 
 // LEARN Portal Login Page
@@ -54,6 +55,7 @@ Cypress.Commands.add('retryLogin', (username, password) => {
   cy.get(signinPageElements.USERNAME_FIELD).type('{selectall}{backspace}' + username);
   cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password);
   cy.get(signinPageElements.LOGIN_BUTTON).click();
+  // cy.contains(flashNoticePageElements.BANNER, 'Signed in successfully.');
 });
 
 Cypress.Commands.add('logout', () => {
