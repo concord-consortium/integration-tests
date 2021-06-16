@@ -3,14 +3,31 @@ import { uid } from 'uid';
 import Constants from '../support/constants.js';
 import automatedTestActivity1_Lara from "../support/elements/automated_test_activity1_lara_elements";
 import * as TeacherHelper from "../support/helpers/teacherHelper";
-import {BTN_ACTIVITY_RUN} from "../support/elements/student_home_page_elements";
+import studentHomePageElements, {
+    BTN_ACTIVITY_RUN,
+    getClassSectionElement,
+    getLinkGenerateReport
+} from "../support/elements/student_home_page_elements";
 import * as ACTIVITY_PAGES from "../support/elements/activity_pagination_header";
 import * as adminHelper from "../support/helpers/adminHelper";
 import studentRosterPageElements from "../support/elements/student_roster_page_elements";
+import teacherHomePageElements from "../support/elements/teacher_home_page_elements";
+import assignmentsPageElements from "../support/elements/assignments_page_elements";
+import automated_test_activity1_lara_report_elements
+    , {getQuestionFeedbackTextAreaElementForStudent} from "../support/elements/automated_test_activity1_lara_report_elements";
+import * as LaraRuntimeHelper from '../support/helpers/laraRuntimeHelper';
+
+import {automatedtestactivity1LaraData} from "../support/testdata/testdata_automatedtestactivity1_lara";
+
+import * as automatedTestActivityElementFunctions from '../support/elements/automated_test_activity1_lara_report_elements';
+import * as ReportHelper from '../support/helpers/reportHelper';
+import * as StudentHelper from '../support/helpers/studentHelper';
 
 const CLASS_WORD = Constants.CLASS_WORD;
+// const CLASS_WORD = '1a058e599e2';
 const CLASS_NAME = 'AutoClass '+ CLASS_WORD;
-const ASSIGNMENT_NAME = 'AutomatedTestActivity1_LARA';
+const ASSIGNMENT_NAME = 'ATA1_LARA';
+const OLD_ASSIGNMENT_NAME = 'AutomatedTestActivity1_LARA';
 
 context("Verify Student Activity Work Flow", () => {
 
@@ -18,9 +35,9 @@ context("Verify Student Activity Work Flow", () => {
         cy.visit(Constants.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
     });
 
-    after(function() {
-        cy.login(Constants.TEACHER_USERNAME, Constants.TEACHER_PASSWORD); // Login as admin user
-        TeacherHelper.archiveClass(CLASS_NAME);
+    it("Copy Lara activity", () => {
+        cy.login(Constants.ADMIN_USERNAME, Constants.ADMIN_PASSWORD);
+        adminHelper.copyLaraActivity(OLD_ASSIGNMENT_NAME, ASSIGNMENT_NAME);
         cy.logout();
     });
 
@@ -30,40 +47,118 @@ context("Verify Student Activity Work Flow", () => {
         cy.logout();
     });
 
-    it("Verify teacher creates class and assignment and adds student to class", () => {
+    it("Verify teacher adds class, assignment and 5 students to class", () => {
         cy.login(Constants.TEACHER_USERNAME, Constants.TEACHER_PASSWORD);
         TeacherHelper.addClass(CLASS_NAME, CLASS_NAME, CLASS_WORD);
         TeacherHelper.addAssignment(CLASS_NAME, ASSIGNMENT_NAME);
-        TeacherHelper.addStudentToClass(Constants.STUDENT_USERNAME, Constants.STUDENT_FIRSTNAME,
-                                    Constants.STUDENT_LASTNAME, CLASS_NAME);
-        TeacherHelper.verifyStudentCount('1');
+        let studentCount = automatedtestactivity1LaraData.students.totalStudentsAssigned;
+        for(let studentIndex = 1 ; studentIndex <= studentCount; studentIndex++){
+            let studentObj = automatedtestactivity1LaraData.students[studentIndex];
+            TeacherHelper.addStudentToClass(studentObj.username, studentObj.firstName, studentObj.lastName, CLASS_NAME);
+        }
         cy.logout();
     });
 
-    it("Verify Student Running Assignment", () => {
-        cy.login(Constants.STUDENT_USERNAME, Constants.STUDENT_PASSWORD);
-        BTN_ACTIVITY_RUN(CLASS_NAME).click();
-        cy.get(ACTIVITY_PAGES.BTN_ACTIVITY_PAGE(1)).click();
-        cy.get(automatedTestActivity1_Lara.TXT_PAGE1_QUESTION1_OPENRESPONSE_ANSWER).type('This is great question 1');
-        cy.get(automatedTestActivity1_Lara.TXT_PAGE1_QUESTION2_OPENRESPONSE_ANSWER).type('This is great question 2');
+    it("Run the assignment with 5 students added to the class", () => {
 
-        cy.get(ACTIVITY_PAGES.BTN_ACTIVITY_PAGE(2)).click();
-        cy.get(automatedTestActivity1_Lara.CHK_PAGE2_QUESTION3_MCQ_CHOICE1).click();
-        cy.get(automatedTestActivity1_Lara.CHK_PAGE2_QUESTION3_MCQ_CHOICE2).click();
+        let studentCount = automatedtestactivity1LaraData.students.totalStudentsAssigned;
 
-        cy.get(automatedTestActivity1_Lara.BTN_SUBMIT_PAGE2_QUESTION3_MCQ).click();
+        for(let studentIndex = 1 ; studentIndex <= studentCount; studentIndex++){
+            let studentObj = automatedtestactivity1LaraData.students[studentIndex];
 
-        cy.get(automatedTestActivity1_Lara.CHK_PAGE2_QUESTION4_MCQ_CHOICE2).click();
+            cy.login(studentObj.username, studentObj.password);
 
-        cy.get(ACTIVITY_PAGES.BTN_ACTIVITY_PAGE(3)).click();
+            BTN_ACTIVITY_RUN(CLASS_NAME).click();
 
-        //TODO: Generate Report button click opens the report page which do not have any links to logout or to go to home page.
-        //So, not clicking on GENERATE REPORT button for now.
-        //cy.get(automatedTestActivity1_Lara.BTN_GENERATE_REPORT).click();
+            let totalPagesInAssignment = automatedtestactivity1LaraData.assignmentPages.totalPages;
+            for(let pageIndex = 1 ; pageIndex <= totalPagesInAssignment; pageIndex++){
 
-        cy.get(automatedTestActivity1_Lara.LNK_ADMIN_ACTIVITY_END).click();
-        cy.get(automatedTestActivity1_Lara.LNK_NOT_YOU).click();
+                LaraRuntimeHelper.goToPageNumber(pageIndex);
+                if(automatedtestactivity1LaraData.assignmentPages[pageIndex] === undefined){
+                    continue;
+                }
 
+                let questionsInThisPage = automatedtestactivity1LaraData.assignmentPages[pageIndex].questions;
+
+                let totalQuestionsInPage = questionsInThisPage.totalQuestionsInPage;
+
+                for(let questionIndex = 1 ; questionIndex <= totalQuestionsInPage; questionIndex++){
+                    let currentQuestion = questionsInThisPage[questionIndex];
+                    if(currentQuestion === null || currentQuestion === undefined){
+                        continue;
+                    }
+                    LaraRuntimeHelper.answerQuestion(questionIndex, currentQuestion, studentObj.username);
+                }
+            }
+            //THIS WILL END ASSIGNMENT AND LOGOUT
+            LaraRuntimeHelper.endAssignment();
+        }
     });
 
+    it("Verify teacher can verify reports and provide feedback", () => {
+        cy.login(Constants.TEACHER_USERNAME, Constants.TEACHER_PASSWORD);
+        cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, 'Classes').click();
+        cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).click();
+        cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).contains('li a', 'Assignments').click();
+        cy.get(assignmentsPageElements.BTN_SHOW_DETAILS_ASSIGNMENT).click();
+        cy.get(assignmentsPageElements.BTN_REPORT).invoke('removeAttr', 'target').click();
+        cy.wait(2000);
+
+        let totalPagesInAssignment = automatedtestactivity1LaraData.assignmentPages.totalPages;
+        for(let pageIndex = 1 ; pageIndex <= totalPagesInAssignment; pageIndex++){
+
+            if(automatedtestactivity1LaraData.assignmentPages[pageIndex] === undefined){
+                continue;
+            }
+
+            let questionsInThisPage = automatedtestactivity1LaraData.assignmentPages[pageIndex].questions;
+
+            let totalQuestionsInPage = questionsInThisPage.totalQuestionsInPage;
+
+            for(let questionIndex = 1 ; questionIndex <= totalQuestionsInPage; questionIndex++) {
+                let currentQuestion = questionsInThisPage[questionIndex];
+                ReportHelper.verifyReportForAQuestion(pageIndex, questionIndex, currentQuestion, automatedtestactivity1LaraData.students);
+                ReportHelper.provideFeedbackForAQuestion(pageIndex, questionIndex, currentQuestion, automatedtestactivity1LaraData.students);
+            }
+        }
+        cy.go("back");
+        ReportHelper.provideOverallFeedback(automatedtestactivity1LaraData.students, automatedtestactivity1LaraData.overallFeedback);
+        cy.go("back");
+        cy.logout();
+    });
+
+    it("Verify student can see the feedback from their teacher", () => {
+        let studentCount = automatedtestactivity1LaraData.students.totalStudentsAssigned;
+        for(let studentIndex = 1; studentIndex <= studentCount; studentIndex++){
+            let studentObj = automatedtestactivity1LaraData.students[studentIndex];
+            cy.login(studentObj.username, studentObj.password);
+            let studentGenerateReportLnk = getLinkGenerateReport(CLASS_NAME);
+            studentGenerateReportLnk.invoke('removeAttr', 'target').click();
+            let totalPagesInAssignment = automatedtestactivity1LaraData.assignmentPages.totalPages;
+            for(let pageIndex = 1 ; pageIndex <= totalPagesInAssignment; pageIndex++){
+
+                if(automatedtestactivity1LaraData.assignmentPages[pageIndex] === undefined){
+                    continue;
+                }
+
+                let questionsInThisPage = automatedtestactivity1LaraData.assignmentPages[pageIndex].questions;
+
+                let totalQuestionsInPage = questionsInThisPage.totalQuestionsInPage;
+
+                for(let questionIndex = 1 ; questionIndex <= totalQuestionsInPage; questionIndex++) {
+                    let currentQuestion = questionsInThisPage[questionIndex];
+                    ReportHelper.viewTeachersFeedbackForAQuestion(pageIndex, questionIndex, currentQuestion, studentObj.username);
+                }
+
+            }
+            cy.go('back'); //Student report page do not have any links back to portal.
+            cy.logout();
+        }
+    });
+
+    it("Verify teacher archive class", () => {
+        cy.login(Constants.TEACHER_USERNAME, Constants.TEACHER_PASSWORD); // Login as admin user
+        TeacherHelper.archiveClass(CLASS_NAME);
+        cy.logout();
+    });
 });

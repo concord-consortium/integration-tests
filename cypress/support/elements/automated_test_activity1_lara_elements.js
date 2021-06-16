@@ -26,6 +26,7 @@ const automatedTestActivity1_Lara = {
 
     BTN_CLOSE_SUMMARY_REPORT: '#nav-activity-menu ul li:nth-child(3)',
 
+
 };
 
 export default automatedTestActivity1_Lara;
