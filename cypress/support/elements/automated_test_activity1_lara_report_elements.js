@@ -30,6 +30,8 @@ const automatedTestActivity1_Lara_Report = {
 
 };
 
+export default automatedTestActivity1_Lara_Report;
+
 export function getQuestionSectionSelector(pageNumber, questionNumber){
     return 'div.section div.page:nthchild(' + pageNumber + ') div.question:nth-child(' + questionNumber + ')';
 }
@@ -56,8 +58,3 @@ export function getQuestionScoreTextElementForStudent(firstName, lastName){
     let studentName = firstName + ' ' + lastName;
     return cy.contains('div.student-answer h3', studentName + "'s Work").parent().parent().find('div.score input.score-input');
 }
-
-
-
-
-export default automatedTestActivity1_Lara_Report;

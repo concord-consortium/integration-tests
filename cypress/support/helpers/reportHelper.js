@@ -78,7 +78,7 @@ export function viewTeachersFeedbackForAQuestion(pageNumber, questionNumberInPag
     let scoreValueSelector = 'div.feedback-section.score span.studentScore';
     let maxScoreValueSelector = 'div.feedback-section.score span.maxScore';
     cy.get(feedbackSectionSelector).find(feedbackSelector).should('include.text', studentAnswerData.teacherFeedback);
-    // cy.get(feedbackSectionSelector).find(scoreLabelSelector).should('include.text', 'Score');
+    cy.get(feedbackSectionSelector).find(scoreLabelSelector).should('include.text', 'Score');
     if(studentAnswerData.teacherScore === undefined){
         cy.get(feedbackSectionSelector).find(scoreValueSelector).should('not.exist');
         cy.get(feedbackSectionSelector).find(maxScoreValueSelector).should('not.exist');

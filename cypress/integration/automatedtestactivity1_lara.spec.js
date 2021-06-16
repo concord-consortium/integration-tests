@@ -1,30 +1,19 @@
 import { uid } from 'uid';
 
 import Constants from '../support/constants.js';
-import automatedTestActivity1_Lara from "../support/elements/automated_test_activity1_lara_elements";
 import * as TeacherHelper from "../support/helpers/teacherHelper";
-import studentHomePageElements, {
+import {
     BTN_ACTIVITY_RUN,
-    getClassSectionElement,
     getLinkGenerateReport
 } from "../support/elements/student_home_page_elements";
-import * as ACTIVITY_PAGES from "../support/elements/activity_pagination_header";
 import * as adminHelper from "../support/helpers/adminHelper";
-import studentRosterPageElements from "../support/elements/student_roster_page_elements";
 import teacherHomePageElements from "../support/elements/teacher_home_page_elements";
 import assignmentsPageElements from "../support/elements/assignments_page_elements";
-import automated_test_activity1_lara_report_elements
-    , {getQuestionFeedbackTextAreaElementForStudent} from "../support/elements/automated_test_activity1_lara_report_elements";
 import * as LaraRuntimeHelper from '../support/helpers/laraRuntimeHelper';
-
 import {automatedtestactivity1LaraData} from "../support/testdata/testdata_automatedtestactivity1_lara";
-
-import * as automatedTestActivityElementFunctions from '../support/elements/automated_test_activity1_lara_report_elements';
 import * as ReportHelper from '../support/helpers/reportHelper';
-import * as StudentHelper from '../support/helpers/studentHelper';
 
 const CLASS_WORD = Constants.CLASS_WORD;
-// const CLASS_WORD = '1a058e599e2';
 const CLASS_NAME = 'AutoClass '+ CLASS_WORD;
 const ASSIGNMENT_NAME = 'ATA1_LARA';
 const OLD_ASSIGNMENT_NAME = 'AutomatedTestActivity1_LARA';
@@ -33,12 +22,6 @@ context("Verify Student Activity Work Flow", () => {
 
     before(function() {
         cy.visit(Constants.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
-    });
-
-    it("Copy Lara activity", () => {
-        cy.login(Constants.ADMIN_USERNAME, Constants.ADMIN_PASSWORD);
-        adminHelper.copyLaraActivity(OLD_ASSIGNMENT_NAME, ASSIGNMENT_NAME);
-        cy.logout();
     });
 
     it("Edit portal settings to open activity in same browser tab", () => {
