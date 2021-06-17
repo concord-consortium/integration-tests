@@ -15,8 +15,7 @@ import * as ReportHelper from '../support/helpers/reportHelper';
 
 const CLASS_WORD = Constants.CLASS_WORD;
 const CLASS_NAME = 'AutoClass '+ CLASS_WORD;
-const ASSIGNMENT_NAME = 'ATA1_LARA';
-const OLD_ASSIGNMENT_NAME = 'AutomatedTestActivity1_LARA';
+const ASSIGNMENT_NAME = 'AutomatedTestActivity1_LARA';
 
 context("Verify Student Activity Work Flow", () => {
 

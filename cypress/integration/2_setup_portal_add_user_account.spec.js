@@ -7,7 +7,6 @@ import teacherHomePageElements from '../support/elements/teacher_home_page_eleme
 import userHomePageElements from '../support/elements/user_home_page_elements.js'
 import {automatedtestactivity1LaraData} from "../support/testdata/testdata_automatedtestactivity1_lara";
 import * as StudentHelper from "../support/helpers/studentHelper";
-import {registerStudent} from "../support/helpers/studentHelper";
 
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 // Note for db tracking : This test adds 2 students to the db for use in other tests in the suite
