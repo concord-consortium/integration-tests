@@ -5,6 +5,8 @@ import registerAddStudentPageElements from '../support/elements/register_add_stu
 import studentRosterPageElements from '../support/elements/student_roster_page_elements.js'
 import teacherHomePageElements from '../support/elements/teacher_home_page_elements.js'
 import userHomePageElements from '../support/elements/user_home_page_elements.js'
+import {automatedtestactivity1LaraData} from "../support/testdata/testdata_automatedtestactivity1_lara";
+import * as StudentHelper from "../support/helpers/studentHelper";
 
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 // Note for db tracking : This test adds 2 students to the db for use in other tests in the suite
@@ -32,7 +34,7 @@ context("Setup : Add student accounts for use in tests", () => {
     cy.get(addClassPageElements.CLASS_DESCRIPTION).type(c.CLASS_DESC); // Type into class description field
     cy.get(addClassPageElements.CLASS_WORD).type(CLASS_WORD); // Type into class word field
     cy.get(addClassPageElements.SUBMIT_BUTTON).click(); // Click 'Submit' button
-
+    cy.logout();
   });
 
   it("Teacher registers 2 new students to the class", () => {
@@ -73,5 +75,15 @@ context("Setup : Add student accounts for use in tests", () => {
     cy.get(userHomePageElements.HEADER_MYCLASSES).click(); // Click 'My Classes' in the top header
     cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, "Classes").click(); // Expand 'Classes' section
     cy.get(teacherHomePageElements.LEFT_NAV_ALL_CLASSES_PARENT).should("not.have.text", CLASS_NAME); // The archived class should not exist in the left nav bar
+    cy.logout();
   });
+
+  it("Register 5 students for last activity tests", () => {
+    let studentCount = automatedtestactivity1LaraData.students.totalStudentsAssigned;
+    for(let studentIndex = 1 ; studentIndex <= studentCount; studentIndex++){
+      let studentObj = automatedtestactivity1LaraData.students[studentIndex];
+      StudentHelper.registerStudent(studentObj.username, studentObj.firstName, studentObj.lastName, studentObj.password, CLASS_WORD);
+    }
+  });
+
 });

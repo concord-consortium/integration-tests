@@ -7,7 +7,8 @@ const registerAddNewStudentPageElements = {
   SUBMIT_BUTTON : 'div[class^=modal] form tr:nth-child(5) input',
   DIALOG_TEXT : 'div[class^=modal] div[class^=dialog] div[class^=title]',
   DIALOG_ADD_ANOTHER_STUDENT_BUTTON : 'div[class^=modal] div[class^=dialog] button:nth-child(1)',
-  DIALOG_CANCEL_BUTTON : 'div[class^=modal] div[class^=dialog] button:nth-child(2)'
+  DIALOG_CANCEL_BUTTON : 'div[class^=modal] div[class^=dialog] button:nth-child(2)',
 };
+
 
 export default registerAddNewStudentPageElements;
