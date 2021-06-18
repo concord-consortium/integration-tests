@@ -1,16 +1,23 @@
 import userHomePageElements from "../elements/user_home_page_elements";
-import admin_page_elements from "../elements/admin_page_elements";
+import adminPageElements from "../elements/admin_page_elements";
 import teacherHomePageElements from "../elements/teacher_home_page_elements";
 import noticesPageElements from "../elements/notices_page_elements";
+import flashNoticePageElements from '../elements/flash_notice_page_elements.js'
+import adminSettingsUsersPageElements from '../elements/admin_settings_users_page_elements.js'
 import * as c from "../constants";
 
 export function disableOpenInNewWindow(activityName){
     cy.get(userHomePageElements.LEFT_NAV_ADMIN_LINK).click();
-    cy.get(admin_page_elements.LNK_AUTHORING).click();
+    cy.get(adminPageElements.LNK_AUTHORING).click();
     cy.contains('li a', activityName).click();
     cy.contains('#material_clazz_count a', '(portal settings)').click();
     cy.contains('div.config', ' Open the url in a new window ').get('input#external_activity_popup').uncheck();
     cy.get('.action_menu_header_right ul li input[value=\"Save\"]').click();
+}
+
+export function openUsersAdminSection() {
+  cy.get(userHomePageElements.LEFT_NAV_ADMIN_LINK).click(); // Click 'Admin' link in left nav
+  cy.get(adminPageElements.USERS_LINK).click(); // Click 'Users' link in the Admin Settings page
 }
 
 
@@ -38,4 +45,36 @@ export function copyLaraActivity(existingActivityName, newActivityName){
     cy.contains('div.config', ' Open the url in a new window ').get('input#external_activity_popup').click();
     cy.get('.action_menu_header_right ul li input[value=\"Save\"]');
 
+}
+
+export function activateUser(userName, fullName, firstName, lastName) {
+
+  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + userName); // Type student 1's username in the search input field
+  cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click(); // Click 'Search' button
+
+  cy.get(adminSettingsUsersPageElements.SEARCH_LIST_HEADER).then(($searchResults) => {
+    if($searchResults.find(adminSettingsUsersPageElements.SEARCH_RESULT).length > 0) {
+      cy.contains(adminSettingsUsersPageElements.SEARCH_RESULT_USER_NAME, "User: " + fullName); // The search result should contain 1 entry with student 1's info
+      cy.get(adminSettingsUsersPageElements.ACTIVATE_USER).click(); // Click Activate link
+      cy.contains(flashNoticePageElements.BANNER, "Activation of " + lastName + ", " + firstName + " ( " + userName + " ) complete."); // Verify banner that shows that user is successfully activated
+    }
+  });
+}
+
+export function removeUser(userName, fullName) {
+
+  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + userName); // Type student 1's username in the search input field
+  cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click(); // Click 'Search' button
+
+  cy.get(adminSettingsUsersPageElements.SEARCH_LIST_HEADER).then(($searchResults) => {
+    if($searchResults.find(adminSettingsUsersPageElements.SEARCH_RESULT).length > 0) {
+      cy.contains(adminSettingsUsersPageElements.SEARCH_RESULT_USER_NAME, "User: " + fullName); // The search result should contain 1 entry with student 1's info
+
+      cy.window().then((win) => {
+        cy.stub(win, 'prompt').returns("DELETE");
+        cy.get(adminSettingsUsersPageElements.DELETE_USER).click(); // Click Delete link and confirm by entering DELETE in the browser prompt
+      });
+      cy.contains(flashNoticePageElements.BANNER, "User: " + fullName + " successfully deleted!"); // Verify banner that shows that user is successfully deleted
+    }
+  });
 }

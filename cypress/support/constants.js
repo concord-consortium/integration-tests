@@ -47,6 +47,12 @@ const constants = {
   MANAGER_PASSWORD : config.password,
   // school details
   SCHOOL_NAME : config.schoolName,
+  SCHOOL_DESCRIPTION : config.schoolDescription,
+  SCHOOL_ZIPCODE : config.schoolZipcode,
+  SCHOOL_CITY : config.schoolCity,
+  SCHOOL_STATE : config.schoolState,
+  SCHOOL_DISTRICT : config.schoolDistrict,
+  SCHOOL_COUNTRY : config.schoolCountry,
   // LARA Admin Username
   LARA_ADMIN_USERNAME : config.lara.username,
   LARA_ADMIN_PASSWORD : config.password,
@@ -55,7 +61,8 @@ const constants = {
   LARA_PORTAL_ENV : config.laraPortalEnvironment,
   CLASS_WORD : uid(),
   CLASS_DESC : 'test class',
-  NOTICE_TEXT : "This is a new notice"
+  NOTICE_TEXT : "This is a new notice",
+  UID : uid()
 };
 
 export default constants;

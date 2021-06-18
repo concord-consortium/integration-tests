@@ -6,7 +6,7 @@ const studentRosterPageElements = {
   CLASS_COUNT : '#student_roster #oClassStudentCount',
   REGISTERED_STUDENT_DROPDOWN : '#student_id_selector',
   ADD_STUDENT_BUTTON : '#student-roster button',
-  REGISTER_ADD_STUDENT_LINK : '#student-roster span[role=link]',
+  REGISTER_ADD_STUDENT_LINK : '#student-roster [class^=\"header\"] span[role=link]',
   STUDENT_ROSTER_TABLE : '#student-roster table',
   STUDENT_ROSTER_TABLE_STUDENT_NAME : '#student-roster table > tbody > tr:nth-child(2) > td:nth-child(1)',
   STUDENT_ROSTER_TABLE_STUDENT_USERNAME : '#student-roster table > tbody > tr:nth-child(2) > td:nth-child(2)',

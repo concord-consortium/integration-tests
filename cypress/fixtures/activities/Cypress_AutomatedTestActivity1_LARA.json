@@ -1,14 +1,13 @@
 {
 	"description": "",
 	"editor_mode": 0,
-	"id": 4,
+	"id": 3,
 	"layout": 0,
-	"name": "AutomatedTestActivity1_AP",
+	"name": "Cypress_AutomatedTestActivity1_LARA",
 	"notes": "",
 	"project_id": null,
 	"related": "",
-	"runtime": "Activity Player",
-	"show_submit_button": true,
+	"runtime": "LARA",
 	"student_report_enabled": true,
 	"thumbnail_url": "",
 	"time_to_complete": null,
@@ -17,7 +16,7 @@
 	"pages": [{
 		"additional_sections": null,
 		"embeddable_display_mode": "stacked",
-		"id": 16,
+		"id": 13,
 		"is_completion": false,
 		"is_hidden": false,
 		"layout": "l-6040",
@@ -43,7 +42,7 @@
 				"prompt": "\u003Cp\u003EWrite here:\u003C/p\u003E",
 				"show_in_featured_question_report": true,
 				"type": "Embeddable::OpenResponse",
-				"ref_id": "10-Embeddable::OpenResponse"
+				"ref_id": "8-Embeddable::OpenResponse"
 			},
 			"section": null
 		}, {
@@ -59,14 +58,14 @@
 				"prompt": "\u003Cp\u003E\u003Cspan style=\"text-decoration: underline;\"\u003E\u003Cem\u003E\u003Cstrong\u003EWrite here\u003C/strong\u003E\u003C/em\u003E\u003C/span\u003E\u003C/p\u003E",
 				"show_in_featured_question_report": true,
 				"type": "Embeddable::OpenResponse",
-				"ref_id": "11-Embeddable::OpenResponse"
+				"ref_id": "9-Embeddable::OpenResponse"
 			},
 			"section": null
 		}]
 	}, {
 		"additional_sections": null,
 		"embeddable_display_mode": "stacked",
-		"id": 17,
+		"id": 14,
 		"is_completion": false,
 		"is_hidden": false,
 		"layout": "l-6040",
@@ -109,7 +108,7 @@
 					"prompt": "Nope."
 				}],
 				"type": "Embeddable::MultipleChoice",
-				"ref_id": "10-Embeddable::MultipleChoice"
+				"ref_id": "8-Embeddable::MultipleChoice"
 			},
 			"section": null
 		}, {
@@ -142,14 +141,14 @@
 					"prompt": ""
 				}],
 				"type": "Embeddable::MultipleChoice",
-				"ref_id": "11-Embeddable::MultipleChoice"
+				"ref_id": "9-Embeddable::MultipleChoice"
 			},
 			"section": null
 		}]
 	}, {
 		"additional_sections": null,
 		"embeddable_display_mode": "stacked",
-		"id": 18,
+		"id": 15,
 		"is_completion": false,
 		"is_hidden": false,
 		"layout": "l-6040",
@@ -170,7 +169,7 @@
 				"is_hidden": false,
 				"name": "This is a heading",
 				"type": "Embeddable::Xhtml",
-				"ref_id": "8-Embeddable::Xhtml"
+				"ref_id": "7-Embeddable::Xhtml"
 			},
 			"section": null
 		}]
