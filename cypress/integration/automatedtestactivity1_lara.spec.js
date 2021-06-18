@@ -103,7 +103,6 @@ context("Verify Student Activity Work Flow", () => {
                 ReportHelper.provideFeedbackForAQuestion(pageIndex, questionIndex, currentQuestion, automatedtestactivity1LaraData.students);
             }
         }
-        cy.go("back");
         ReportHelper.provideOverallFeedback(automatedtestactivity1LaraData.students, automatedtestactivity1LaraData.overallFeedback);
         cy.go("back");
         cy.logout();

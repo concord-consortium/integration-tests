@@ -8,6 +8,8 @@ const studentRosterPageElements = {
   ADD_STUDENT_BUTTON : '#student-roster button',
   REGISTER_ADD_STUDENT_LINK : '#student-roster span[role=link]',
   STUDENT_ROSTER_TABLE : '#student-roster table',
+  //This is a generic column irrespective of row number. should be used with cypress contains.
+  STUDENT_ROSTER_TABLE_USERNAME_COLUMN: '#student-roster table > tbody > tr > td:nth-child(2)',
   STUDENT_ROSTER_TABLE_STUDENT_NAME : '#student-roster table > tbody > tr:nth-child(2) > td:nth-child(1)',
   STUDENT_ROSTER_TABLE_STUDENT_USERNAME : '#student-roster table > tbody > tr:nth-child(2) > td:nth-child(2)',
   STUDENT_ROSTER_TABLE_REMOVE_STUDENT : '#student-roster > table > tbody > tr:nth-child(2) > .hide_in_print > :nth-child(1)',
