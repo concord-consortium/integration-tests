@@ -1,6 +1,6 @@
 import { uid } from 'uid';
 
-import Constants from '../support/constants.js';
+import * as c from '../support/constants.js'
 import * as TeacherHelper from "../support/helpers/teacherHelper";
 import {
     BTN_ACTIVITY_RUN,
@@ -13,30 +13,31 @@ import * as LaraRuntimeHelper from '../support/helpers/laraRuntimeHelper';
 import {automatedtestactivity1LaraData} from "../support/testdata/testdata_automatedtestactivity1_lara";
 import * as ReportHelper from '../support/helpers/reportHelper';
 
-const CLASS_WORD = Constants.CLASS_WORD;
+const CLASS_WORD = c.CLASS_WORD;
 const CLASS_NAME = 'AutoClass '+ CLASS_WORD;
-const ASSIGNMENT_NAME = 'AutomatedTestActivity1_LARA';
+const ASSIGNMENT_NAME = 'Cypress_AutomatedTestActivity1_LARA';
 
 context("Verify Student Activity Work Flow", () => {
 
     before(function() {
-        cy.visit(Constants.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
+        cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
     });
 
     it("Edit portal settings to open activity in same browser tab", () => {
-        cy.login(Constants.ADMIN_USERNAME, Constants.ADMIN_PASSWORD);
+        cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD);
         adminHelper.disableOpenInNewWindow(ASSIGNMENT_NAME);
         cy.logout();
     });
 
     it("Verify teacher adds class, assignment and 5 students to class", () => {
-        cy.login(Constants.TEACHER_USERNAME, Constants.TEACHER_PASSWORD);
+        cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD);
         TeacherHelper.addClass(CLASS_NAME, CLASS_NAME, CLASS_WORD);
         TeacherHelper.addAssignment(CLASS_NAME, ASSIGNMENT_NAME);
+        TeacherHelper.openStudentRosterSection(CLASS_NAME);
         let studentCount = automatedtestactivity1LaraData.students.totalStudentsAssigned;
         for(let studentIndex = 1 ; studentIndex <= studentCount; studentIndex++){
             let studentObj = automatedtestactivity1LaraData.students[studentIndex];
-            TeacherHelper.addStudentToClass(studentObj.username, studentObj.firstName, studentObj.lastName, CLASS_NAME);
+            TeacherHelper.addRegisteredStudentToClass(studentObj.username, studentObj.firstName, studentObj.lastName, CLASS_NAME);
         }
         cy.logout();
     });
@@ -78,7 +79,7 @@ context("Verify Student Activity Work Flow", () => {
     });
 
     it("Verify teacher can verify reports and provide feedback", () => {
-        cy.login(Constants.TEACHER_USERNAME, Constants.TEACHER_PASSWORD);
+        cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD);
         cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, 'Classes').click();
         cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).click();
         cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).contains('li a', 'Assignments').click();
@@ -139,7 +140,7 @@ context("Verify Student Activity Work Flow", () => {
     });
 
     it("Verify teacher archive class", () => {
-        cy.login(Constants.TEACHER_USERNAME, Constants.TEACHER_PASSWORD); // Login as admin user
+        cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login as admin user
         TeacherHelper.archiveClass(CLASS_NAME);
         cy.logout();
     });

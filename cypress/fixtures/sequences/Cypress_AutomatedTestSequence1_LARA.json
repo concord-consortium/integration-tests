@@ -4,20 +4,20 @@
 	"display_title": "",
 	"logo": "",
 	"project_id": null,
-	"runtime": "Activity Player",
+	"runtime": "LARA",
 	"theme_id": null,
 	"thumbnail_url": "",
-	"title": "AutomatedTestSequence1_AP",
+	"title": "Cypress_AutomatedTestSequence1_LARA",
 	"activities": [{
 		"description": "",
 		"editor_mode": 0,
-		"id": 44,
+		"id": 48,
 		"layout": 0,
-		"name": "AutomatedTestActivity2_AP",
+		"name": "Cypress_AutomatedTestActivity2_LARA",
 		"notes": "",
 		"project_id": null,
 		"related": "",
-		"runtime": "Activity Player",
+		"runtime": "LARA",
 		"show_submit_button": true,
 		"student_report_enabled": true,
 		"thumbnail_url": "",
@@ -27,7 +27,7 @@
 		"pages": [{
 			"additional_sections": {},
 			"embeddable_display_mode": "stacked",
-			"id": 219,
+			"id": 233,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -85,7 +85,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "361-ManagedInteractive",
+					"ref_id": "377-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -134,7 +134,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "362-ManagedInteractive",
+					"ref_id": "378-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -183,7 +183,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "363-ManagedInteractive",
+					"ref_id": "379-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -232,7 +232,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "364-ManagedInteractive",
+					"ref_id": "380-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -240,7 +240,7 @@
 		}, {
 			"additional_sections": {},
 			"embeddable_display_mode": "stacked",
-			"id": 226,
+			"id": 234,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -298,7 +298,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "365-ManagedInteractive",
+					"ref_id": "381-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -347,7 +347,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "366-ManagedInteractive",
+					"ref_id": "382-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -355,7 +355,7 @@
 		}, {
 			"additional_sections": {},
 			"embeddable_display_mode": "stacked",
-			"id": 227,
+			"id": 235,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -413,7 +413,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "368-ManagedInteractive",
+					"ref_id": "383-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -462,7 +462,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "369-ManagedInteractive",
+					"ref_id": "384-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -475,13 +475,13 @@
 	}, {
 		"description": "",
 		"editor_mode": 0,
-		"id": 47,
+		"id": 49,
 		"layout": 0,
-		"name": "AutomatedTestActivity3_AP",
+		"name": "Cypress_AutomatedTestActivity3_LARA",
 		"notes": "",
 		"project_id": null,
 		"related": "",
-		"runtime": "Activity Player",
+		"runtime": "LARA",
 		"show_submit_button": true,
 		"student_report_enabled": true,
 		"thumbnail_url": "",
@@ -491,7 +491,7 @@
 		"pages": [{
 			"additional_sections": {},
 			"embeddable_display_mode": "stacked",
-			"id": 228,
+			"id": 236,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -549,7 +549,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "371-ManagedInteractive",
+					"ref_id": "385-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -557,7 +557,7 @@
 		}, {
 			"additional_sections": {},
 			"embeddable_display_mode": "stacked",
-			"id": 229,
+			"id": 237,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -615,7 +615,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "374-ManagedInteractive",
+					"ref_id": "386-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -623,7 +623,7 @@
 		}, {
 			"additional_sections": {},
 			"embeddable_display_mode": "stacked",
-			"id": 230,
+			"id": 238,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -644,14 +644,14 @@
 					"is_hidden": false,
 					"name": "This is a header block",
 					"type": "Embeddable::Xhtml",
-					"ref_id": "115-Embeddable::Xhtml"
+					"ref_id": "116-Embeddable::Xhtml"
 				},
 				"section": "header_block"
 			}]
 		}, {
 			"additional_sections": {},
 			"embeddable_display_mode": "stacked",
-			"id": 231,
+			"id": 239,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -685,7 +685,7 @@
 					"show_in_featured_question_report": true,
 					"url": "https://tectonic-explorer.concord.org/?modelId=c5d3588b-9de9-4efc-aff7-2f8f8ab606e1\u0026playing=false\u0026selectableInteractions=[none,crossSection]\u0026sidebar=[velocityArrows,colormap,plateLabels]",
 					"type": "MwInteractive",
-					"ref_id": "49-MwInteractive",
+					"ref_id": "50-MwInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"

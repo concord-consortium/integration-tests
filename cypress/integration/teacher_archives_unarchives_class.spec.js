@@ -1,9 +1,6 @@
 import {uid} from 'uid'
 
 import * as c from '../support/constants.js'
-import manageClassesPageElements from '../support/elements/manage_classes_page_elements.js'
-import teacherHomePageElements from '../support/elements/teacher_home_page_elements.js'
-import userHomePageElements from '../support/elements/user_home_page_elements.js'
 import * as teacherHelper from '../support/helpers/teacherHelper'
 
 // Note for db tracking : No db tracking required, using existing records

@@ -1,11 +1,7 @@
 import {uid} from 'uid';
 
 import * as c from '../support/constants.js'
-import adminPageElements from '../support/elements/admin_page_elements.js'
-import noticesPageElements from '../support/elements/notices_page_elements.js'
-import userHomePageElements from '../support/elements/user_home_page_elements.js'
 import * as noticeHelper from '../support/helpers/noticeHelper'
-import {noticeDoesNotExist, noticeTableDoesNotExist} from "../support/helpers/noticeHelper";
 
 const NOTICE_ONE = 'This is notice one-'+uid();
 const NOTICE_ONE_EDITED = NOTICE_ONE + '-Edited';

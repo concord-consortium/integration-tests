@@ -8,8 +8,7 @@ const userHomePageElements = {
   NO_NOTICES_TEXT : 'div[class^=\"siteNoticesListContainer\"]',
   LEFT_NAV_SETTINGS_LINK : 'a[href$=\"/preferences\"]',
   LEFT_NAV_ADMIN_LINK : 'a[href$=\"/admin\"]',
-  HEADER_MYCLASSES : '#portal-pages-header .portal-pages-main-nav-item:nth-child(3) a',
-  LOGOUT_BUTTON : 'a[title=\"Log Out\"]'
+  HEADER_MYCLASSES : '#portal-pages-header .portal-pages-main-nav-item:nth-child(3) a'
 };
 
 export default userHomePageElements;
