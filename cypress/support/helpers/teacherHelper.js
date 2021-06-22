@@ -33,6 +33,7 @@ export function addRegisteredStudentToClass(studentUserName, studentFirstName, s
     cy.get(studentRosterPageElements.REGISTERED_STUDENT_DROPDOWN).
             select(studentLastName + ", " +  studentFirstName+" (" + studentUserName + ")");
     cy.get(studentRosterPageElements.ADD_STUDENT_BUTTON).click();
+    cy.contains(studentRosterPageElements.STUDENT_ROSTER_TABLE_USERNAME_COLUMN, studentUserName);
     cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).contains('td', studentUserName);
 }
 
