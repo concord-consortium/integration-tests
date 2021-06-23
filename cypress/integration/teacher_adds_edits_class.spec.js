@@ -8,7 +8,6 @@ import teacherHomePageElements from '../support/elements/teacher_home_page_eleme
 
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 
-const TEACHER_NAME = c.TEACHER_FIRSTNAME + " " + c.TEACHER_LASTNAME;
 const CLASS_WORD = c.CLASS_WORD
 const CLASS_NAME = 'Class ' + CLASS_WORD;
 
@@ -16,7 +15,7 @@ context("Verify teacher can add and edit a class", () => {
 
   before(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
-    cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login as teacher user
+    cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher user
   });
 
   after(function() {
@@ -29,14 +28,14 @@ context("Verify teacher can add and edit a class", () => {
 
   it("Verify Assignments page of newly added class is displayed properly", () => {
     teacherHelper.openAssignmentsSection(CLASS_NAME);
-    cy.contains(assignmentsPageElements.TEACHER_NAME, TEACHER_NAME); // Check teacher name in 'Assignments' page
+    cy.contains(assignmentsPageElements.TEACHER_NAME, c.TEACHER1_FULLNAME); // Check teacher name in 'Assignments' page
     cy.contains(assignmentsPageElements.CLASS_WORD, CLASS_WORD); // Check class word in the 'Assignments' page
   });
 
   it("Verify Student Roster page of newly added class is displayed properly", () => {
     teacherHelper.openStudentRosterSection(CLASS_NAME);
     cy.get(studentRosterPageElements.HEADING).should("have.text", "Student Roster"); // Check heading of the 'Student Roster' page
-    cy.contains(studentRosterPageElements.TEACHER_NAME, TEACHER_NAME); // Check teacher name in the 'Student Roster'  page
+    cy.contains(studentRosterPageElements.TEACHER_NAME, c.TEACHER1_FULLNAME); // Check teacher name in the 'Student Roster'  page
     cy.contains(studentRosterPageElements.CLASS_WORD, CLASS_WORD); // Check class word in the 'Student Roster' page
     cy.get(studentRosterPageElements.CLASS_COUNT).should("have.text", "0"); // Check Student count is '0' in the 'Student Roster' page
   });

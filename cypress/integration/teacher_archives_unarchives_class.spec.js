@@ -7,16 +7,15 @@ import * as teacherHelper from '../support/helpers/teacherHelper'
 
 let className = undefined;
 
-const CLASS_WORD = uid();
-const CLASS_NAME = "AutoClass "+CLASS_WORD;
-const CLASS_DESC = "AutoClass "+CLASS_WORD;
+const CLASS_WORD = c.CLASS_WORD;
+const CLASS_NAME = 'Class ' + CLASS_WORD;
 
 context("Verify teacher can archive and unarchive a class", () => {
 
   before(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
-    cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login as teacher user
-    teacherHelper.addClass(CLASS_NAME, CLASS_DESC, CLASS_WORD);
+    cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher user
+    teacherHelper.addClass(CLASS_NAME, c.CLASS_DESC, CLASS_WORD);
   });
 
   after(function() {

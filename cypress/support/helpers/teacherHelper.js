@@ -34,10 +34,9 @@ export function addRegisteredStudentToClass(studentUserName, studentFirstName, s
             select(studentLastName + ", " +  studentFirstName+" (" + studentUserName + ")");
     cy.get(studentRosterPageElements.ADD_STUDENT_BUTTON).click();
     cy.contains(studentRosterPageElements.STUDENT_ROSTER_TABLE_USERNAME_COLUMN, studentUserName);
-    cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).contains('td', studentUserName);
 }
 
-export function addUnregisteredStudentToClass(studentFullName, studentFirstName, studentLastName, studentPassword, currentClassCount){
+export function addUnregisteredStudentToClass(studentName, studentFirstName, studentLastName, studentPassword, currentClassCount){
 
   cy.get(studentRosterPageElements.REGISTER_ADD_STUDENT_LINK).click(); // Click 'Register & Add Student' link
   cy.get(registerAddStudentPageElements.FIRST_NAME_FIELD).type(studentFirstName, ); // Type student first name in the Register and add student form
@@ -48,7 +47,7 @@ export function addUnregisteredStudentToClass(studentFullName, studentFirstName,
 
   cy.contains(registerAddStudentPageElements.DIALOG_TEXT, "Success! The student was registered and added to the class"); // Check success dialog text
   cy.get(registerAddStudentPageElements.DIALOG_CANCEL_BUTTON).click(); // Click 'Add Another Student' in success dialog
-  cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).contains('td', studentFullName);
+  cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).contains('td', studentName);
 }
 
 export function verifyClassCount(count){

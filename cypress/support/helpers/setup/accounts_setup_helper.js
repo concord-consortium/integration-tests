@@ -18,31 +18,25 @@ export function accountsSetup() {
 }
 
 export function accountsTeardown() {
+  var teachers = ["TEACHER1", "TEACHER2", "TEACHER3", "TEACHER4", "TEACHER5"];
+  var students = ["STUDENT1", "STUDENT2", "STUDENT3", "STUDENT4", "STUDENT5"];
+
   cy.visit(constants.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
   cy.login(constants.ADMIN_USERNAME, constants.ADMIN_PASSWORD); // Login as admin user
-
   adminHelper.openUsersAdminSection();
 
-  cy.fixture('UserAccounts.json').then(($userAccounts) => {
-    $userAccounts.teacher.forEach(eachTeacher => {
-      cy.log("eachTeacher : " + JSON.stringify(eachTeacher));
-      var firstName = eachTeacher.firstName;
-      var lastName = eachTeacher.lastName;
-      var username = eachTeacher.username;
-      var fullName = firstName + " " + lastName;
-
-      adminHelper.removeUser(username, fullName);
-    });
-    $userAccounts.student.forEach(eachStudent => {
-      cy.log("eachStudent : " + JSON.stringify(eachStudent));
-      var firstName = eachStudent.firstName;
-      var lastName = eachStudent.lastName;
-      var username = eachStudent.username;
-      var fullName = firstName + " " + lastName;
-
-      adminHelper.removeUser(username, fullName);
-    });
+  teachers.forEach(eachTeacher => {
+    var username = constants[eachTeacher + '_USERNAME'];
+    var fullName = constants[eachTeacher + '_FULLNAME'];
+    adminHelper.removeUser(username, fullName);
   });
+
+  students.forEach(eachStudent => {
+    var username = constants[eachStudent + '_USERNAME'];
+    var fullName = constants[eachStudent + '_FULLNAME'];
+    adminHelper.removeUser(username, fullName);
+  });
+
   cy.logout();
 }
 
@@ -72,74 +66,76 @@ function createSchool() {
 }
 
 function createTeacherAccounts() {
-  cy.fixture('UserAccounts.json').then(($userAccounts) => {
-    $userAccounts.teacher.forEach(eachTeacher => {
-      cy.get(landingPageElements.REGISTER_BUTTON).click();
-      cy.get(signupPageElements.TEACHER_LINK).click();
-      cy.log("eachTeacher : " + JSON.stringify(eachTeacher));
+  var teachers = ["TEACHER1", "TEACHER2", "TEACHER3", "TEACHER4", "TEACHER5"];
 
-      cy.get(signupPageElements.TEACHER_FIRSTNAME).type(eachTeacher.firstName);
-      cy.get(signupPageElements.TEACHER_LASTNAME).type(eachTeacher.lastName);
-      cy.get(signupPageElements.TEACHER_PASSWORD).type(constants.TEACHER_PASSWORD);
-      cy.get(signupPageElements.TEACHER_CONFIRM_PASSWORD).type(constants.TEACHER_PASSWORD);
-      cy.get(signupPageElements.NEXT_BUTTON).click();
-      cy.get(signupPageElements.TEACHER_USERNAME).type(eachTeacher.username);
-      cy.get(signupPageElements.TEACHER_EMAIL).type(eachTeacher.email);
-      cy.get(signupPageElements.TEACHER_COUNTRY).type(constants.SCHOOL_COUNTRY + '{enter}');
-      cy.get(signupPageElements.TEACHER_ZIPCODE).type(constants.SCHOOL_ZIPCODE);
-      //cy.get(signupPageElements.TEACHER_SCHOOL).type(constants.SCHOOL_NAME + '{enter}');
+  teachers.forEach(eachTeacher => {
+    var firstName = constants[eachTeacher + '_FIRSTNAME'];
+    var lastName = constants[eachTeacher + '_LASTNAME'];
+    var username = constants[eachTeacher + '_USERNAME'];
+    var password = constants[eachTeacher + '_PASSWORD'];
+    var email = constants[eachTeacher + '_EMAIL'];
 
-      cy.get(signupPageElements.TEACHER_SCHOOL).click({force:true}).find('input').focus();
-      cy.get(signupPageElements.TEACHER_SCHOOL_DROPDOWN).then(($dropdown) => {
-        if($dropdown.find(signupPageElements.TEACHER_SCHOOL_OPTIONS).length < 2) {
-          cy.get(signupPageElements.TEACHER_ADD_NEW_SCHOOL).click({force:true});
-          cy.get(signupPageElements.TEACHER_ADD_NEW_SCHOOL_TEXT).type(constants.SCHOOL_NAME);
-        } else {
-          cy.contains(constants.SCHOOL_NAME).click({force:true});
-        }
-      });
-
-      cy.get(signupPageElements.REGISTER_BUTTON).click();
-      cy.get(signupPageElements.CLOSE_BUTTON).click();
+    cy.get(landingPageElements.REGISTER_BUTTON).click();
+    cy.get(signupPageElements.TEACHER_LINK).click();
+    cy.get(signupPageElements.TEACHER_FIRSTNAME).type(firstName);
+    cy.get(signupPageElements.TEACHER_LASTNAME).type(lastName);
+    cy.get(signupPageElements.TEACHER_PASSWORD).type(password);
+    cy.get(signupPageElements.TEACHER_CONFIRM_PASSWORD).type(password);
+    cy.get(signupPageElements.NEXT_BUTTON).click();
+    cy.get(signupPageElements.TEACHER_USERNAME).type(username);
+    cy.get(signupPageElements.TEACHER_EMAIL).type(email);
+    cy.get(signupPageElements.TEACHER_COUNTRY).type(constants.SCHOOL_COUNTRY + '{enter}');
+    cy.get(signupPageElements.TEACHER_ZIPCODE).type(constants.SCHOOL_ZIPCODE);
+    cy.get(signupPageElements.TEACHER_SCHOOL).click({force:true}).find('input').focus();
+    cy.get(signupPageElements.TEACHER_SCHOOL_DROPDOWN).then(($dropdown) => {
+      if($dropdown.find(signupPageElements.TEACHER_SCHOOL_OPTIONS).length < 2) {
+        cy.get(signupPageElements.TEACHER_ADD_NEW_SCHOOL).click({force:true});
+        cy.get(signupPageElements.TEACHER_ADD_NEW_SCHOOL_TEXT).type(constants.SCHOOL_NAME);
+      } else {
+        cy.contains(constants.SCHOOL_NAME).click({force:true});
+      }
     });
+    cy.get(signupPageElements.REGISTER_BUTTON).click();
+    cy.get(signupPageElements.CLOSE_BUTTON).click();
   });
 }
 
 function activateTeacherAccounts() {
+  var teachers = ["TEACHER1", "TEACHER2", "TEACHER3", "TEACHER4", "TEACHER5"];
+
   cy.login(constants.ADMIN_USERNAME, constants.ADMIN_PASSWORD); // Login as admin user
   adminHelper.openUsersAdminSection();
 
-  cy.fixture('UserAccounts.json').then(($userAccounts) => {
-    $userAccounts.teacher.forEach(eachTeacher => {
-      cy.log("eachTeacher : " + JSON.stringify(eachTeacher));
-      var fullName = eachTeacher.firstName + " " + eachTeacher.lastName;
-      adminHelper.activateUser(eachTeacher.username, fullName, eachTeacher.firstName, eachTeacher.lastName);
-    });
+  teachers.forEach(eachTeacher => {
+    var firstName = constants[eachTeacher + '_FIRSTNAME'];
+    var lastName = constants[eachTeacher + '_LASTNAME'];
+    var username = constants[eachTeacher + '_USERNAME'];
+    var fullName = constants[eachTeacher + '_FULLNAME'];
+    adminHelper.activateUser(username, fullName, firstName, lastName);
   });
   cy.logout();
 }
 
 function createClass() {
-  cy.fixture('UserAccounts.json').then(($userAccounts) => {
-    cy.login($userAccounts.teacher[0].username, constants.TEACHER_PASSWORD);
-    teacherHelper.addClass("Setup Class", "Setup Class", constants.CLASS_WORD);
-  });
+  cy.login(constants.TEACHER1_USERNAME, constants.TEACHER1_PASSWORD);
+  teacherHelper.addClass("Setup Class", "Setup Class", constants.CLASS_WORD);
 }
 
 function registerStudents() {
+  var students = ["STUDENT1", "STUDENT2", "STUDENT3", "STUDENT4", "STUDENT5"];
   var classCount = 0;
   var className = "Setup Class";
   teacherHelper.openStudentRosterSection(className);
 
-  cy.fixture('UserAccounts.json').then(($userAccounts) => {
-    $userAccounts.student.forEach(eachStudent => {
-      cy.log("eachStudent : " + JSON.stringify(eachStudent));
-      var fullName = eachStudent.lastName + ", " + eachStudent.firstName;
+  students.forEach(eachStudent => {
+    var firstName = constants[eachStudent + '_FIRSTNAME'];
+    var lastName = constants[eachStudent + '_LASTNAME'];
+    var username = constants[eachStudent + '_USERNAME'];
+    var name = constants[eachStudent + '_NAME'];
+    var password = constants[eachStudent + '_PASSWORD'];
 
-      teacherHelper.addUnregisteredStudentToClass(fullName, eachStudent.firstName, eachStudent.lastName, constants.STUDENT_PASSWORD, classCount++);
-    });
+    teacherHelper.addUnregisteredStudentToClass(name, firstName, lastName, password, classCount++);
   });
-
   teacherHelper.archiveClass(className);
   cy.logout();
 }

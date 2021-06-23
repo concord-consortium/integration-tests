@@ -3,14 +3,8 @@
 		"learnPortalBaseUrl": "https://learn.concord.org",
 		"laraBaseUrl": "https://authoring.concord.org",
 		"publishEnvironment": "cc_portal_learn",
-		"laraPortalEnvironment" : "Learn",
+		"laraPortalEnvironment": "Learn",
 		"schoolName": "Concord Consortium",
-		"teacher": {
-			"username": "TejalTeacher",
-			"firstName": "Tejal",
-			"lastName": "Teacher",
-			"email": "tejal.teacher@mailinator.com"
-		},
 		"researcher": {
 			"username": "researcher",
 			"firstName": "joe",
@@ -35,43 +29,97 @@
 			"lastName": "Admin",
 			"email": "tejal.stg@mailinator.com"
 		},
-		"student": {
-			"username": "student",
-			"firstName": "Alfred",
-			"lastName": "Robert",
-			"email": "student@mailinator.com"
+		"students": {
+			"1": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent1",
+				"username": "cautomationstudent1",
+				"fullName": "Cypress AutomationStudent1",
+				"name": "AutomationStudent1, Cypress",
+				"email": "cypress.automationstudent1@mailinator.com"
+			},
+			"2": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent2",
+				"username": "cautomationstudent2",
+				"fullName": "Cypress AutomationStudent2",
+				"name": "AutomationStudent2, Cypress",
+				"email": "cypress.automationstudent2@mailinator.com"
+			},
+			"3": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent3",
+				"username": "cautomationstudent3",
+				"fullName": "Cypress AutomationStudent3",
+				"name": "AutomationStudent3, Cypress",
+				"email": "cypress.automationstudent3@mailinator.com"
+			},
+			"4": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent4",
+				"username": "cautomationstudent4",
+				"fullName": "Cypress AutomationStudent4",
+				"name": "AutomationStudent4, Cypress",
+				"email": "cypress.automationstudent4@mailinator.com"
+			},
+			"5": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent5",
+				"username": "cautomationstudent5",
+				"fullName": "Cypress AutomationStudent5",
+				"name": "AutomationStudent5, Cypress",
+				"email": "cypress.automationstudent5@mailinator.com"
+			}
 		},
-		"student1": {
-			"username": "stest1",
-			"firstName": "Student1",
-			"lastName": "Test",
-			"email": "student1.test@mailinator.com"
-		},
-		"student2": {
-			"username": "stest2",
-			"firstName": "Student2",
-			"lastName": "Test",
-			"email": "student2.test@mailinator.com"
-		},
-		"student3": {
-			"username": "stest3",
-			"firstName": "Student3",
-			"lastName": "Test",
-			"email": "student3.test@mailinator.com"
+		"teachers": {
+			"1": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher1",
+				"username": "cautomationTeacher1",
+				"fullName": "Cypress AutomationTeacher1",
+				"name": "AutomationTeacher1, Cypress",
+				"email": "cypress.automationteacher1@mailinator.com"
+			},
+			"2": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher2",
+				"username": "cautomationTeacher2",
+				"fullName": "Cypress AutomationTeacher2",
+				"name": "AutomationTeacher2, Cypress",
+				"email": "cypress.automationteacher2@mailinator.com"
+			},
+			"3": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher3",
+				"username": "cautomationTeacher3",
+				"fullName": "Cypress AutomationTeacher3",
+				"name": "AutomationTeacher3, Cypress",
+				"email": "cypress.automationteacher3@mailinator.com"
+			},
+			"4": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher4",
+				"username": "cautomationTeacher4",
+				"fullName": "Cypress AutomationTeacher4",
+				"name": "AutomationTeacher4, Cypress",
+				"email": "cypress.automationteacher4@mailinator.com"
+			},
+			"5": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher5",
+				"username": "cautomationTeacher5",
+				"fullName": "Cypress AutomationTeacher5",
+				"name": "AutomationTeacher5, Cypress",
+				"email": "cypress.automationteacher5@mailinator.com"
+			}
 		}
 	},
 	"staging": {
 		"learnPortalBaseUrl": "https://learn.staging.concord.org",
 		"laraBaseUrl": "https://authoring.staging.concord.org",
 		"publishEnvironment": "cc_portal_learn_staging",
-		"laraPortalEnvironment" : "Learn Staging",
+		"laraPortalEnvironment": "Learn Staging",
 		"schoolName": "Concord Consortium",
-		"teacher": {
-			"username": "TejalTeacher",
-			"firstName": "Tejal",
-			"lastName": "Teacher",
-			"email": "tejal.teacher@mailinator.com"
-		},
 		"researcher": {
 			"username": "researcher",
 			"firstName": "joe",
@@ -96,36 +144,96 @@
 			"lastName": "Admin",
 			"email": "tejal.stg@mailinator.com"
 		},
-		"student": {
-			"username": "student",
-			"firstName": "Alfred",
-			"lastName": "Robert",
-			"email": "student@mailinator.com"
+		"students": {
+			"1": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent1",
+				"username": "cautomationstudent1",
+				"fullName": "Cypress AutomationStudent1",
+				"name": "AutomationStudent1, Cypress",
+				"email": "cypress.automationstudent1@mailinator.com"
+			},
+			"2": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent2",
+				"username": "cautomationstudent2",
+				"fullName": "Cypress AutomationStudent2",
+				"name": "AutomationStudent2, Cypress",
+				"email": "cypress.automationstudent2@mailinator.com"
+			},
+			"3": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent3",
+				"username": "cautomationstudent3",
+				"fullName": "Cypress AutomationStudent3",
+				"name": "AutomationStudent3, Cypress",
+				"email": "cypress.automationstudent3@mailinator.com"
+			},
+			"4": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent4",
+				"username": "cautomationstudent4",
+				"fullName": "Cypress AutomationStudent4",
+				"name": "AutomationStudent4, Cypress",
+				"email": "cypress.automationstudent4@mailinator.com"
+			},
+			"5": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent5",
+				"username": "cautomationstudent5",
+				"fullName": "Cypress AutomationStudent5",
+				"name": "AutomationStudent5, Cypress",
+				"email": "cypress.automationstudent5@mailinator.com"
+			}
 		},
-		"student1": {
-			"username": "stest1",
-			"firstName": "Student1",
-			"lastName": "Test",
-			"email": "student1.test@mailinator.com"
-		},
-		"student2": {
-			"username": "stest2",
-			"firstName": "Student2",
-			"lastName": "Test",
-			"email": "student2.test@mailinator.com"
-		},
-		"student3": {
-			"username": "stest3",
-			"firstName": "Student3",
-			"lastName": "Test",
-			"email": "student3.test@mailinator.com"
+		"teachers": {
+			"1": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher1",
+				"username": "cautomationTeacher1",
+				"fullName": "Cypress AutomationTeacher1",
+				"name": "AutomationTeacher1, Cypress",
+				"email": "cypress.automationteacher1@mailinator.com"
+			},
+			"2": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher2",
+				"username": "cautomationTeacher2",
+				"fullName": "Cypress AutomationTeacher2",
+				"name": "AutomationTeacher2, Cypress",
+				"email": "cypress.automationteacher2@mailinator.com"
+			},
+			"3": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher3",
+				"username": "cautomationTeacher3",
+				"fullName": "Cypress AutomationTeacher3",
+				"name": "AutomationTeacher3, Cypress",
+				"email": "cypress.automationteacher3@mailinator.com"
+			},
+			"4": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher4",
+				"username": "cautomationTeacher4",
+				"fullName": "Cypress AutomationTeacher4",
+				"name": "AutomationTeacher4, Cypress",
+				"email": "cypress.automationteacher4@mailinator.com"
+			},
+			"5": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher5",
+				"username": "cautomationTeacher5",
+				"fullName": "Cypress AutomationTeacher5",
+				"name": "AutomationTeacher5, Cypress",
+				"email": "cypress.automationteacher5@mailinator.com"
+			}
 		}
 	},
 	"dev": {
 		"learnPortalBaseUrl": "https://learn.dev.docker/",
 		"laraBaseUrl": "https://authoring.dev.docker/",
 		"publishEnvironment": "cc_portal_localhost",
-		"laraPortalEnvironment" : "Localhost",
+		"laraPortalEnvironment": "Localhost",
 		"schoolName": "Cypress Automation Test School",
 		"schoolDescription": "Cypress Automation Test School",
 		"schoolZipcode": "01742",
@@ -133,12 +241,6 @@
 		"schoolState": "MA",
 		"schoolDistrict": "Rails Portal-district",
 		"schoolCountry": "United States",
-		"teacher": {
-			"username": "teacher",
-			"firstName": "Valerie",
-			"lastName": "Frizzle",
-			"email": "teacher@concord.org"
-		},
 		"researcher": {
 			"username": "researcher",
 			"firstName": "Researcher",
@@ -163,29 +265,89 @@
 			"lastName": "Admin",
 			"email": "admin@concord.org"
 		},
-		"student": {
-			"username": "stest",
-			"firstName": "Student",
-			"lastName": "Test",
-			"email": "student.test@mailinator.com"
+		"students": {
+			"1": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent1",
+				"username": "cautomationstudent1",
+				"fullName": "Cypress AutomationStudent1",
+				"name": "AutomationStudent1, Cypress",
+				"email": "cypress.automationstudent1@mailinator.com"
+			},
+			"2": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent2",
+				"username": "cautomationstudent2",
+				"fullName": "Cypress AutomationStudent2",
+				"name": "AutomationStudent2, Cypress",
+				"email": "cypress.automationstudent2@mailinator.com"
+			},
+			"3": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent3",
+				"username": "cautomationstudent3",
+				"fullName": "Cypress AutomationStudent3",
+				"name": "AutomationStudent3, Cypress",
+				"email": "cypress.automationstudent3@mailinator.com"
+			},
+			"4": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent4",
+				"username": "cautomationstudent4",
+				"fullName": "Cypress AutomationStudent4",
+				"name": "AutomationStudent4, Cypress",
+				"email": "cypress.automationstudent4@mailinator.com"
+			},
+			"5": {
+				"firstName": "Cypress",
+				"lastName": "AutomationStudent5",
+				"username": "cautomationstudent5",
+				"fullName": "Cypress AutomationStudent5",
+				"name": "AutomationStudent5, Cypress",
+				"email": "cypress.automationstudent5@mailinator.com"
+			}
 		},
-		"student1": {
-			"username": "stest1",
-			"firstName": "Student1",
-			"lastName": "Test",
-			"email": "student1.test@mailinator.com"
-		},
-		"student2": {
-			"username": "stest2",
-			"firstName": "Student2",
-			"lastName": "Test",
-			"email": "student2.test@mailinator.com"
-		},
-		"student3": {
-			"username": "stest3",
-			"firstName": "Student3",
-			"lastName": "Test",
-			"email": "student3.test@mailinator.com"
+		"teachers": {
+			"1": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher1",
+				"username": "cautomationTeacher1",
+				"fullName": "Cypress AutomationTeacher1",
+				"name": "AutomationTeacher1, Cypress",
+				"email": "cypress.automationteacher1@mailinator.com"
+			},
+			"2": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher2",
+				"username": "cautomationTeacher2",
+				"fullName": "Cypress AutomationTeacher2",
+				"name": "AutomationTeacher2, Cypress",
+				"email": "cypress.automationteacher2@mailinator.com"
+			},
+			"3": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher3",
+				"username": "cautomationTeacher3",
+				"fullName": "Cypress AutomationTeacher3",
+				"name": "AutomationTeacher3, Cypress",
+				"email": "cypress.automationteacher3@mailinator.com"
+			},
+			"4": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher4",
+				"username": "cautomationTeacher4",
+				"fullName": "Cypress AutomationTeacher4",
+				"name": "AutomationTeacher4, Cypress",
+				"email": "cypress.automationteacher4@mailinator.com"
+			},
+			"5": {
+				"firstName": "Cypress",
+				"lastName": "AutomationTeacher5",
+				"username": "cautomationTeacher5",
+				"fullName": "Cypress AutomationTeacher5",
+				"name": "AutomationTeacher5, Cypress",
+				"email": "cypress.automationteacher5@mailinator.com"
+			}
 		},
 		"lara": {
 			"username": "dev_test_user@test.email"

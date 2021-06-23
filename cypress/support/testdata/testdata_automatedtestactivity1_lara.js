@@ -1,58 +1,25 @@
 export const automatedtestactivity1LaraData = {
     students: {
-        totalStudentsAssigned: 5,
-        1: {
-            username: 'suser1',
-            password: 'password',
-            firstName: 'silly',
-            lastName: 'user1',
-        },
-        2: {
-            username: 'suser2',
-            password: 'password',
-            firstName: 'silly',
-            lastName: 'user2',
-        },
-        3:{
-            username: 'suser3',
-            password: 'password',
-            firstName: 'silly',
-            lastName: 'user3',
-
-        },
-        4: {
-            username: 'suser4',
-            password: 'password',
-            firstName: 'silly',
-            lastName: 'user4',
-        },
-        5: {
-            username: 'suser5',
-            password: 'password',
-            firstName: 'silly',
-            lastName: 'user5',
-        }
-
+        totalStudentsAssigned: 5
     },
-
     overallFeedback:{
-        suser1 : {
+        1 : {
             teacherFeedback: 'Great Job!',
             teacherScore: 100,
         },
-        suser2: {
+        2: {
             teacherFeedback: 'Need to improve',
             teacherScore: 5,
         },
-        suser3: {
+        3: {
             teacherFeedback: 'Failed',
             teacherScore: 0,
         },
-        suser4: {
+        4: {
             teacherFeedback: 'You are right.',
             teacherScore: 8,
         },
-        suser5: {
+        5: {
             teacherFeedback: 'Failed',
             teacherScore: 3,
         }
@@ -69,27 +36,27 @@ export const automatedtestactivity1LaraData = {
                     maxScore: 10,
                     prompt: '',
                     defaultAnswerText: '',
-                    suser1 : {
+                    1 : {
                         answer: 'autotest1 answer',
                         teacherFeedback: 'Great Job!',
                         teacherScore: 100,
                     },
-                    suser2: {
+                    2: {
                         answer: 'autotest2 answer',
                         teacherFeedback: 'Need to improve',
                         teacherScore: 5,
                     },
-                    suser3: {
+                    3: {
                         answer: 'autotest3 answer',
                         teacherFeedback: 'Failed',
                         teacherScore: 0,
                     },
-                    suser4: {
+                    4: {
                         answer: 'autotest4 answer',
                         teacherFeedback: 'You are right.',
                         teacherScore: 8,
                     },
-                    suser5: {
+                    5: {
                         answer: 'autotest5 answer',
                         teacherFeedback: 'Failed',
                         teacherScore: 3,
@@ -103,27 +70,27 @@ export const automatedtestactivity1LaraData = {
                     maxScore: 10,
                     prompt: '',
                     defaultAnswerText: '',
-                    suser1 : {
+                    1 : {
                         answer: 'autotest1 answer',
                         teacherFeedback: 'Great Job!',
                         teacherScore: 10,
                     },
-                    suser2: {
+                    2: {
                         answer: 'autotest2 answer',
                         teacherFeedback: 'Need to improve',
                         teacherScore: 5,
                     },
-                    suser3: {
+                    3: {
                         answer: 'autotest3 answer',
                         teacherFeedback: 'Failed',
                         teacherScore: 0,
                     },
-                    suser4: {
+                    4: {
                         answer: 'autotest4 answer',
                         teacherFeedback: 'You are right.',
                         teacherScore: 8,
                     },
-                    suser5: {
+                    5: {
                         answer: 'autotest5 answer',
                         teacherFeedback: 'Failed',
                         teacherScore: 3,
@@ -148,31 +115,31 @@ export const automatedtestactivity1LaraData = {
                     giveScore: true,
                     maxScore: 10,
 
-                    suser1 : {
+                    1 : {
                         answer: [2, 3],
                         shouldCheckAnswer: true,
                         teacherFeedback: 'Great Job!',
                         teacherScore: 10,
                     },
-                    suser2: {
+                    2: {
                         answer: [1, 3],
                         shouldCheckAnswer: true,
                         teacherFeedback: 'Need to improve',
                         teacherScore: 5,
                     },
-                    suser3: {
+                    3: {
                         answer: [3],
                         shouldCheckAnswer: false,
                         teacherFeedback: 'Failed',
                         teacherScore: 0,
                     },
-                    suser4: {
+                    4: {
                         answer: [1],
                         shouldCheckAnswer: true,
                         teacherFeedback: 'You are right.',
                         teacherScore: 8,
                     },
-                    suser5: {
+                    5: {
                         answer: [2],
                         shouldCheckAnswer: false,
                         teacherFeedback: 'Failed',
@@ -193,27 +160,27 @@ export const automatedtestactivity1LaraData = {
                     giveScore: true,
                     maxScore: 10,
 
-                    suser1 : {
+                    1 : {
                         answer: [3],
                         teacherFeedback: 'Great Job!',
                         teacherScore: 3,
                     },
-                    suser2: {
+                    2: {
                         answer: [2],
                         teacherFeedback: 'Need to improve',
                         teacherScore: 3,
                     },
-                    suser3: {
+                    3: {
                         answer: [3],
                         teacherFeedback: 'Failed',
                         teacherScore: 3,
                     },
-                    suser4: {
+                    4: {
                         answer: [2],
                         teacherFeedback: 'You are right.',
                         teacherScore: 3,
                     },
-                    suser5: {
+                    5: {
                         answer: [1],
                         teacherFeedback: 'Failed',
                         teacherScore: 3,

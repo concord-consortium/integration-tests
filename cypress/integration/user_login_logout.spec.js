@@ -24,12 +24,12 @@ context("Verify user login/logout", () => {
   });
 
   it("Verify teacher user is able to login and logout with correct username and password", () => {
-    cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login as teacher user
+    cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher user
     cy.logout(); // Logout as teacher user
   });
 
   it("Verify student user is able to login and logout with correct username and password", () => {
-    cy.login(c.STUDENT_USERNAME, c.STUDENT_PASSWORD); // Login as student user
+    cy.login(c.STUDENT1_USERNAME, c.STUDENT1_PASSWORD); // Login as student user
     cy.logout(); // Logout as student user
   });
 
@@ -39,16 +39,16 @@ context("Verify user login/logout", () => {
   });
 
   it("Verify a user is unable to login with incorrect username", () => {
-    cy.loginNoFlashNotice("foo", c.TEACHER_PASSWORD); // Login using incorrect username 'foo'
+    cy.loginNoFlashNotice("foo", c.TEACHER1_PASSWORD); // Login using incorrect username 'foo'
     cy.alert("Error: Login failed."); // Confirm browser alert about login failure
-    cy.retryLogin(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login using teacher user
+    cy.retryLogin(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login using teacher user
     cy.logout(); // Logout as teacher user
   });
 
   it("Verify a user is unable to login with incorrect password", () => {
-    cy.loginNoFlashNotice(c.TEACHER_USERNAME, "foo"); // Login using incorrect password 'foo'
+    cy.loginNoFlashNotice(c.TEACHER1_USERNAME, "foo"); // Login using incorrect password 'foo'
     cy.alert("Error: Login failed."); // Confirm browser alert about login failure
-    cy.retryLogin(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login using teacher user
+    cy.retryLogin(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login using teacher user
     cy.logout(); // Logout as teacher user
   });
 
