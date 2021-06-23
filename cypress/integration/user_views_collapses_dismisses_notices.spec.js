@@ -25,12 +25,12 @@ context("Verify users can view, collapse and dismiss notices", () => {
     });
 
     it("Verify Student can not view the notice", () => {
-        cy.login(c.STUDENT_USERNAME, c.STUDENT_PASSWORD);
+        cy.login(c.STUDENT1_USERNAME, c.STUDENT1_PASSWORD);
         noticeHelper.noticeTableDoesNotExist();
     });
 
     it("Verify Teacher can view and dismiss notices", () => {
-        cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD);
+        cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
         noticeHelper.userViewNotice(NOTICE_ONE);
         noticeHelper.userDismissNotice(NOTICE_ONE);
         noticeHelper.userCannotViewNotice(NOTICE_ONE);
@@ -85,7 +85,7 @@ context("Verify users can view, collapse and dismiss notices", () => {
     });
 
     it("Verify Teacher can view dismissed notice after Admin edits it", () => {
-        cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD);
+        cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
         noticeHelper.userViewNotice(NOTICE_ONE_EDITED);
     });
 
@@ -110,7 +110,7 @@ context("Verify users can view, collapse and dismiss notices", () => {
     });
 
     it("Verify Teacher can not see deleted notice", () => {
-        cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD);
+        cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
         noticeHelper.userCannotViewNotice(NOTICE_TWO);
     });
 

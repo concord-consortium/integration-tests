@@ -5,9 +5,9 @@ export function goToPageNumber(pageNumber){
     cy.get(ACTIVITY_PAGES.BTN_ACTIVITY_PAGE(pageNumber)).click();
 }
 
-export function answerQuestion(questionNumberInPage, currentQuestion, studentUserName){
+export function answerQuestion(questionNumberInPage, currentQuestion, studentIndex){
 
-    let studentAnswer = currentQuestion[studentUserName];
+    let studentAnswer = currentQuestion[studentIndex];
     if(studentAnswer.answer === undefined){
         //This means student do not want to answer this question.
         return;

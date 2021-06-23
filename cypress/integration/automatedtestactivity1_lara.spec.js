@@ -16,6 +16,7 @@ import * as ReportHelper from '../support/helpers/reportHelper';
 const CLASS_WORD = c.CLASS_WORD;
 const CLASS_NAME = 'AutoClass '+ CLASS_WORD;
 const ASSIGNMENT_NAME = 'Cypress_AutomatedTestActivity1_LARA';
+const STUDENTS = ["STUDENT1", "STUDENT2", "STUDENT3", "STUDENT4", "STUDENT5"];
 
 context("Verify Student Activity Work Flow", () => {
 
@@ -29,57 +30,60 @@ context("Verify Student Activity Work Flow", () => {
         cy.logout();
     });
 
-    it("Verify teacher adds class, assignment and 5 students to class", () => {
-        cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD);
+    it("Verify teacher adds class, assignment and students to class", () => {
+        cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
         TeacherHelper.addClass(CLASS_NAME, CLASS_NAME, CLASS_WORD);
         TeacherHelper.addAssignment(CLASS_NAME, ASSIGNMENT_NAME);
         TeacherHelper.openStudentRosterSection(CLASS_NAME);
-        let studentCount = automatedtestactivity1LaraData.students.totalStudentsAssigned;
-        for(let studentIndex = 1 ; studentIndex <= studentCount; studentIndex++){
-            let studentObj = automatedtestactivity1LaraData.students[studentIndex];
-            TeacherHelper.addRegisteredStudentToClass(studentObj.username, studentObj.firstName, studentObj.lastName, CLASS_NAME);
-        }
+
+        STUDENTS.forEach(eachStudent => {
+          var username = c[eachStudent + '_USERNAME'];
+          var firstName = c[eachStudent + '_FIRSTNAME'];
+          var lastName = c[eachStudent + '_LASTNAME'];
+          TeacherHelper.addRegisteredStudentToClass(username, firstName, lastName, CLASS_NAME);
+        });
         cy.logout();
     });
 
-    it("Run the assignment with 5 students added to the class", () => {
+    it("Run the assignment with students added to the class", () => {
 
-        let studentCount = automatedtestactivity1LaraData.students.totalStudentsAssigned;
+        let studentIndex = 0;
+        STUDENTS.forEach(eachStudent => {
+          var username = c[eachStudent + '_USERNAME'];
+          var password = c[eachStudent + '_PASSWORD'];
+          studentIndex++;
 
-        for(let studentIndex = 1 ; studentIndex <= studentCount; studentIndex++){
-            let studentObj = automatedtestactivity1LaraData.students[studentIndex];
+          cy.login(username, password);
 
-            cy.login(studentObj.username, studentObj.password);
+          BTN_ACTIVITY_RUN(CLASS_NAME).click();
 
-            BTN_ACTIVITY_RUN(CLASS_NAME).click();
+          let totalPagesInAssignment = automatedtestactivity1LaraData.assignmentPages.totalPages;
+          for(let pageIndex = 1 ; pageIndex <= totalPagesInAssignment; pageIndex++){
 
-            let totalPagesInAssignment = automatedtestactivity1LaraData.assignmentPages.totalPages;
-            for(let pageIndex = 1 ; pageIndex <= totalPagesInAssignment; pageIndex++){
+              LaraRuntimeHelper.goToPageNumber(pageIndex);
+              if(automatedtestactivity1LaraData.assignmentPages[pageIndex] === undefined){
+                  continue;
+              }
 
-                LaraRuntimeHelper.goToPageNumber(pageIndex);
-                if(automatedtestactivity1LaraData.assignmentPages[pageIndex] === undefined){
-                    continue;
-                }
+              let questionsInThisPage = automatedtestactivity1LaraData.assignmentPages[pageIndex].questions;
 
-                let questionsInThisPage = automatedtestactivity1LaraData.assignmentPages[pageIndex].questions;
+              let totalQuestionsInPage = questionsInThisPage.totalQuestionsInPage;
 
-                let totalQuestionsInPage = questionsInThisPage.totalQuestionsInPage;
-
-                for(let questionIndex = 1 ; questionIndex <= totalQuestionsInPage; questionIndex++){
-                    let currentQuestion = questionsInThisPage[questionIndex];
-                    if(currentQuestion === null || currentQuestion === undefined){
-                        continue;
-                    }
-                    LaraRuntimeHelper.answerQuestion(questionIndex, currentQuestion, studentObj.username);
-                }
-            }
-            //THIS WILL END ASSIGNMENT AND LOGOUT
-            LaraRuntimeHelper.endAssignment();
-        }
+              for(let questionIndex = 1 ; questionIndex <= totalQuestionsInPage; questionIndex++){
+                  let currentQuestion = questionsInThisPage[questionIndex];
+                  if(currentQuestion === null || currentQuestion === undefined){
+                      continue;
+                  }
+                  LaraRuntimeHelper.answerQuestion(questionIndex, currentQuestion, studentIndex);
+              }
+          }
+          //THIS WILL END ASSIGNMENT AND LOGOUT
+          LaraRuntimeHelper.endAssignment();
+        });
     });
 
     it("Verify teacher can verify reports and provide feedback", () => {
-        cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD);
+        cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
         cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, 'Classes').click();
         cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).click();
         cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).contains('li a', 'Assignments').click();
@@ -100,46 +104,49 @@ context("Verify Student Activity Work Flow", () => {
 
             for(let questionIndex = 1 ; questionIndex <= totalQuestionsInPage; questionIndex++) {
                 let currentQuestion = questionsInThisPage[questionIndex];
-                ReportHelper.verifyReportForAQuestion(pageIndex, questionIndex, currentQuestion, automatedtestactivity1LaraData.students);
-                ReportHelper.provideFeedbackForAQuestion(pageIndex, questionIndex, currentQuestion, automatedtestactivity1LaraData.students);
+                ReportHelper.verifyReportForAQuestion(pageIndex, questionIndex, currentQuestion, STUDENTS);
+                ReportHelper.provideFeedbackForAQuestion(pageIndex, questionIndex, currentQuestion, STUDENTS);
             }
         }
-        ReportHelper.provideOverallFeedback(automatedtestactivity1LaraData.students, automatedtestactivity1LaraData.overallFeedback);
+        ReportHelper.provideOverallFeedback(STUDENTS, automatedtestactivity1LaraData.overallFeedback);
         cy.go("back");
         cy.logout();
     });
 
     it("Verify student can see the feedback from their teacher", () => {
-        let studentCount = automatedtestactivity1LaraData.students.totalStudentsAssigned;
-        for(let studentIndex = 1; studentIndex <= studentCount; studentIndex++){
-            let studentObj = automatedtestactivity1LaraData.students[studentIndex];
-            cy.login(studentObj.username, studentObj.password);
-            let studentGenerateReportLnk = getLinkGenerateReport(CLASS_NAME);
-            studentGenerateReportLnk.invoke('removeAttr', 'target').click();
-            let totalPagesInAssignment = automatedtestactivity1LaraData.assignmentPages.totalPages;
-            for(let pageIndex = 1 ; pageIndex <= totalPagesInAssignment; pageIndex++){
 
-                if(automatedtestactivity1LaraData.assignmentPages[pageIndex] === undefined){
-                    continue;
-                }
+      let studentIndex = 0;
+      STUDENTS.forEach(eachStudent => {
+        var username = c[eachStudent + '_USERNAME'];
+        var password = c[eachStudent + '_PASSWORD'];
+        studentIndex++;
 
-                let questionsInThisPage = automatedtestactivity1LaraData.assignmentPages[pageIndex].questions;
+        cy.login(username, password);
+        let studentGenerateReportLnk = getLinkGenerateReport(CLASS_NAME);
+        studentGenerateReportLnk.invoke('removeAttr', 'target').click();
+        let totalPagesInAssignment = automatedtestactivity1LaraData.assignmentPages.totalPages;
+        for(let pageIndex = 1 ; pageIndex <= totalPagesInAssignment; pageIndex++){
 
-                let totalQuestionsInPage = questionsInThisPage.totalQuestionsInPage;
-
-                for(let questionIndex = 1 ; questionIndex <= totalQuestionsInPage; questionIndex++) {
-                    let currentQuestion = questionsInThisPage[questionIndex];
-                    ReportHelper.viewTeachersFeedbackForAQuestion(pageIndex, questionIndex, currentQuestion, studentObj.username);
-                }
-
+            if(automatedtestactivity1LaraData.assignmentPages[pageIndex] === undefined){
+                continue;
             }
-            cy.go('back'); //Student report page do not have any links back to portal.
-            cy.logout();
+
+            let questionsInThisPage = automatedtestactivity1LaraData.assignmentPages[pageIndex].questions;
+
+            let totalQuestionsInPage = questionsInThisPage.totalQuestionsInPage;
+
+            for(let questionIndex = 1 ; questionIndex <= totalQuestionsInPage; questionIndex++) {
+                let currentQuestion = questionsInThisPage[questionIndex];
+                ReportHelper.viewTeachersFeedbackForAQuestion(pageIndex, questionIndex, currentQuestion, studentIndex);
+            }
         }
+        cy.go('back'); //Student report page do not have any links back to portal.
+        cy.logout();
+      });
     });
 
     it("Verify teacher archive class", () => {
-        cy.login(c.TEACHER_USERNAME, c.TEACHER_PASSWORD); // Login as admin user
+        cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as admin user
         TeacherHelper.archiveClass(CLASS_NAME);
         cy.logout();
     });
