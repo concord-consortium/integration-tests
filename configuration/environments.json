@@ -230,8 +230,8 @@
 		}
 	},
 	"dev": {
-		"learnPortalBaseUrl": "https://learn.dev.docker/",
-		"laraBaseUrl": "https://authoring.dev.docker/",
+		"learnPortalBaseUrl": "https://learn.dev.docker",
+		"laraBaseUrl": "https://authoring.dev.docker",
 		"publishEnvironment": "cc_portal_localhost",
 		"laraPortalEnvironment": "Localhost",
 		"schoolName": "Cypress Automation Test School",

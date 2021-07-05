@@ -5,10 +5,10 @@ import adminPageElements from '../../elements/admin_page_elements.js'
 
 export function noticesSetup() {
   cy.visit(constants.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
-
+  cy.login(constants.ADMIN_USERNAME, constants.ADMIN_PASSWORD);
   cy.get(userHomePageElements.LEFT_NAV_ADMIN_LINK).click(); // Click 'Admin' link from left nav
   cy.get(adminPageElements.NOTICES_LINK).click(); // Click 'Notices' link from left nav
-  
+
   checkNoticesExist().then($notices => {
     if($notices.length > 0) {
       deleteNotice();
@@ -19,7 +19,7 @@ export function noticesSetup() {
 }
 
 function checkNoticesExist() {
-  const url = constants.LEARN_PORTAL_BASE_URL + 'api/v1/site_notices/index';
+  const url = constants.LEARN_PORTAL_BASE_URL + '/api/v1/site_notices/index';
   return cy.request({
     url: url,
     method: "GET"

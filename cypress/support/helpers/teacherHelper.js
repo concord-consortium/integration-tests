@@ -1,6 +1,5 @@
 import teacherHomePageElements from "../elements/teacher_home_page_elements";
 import addClassPageElements from "../elements/add_class_page_elements";
-import manageClassesPageElements from "../elements/manage_classes_page_elements";
 import userHomePageElements from "../elements/user_home_page_elements";
 import studentRosterPageElements from "../elements/student_roster_page_elements";
 import assignmentsPageElements from '../elements/assignments_page_elements.js';
@@ -29,14 +28,14 @@ export function addAssignment(className, assignmentName){
     cy.contains('button', 'OK').click();
 }
 
-export function addRegisteredStudentToClass(studentUserName, studentFirstName, studentLastName, className){
+export function addRegisteredStudentToClass(studentUserName, studentFirstName, studentLastName){
     cy.get(studentRosterPageElements.REGISTERED_STUDENT_DROPDOWN).
             select(studentLastName + ", " +  studentFirstName+" (" + studentUserName + ")");
     cy.get(studentRosterPageElements.ADD_STUDENT_BUTTON).click();
     cy.contains(studentRosterPageElements.STUDENT_ROSTER_TABLE_USERNAME_COLUMN, studentUserName);
 }
 
-export function addUnregisteredStudentToClass(studentName, studentFirstName, studentLastName, studentPassword, currentClassCount){
+export function addUnregisteredStudentToClass(studentName, studentFirstName, studentLastName, studentPassword){
 
   cy.get(studentRosterPageElements.REGISTER_ADD_STUDENT_LINK).click(); // Click 'Register & Add Student' link
   cy.get(registerAddStudentPageElements.FIRST_NAME_FIELD).type(studentFirstName, ); // Type student first name in the Register and add student form

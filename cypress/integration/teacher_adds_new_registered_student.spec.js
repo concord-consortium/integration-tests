@@ -25,7 +25,7 @@ context("Verify teacher can add a new student to a class", () => {
     teacherHelper.openStudentRosterSection(CLASS_NAME);
     teacherHelper.verifyRosterTableDoesNotExist();
     teacherHelper.verifyClassCount(0);
-    teacherHelper.addRegisteredStudentToClass(c.STUDENT1_USERNAME, c.STUDENT1_FIRSTNAME, c.STUDENT1_LASTNAME, CLASS_NAME);
+    teacherHelper.addRegisteredStudentToClass(c.STUDENT1_USERNAME, c.STUDENT1_FIRSTNAME, c.STUDENT1_LASTNAME);
     teacherHelper.verifyClassCount(1);
   });
 

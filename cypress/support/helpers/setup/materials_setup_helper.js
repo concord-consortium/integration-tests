@@ -42,7 +42,7 @@ function checkMaterialExistsInPortal(materialName) {
 
   cy.visit(constants.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
 
-  const url = constants.LEARN_PORTAL_BASE_URL + 'api/v1/search/search?search_term='+ materialName + '&include_official=1&include_contributed=1';
+  const url = constants.LEARN_PORTAL_BASE_URL + '/api/v1/search/search?search_term='+ materialName + '&include_official=1&include_contributed=1';
   return cy.request({
     url: url,
     method: "GET"
