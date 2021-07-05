@@ -2,7 +2,6 @@ import * as c from '../support/constants.js'
 import * as adminHelper from '../support/helpers/adminHelper'
 import * as studentHelper from '../support/helpers/studentHelper'
 import * as teacherHelper from '../support/helpers/teacherHelper'
-import * as accountsHelper from '../support/helpers/setup/accounts_setup_helper'
 
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 // Note for db tracking : No db tracking required, using existing records (except for 2 student accounts, which are added and then deleted at the end)
@@ -27,9 +26,9 @@ context("Verify teacher can add a new student to a class", () => {
     teacherHelper.openStudentRosterSection(CLASS_NAME);
     teacherHelper.verifyRosterTableDoesNotExist();
     teacherHelper.verifyClassCount(0);
-    teacherHelper.addUnregisteredStudentToClass(c.STUDENT1_NAME, c.STUDENT1_FIRSTNAME, c.STUDENT1_LASTNAME, c.STUDENT1_PASSWORD, 0);
+    teacherHelper.addUnregisteredStudentToClass(c.STUDENT1_NAME, c.STUDENT1_FIRSTNAME, c.STUDENT1_LASTNAME, c.STUDENT1_PASSWORD);
     teacherHelper.verifyClassCount(1);
-    teacherHelper.addUnregisteredStudentToClass(c.STUDENT2_NAME, c.STUDENT2_FIRSTNAME, c.STUDENT2_LASTNAME, c.STUDENT2_PASSWORD, 1);
+    teacherHelper.addUnregisteredStudentToClass(c.STUDENT2_NAME, c.STUDENT2_FIRSTNAME, c.STUDENT2_LASTNAME, c.STUDENT2_PASSWORD);
     teacherHelper.verifyClassCount(2);
 
     teacherHelper.getUserNameElement(c.STUDENT1_NAME).then(($username) => {

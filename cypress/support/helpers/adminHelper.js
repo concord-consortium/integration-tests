@@ -1,10 +1,11 @@
 import userHomePageElements from "../elements/user_home_page_elements";
 import adminPageElements from "../elements/admin_page_elements";
 import teacherHomePageElements from "../elements/teacher_home_page_elements";
-import noticesPageElements from "../elements/notices_page_elements";
+import adminAuthoringPageElements from "../elements/admin_authoring_page_elements";
 import flashNoticePageElements from '../elements/flash_notice_page_elements.js'
 import adminSettingsUsersPageElements from '../elements/admin_settings_users_page_elements.js'
-import * as c from "../constants";
+import adminEditUserPageElements from '../elements/admin_edit_user_page_elements.js'
+import c from '../constants.js'
 
 export function disableOpenInNewWindow(activityName){
     cy.get(userHomePageElements.LEFT_NAV_ADMIN_LINK).click();
@@ -20,6 +21,14 @@ export function openUsersAdminSection() {
   cy.get(adminPageElements.USERS_LINK).click(); // Click 'Users' link in the Admin Settings page
 }
 
+export function openAuthoringAdminSection() {
+  cy.get(userHomePageElements.LEFT_NAV_ADMIN_LINK).click(); // Click 'Admin' link in left nav
+  cy.get(adminPageElements.AUTHORING_LINK).click(); // Click 'Authoring' link in the Admin Settings page
+}
+
+export function openSearchMaterialsPage() {
+  cy.visit(c.LEARN_PORTAL_BASE_URL + "/search");
+}
 
 export function copyLaraActivity(existingActivityName, newActivityName){
     cy.get(userHomePageElements.LEFT_NAV_ADMIN_LINK).click();
@@ -77,4 +86,49 @@ export function removeUser(userName, fullName) {
       cy.contains(flashNoticePageElements.BANNER, "User: " + fullName + " successfully deleted!"); // Verify banner that shows that user is successfully deleted
     }
   });
+}
+
+export function addAdminRoleToUser(userName, fullName) {
+  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + userName);
+  cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click();
+
+  cy.get(adminSettingsUsersPageElements.SEARCH_LIST_HEADER).then(($searchResults) => {
+    if($searchResults.find(adminSettingsUsersPageElements.SEARCH_RESULT).length > 0) {
+      cy.contains(adminSettingsUsersPageElements.SEARCH_RESULT_USER_NAME, "User: " + fullName);
+      cy.get(adminSettingsUsersPageElements.EDIT_USER).click(); // Click Edit link
+      cy.get(adminEditUserPageElements.ADD_ADMIN_ROLE).check();
+      cy.get(adminEditUserPageElements.SAVE_BUTTON).click();
+      cy.contains(flashNoticePageElements.BANNER, "User: " + fullName + " was successfully updated."); // Verify banner that shows that user is successfully updated
+    }
+  });
+}
+
+export function createExternalActivity1(activityName, grade, subject) {
+  cy.get(adminAuthoringPageElements.CREATE_EXTERNAL_ACTIVITY).click();
+  cy.get(adminAuthoringPageElements.EXTERNAL_ACTIVITY_NAME_FIELD).type(activityName);
+  cy.get(adminAuthoringPageElements.IS_OFFICIAL_CHECKBOX).check();
+  cy.get(adminAuthoringPageElements.PUBLICATION_STATUS_DROPDOWN).select('published');
+  cy.get(grade).check();
+  cy.get(subject).check();
+  cy.get(adminAuthoringPageElements.SAVE_BUTTON).click();
+  cy.contains(flashNoticePageElements.BANNER, "ExternalActivity was successfully created.");
+}
+
+export function createExternalActivity2(activityName, sensor) {
+  cy.get(adminAuthoringPageElements.CREATE_EXTERNAL_ACTIVITY).click();
+  cy.get(adminAuthoringPageElements.EXTERNAL_ACTIVITY_NAME_FIELD).type(activityName);
+  cy.get(adminAuthoringPageElements.IS_OFFICIAL_CHECKBOX).check();
+  cy.get(adminAuthoringPageElements.PUBLICATION_STATUS_DROPDOWN).select('published');
+  cy.get(sensor).check();
+  cy.get(adminAuthoringPageElements.SAVE_BUTTON).click();
+  cy.contains(flashNoticePageElements.BANNER, "ExternalActivity was successfully created.");
+}
+
+export function createExternalActivity3(activityName) {
+  cy.get(adminAuthoringPageElements.CREATE_EXTERNAL_ACTIVITY).click();
+  cy.get(adminAuthoringPageElements.EXTERNAL_ACTIVITY_NAME_FIELD).type(activityName);
+  cy.get(adminAuthoringPageElements.IS_OFFICIAL_CHECKBOX).check();
+  cy.get(adminAuthoringPageElements.PUBLICATION_STATUS_DROPDOWN).select('published');
+  cy.get(adminAuthoringPageElements.SAVE_BUTTON).click();
+  cy.contains(flashNoticePageElements.BANNER, "ExternalActivity was successfully created.");
 }

@@ -9,10 +9,11 @@ import constants from '../../constants.js'
 
 export function accountsSetup() {
 
-  //createSchool();
+  // createSchool();
   accountsTeardown();
   createTeacherAccounts();
   activateTeacherAccounts();
+  makeTeacher5Admin();
   createClass();
   registerStudents();
 }
@@ -96,6 +97,7 @@ function createTeacherAccounts() {
       }
     });
     cy.get(signupPageElements.REGISTER_BUTTON).click();
+    cy.wait(1000);
     cy.get(signupPageElements.CLOSE_BUTTON).click();
   });
 }
@@ -116,6 +118,18 @@ function activateTeacherAccounts() {
   cy.logout();
 }
 
+function makeTeacher5Admin() {
+
+  cy.login(constants.ADMIN_USERNAME, constants.ADMIN_PASSWORD); // Login as admin user
+  adminHelper.openUsersAdminSection();
+
+  var username = constants['TEACHER5_USERNAME'];
+  var fullName = constants['TEACHER5_FULLNAME'];
+  adminHelper.addAdminRoleToUser(username, fullName);
+
+  cy.logout();
+}
+
 function createClass() {
   cy.login(constants.TEACHER1_USERNAME, constants.TEACHER1_PASSWORD);
   teacherHelper.addClass("Setup Class", "Setup Class", constants.CLASS_WORD);
@@ -123,18 +137,16 @@ function createClass() {
 
 function registerStudents() {
   var students = ["STUDENT1", "STUDENT2", "STUDENT3", "STUDENT4", "STUDENT5"];
-  var classCount = 0;
   var className = "Setup Class";
   teacherHelper.openStudentRosterSection(className);
 
   students.forEach(eachStudent => {
     var firstName = constants[eachStudent + '_FIRSTNAME'];
     var lastName = constants[eachStudent + '_LASTNAME'];
-    var username = constants[eachStudent + '_USERNAME'];
     var name = constants[eachStudent + '_NAME'];
     var password = constants[eachStudent + '_PASSWORD'];
 
-    teacherHelper.addUnregisteredStudentToClass(name, firstName, lastName, password, classCount++);
+    teacherHelper.addUnregisteredStudentToClass(name, firstName, lastName, password);
   });
   teacherHelper.archiveClass(className);
   cy.logout();

@@ -1,5 +1,3 @@
-import { uid } from 'uid';
-
 import * as c from '../support/constants.js'
 import * as TeacherHelper from "../support/helpers/teacherHelper";
 import {

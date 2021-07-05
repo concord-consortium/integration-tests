@@ -7,7 +7,8 @@ const adminSettingsUsersPageElements = {
   SEARCH_RESULT_USER_NAME : 'div#action_menu_wrapper:nth-child(1) .action_menu_header_left a',
   SEARCH_RESULT_FIXED: 'div#action_menu_wrapper .action_menu_header_left a',
   DELETE_USER : 'div#action_menu_wrapper:nth-child(1) .action_menu_header_right li:nth-child(3) a[onclick^=confirmUserDelete]',
-  ACTIVATE_USER : 'div#action_menu_wrapper:nth-child(1) .action_menu_header_right a[href$=\"/confirm\"]'
+  ACTIVATE_USER : 'div#action_menu_wrapper:nth-child(1) .action_menu_header_right a[href$=\"/confirm\"]',
+  EDIT_USER : 'div#action_menu_wrapper:nth-child(1) .action_menu_header_right a[href$=\"/edit\"]'
 }
 
 export default adminSettingsUsersPageElements;
