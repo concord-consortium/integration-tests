@@ -37,15 +37,15 @@ context("Verify user updates to account information", () => {
     //Verify teacher name is updated in /preferences and in flash-notice
   });
 
-  it("Verify teacher user is able to update password", () => {
-    cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings link in left nav
-    cy.get(userSettingsPageElements.CHANGE_PASSWORD_BUTTON).click(); // Click Change password button
-    cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(c.TEACHER1_PASSWORD); // Enter a new password in the new password field
-    cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(c.TEACHER1_PASSWORD); // Confirm the new password
-    cy.get(changePasswordPageElements.SAVE_BUTTON).click(); // Click 'Save button'
-    cy.contains(flashNoticePageElements.BANNER, 'Password for '+ c.TEACHER1_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
-    cy.get(userSettingsPageElements.CANCEL_BUTTON).click(); // Click 'Cancel' button to close the form
-  });
+  // it("Verify teacher user is able to update password", () => {
+  //   cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings link in left nav
+  //   cy.get(userSettingsPageElements.CHANGE_PASSWORD_BUTTON).click(); // Click Change password button
+  //   cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(c.TEACHER1_PASSWORD); // Enter a new password in the new password field
+  //   cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(c.TEACHER1_PASSWORD); // Confirm the new password
+  //   cy.get(changePasswordPageElements.SAVE_BUTTON).click(); // Click 'Save button'
+  //   cy.contains(flashNoticePageElements.BANNER, 'Password for '+ c.TEACHER1_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
+  //   cy.get(userSettingsPageElements.CANCEL_BUTTON).click(); // Click 'Cancel' button to close the form
+  // });
 
   it("Logout as teacher and login as student", () => {
     cy.logout(); // Logout as teacher
@@ -67,13 +67,13 @@ context("Verify user updates to account information", () => {
     cy.get(userSettingsPageElements.SAVE_BUTTON).click(); // Click 'Save' button
   });
 
-  it("Verify student user is able to update password", () => {
-    cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings in left nav
-    cy.get(userSettingsPageElements.CHANGE_PASSWORD_BUTTON).click(); // Click Change password button
-    cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(c.STUDENT1_PASSWORD); // Enter a new password in the new password field
-    cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(c.STUDENT1_PASSWORD); // Confirm the new password
-    cy.get(changePasswordPageElements.SAVE_BUTTON).click(); // Click 'Save button'
-    cy.contains(flashNoticePageElements.BANNER, 'Password for '+ c.STUDENT1_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
-    cy.get(userSettingsPageElements.CANCEL_BUTTON).click(); // Click 'Cancel' button to close the form
-  });
+  // it("Verify student user is able to update password", () => {
+  //   cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings in left nav
+  //   cy.get(userSettingsPageElements.CHANGE_PASSWORD_BUTTON).click(); // Click Change password button
+  //   cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(c.STUDENT1_PASSWORD); // Enter a new password in the new password field
+  //   cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(c.STUDENT1_PASSWORD); // Confirm the new password
+  //   cy.get(changePasswordPageElements.SAVE_BUTTON).click(); // Click 'Save button'
+  //   cy.contains(flashNoticePageElements.BANNER, 'Password for '+ c.STUDENT1_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
+  //   cy.get(userSettingsPageElements.CANCEL_BUTTON).click(); // Click 'Cancel' button to close the form
+  // });
 });

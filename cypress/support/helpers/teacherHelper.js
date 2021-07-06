@@ -13,6 +13,7 @@ export function addClass(className, classDesc, classWord) {
     cy.get(addClassPageElements.CLASS_NAME).type(className); // Type into class name field
     cy.get(addClassPageElements.CLASS_DESCRIPTION).type(classDesc); // Type into class description field
     cy.get(addClassPageElements.CLASS_WORD).type(classWord); // Type into class word field
+    cy.get(addClassPageElements.GRADE_LEVEL_5).check(); // Type into class word field
     cy.get(addClassPageElements.SUBMIT_BUTTON).click(); // Click 'Submit' button
 }
 

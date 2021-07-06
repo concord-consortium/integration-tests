@@ -5,7 +5,7 @@ const landingPageElements = {
   REGISTER_BUTTON : '.button.register',
   LOGIN_BUTTON : 'a[title=\"Log In\"]',
   LOGOUT_BUTTON : 'a[title=\"Log Out\"]',
-  LOGIN_BUTTON_HEADER : '#portal-pages-header .portal-pages-main-nav'
+  LOGIN_BUTTON_HEADER : '.concord-navigation .portal-pages-main-nav'
 }
 
 export default landingPageElements;
