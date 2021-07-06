@@ -17,16 +17,5 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           start: npm run -s test:run -- -e password=`${{ secrets.QAPASSWORD }}`,testEnv=qa
-          parallel: true
-          record: true
-        env:
-          # pass the Dashboard record key as an environment variable
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # pass GitHub token to allow accurately detecting a build vs a re-run build
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # turn on code coverage for our npm start
-          CODE_COVERAGE: true
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          flags: cypress
+          parallel: false
+          record: false
