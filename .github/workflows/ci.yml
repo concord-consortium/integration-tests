@@ -16,10 +16,25 @@ jobs:
       # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: cypress run with env
+      - name: Run Cypress Tests
         uses: cypress-io/github-action@v2
         with:
           env: password=ccpassword,testEnv=qa
+          record: true
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Save screenshots
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: images
+          path:
+            cypress/screenshots
+            *.png
