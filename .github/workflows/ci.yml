@@ -1,6 +1,10 @@
 name: Continuous Integration
 
-on: push
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   cypress:
@@ -12,10 +16,10 @@ jobs:
       # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - uses: cypress-io/github-action@v2
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: cypress run with env
+        uses: cypress-io/github-action@v2
         with:
-          start: npm run -s test:run -- -e password=`${{ secrets.QAPASSWORD }}`,testEnv=qa
-          parallel: false
-          record: false
+          env: password={{ $secrets.QAPASSWORD }},testEnv=qa
