@@ -23,7 +23,7 @@ jobs:
         uses: cypress-io/github-action@v2
         continue-on-error: true
         with:
-          env: password=ccpassword,testEnv=qa
+          env: password=`${{ secrets.QA_PASSWORD }}`,testEnv=qa
           record: true
         env:
           # pass the Dashboard record key as an environment variable

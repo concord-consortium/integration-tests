@@ -27,16 +27,16 @@ Cypress.Cookies.defaults({
 
 before(function() {
 
-  materialsSetup();
-
-  tagsSetup();
-
-  noticesSetup();
-
-  accountsSetup();
+  // materialsSetup();
+  //
+  // tagsSetup();
+  //
+  // noticesSetup();
+  //
+  // accountsSetup();
 });
 
 after(function() {
 
-  accountsTeardown();
+  // accountsTeardown();
 });

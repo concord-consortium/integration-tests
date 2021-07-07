@@ -40,35 +40,35 @@ context("Verify teacher can add a new student to a class", () => {
     });
   });
 
-  // it("Verify teacher is able to change a student's password", () => {
-  //   teacherHelper.changeStudentPassword(c.STUDENT1_NAME, c.STUDENT1_USERNAME, STUDENT_NEW_PASSWORD);
-  // });
-  //
-  // it("Verify registered student is able to use the new password", () => {
-  //   cy.logout(); // Logout as teacher user
-  //
-  //   cy.login(c.STUDENT1_USERNAME, STUDENT_NEW_PASSWORD); // Login as student 1 with the new password
-  //   studentHelper.checkClassNameAppears(CLASS_NAME);
-  //   cy.logout(); // Logout as student
-  //
-  //   cy.login(c.STUDENT2_USERNAME, c.STUDENT2_PASSWORD); // Login as student 2
-  //   studentHelper.checkClassNameAppears(CLASS_NAME);
-  //   cy.logout(); // Logout as student
-  //
-  //   cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher
-  // });
-  //
-  // it("Verify teacher is able to revert the student's password", () => {
-  //     teacherHelper.openStudentRosterSection(CLASS_NAME);
-  //     teacherHelper.changeStudentPassword(c.STUDENT1_NAME, c.STUDENT1_USERNAME, c.STUDENT1_PASSWORD);
-  //     cy.logout(); // Logout as teacher
-  //
-  //     cy.login(c.STUDENT1_USERNAME, c.STUDENT1_PASSWORD); // Login as student 1 with the original password
-  //     studentHelper.checkClassNameAppears(CLASS_NAME);
-  //     cy.logout(); // Logout as student
-  //
-  //     cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher
-  // });
+  it("Verify teacher is able to change a student's password", () => {
+    teacherHelper.changeStudentPassword(c.STUDENT1_NAME, c.STUDENT1_USERNAME, STUDENT_NEW_PASSWORD);
+  });
+
+  it("Verify registered student is able to use the new password", () => {
+    cy.logout(); // Logout as teacher user
+
+    cy.login(c.STUDENT1_USERNAME, STUDENT_NEW_PASSWORD); // Login as student 1 with the new password
+    studentHelper.checkClassNameAppears(CLASS_NAME);
+    cy.logout(); // Logout as student
+
+    cy.login(c.STUDENT2_USERNAME, c.STUDENT2_PASSWORD); // Login as student 2
+    studentHelper.checkClassNameAppears(CLASS_NAME);
+    cy.logout(); // Logout as student
+
+    cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher
+  });
+
+  it("Verify teacher is able to revert the student's password", () => {
+      teacherHelper.openStudentRosterSection(CLASS_NAME);
+      teacherHelper.changeStudentPassword(c.STUDENT1_NAME, c.STUDENT1_USERNAME, c.STUDENT1_PASSWORD);
+      cy.logout(); // Logout as teacher
+
+      cy.login(c.STUDENT1_USERNAME, c.STUDENT1_PASSWORD); // Login as student 1 with the original password
+      studentHelper.checkClassNameAppears(CLASS_NAME);
+      cy.logout(); // Logout as student
+
+      cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher
+  });
 
   it("Verify teacher is able to remove one student from the roster", () => {
     teacherHelper.openStudentRosterSection(CLASS_NAME);
