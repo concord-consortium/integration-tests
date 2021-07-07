@@ -9,9 +9,9 @@
     "pretest:open":"npm run clean:reports",
     "test:run":"cypress run --spec cypress/integration/**/*",
     "test:open":"cypress open",
-    "merge-report":"mochawesome-merge cypress/results/json/*.json > cypress/results/mochawesome-bundle.json",
-    "generate-report":"marge cypress/results/mochawesome-bundle.json -o cypress/reports/html",
-    "generate-report-ci": "marge cypress/results/mochawesome-bundle.json --reportDir public --assetsDir public/assets --reportPageTitle IntegrationTestReport.html",
+    "merge:report":"mochawesome-merge cypress/results/json/*.json > cypress/results/mochawesome-bundle.json",
+    "generate:report":"marge cypress/results/mochawesome-bundle.json -o cypress/reports/html",
+    "generate:report:ci": "marge cypress/results/mochawesome-bundle.json --reportDir public --assetsDir public/assets --reportPageTitle IntegrationTestReport.html",
     "posttest:run":"npm run merge-report && npm run generate-report",
     "posttest:open":"npm run merge-report && npm run generate-report"
   },

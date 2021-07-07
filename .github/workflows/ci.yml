@@ -21,6 +21,7 @@ jobs:
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v2
+        continue-on-error: true
         with:
           env: password=ccpassword,testEnv=qa
           record: true
@@ -40,10 +41,10 @@ jobs:
             *.png
 
       - name: Merge test results into one
-        run: npm run merge-report
+        run: npm run merge:report
 
       - name: Generate HTML report
-        run: npm run report:generate
+        run: npm run generate:report:ci
 
       - name: Deploy report page
         uses: peaceiris/actions-gh-pages@v3
