@@ -22,4 +22,5 @@ jobs:
       - name: cypress run with env
         uses: cypress-io/github-action@v2
         with:
-          env: password=${{ secrets.qaPassword }},testEnv=qa
+          command: npm run test:run
+          env: password=ccpassword,testEnv=qa
