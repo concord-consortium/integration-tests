@@ -8,6 +8,8 @@ const studentHomePageElements = {
   LBL_STUDENT_CLASS_SECTION: 'div.item_collection div.item div.action_menu div.action_menu_header_left',
   LBL_TEACHER_NAME_CLASS_SECTION: 'div.item_collection div.item div.action_menu div.action_menu_header_right',
   LNK_STUDENT_GENERATE_REPORT: 'div.status_graphs div.run_graph span.lightbox_report_link a[href$=\"student_report\"]',
+  ASSIGNMENT_SECTION: 'div.offering_for_student',
+  NO_OFFERINGS_TEXT: 'ul.quiet_list li div.tiny'
 };
 
 export function BTN_ACTIVITY_RUN(className){

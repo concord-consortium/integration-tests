@@ -10,6 +10,18 @@ export function checkClassNameDoesNotExist(className) {
   cy.contains(studentHomePageElements.LEFT_NAV_CLASS, className).should("not.exist"); // Check the current class does not exist in the student left nav
 }
 
+
+export function verifyAssignmentExists(className, assignmentName){
+    cy.contains(studentHomePageElements.LEFT_NAV_CLASS, className).click();
+    cy.get(studentHomePageElements.ASSIGNMENT_SECTION).contains('span.name', assignmentName);
+}
+
+
+export function verifyNoOfferingsAvailable(className){
+    cy.contains(studentHomePageElements.LEFT_NAV_CLASS, className).click();
+    cy.contains(studentHomePageElements.NO_OFFERINGS_TEXT, 'No offerings available.');
+}
+
 export function registerStudent(username, firstName, lastName, password, classWord){
     cy.get(signupPageElements.BTN_REGISTER_USER).click();
     cy.get(signupPageElements.BTN_I_AM_STUDENT).click();
