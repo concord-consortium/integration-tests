@@ -31,6 +31,7 @@ const signupPageElements = {
   TXT_CLASS_WORD: 'div.signup-form div.class_word input[type=\"text\"]',
   LBL_SIGNUP_SUCCESS: 'div.signup-form div.registration-complete.student div p',
   LBL_INVALID_WORD_ERROR: 'div.signup-form div.class_word.error div.input-error',
+
 };
 
 export default signupPageElements;
