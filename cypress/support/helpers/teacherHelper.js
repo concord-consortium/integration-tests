@@ -7,6 +7,7 @@ import searchAssignmentsPage from '../elements/search_assignments_page.js';
 import registerAddStudentPageElements from '../elements/register_add_student_page_elements.js'
 import changePasswordPageElements from '../elements/change_password_page_elements.js'
 import flashNoticePageElements from '../elements/flash_notice_page_elements.js'
+import * as assignmentPageElementFunctions from "../elements/assignments_page_elements";
 
 export function addClass(className, classDesc, classWord) {
     openAddClassSection();
@@ -157,4 +158,12 @@ export function openAddClassSection() {
 export function openManageClassesSection() {
   expandClasses();
   cy.get(teacherHomePageElements.LEFT_NAV_MANAGE_CLASSES).click(); // Click 'Add Class'
+}
+
+export function deActivateAssignment(assignmentName){
+    assignmentPageElementFunctions.getActiveCheckboxElement(assignmentName).uncheck();
+}
+
+export function activateAssignment(assignmentName){
+    assignmentPageElementFunctions.getActiveCheckboxElement(assignmentName).check();
 }
