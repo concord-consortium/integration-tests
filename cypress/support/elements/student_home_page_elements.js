@@ -16,10 +16,7 @@ const studentHomePageElements = {
   BTN_JOIN_CLASS: '#join-class p input[value=\"Join\"]',
   BTN_JOINING_CLASS: '#join-class p input[value=\"Joining ...\"]',
   BTN_CANCEL_JOIN_CLASS: '#join-class p button',
-  LBL_JOIN_CLASS_MSG: '#join-class fieldset',
-
-  ASSIGNMENT_SECTION: 'div.offering_for_student',
-  NO_OFFERINGS_TEXT: 'ul.quiet_list li div.tiny'
+  LBL_JOIN_CLASS_MSG: '#join-class fieldset'
 
 };
 
