@@ -4,7 +4,7 @@ import * as StudentHelper from '../support/helpers/studentHelper';
 
 const CLASS_WORD = C.CLASS_WORD;
 const CLASS_NAME = 'Class '+ CLASS_WORD;
-const ASSIGNMENT_NAME = 'AP_AutomatedTestActivity1';
+const ASSIGNMENT_NAME = 'Cypress_AutomatedTestActivity1_AP';
 
 context("Verify students cannot see deactivated offerings", () => {
 
