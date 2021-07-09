@@ -18,6 +18,9 @@ const studentHomePageElements = {
   BTN_CANCEL_JOIN_CLASS: '#join-class p button',
   LBL_JOIN_CLASS_MSG: '#join-class fieldset',
 
+  ASSIGNMENT_SECTION: 'div.offering_for_student',
+  NO_OFFERINGS_TEXT: 'ul.quiet_list li div.tiny'
+
 };
 
 export function BTN_ACTIVITY_RUN(className){
