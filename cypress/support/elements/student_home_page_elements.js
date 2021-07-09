@@ -9,7 +9,15 @@ const studentHomePageElements = {
   LBL_TEACHER_NAME_CLASS_SECTION: 'div.item_collection div.item div.action_menu div.action_menu_header_right',
   LNK_STUDENT_GENERATE_REPORT: 'div.status_graphs div.run_graph span.lightbox_report_link a[href$=\"student_report\"]',
   ASSIGNMENT_SECTION: 'div.offering_for_student',
-  NO_OFFERINGS_TEXT: 'ul.quiet_list li div.tiny'
+  NO_OFFERINGS_TEXT: 'ul.quiet_list li div.tiny',
+
+  TXT_CLASS_WORD: '#join-class ul li input[name=\"classWord\"]',
+  BTN_SUBMIT_CLASS_WORD: '#join-class ul li input[value=\"Submit\"]',
+  BTN_JOIN_CLASS: '#join-class p input[value=\"Join\"]',
+  BTN_JOINING_CLASS: '#join-class p input[value=\"Joining ...\"]',
+  BTN_CANCEL_JOIN_CLASS: '#join-class p button',
+  LBL_JOIN_CLASS_MSG: '#join-class fieldset'
+
 };
 
 export function BTN_ACTIVITY_RUN(className){
