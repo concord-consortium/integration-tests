@@ -6,15 +6,16 @@ import admin_page_elements from "../support/elements/admin_page_elements";
 import studentHomePageElements from "../support/elements/student_home_page_elements";
 import studentRosterPageElements from "../support/elements/student_roster_page_elements";
 import signupPageElements from "../support/elements/signup_page_elements";
+import adminPageElements from "../support/elements/admin_page_elements";
 
 const CLASS_WORD_1 = 'word1_'+c.UID;
 const CLASS_WORD_2 = 'word2_'+c.UID;
 const CLASS_NAME_1 = 'Class '+ CLASS_WORD_1;
 const CLASS_NAME_2 = 'Class '+ CLASS_WORD_2;
 
-const STUDENT_FIRSTNAME = 'sri';
-const STUDENT_LASTNAME = 'sun';
-const STUDENT_USERNAME = 'ssun';
+const STUDENT_FIRSTNAME = 'Cypress';
+const STUDENT_LASTNAME = 'AutomationStudent6';
+const STUDENT_USERNAME = 'cautomationstudent6';
 const STUDENT_PASSWORD = 'password';
 
 context("Student joins another class tests", () => {
@@ -67,6 +68,14 @@ context("Student joins another class tests", () => {
         cy.login(c.TEACHER2_USERNAME, c.TEACHER2_PASSWORD);
         TeacherHelper.openStudentRosterSection(CLASS_NAME_2);
         cy.contains(studentRosterPageElements.STUDENT_ROSTER_TABLE_USERNAME_COLUMN, STUDENT_USERNAME);
+        cy.logout();
+    });
+
+    it("Admin deletes the new user added", () => {
+        cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD);
+        cy.get(adminPageElements.LNK_ADMIN).click();
+        cy.get(adminPageElements.USERS_LINK).click();
+        AdminHelper.removeUser(STUDENT_USERNAME, STUDENT_FIRSTNAME + ' ' + STUDENT_LASTNAME);
         cy.logout();
     });
 
