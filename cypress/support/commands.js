@@ -31,6 +31,7 @@ import userHomePageElements from './elements/user_home_page_elements.js'
 import flashNoticePageElements from './elements/flash_notice_page_elements.js'
 import laraPageElements from './elements/lara_page_elements.js'
 import constants from './constants.js'
+import addContext from 'mochawesome/addContext'
 
 
 // LEARN Portal Login Form
@@ -148,4 +149,13 @@ Cypress.Commands.add("loginLARAWithSSO", (username, password) => {
 Cypress.Commands.add("logoutLARA", () => {
   cy.log("Logging out of LARA");
   cy.get(laraPageElements.LOGOUT_LINK).click();
+});
+
+Cypress.on("test:after:run", (test, runnable) => {
+
+    let videoName = Cypress.spec.name
+    videoName = videoName.replace('/.js.*', '.js')
+    const videoUrl = 'videos/' + videoName + '.mp4'
+
+    addContext({ test }, videoUrl)
 });
