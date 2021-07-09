@@ -5,7 +5,8 @@ const adminPageElements = {
   NOTICES_LINK : 'a[href$=\'/admin/site_notices\']',
   TAGS_LINK: 'a[href$=\'/admin/tags\']',
   SCHOOLS_LINK : 'a[href$=\'/portal/schools\']',
-  LNK_AUTHORING: 'a[href$=\'/authoring\']'
+  LNK_AUTHORING: 'a[href$=\'/authoring\']',
+  LNK_ADMIN: 'li a[href=\"/admin\"]'
 };
 
 export default adminPageElements;
