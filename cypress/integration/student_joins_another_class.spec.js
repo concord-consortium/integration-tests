@@ -2,7 +2,6 @@ import * as c from "../support/constants";
 import * as TeacherHelper from '../support/helpers/teacherHelper';
 import * as StudentHelper from '../support/helpers/studentHelper';
 import * as AdminHelper from '../support/helpers/adminHelper';
-import admin_page_elements from "../support/elements/admin_page_elements";
 import studentHomePageElements from "../support/elements/student_home_page_elements";
 import studentRosterPageElements from "../support/elements/student_roster_page_elements";
 import signupPageElements from "../support/elements/signup_page_elements";
@@ -26,8 +25,8 @@ context("Student joins another class tests", () => {
 
     after(function() {
        cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD);
-       cy.get(admin_page_elements.LNK_ADMIN).click();
-       cy.get(admin_page_elements.USERS_LINK).click();
+       cy.get(adminPageElements.LNK_ADMIN).click();
+       cy.get(adminPageElements.USERS_LINK).click();
        AdminHelper.removeUser(STUDENT_USERNAME, STUDENT_FIRSTNAME + ' ' + STUDENT_LASTNAME);
     });
 
