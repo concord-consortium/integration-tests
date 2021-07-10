@@ -39,6 +39,8 @@ jobs:
           cp -r cypress/videos public/videos
 
   cypress-tests:
+    needs: cypress-setup
+    if: always()
     runs-on: ubuntu-latest
     strategy:
       # when one test fails, DO NOT cancel the other
@@ -89,6 +91,8 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
 
   cypress-teardown:
+    needs: [cypress-setup, cypress-tests]
+    if: always()
     runs-on: ubuntu-latest
     strategy:
       # when one test fails, DO NOT cancel the other
