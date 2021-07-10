@@ -21,11 +21,11 @@ const studentHomePageElements = {
 };
 
 export function BTN_ACTIVITY_RUN(className){
-  return cy.contains('div.action_menu_header_left', className).parent().parent().contains('a.button', 'Run');
+  return cy.get('div.action_menu_header_left').contains(className).parent().parent().contains('a.button', 'Run');
 }
 
 export function getClassSectionElement(className){
-  return cy.contains(studentHomePageElements.LBL_STUDENT_CLASS_SECTION, className).parent().parent();
+  return cy.get(studentHomePageElements.LBL_STUDENT_CLASS_SECTION).contains(className).parent().parent();
 }
 
 export function getLinkGenerateReport(className){

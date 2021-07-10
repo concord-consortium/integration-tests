@@ -3,11 +3,11 @@ import studentRosterPageElements from "../elements/student_roster_page_elements"
 import studentHomePageElements from "../elements/student_home_page_elements";
 
 export function checkClassNameAppears(className) {
-  cy.contains(studentHomePageElements.LEFT_NAV_CLASS, className); // Check the current class is present in the student left nav
+  cy.get(studentHomePageElements.LEFT_NAV_CLASS).contains(className); // Check the current class is present in the student left nav
 }
 
 export function checkClassNameDoesNotExist(className) {
-  cy.contains(studentHomePageElements.LEFT_NAV_CLASS, className).should("not.exist"); // Check the current class does not exist in the student left nav
+  cy.get(studentHomePageElements.LEFT_NAV_CLASS).contains(className).should("not.exist"); // Check the current class does not exist in the student left nav
 }
 
 
@@ -32,7 +32,7 @@ export function registerStudent(username, firstName, lastName, password, classWo
     cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();
     cy.get(signupPageElements.TXT_CLASS_WORD).type(classWord);
     cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();
-    cy.contains(signupPageElements.LBL_SIGNUP_SUCCESS, 'Success! your username is '+username);
+    cy.get(signupPageElements.LBL_SIGNUP_SUCCESS).contains('Success! your username is '+username);
     cy.retryLogin(username, password);
     cy.logout();
 }

@@ -1,7 +1,7 @@
-import * as c from '../support/constants.js'
-import * as adminHelper from "../support/helpers/adminHelper"
-import adminAuthoringPageElements from "../support/elements/admin_authoring_page_elements"
-import searchAssignmentsPage from "../support/elements/search_assignments_page"
+import * as c from '../../support/constants.js'
+import * as adminHelper from "../../support/helpers/adminHelper"
+import adminAuthoringPageElements from "../../support/elements/admin_authoring_page_elements"
+import searchAssignmentsPage from "../../support/elements/search_assignments_page"
 
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 
@@ -98,7 +98,7 @@ context("Verify admin can filter instructional materials", () => {
     cy.get(searchAssignmentsPage.CHK_RESOURCE_TYPE_SEQUENCE).uncheck();
     cy.get(searchAssignmentsPage.BTN_GO).click();
 
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY1);
+    cy.get(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT).contains(ACTIVITY1);
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY2 + '\"]').should("not.exist");
   });
 
@@ -112,7 +112,7 @@ context("Verify admin can filter instructional materials", () => {
     cy.get(searchAssignmentsPage.CHK_RESOURCE_TYPE_SEQUENCE).uncheck();
     cy.get(searchAssignmentsPage.BTN_GO).click();
 
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY2);
+    cy.get(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT).contains(ACTIVITY2);
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY1 + '\"]').should("not.exist");
   });
 
@@ -126,7 +126,7 @@ context("Verify admin can filter instructional materials", () => {
     cy.get(searchAssignmentsPage.CHK_RESOURCE_TYPE_SEQUENCE).uncheck();
     cy.get(searchAssignmentsPage.BTN_GO).click();
 
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY1);
+    cy.get(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT).contains(ACTIVITY1);
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY2 + '\"]').should("not.exist");
   });
 
@@ -140,7 +140,7 @@ context("Verify admin can filter instructional materials", () => {
     cy.get(searchAssignmentsPage.CHK_RESOURCE_TYPE_SEQUENCE).uncheck();
     cy.get(searchAssignmentsPage.BTN_GO).click();
 
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY2);
+    cy.get(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT).contains(ACTIVITY2);
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY1 + '\"]').should("not.exist");
   });
 
@@ -155,7 +155,7 @@ context("Verify admin can filter instructional materials", () => {
     cy.get(searchAssignmentsPage.CHK_RESOURCE_TYPE_SEQUENCE).uncheck();
     cy.get(searchAssignmentsPage.BTN_GO).click();
 
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY3);
+    cy.get(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT).contains(ACTIVITY3);
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY4 + '\"]').should("not.exist");
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY5 + '\"]').should("not.exist");
   });
@@ -169,7 +169,7 @@ context("Verify admin can filter instructional materials", () => {
     cy.get(searchAssignmentsPage.BTN_GO).click();
 
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY3 + '\"]').should("not.exist");
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY4);
+    cy.get(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT).contains(ACTIVITY4);
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY5 + '\"]').should("not.exist");
   });
 
@@ -184,6 +184,6 @@ context("Verify admin can filter instructional materials", () => {
 
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY3 + '\"]').should("not.exist");
     cy.get('#activities_bookmark [data-material_name=\"' + ACTIVITY4 + '\"]').should("not.exist");
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY5);
+    cy.get(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT).contains(ACTIVITY5);
   });
 });
