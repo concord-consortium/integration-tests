@@ -88,6 +88,20 @@ export function removeUser(userName, fullName) {
   });
 }
 
+export function editAndSaveUser(userName, fullName) {
+  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + userName);
+  cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click();
+
+  cy.get(adminSettingsUsersPageElements.SEARCH_LIST_HEADER).then(($searchResults) => {
+    if($searchResults.find(adminSettingsUsersPageElements.SEARCH_RESULT).length > 0) {
+      cy.get(adminSettingsUsersPageElements.SEARCH_RESULT_USER_NAME).contains("User: " + fullName);
+      cy.get(adminSettingsUsersPageElements.EDIT_USER).click(); // Click Edit link
+      cy.get(adminEditUserPageElements.SAVE_BUTTON).click();
+      cy.get(flashNoticePageElements.BANNER).contains("User: " + fullName + " was successfully updated."); // Verify banner that shows that user is successfully updated
+    }
+  });
+}
+
 export function addAdminRoleToUser(userName, fullName) {
   cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + userName);
   cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click();

@@ -31,6 +31,7 @@ context("Verify users can view, collapse and dismiss notices", () => {
 
     it("Verify Teacher can view and dismiss notices", () => {
         cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
+        cy.visit(c.LEARN_PORTAL_BASE_URL + "/getting_started");
         noticeHelper.userViewNotice(NOTICE_ONE);
         noticeHelper.userDismissNotice(NOTICE_ONE);
         noticeHelper.userCannotViewNotice(NOTICE_ONE);
@@ -86,6 +87,7 @@ context("Verify users can view, collapse and dismiss notices", () => {
 
     it("Verify Teacher can view dismissed notice after Admin edits it", () => {
         cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
+        cy.visit(c.LEARN_PORTAL_BASE_URL + "/getting_started");
         noticeHelper.userViewNotice(NOTICE_ONE_EDITED);
     });
 
@@ -111,6 +113,7 @@ context("Verify users can view, collapse and dismiss notices", () => {
 
     it("Verify Teacher can not see deleted notice", () => {
         cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
+        cy.visit(c.LEARN_PORTAL_BASE_URL + "/getting_started");
         noticeHelper.userCannotViewNotice(NOTICE_TWO);
     });
 
