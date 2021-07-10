@@ -25,7 +25,7 @@ jobs:
         with:
           env: password=`${{ secrets.QA_PASSWORD }}`,testEnv=qa
           record: true
-          spec: cypress/integration/setup/setup.js
+          spec: cypress/integration/setup/setup.spec.js
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -51,7 +51,7 @@ jobs:
         with:
           env: password=`${{ secrets.QA_PASSWORD }}`,testEnv=qa
           record: true
-          spec: cypress/integration/tteardown/teardown.js
+          spec: cypress/integration/tteardown/teardown.spec.js
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

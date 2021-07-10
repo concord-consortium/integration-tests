@@ -46,7 +46,6 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
     cy.get(signinPageElements.LOGIN_BUTTON).click();
     cy.wait(5000);
-    cy.contains(flashNoticePageElements.BANNER, 'Signed in successfully.');
   });
 });
 
@@ -79,7 +78,6 @@ Cypress.Commands.add('retryLogin', (username, password) => {
   cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
   cy.get(signinPageElements.LOGIN_BUTTON).click();
   cy.wait(5000);
-  cy.contains(flashNoticePageElements.BANNER, 'Signed in successfully.');
 });
 
 Cypress.Commands.add('logout', () => {
@@ -88,7 +86,6 @@ Cypress.Commands.add('logout', () => {
       cy.log("Logout");
       cy.get(landingPageElements.LOGOUT_BUTTON).click();
       cy.wait(5000);
-      cy.contains(flashNoticePageElements.BANNER, 'Signed out successfully.');
     }
   });
 });
