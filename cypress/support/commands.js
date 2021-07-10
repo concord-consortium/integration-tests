@@ -27,11 +27,9 @@
 // Define the command
 import landingPageElements from './elements/landing_page_elements.js'
 import signinPageElements from './elements/signin_page_elements.js'
-import userHomePageElements from './elements/user_home_page_elements.js'
 import flashNoticePageElements from './elements/flash_notice_page_elements.js'
 import laraPageElements from './elements/lara_page_elements.js'
 import constants from './constants.js'
-import addContext from 'mochawesome/addContext'
 
 
 // LEARN Portal Login Form
@@ -42,9 +40,12 @@ Cypress.Commands.add('login', (username, password) => {
     }
     cy.log("Logging in as user : " + username);
     cy.get(landingPageElements.LOGIN_BUTTON).click();
+    cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
     cy.get(signinPageElements.USERNAME_FIELD).type('{selectall}{backspace}' + username);
+    cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
     cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
     cy.get(signinPageElements.LOGIN_BUTTON).click();
+    cy.wait(5000);
     cy.contains(flashNoticePageElements.BANNER, 'Signed in successfully.');
   });
 });
@@ -53,9 +54,12 @@ Cypress.Commands.add('login', (username, password) => {
 Cypress.Commands.add('loginNoFlashNotice', (username, password) => {
   cy.log("Logging in as user : " + username);
   cy.get(landingPageElements.LOGIN_BUTTON).click();
+  cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
   cy.get(signinPageElements.USERNAME_FIELD).type('{selectall}{backspace}' + username);
+  cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
   cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
   cy.get(signinPageElements.LOGIN_BUTTON).click();
+  cy.wait(5000);
 });
 
 // LEARN Portal Login Page
@@ -64,13 +68,17 @@ Cypress.Commands.add('loginPortal', (username, password) => {
   cy.get(signinPageElements.USERNAME_FIELD_SIGNIN_PAGE).type(username);
   cy.get(signinPageElements.PASSWORD_FIELD_SIGNIN_PAGE).type(password, { log: false });
   cy.get(signinPageElements.SUBMIT_BUTTON_SIGNIN_PAGE).click();
+  cy.wait(5000);
 });
 
 Cypress.Commands.add('retryLogin', (username, password) => {
   cy.log("Logging in as user : " + username);
+  cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
   cy.get(signinPageElements.USERNAME_FIELD).type('{selectall}{backspace}' + username);
+  cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
   cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
   cy.get(signinPageElements.LOGIN_BUTTON).click();
+  cy.wait(5000);
   cy.contains(flashNoticePageElements.BANNER, 'Signed in successfully.');
 });
 
@@ -79,6 +87,7 @@ Cypress.Commands.add('logout', () => {
     if($header.find(landingPageElements.LOGOUT_BUTTON).length > 0) {
       cy.log("Logout");
       cy.get(landingPageElements.LOGOUT_BUTTON).click();
+      cy.wait(5000);
       cy.contains(flashNoticePageElements.BANNER, 'Signed out successfully.');
     }
   });
@@ -106,7 +115,7 @@ Cypress.Commands.add('setTinyMceContent', (tinyMceId, content) => {
   });
 });
 
-Cypress.Commands.add('getTinyMceContent', (tinyMceId, content) => {
+Cypress.Commands.add('getTinyMceContent', (tinyMceId) => {
   cy.log("Getting text from TinyMceEditor");
   cy.window().then((win) => {
     const editor = win.tinymce.editors[tinyMceId];
@@ -142,20 +151,11 @@ Cypress.Commands.add("loginLARA", (username, password) => {
 Cypress.Commands.add("loginLARAWithSSO", (username, password) => {
   cy.log("Logging in as user : " + username);
   cy.get(laraPageElements.LOGIN_LINK).click();
-  cy.contains(laraPageElements.LOGIN_SESSION_LINK, 'Sign in via ' + constants.LARA_PORTAL_ENV).click();
+  cy.get(laraPageElements.LOGIN_SESSION_LINK).contains('Sign in via ' + constants.LARA_PORTAL_ENV).click();
   cy.loginPortal(username, password);
 });
 
 Cypress.Commands.add("logoutLARA", () => {
   cy.log("Logging out of LARA");
   cy.get(laraPageElements.LOGOUT_LINK).click();
-});
-
-Cypress.on("test:after:run", (test, runnable) => {
-
-    let videoName = Cypress.spec.name
-    videoName = videoName.replace('/.js.*', '.js')
-    const videoUrl = 'videos/' + videoName + '.mp4'
-
-    addContext({ test }, videoUrl)
 });

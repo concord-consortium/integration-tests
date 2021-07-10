@@ -9,6 +9,9 @@
 	"chromeWebSecurity": false,
 	"video": true,
 	"screenshotOnRunFailure": true,
+	"requestTimeout": 60000,
+	"defaultCommandTimeout": 30000,
+	"responseTimeout": 60000,
 	"retries": {
 		"runMode": 0,
 		"openMode": 0

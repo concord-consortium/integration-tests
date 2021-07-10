@@ -46,15 +46,15 @@ export function getStudentFeedbackElement(studentName, pageNumber, questionNumbe
 
 export function getQuestionFeedbackTextAreaElementForStudent(firstName, lastName){
     let studentName = firstName + ' ' + lastName;
-    return cy.contains('div.student-answer h3', studentName + "'s Work").parent().parent().find('textarea[data-cy=\"feedbackBox\"]');
+    return cy.get('div.student-answer h3').contains(studentName + "'s Work").parent().parent().find('textarea[data-cy=\"feedbackBox\"]');
 }
 
 export function getQuestionFeedbackCompleteChkBoxElementForStudent(firstName, lastName){
     let studentName = firstName + ' ' + lastName;
-    return cy.contains('div.student-answer h3', studentName + "'s Work").parent().parent().find('div.feedback-complete input[type=\"checkbox\"]')
+    return cy.get('div.student-answer h3').contains(studentName + "'s Work").parent().parent().find('div.feedback-complete input[type=\"checkbox\"]')
 }
 
 export function getQuestionScoreTextElementForStudent(firstName, lastName){
     let studentName = firstName + ' ' + lastName;
-    return cy.contains('div.student-answer h3', studentName + "'s Work").parent().parent().find('div.score input.score-input');
+    return cy.get('div.student-answer h3').contains(studentName + "'s Work").parent().parent().find('div.score input.score-input');
 }

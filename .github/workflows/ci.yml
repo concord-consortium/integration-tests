@@ -19,26 +19,44 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Run Cypress Tests
+      - name: Setup before Integration Tests
         uses: cypress-io/github-action@v2
         continue-on-error: true
         with:
           env: password=`${{ secrets.QA_PASSWORD }}`,testEnv=qa
           record: true
+          spec: cypress/integration/setup/setup.js
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # pass GitHub token to allow accurately detecting a build vs a re-run build
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Save screenshots
-        uses: actions/upload-artifact@v2
-        if: failure()
+      - name: Run Cypress Integration Tests
+        uses: cypress-io/github-action@v2
+        continue-on-error: true
         with:
-          name: images
-          path:
-            cypress/screenshots
-            *.png
+          env: password=`${{ secrets.QA_PASSWORD }}`,testEnv=qa
+          record: true
+          spec: cypress/integration/tests/**/*
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Teardown after Integration Tests
+        uses: cypress-io/github-action@v2
+        continue-on-error: true
+        with:
+          env: password=`${{ secrets.QA_PASSWORD }}`,testEnv=qa
+          record: true
+          spec: cypress/integration/tteardown/teardown.js
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Copy test execution videos
         run: |

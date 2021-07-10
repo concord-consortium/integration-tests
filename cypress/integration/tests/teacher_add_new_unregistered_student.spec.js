@@ -1,7 +1,7 @@
-import * as c from '../support/constants.js'
-import * as adminHelper from '../support/helpers/adminHelper'
-import * as studentHelper from '../support/helpers/studentHelper'
-import * as teacherHelper from '../support/helpers/teacherHelper'
+import * as c from '../../support/constants.js'
+import * as adminHelper from '../../support/helpers/adminHelper'
+import * as studentHelper from '../../support/helpers/studentHelper'
+import * as teacherHelper from '../../support/helpers/teacherHelper'
 
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 // Note for db tracking : No db tracking required, using existing records (except for 2 student accounts, which are added and then deleted at the end)

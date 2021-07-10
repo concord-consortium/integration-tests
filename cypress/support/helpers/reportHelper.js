@@ -3,7 +3,7 @@ import laraActivityReportElements from "../elements/lara_activity_report_element
 import * as LaraReportElements from '../elements/lara_activity_report_elements';
 
 export function provideOverallFeedback(students, overallFeedbackData){
-    cy.contains('div.feedback-button.cc-button', 'Provide overall feedback').click();
+    cy.get('div.feedback-button.cc-button').contains('Provide overall feedback').click();
     cy.get('input#feedbackEnabled').check();
     cy.get('input#giveScore').check();
     let studentIndex = 0;

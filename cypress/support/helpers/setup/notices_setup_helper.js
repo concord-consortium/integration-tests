@@ -38,7 +38,7 @@ function deleteNotice() {
 }
 
 function checkNoNoticesExist() {
-  cy.contains(noticesPageElements.NO_NOTICES_TEXT, "You have no notices."); // Check 'You have no notices' text in the Notices page
+  cy.get(noticesPageElements.NO_NOTICES_TEXT).contains("You have no notices."); // Check 'You have no notices' text in the Notices page
   cy.get(userHomePageElements.HEADER_MYCLASSES).click(); // Click 'My Classes' at the top header
   cy.get(userHomePageElements.NOTICES_TABLE).should("not.exist"); // Check notices table does not exist in the user home page
 }

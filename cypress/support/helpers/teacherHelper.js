@@ -25,15 +25,15 @@ export function addAssignment(className, assignmentName){
     cy.get(searchAssignmentsPage.CHK_AUTHORSHIP_OFFICIAL).click();
     cy.get('div[data-material_name=\"'+assignmentName+'\"').contains('a.button', 'Assign or Share').click();
     cy.contains('label.clazz_name', className).click();
-    cy.contains(searchAssignmentsPage.BTN_SAVE_ASSIGN_DIALOG, 'Save').click();
-    cy.contains('button', 'OK').click();
+    cy.get(searchAssignmentsPage.BTN_SAVE_ASSIGN_DIALOG).contains('Save').click();
+    cy.get('button').contains('OK').click();
 }
 
 export function addRegisteredStudentToClass(studentUserName, studentFirstName, studentLastName){
     cy.get(studentRosterPageElements.REGISTERED_STUDENT_DROPDOWN).
             select(studentLastName + ", " +  studentFirstName+" (" + studentUserName + ")");
     cy.get(studentRosterPageElements.ADD_STUDENT_BUTTON).click();
-    cy.contains(studentRosterPageElements.STUDENT_ROSTER_TABLE_USERNAME_COLUMN, studentUserName);
+    cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE_USERNAME_COLUMN).contains(studentUserName);
 }
 
 export function addUnregisteredStudentToClass(studentName, studentFirstName, studentLastName, studentPassword){
@@ -44,8 +44,8 @@ export function addUnregisteredStudentToClass(studentName, studentFirstName, stu
   cy.get(registerAddStudentPageElements.PASSWORD_FIELD).type(studentPassword); // Type student password in the Register and add student form
   cy.get(registerAddStudentPageElements.CONFIRM_PASSWORD_FIELD).type(studentPassword); // Confirm password in the Register and add student form
   cy.get(registerAddStudentPageElements.SUBMIT_BUTTON).click(); // Click 'Submit' button
-
-  cy.contains(registerAddStudentPageElements.DIALOG_TEXT, "Success! The student was registered and added to the class"); // Check success dialog text
+  cy.wait(15000);
+  cy.get(registerAddStudentPageElements.DIALOG_TEXT).contains("Success! The student was registered and added to the class"); // Check success dialog text
   cy.get(registerAddStudentPageElements.DIALOG_CANCEL_BUTTON).click(); // Click 'Add Another Student' in success dialog
   cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).contains('td', studentName);
 }
@@ -63,7 +63,7 @@ export function changeStudentPassword(studentFullName, studentUserName, newPassw
   cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(newPassword); //Type new password in the change password form
   cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(newPassword); // Confirm new password in the change password form
   cy.get(changePasswordPageElements.SAVE_BUTTON).click(); // Click 'Save' button`
-  cy.contains(flashNoticePageElements.BANNER, "Password for " + studentUserName + " was successfully updated."); // Check banner for password change success message
+  cy.get(flashNoticePageElements.BANNER).contains("Password for " + studentUserName + " was successfully updated."); // Check banner for password change success message
 }
 
 export function removeStudentFromRoster(studentFullName, className) {

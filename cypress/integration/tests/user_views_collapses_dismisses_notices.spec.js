@@ -1,7 +1,7 @@
 import {uid} from 'uid';
 
-import * as c from '../support/constants.js'
-import * as noticeHelper from '../support/helpers/noticeHelper'
+import * as c from '../../support/constants.js'
+import * as noticeHelper from '../../support/helpers/noticeHelper'
 
 const NOTICE_ONE = 'This is notice one-'+uid();
 const NOTICE_ONE_EDITED = NOTICE_ONE + '-Edited';
