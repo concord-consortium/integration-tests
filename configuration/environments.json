@@ -4,7 +4,13 @@
 		"laraBaseUrl": "https://authoring.concord.org",
 		"publishEnvironment": "cc_portal_learn",
 		"laraPortalEnvironment": "Learn",
-		"schoolName": "Concord Consortium",
+		"schoolName": "Cypress Automation Test School",
+		"schoolDescription": "Cypress Automation Test School",
+		"schoolZipcode": "01742",
+		"schoolCity": "Concord",
+		"schoolState": "MA",
+		"schoolDistrict": "Rails Portal-district",
+		"schoolCountry": "United States",
 		"researcher": {
 			"username": "researcher",
 			"firstName": "joe",
@@ -112,6 +118,9 @@
 				"name": "AutomationTeacher5, Cypress",
 				"email": "cypress.automationteacher5@mailinator.com"
 			}
+		},
+		"lara": {
+			"username": "dev_test_user@test.email"
 		}
 	},
 	"staging": {
@@ -119,7 +128,13 @@
 		"laraBaseUrl": "https://authoring.staging.concord.org",
 		"publishEnvironment": "cc_portal_learn_staging",
 		"laraPortalEnvironment": "Learn Staging",
-		"schoolName": "Concord Consortium",
+		"schoolName": "Cypress Automation Test School",
+		"schoolDescription": "Cypress Automation Test School",
+		"schoolZipcode": "01742",
+		"schoolCity": "Concord",
+		"schoolState": "MA",
+		"schoolDistrict": "Rails Portal-district",
+		"schoolCountry": "United States",
 		"researcher": {
 			"username": "researcher",
 			"firstName": "joe",
@@ -139,10 +154,10 @@
 			"email": "manager@concord.org"
 		},
 		"admin": {
-			"username": "TejalAdmin",
-			"firstName": "Tejal",
-			"lastName": "Admin",
-			"email": "tejal.stg@mailinator.com"
+			"username": "admin",
+			"firstName": "joe",
+			"lastName": "user",
+			"email": "admin@concord.org"
 		},
 		"students": {
 			"1": {
@@ -227,6 +242,9 @@
 				"name": "AutomationTeacher5, Cypress",
 				"email": "cypress.automationteacher5@mailinator.com"
 			}
+		},
+		"lara": {
+			"username": "dev_test_user@test.email"
 		}
 	},
 	"qa": {
