@@ -27,6 +27,8 @@ jobs:
           record: true
           spec: cypress/integration/setup/setup.spec.js
         env:
+          password: ${{ secrets.QA_PASSWORD }}
+          testEnv: qa
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # pass GitHub token to allow accurately detecting a build vs a re-run build
@@ -36,7 +38,9 @@ jobs:
         uses: cypress-io/github-action@v2
         continue-on-error: true
         with:
-          env: password=`${{ secrets.QA_PASSWORD }}`,testEnv=qa
+          env:
+          password: ${{ secrets.QA_PASSWORD }}
+          testEnv: qa
           record: true
           spec: cypress/integration/tests/**/*
         env:
@@ -53,6 +57,8 @@ jobs:
           record: true
           spec: cypress/integration/tteardown/teardown.spec.js
         env:
+          password: ${{ secrets.QA_PASSWORD }}
+          testEnv: qa
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # pass GitHub token to allow accurately detecting a build vs a re-run build
