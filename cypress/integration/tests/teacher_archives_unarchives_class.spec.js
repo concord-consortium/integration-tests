@@ -1,7 +1,7 @@
 import {uid} from 'uid'
 
-import * as c from '../support/constants.js'
-import * as teacherHelper from '../support/helpers/teacherHelper'
+import * as c from '../../support/constants.js'
+import * as teacherHelper from '../../support/helpers/teacherHelper'
 
 // Note for db tracking : No db tracking required, using existing records
 

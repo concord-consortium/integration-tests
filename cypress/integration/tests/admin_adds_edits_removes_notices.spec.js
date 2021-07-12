@@ -1,7 +1,7 @@
-import * as c from '../support/constants.js'
-import * as noticeHelper from '../support/helpers/noticeHelper'
-import noticesPageElements from '../support/elements/notices_page_elements.js'
-import userHomePageElements from '../support/elements/user_home_page_elements.js'
+import * as c from '../../support/constants.js'
+import * as noticeHelper from '../../support/helpers/noticeHelper'
+import noticesPageElements from '../../support/elements/notices_page_elements.js'
+import userHomePageElements from '../../support/elements/user_home_page_elements.js'
 
 // Note for db tracking : No db tracking required, using existing records (except for notices, which are added and then deleted at the end)
 
@@ -39,7 +39,7 @@ context("Verify admin user is able to add a notice and see it in the getting sta
   it("Verify admin user can not add a blank notice", () => {
     noticeHelper.addNotice(" ");
     noticeHelper.submitNotice();
-    cy.contains(noticesPageElements.BLANK_NOTICE_ERROR, "Notice text is blank"); // Check error message 'Notice text is blank'
+    cy.get(noticesPageElements.BLANK_NOTICE_ERROR).contains("Notice text is blank"); // Check error message 'Notice text is blank'
     cy.get(noticesPageElements.BLANK_NOTICE_ERROR_OK_BUTTON).click(); // Confirm the error dialog
   });
 

@@ -8,13 +8,13 @@ export function createNotice(noticeText){
     //This API assumes that we just logged in as admin user
     addNotice(noticeText);
     submitNotice();
-    cy.contains(noticesPageElements.TABLE_ENTRY, noticeText); // Check the notice is displayed in the 'Notices' table in the Admin page
+    cy.get(noticesPageElements.TABLE_ENTRY).contains(noticeText); // Check the notice is displayed in the 'Notices' table in the Admin page
 }
 
 export function editNotice(oldText, newText){
     cy.get(userHomePageElements.LEFT_NAV_ADMIN_LINK).click();   // Click on 'Admin' link in the sidebar
     cy.get(adminPageElements.NOTICES_LINK).click(); // Click on 'Notices' link in the Site Admin Links list
-    cy.contains(noticesPageElements.TABLE_ENTRY, oldText).parent().parent().contains('a', 'edit').click();
+    cy.get(noticesPageElements.TABLE_ENTRY).contains(oldText).parent().parent().contains('a', 'edit').click();
     cy.setTinyMceContent(noticesPageElements.EDITOR, newText); // Type in a new notice text in the editor
     cy.get(noticesPageElements.NOTICE_SUBMIT).click(); // Publish the notice
 }
@@ -22,16 +22,16 @@ export function editNotice(oldText, newText){
 export function deleteNotice(noticeText){
     cy.get(userHomePageElements.LEFT_NAV_ADMIN_LINK).click();   // Click on 'Admin' link in the sidebar
     cy.get(adminPageElements.NOTICES_LINK).click(); // Click on 'Notices' link in the Site Admin Links list
-    cy.contains(noticesPageElements.TABLE_ENTRY, noticeText).parent().parent().find('td a[title=\"Delete Notice\"]').click();
+    cy.get(noticesPageElements.TABLE_ENTRY).contains(noticeText).parent().parent().find('td a[title=\"Delete Notice\"]').click();
     cy.confirm('Are you sure you want to delete this notice?');
 }
 
 export function userHideNotices(){
-    cy.contains(userHomePageElements.HIDE_SHOW_NOTICES, 'Hide Notices').click();
+    cy.get(userHomePageElements.HIDE_SHOW_NOTICES).contains('Hide Notices').click();
 }
 
 export function userShowNotices(){
-    cy.contains(userHomePageElements.HIDE_SHOW_NOTICES, 'Show Notices').click();
+    cy.get(userHomePageElements.HIDE_SHOW_NOTICES).contains('Show Notices').click();
 }
 
 export function userViewNotice(noticeText){

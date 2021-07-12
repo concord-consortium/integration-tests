@@ -1,7 +1,7 @@
-import * as c from '../support/constants.js'
-import landingPageElements from '../support/elements/landing_page_elements.js'
-import signinPageElements from '../support/elements/signin_page_elements.js'
-import signupPageElements from '../support/elements/signup_page_elements.js'
+import * as c from '../../support/constants.js'
+import landingPageElements from '../../support/elements/landing_page_elements.js'
+import signinPageElements from '../../support/elements/signin_page_elements.js'
+import signupPageElements from '../../support/elements/signup_page_elements.js'
 
 // Note for db tracking : No db tracking required, using existing records
 

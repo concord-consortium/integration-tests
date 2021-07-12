@@ -13,7 +13,6 @@ export function accountsSetup() {
   accountsTeardown();
   createTeacherAccounts();
   activateTeacherAccounts();
-  makeTeacher5Admin();
   createClass();
   registerStudents();
 }
@@ -114,19 +113,13 @@ function activateTeacherAccounts() {
     var username = constants[eachTeacher + '_USERNAME'];
     var fullName = constants[eachTeacher + '_FULLNAME'];
     adminHelper.activateUser(username, fullName, firstName, lastName);
+
+    if(eachTeacher === "TEACHER5") {
+      adminHelper.addAdminRoleToUser(username, fullName);
+    } else {
+      adminHelper.editAndSaveUser(username, fullName);
+    }
   });
-  cy.logout();
-}
-
-function makeTeacher5Admin() {
-
-  cy.login(constants.ADMIN_USERNAME, constants.ADMIN_PASSWORD); // Login as admin user
-  adminHelper.openUsersAdminSection();
-
-  var username = constants['TEACHER5_USERNAME'];
-  var fullName = constants['TEACHER5_FULLNAME'];
-  adminHelper.addAdminRoleToUser(username, fullName);
-
   cy.logout();
 }
 

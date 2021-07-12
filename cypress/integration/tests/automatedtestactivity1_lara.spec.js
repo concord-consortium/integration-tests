@@ -1,15 +1,15 @@
-import * as c from '../support/constants.js'
-import * as TeacherHelper from "../support/helpers/teacherHelper";
+import * as c from '../../support/constants.js'
+import * as TeacherHelper from "../../support/helpers/teacherHelper";
 import {
     BTN_ACTIVITY_RUN,
     getLinkGenerateReport
-} from "../support/elements/student_home_page_elements";
-import * as adminHelper from "../support/helpers/adminHelper";
-import teacherHomePageElements from "../support/elements/teacher_home_page_elements";
-import assignmentsPageElements from "../support/elements/assignments_page_elements";
-import * as LaraRuntimeHelper from '../support/helpers/laraRuntimeHelper';
-import {automatedtestactivity1LaraData} from "../support/testdata/testdata_automatedtestactivity1_lara";
-import * as ReportHelper from '../support/helpers/reportHelper';
+} from "../../support/elements/student_home_page_elements";
+import * as adminHelper from "../../support/helpers/adminHelper";
+import teacherHomePageElements from "../../support/elements/teacher_home_page_elements";
+import assignmentsPageElements from "../../support/elements/assignments_page_elements";
+import * as LaraRuntimeHelper from '../../support/helpers/laraRuntimeHelper';
+import {automatedtestactivity1LaraData} from "../../support/testdata/testdata_automatedtestactivity1_lara";
+import * as ReportHelper from '../../support/helpers/reportHelper';
 
 const CLASS_WORD = c.CLASS_WORD;
 const CLASS_NAME = 'AutoClass '+ CLASS_WORD;

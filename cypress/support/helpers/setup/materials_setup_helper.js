@@ -98,7 +98,7 @@ function publishMaterial(type) {
     cy.get(laraPageElements.PUBLISH_LINK_SEQUENCES).click(); // Click Publish for that sequence
   else if(type === "activities")
     cy.get(laraPageElements.PUBLISH_LINK_ACTIVITIES).click(); // Click Publish for that activity
-  cy.contains(laraPageElements.PUBLISH_MODAL_ROW, constants.PUBLISH_ENV).contains(laraPageElements.ADD_TO_PORTAL_LINK, "add to").click(); // Click 'add to' to publish
+  cy.get(laraPageElements.PUBLISH_MODAL_ROW).contains(constants.PUBLISH_ENV).contains(laraPageElements.ADD_TO_PORTAL_LINK, "add to").click(); // Click 'add to' to publish
   cy.get(laraPageElements.PUBLISHED_TO_PORTAL_LABEL).should("have.text", "added"); // Check that the text 'added' appears in the modal
   cy.get(laraPageElements.CLOSE_PUBLISH_MODAL).click(); // Close the publish modal
 }
