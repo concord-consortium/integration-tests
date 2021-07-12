@@ -1,8 +1,8 @@
 const signinPageElements = {
   // Sign in form and page elements
   FORM : '.signup-form',
-  USERNAME_FIELD : '.signup-form input[type=text]',
-  PASSWORD_FIELD : '.signup-form input[type=password]',
+  USERNAME_FIELD : '.signup-form input[type=\"text\"]',
+  PASSWORD_FIELD : '.signup-form input[type=\"password\"]',
   FORGOT_LINK : '.signup-form .submit-button-container a',
   LOGIN_BUTTON : '.signup-form .submit-btn',
   SIGNUP_LINK : '.signup-form footer a',

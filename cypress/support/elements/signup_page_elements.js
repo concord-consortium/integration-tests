@@ -26,10 +26,11 @@ const signupPageElements = {
   TXT_LAST_NAME: 'div.signup-form dd.last-name-wrapper input[type=\"text\"]',
   TXT_PASSWORD: 'div.signup-form dd div.password input[type=\"password\"]',
   TXT_CONFIRM_PASSWORD: 'div.signup-form dd div.password_confirmation input[type=\"password\"]',
+  LBL_ERROR_CONFIRM_PASSWORD: 'div.signup-form dd div.password_confirmation.error div.input-error',
   BTN_SUBMIT_BUTTON: 'div.signup-form div.submit-button-container button.submit-btn',
   TXT_CLASS_WORD: 'div.signup-form div.class_word input[type=\"text\"]',
+  LBL_SIGNUP_SUCCESS: 'div.signup-form div.registration-complete.student div p',
   LBL_INVALID_WORD_ERROR: 'div.signup-form div.class_word.error div.input-error',
-  LBL_SIGNUP_SUCCESS: 'div.signup-form div.registration-complete.student div p'
 
 };
 
