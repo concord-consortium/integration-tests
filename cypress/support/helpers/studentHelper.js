@@ -36,3 +36,13 @@ export function registerStudent(username, firstName, lastName, password, classWo
     cy.retryLogin(username, password);
     cy.logout();
 }
+
+export function joinClass(classWord, teacherFullName){
+    cy.get(studentHomePageElements.TXT_CLASS_WORD).type(classWord);
+    cy.get(studentHomePageElements.BTN_SUBMIT_CLASS_WORD).click();
+    let message = 'The teacher of this class is ' + teacherFullName + '. Is this the class you want to join?'
+    cy.get(studentHomePageElements.LBL_JOIN_CLASS_MSG + ' p:nth-child(2)').should('include.text', message);
+    cy.get(studentHomePageElements.LBL_JOIN_CLASS_MSG + ' p:nth-child(3)').should('include.text', 'Click \'Join\' to continue registering for this class.').click()
+    cy.get(studentHomePageElements.BTN_JOIN_CLASS).click();
+    cy.get(studentHomePageElements.BTN_JOINING_CLASS).should('not.exist');
+}

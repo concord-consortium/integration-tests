@@ -6,7 +6,8 @@ const adminPageElements = {
   TAGS_LINK: 'a[href$=\'/admin/tags\']',
   SCHOOLS_LINK : 'a[href$=\'/portal/schools\']',
   LNK_AUTHORING: 'a[href$=\'/authoring\']',
-  LNK_ADMIN: 'li a[href=\"/admin\"]'
+  LNK_ADMIN: '#clazzes_nav ul li a[href=\"/admin\"]',
+  LNK_ADMIN_SETTINGS: 'li a[href=\"/admin/settings\"]',
 };
 
 export default adminPageElements;
