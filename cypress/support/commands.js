@@ -67,9 +67,9 @@ Cypress.Commands.add('loginPortal', (username, password) => {
 
 Cypress.Commands.add('retryLogin', (username, password) => {
   cy.log("Logging in as user : " + username);
-  cy.get(signinPageElements.USERNAME_FIELD).type('{selectall}{backspace}' + username);
-  cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
-  cy.get(signinPageElements.LOGIN_BUTTON).click();
+  cy.get(signinPageElements.LOGIN_AFTER_REGISTER_USERNAME_FIELD).type('{selectall}{backspace}' + username);
+  cy.get(signinPageElements.LOGIN_AFTER_REGISTER_PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
+  cy.get(signinPageElements.LOGIN_AFTER_REGISTER_LOGIN_BUTTON).click();
   cy.contains(flashNoticePageElements.BANNER, 'Signed in successfully.');
 });
 
