@@ -43,14 +43,14 @@ context("Verify admin can filter instructional materials", () => {
     cy.get(searchAssignmentsPage.TXT_SEARCH_BAR).type(ACTIVITY1);
     cy.get(searchAssignmentsPage.BTN_GO).click();
 
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY1).should('exist');
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY1).contains('Assign or Share').click();
-    cy.contains(assignPageElements.ASSIGN_TEXT, "Select the class(es) you want to assign this resource to below.").should('exist');
-    cy.contains(assignPageElements.CLASSES_HEADER, "Your Classes").should('exist');
+    cy.get(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT).contains(ACTIVITY1).should('exist');
+    cy.get(searchAssignmentsPage.ACTIVITIES_LIST).get('[data-material_name=\"'+ ACTIVITY1 + '\"]').contains('Assign or Share').click();
+    cy.get(assignPageElements.ASSIGN_TEXT).contains("Select the class(es) you want to assign this resource to below.").should('exist');
+    cy.get(assignPageElements.CLASSES_HEADER).contains("Your Classes").should('exist');
     cy.get(assignPageElements.CANCEL_BUTTON).click();
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY1).find(searchAssignmentsPage.ACTIVITY_LINK).click();
+    cy.get(searchAssignmentsPage.ACTIVITIES_LIST).get('[data-material_name=\"'+ ACTIVITY1 + '\"]').find(searchAssignmentsPage.ACTIVITY_LINK).click();
     cy.url().should('include', '/browse/eresources/');
-    cy.contains(browseMaterialsPageElements.MATERIAL_TITLE, ACTIVITY1).should('exist');
+    cy.get(browseMaterialsPageElements.MATERIAL_TITLE).contains(ACTIVITY1).should('exist');
   });
 
   it("Verify teacher is able to add two classes", () => {
@@ -63,7 +63,7 @@ context("Verify admin can filter instructional materials", () => {
     adminHelper.openSearchMaterialsPage();
     cy.get(searchAssignmentsPage.TXT_SEARCH_BAR).type(ACTIVITY1);
     cy.get(searchAssignmentsPage.BTN_GO).click();
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY1).contains('Assign or Share').click();
+    cy.get(searchAssignmentsPage.ACTIVITIES_LIST).get('[data-material_name=\"'+ ACTIVITY1 + '\"]').contains('Assign or Share').click();
     cy.contains(assignPageElements.CLASS_NAME, CLASS_NAME1).find(assignPageElements.CLASS_CHECKBOX).click();
     cy.contains(assignPageElements.CLASS_NAME, CLASS_NAME2).find(assignPageElements.CLASS_CHECKBOX).click();
     cy.get(assignPageElements.SAVE_BUTTON).click();
@@ -74,7 +74,7 @@ context("Verify admin can filter instructional materials", () => {
     adminHelper.openSearchMaterialsPage();
     cy.get(searchAssignmentsPage.TXT_SEARCH_BAR).type(ACTIVITY2);
     cy.get(searchAssignmentsPage.BTN_GO).click();
-    cy.contains(searchAssignmentsPage.ACTIVITY_SEARCH_RESULT, ACTIVITY2).contains('Assign or Share').click();
+    cy.get(searchAssignmentsPage.ACTIVITIES_LIST).get('[data-material_name=\"'+ ACTIVITY2 + '\"]').contains('Assign or Share').click();
     cy.contains(assignPageElements.CLASS_NAME, CLASS_NAME1).find(assignPageElements.CLASS_CHECKBOX).click();
     cy.get(assignPageElements.SAVE_BUTTON).click();
     cy.get(assignPageElements.CONFIRM_DIALOG_OK).click();

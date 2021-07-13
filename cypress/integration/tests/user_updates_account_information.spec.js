@@ -3,17 +3,30 @@ import changePasswordPageElements from '../../support/elements/change_password_p
 import flashNoticePageElements from '../../support/elements/flash_notice_page_elements.js'
 import userHomePageElements from '../../support/elements/user_home_page_elements.js'
 import userSettingsPageElements from '../../support/elements/user_settings_page_elements.js'
+import * as adminHelper from '../../support/helpers/adminHelper'
+import * as teacherHelper from '../../support/helpers/teacherHelper'
 
 // Note for db tracking : No db tracking required, using existing records
 
 const TEACHER4_NEW_FULLNAME = c.TEACHER4_FIRSTNAME + 'a' + " " + c.TEACHER4_LASTNAME + 'a';
-const STUDENT1_NEW_FULLNAME = c.STUDENT1_FIRSTNAME + 'a' + " " + c.STUDENT1_LASTNAME + 'a';
+const STUDENT_FIRSTNAME = 'Cypress';
+const STUDENT_LASTNAME = 'AutomationStudent6';
+const STUDENT_NAME = STUDENT_LASTNAME + ", " + STUDENT_FIRSTNAME;
+const STUDENT_FULLNAME = STUDENT_FIRSTNAME + " " + STUDENT_LASTNAME;
+const STUDENT_PASSWORD = c.STUDENT1_PASSWORD;
+const STUDENT_USERNAME = 'cautomationstudent6';
+const STUDENT_NEW_FULLNAME = STUDENT_FIRSTNAME + 'a' + " " + STUDENT_LASTNAME + 'a';
+const CLASS_WORD = c.CLASS_WORD;
+const CLASS_NAME = 'Class ' + CLASS_WORD;
 
 context("Verify user updates to account information", () => {
 
   before(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
     cy.login(c.TEACHER4_USERNAME, c.TEACHER4_PASSWORD); // Login as teacher user
+    teacherHelper.addClass(CLASS_NAME, c.CLASS_DESC, CLASS_WORD); // Teacher adds a class
+    teacherHelper.openStudentRosterSection(CLASS_NAME);
+    teacherHelper.addUnregisteredStudentToClass(STUDENT_NAME, STUDENT_FIRSTNAME, STUDENT_LASTNAME, STUDENT_PASSWORD);
   });
 
   after(function() {
@@ -28,13 +41,13 @@ context("Verify user updates to account information", () => {
     cy.get(userSettingsPageElements.EMAIL_FIELD).should("be.visible"); // Email field should be visible
     cy.get(userSettingsPageElements.USERNAME_FIELD).should("not.exist"); // Username field should not exist and hence not editable
     cy.get(userSettingsPageElements.SAVE_BUTTON).click(); // Click 'Save' button
-    cy.url().should('include', '/getting_started');
+    cy.url().should('include', '/recent_activity');
     cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings link
     cy.get(userSettingsPageElements.FORM_LEGEND).contains(TEACHER4_NEW_FULLNAME); // Form legend should have teacher's new name with 'a' appended to first and last names
     cy.get(userSettingsPageElements.FIRST_NAME_FIELD).type('{selectall}{backspace}' + c.TEACHER4_FIRSTNAME); // Revert to teacher's original first name
     cy.get(userSettingsPageElements.LAST_NAME_FIELD).type('{selectall}{backspace}' + c.TEACHER4_LASTNAME); // Revert to teacher's original last name
     cy.get(userSettingsPageElements.SAVE_BUTTON).click(); // Click 'Save' button
-    cy.url().should('include', '/getting_started');
+    cy.url().should('include', '/recent_activity');
   });
 
   it("Verify teacher user is able to update password", () => {
@@ -46,13 +59,12 @@ context("Verify user updates to account information", () => {
     cy.url().should('include', '/preferences');
     cy.get(flashNoticePageElements.BANNER).contains('Password for '+ c.TEACHER4_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
     cy.get(userSettingsPageElements.CANCEL_BUTTON).click(); // Click 'Cancel' button to close the form
-    cy.url().should('include', '/getting_started');
-
+    cy.url().should('include', '/recent_activity');
   });
 
   it("Logout as teacher and login as student", () => {
     cy.logout(); // Logout as teacher
-    cy.login(c.STUDENT1_USERNAME, c.STUDENT1_PASSWORD); // Login as student
+    cy.login(STUDENT_USERNAME, STUDENT_PASSWORD); // Login as student
   });
 
   it("Verify student user is able to update first name , last name", () => {
@@ -65,9 +77,9 @@ context("Verify user updates to account information", () => {
     cy.url().should('include', '/my_classes');
 
     cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings link
-    cy.get(userSettingsPageElements.FORM_LEGEND).contains(STUDENT1_NEW_FULLNAME); // Form legend should have student's new name with 'a' appended to first and last names
-    cy.get(userSettingsPageElements.FIRST_NAME_FIELD).type('{selectall}{backspace}' + c.STUDENT1_FIRSTNAME); // Revert to teacher's original first name
-    cy.get(userSettingsPageElements.LAST_NAME_FIELD).type('{selectall}{backspace}' + c.STUDENT1_LASTNAME); // Revert to teacher's original last name
+    cy.get(userSettingsPageElements.FORM_LEGEND).contains(STUDENT_NEW_FULLNAME); // Form legend should have student's new name with 'a' appended to first and last names
+    cy.get(userSettingsPageElements.FIRST_NAME_FIELD).type('{selectall}{backspace}' + STUDENT_FIRSTNAME); // Revert to teacher's original first name
+    cy.get(userSettingsPageElements.LAST_NAME_FIELD).type('{selectall}{backspace}' + STUDENT_LASTNAME); // Revert to teacher's original last name
     cy.get(userSettingsPageElements.SAVE_BUTTON).click(); // Click 'Save' button
     cy.url().should('include', '/my_classes');
   });
@@ -75,12 +87,33 @@ context("Verify user updates to account information", () => {
   it("Verify student user is able to update password", () => {
     cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings in left nav
     cy.get(userSettingsPageElements.CHANGE_PASSWORD_BUTTON).click(); // Click Change password button
-    cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(c.STUDENT1_PASSWORD); // Enter a new password in the new password field
-    cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(c.STUDENT1_PASSWORD); // Confirm the new password
+    cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(STUDENT_PASSWORD); // Enter a new password in the new password field
+    cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(STUDENT_PASSWORD); // Confirm the new password
     cy.get(changePasswordPageElements.SAVE_BUTTON).click(); // Click 'Save button'
     cy.url().should('include', '/preferences');
-    cy.get(flashNoticePageElements.BANNER).contains('Password for '+ c.STUDENT1_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
+    cy.get(flashNoticePageElements.BANNER).contains('Password for '+ STUDENT_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
     cy.get(userSettingsPageElements.CANCEL_BUTTON).click(); // Click 'Cancel' button to close the form
     cy.url().should('include', '/my_classes');
+    cy.logout();
+  });
+
+  it("Verify teacher cleans up the class", () => {
+    cy.login(c.TEACHER4_USERNAME, c.TEACHER4_PASSWORD); // Login as teacher
+    teacherHelper.openStudentRosterSection(CLASS_NAME);
+    teacherHelper.removeStudentFromRoster(STUDENT_NAME, CLASS_NAME);
+    teacherHelper.verifyClassCount(0);
+  });
+
+  it("Verify teacher is able to archive the class", () => {
+    cy.logout(); // Logout as teacher
+    cy.login(c.TEACHER4_USERNAME, c.TEACHER4_PASSWORD); // Login as teacher
+    teacherHelper.archiveClass(CLASS_NAME);
+    cy.logout(); // Logout as teacher
+  });
+
+  it("Verify admin is able to remove student account", () => {
+    cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD); // Login as admin user
+    adminHelper.openUsersAdminSection();
+    adminHelper.removeUser(STUDENT_USERNAME, STUDENT_FULLNAME);
   });
 });
