@@ -20,9 +20,7 @@ export function addClass(className, classDesc, classWord) {
 }
 
 export function addAssignment(className, assignmentName){
-    // openAssignmentsSection(className);
     cy.visit(C.LEARN_PORTAL_BASE_URL + '/search');
-    // cy.get(assignmentsPageElements.BTN_ASSIGN_MATERIALS).contains('ASSIGN MATERIALS').click();
     cy.get(searchAssignmentsPage.TXT_SEARCH_BAR).type(assignmentName);
     cy.get(searchAssignmentsPage.CHK_AUTHORSHIP_COMMUNITY).click();
     cy.get(searchAssignmentsPage.CHK_AUTHORSHIP_OFFICIAL).click();
