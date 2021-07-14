@@ -17,7 +17,10 @@ const searchAssignmentsPage = {
     BTN_CANCEL_ASSIGN_DIALOG: '#clazz_summary_data button(\"Cancel\")',
     ACTIVITY_SEARCH_RESULT: '#activities_bookmark .material_list_item',
     ACTIVITIES_LIST : '#activities_bookmark',
-    MATERIAL_LIST_RESULT : '.material_list_item'
+    MATERIAL_LIST_RESULT : '.material_list_item',
+    ACTIVITY_LINK : '.material_header a',
+    ASSIGNED_TO : '.assignedTo',
+    MATERIAL_BODY : '.material_body i'
 };
 
 export default searchAssignmentsPage;

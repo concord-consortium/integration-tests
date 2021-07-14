@@ -28,11 +28,6 @@ context("Verify user login/logout", () => {
     cy.logout(); // Logout as teacher user
   });
 
-  it("Verify student user is able to login and logout with correct username and password", () => {
-    cy.login(c.STUDENT1_USERNAME, c.STUDENT1_PASSWORD); // Login as student user
-    cy.logout(); // Logout as student user
-  });
-
   it("Verify manager user is able to login and logout with correct username and password", () => {
     cy.login(c.MANAGER_USERNAME, c.MANAGER_PASSWORD); // Login as manager user
     cy.logout(); // Logout as manager user

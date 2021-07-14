@@ -159,6 +159,7 @@ export function openAddClassSection() {
 export function openManageClassesSection() {
   expandClasses();
   cy.get(teacherHomePageElements.LEFT_NAV_MANAGE_CLASSES).click(); // Click 'Add Class'
+  cy.get(teacherHomePageElements.MANAGE_CLASSES_HEADER).should('exist');
 }
 
 export function deActivateAssignment(assignmentName){
