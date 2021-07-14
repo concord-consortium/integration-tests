@@ -1,10 +1,9 @@
-import * as c from "../support/constants";
-import signupPageElements from "../support/elements/signup_page_elements";
-import * as TeacherHelper from '../support/helpers/teacherHelper';
-import * as StudentHelper from '../support/helpers/studentHelper';
-import * as AdminHelper from '../support/helpers/adminHelper';
-import adminPageElements from "../support/elements/admin_page_elements";
-import signinPageElements from "../support/elements/signin_page_elements";
+import * as c from "../../support/constants";
+import signupPageElements from "../../support/elements/signup_page_elements";
+import * as TeacherHelper from '../../support/helpers/teacherHelper';
+import * as StudentHelper from '../../support/helpers/studentHelper';
+import * as AdminHelper from '../../support/helpers/adminHelper';
+import adminPageElements from "../../support/elements/admin_page_elements";
 
 const TMP_USER_FIRSTNAME = 'Cypress';
 const TMP_USER_LASTNAME = 'AutomationStudent6';

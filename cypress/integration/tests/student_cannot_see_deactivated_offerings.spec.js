@@ -1,6 +1,6 @@
-import C from '../support/constants.js';
-import * as TeacherHelper from '../support/helpers/teacherHelper';
-import * as StudentHelper from '../support/helpers/studentHelper';
+import C from '../../support/constants.js';
+import * as TeacherHelper from '../../support/helpers/teacherHelper';
+import * as StudentHelper from '../../support/helpers/studentHelper';
 
 const CLASS_WORD = C.CLASS_WORD;
 const CLASS_NAME = 'Class '+ CLASS_WORD;

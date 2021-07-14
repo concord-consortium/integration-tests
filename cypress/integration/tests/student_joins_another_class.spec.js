@@ -1,11 +1,11 @@
-import * as c from "../support/constants";
-import * as TeacherHelper from '../support/helpers/teacherHelper';
-import * as StudentHelper from '../support/helpers/studentHelper';
-import * as AdminHelper from '../support/helpers/adminHelper';
-import studentHomePageElements from "../support/elements/student_home_page_elements";
-import studentRosterPageElements from "../support/elements/student_roster_page_elements";
-import signupPageElements from "../support/elements/signup_page_elements";
-import adminPageElements from "../support/elements/admin_page_elements";
+import * as c from "../../support/constants";
+import * as TeacherHelper from '../../support/helpers/teacherHelper';
+import * as StudentHelper from '../../support/helpers/studentHelper';
+import * as AdminHelper from '../../support/helpers/adminHelper';
+import studentHomePageElements from "../../support/elements/student_home_page_elements";
+import studentRosterPageElements from "../../support/elements/student_roster_page_elements";
+import signupPageElements from "../../support/elements/signup_page_elements";
+import adminPageElements from "../../support/elements/admin_page_elements";
 
 const CLASS_WORD_1 = 'word1_'+c.UID;
 const CLASS_WORD_2 = 'word2_'+c.UID;
