@@ -34,7 +34,7 @@ export function addRegisteredStudentToClass(studentUserName, studentFirstName, s
     cy.get(studentRosterPageElements.REGISTERED_STUDENT_DROPDOWN).
             select(studentLastName + ", " +  studentFirstName+" (" + studentUserName + ")");
     cy.get(studentRosterPageElements.ADD_STUDENT_BUTTON).click();
-    cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE_USERNAME_COLUMN).contains(studentUserName);
+    cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE_USERNAME_COLUMN).should('include.text',studentUserName);
 }
 
 export function addUnregisteredStudentToClass(studentName, studentFirstName, studentLastName, studentPassword){
