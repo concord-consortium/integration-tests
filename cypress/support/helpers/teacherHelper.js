@@ -8,6 +8,7 @@ import registerAddStudentPageElements from '../elements/register_add_student_pag
 import changePasswordPageElements from '../elements/change_password_page_elements.js'
 import flashNoticePageElements from '../elements/flash_notice_page_elements.js'
 import * as assignmentPageElementFunctions from "../elements/assignments_page_elements";
+import * as C from '../constants';
 
 export function addClass(className, classDesc, classWord) {
     openAddClassSection();
@@ -19,15 +20,14 @@ export function addClass(className, classDesc, classWord) {
 }
 
 export function addAssignment(className, assignmentName){
-    openAssignmentsSection(className);
-    cy.get(assignmentsPageElements.BTN_ASSIGN_MATERIALS).contains('ASSIGN MATERIALS').click();
-    // cy.get(searchAssignmentsPage.TXT_SEARCH_BAR).type('Automation');
+    cy.visit(C.LEARN_PORTAL_BASE_URL + '/search');
+    cy.get(searchAssignmentsPage.TXT_SEARCH_BAR).type(assignmentName);
     cy.get(searchAssignmentsPage.CHK_AUTHORSHIP_COMMUNITY).click();
     cy.get(searchAssignmentsPage.CHK_AUTHORSHIP_OFFICIAL).click();
     cy.get('div[data-material_name=\"'+assignmentName+'\"').contains('a.button', 'Assign or Share').click();
     cy.contains('label.clazz_name', className).click();
     cy.get(searchAssignmentsPage.BTN_SAVE_ASSIGN_DIALOG).contains('Save').click();
-    cy.get('button').contains('OK').click();
+    cy.get('div.ReactModal__Content button').contains('OK').click();
 }
 
 export function addRegisteredStudentToClass(studentUserName, studentFirstName, studentLastName){

@@ -103,7 +103,9 @@ export function viewTeachersFeedbackForAQuestion(pageNumber, questionNumberInPag
 
 export function verifyOpenResponseQuestionAnswer(pageNumber, questionNumberInPage, studentObj, studentResponse){
 
-    let studentName = studentObj.firstName + ' ' + studentObj.lastName;
+    var firstName = c[studentObj + '_FIRSTNAME'];
+    var lastName = c[studentObj + '_LASTNAME'];
+    let studentName = firstName + ' ' + lastName;
     LaraReportElements.getStudentResponseElement(pageNumber, questionNumberInPage, studentName).should('contain.text', studentResponse);
 }
 
