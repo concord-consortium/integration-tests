@@ -14,7 +14,7 @@ const STUDENT_LASTNAME = 'AutomationStudent6';
 const STUDENT_NAME = STUDENT_LASTNAME + ", " + STUDENT_FIRSTNAME;
 const STUDENT_FULLNAME = STUDENT_FIRSTNAME + " " + STUDENT_LASTNAME;
 const STUDENT_PASSWORD = c.STUDENT1_PASSWORD;
-const STUDENT_USERNAME = 'cautomationstudent6';
+let STUDENT_USERNAME = undefined;
 const STUDENT_NEW_FULLNAME = STUDENT_FIRSTNAME + 'a' + " " + STUDENT_LASTNAME + 'a';
 const CLASS_WORD = c.CLASS_WORD;
 const CLASS_NAME = 'Class ' + CLASS_WORD;
@@ -27,6 +27,9 @@ context("Verify user updates to account information", () => {
     teacherHelper.addClass(CLASS_NAME, c.CLASS_DESC, CLASS_WORD); // Teacher adds a class
     teacherHelper.openStudentRosterSection(CLASS_NAME);
     teacherHelper.addUnregisteredStudentToClass(STUDENT_NAME, STUDENT_FIRSTNAME, STUDENT_LASTNAME, STUDENT_PASSWORD);
+    teacherHelper.getStudentUsername(STUDENT_NAME).then(($studentUsername) => {
+      STUDENT_USERNAME = $studentUsername;
+    });
   });
 
   after(function() {

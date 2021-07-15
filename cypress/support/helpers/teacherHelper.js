@@ -3,7 +3,7 @@ import addClassPageElements from "../elements/add_class_page_elements";
 import userHomePageElements from "../elements/user_home_page_elements";
 import studentRosterPageElements from "../elements/student_roster_page_elements";
 import assignmentsPageElements from '../elements/assignments_page_elements.js';
-import searchAssignmentsPage from '../elements/search_assignments_page.js';
+import advancedSearchMaterialsPage from '../elements/advanced_search_materials_page.js';
 import registerAddStudentPageElements from '../elements/register_add_student_page_elements.js'
 import changePasswordPageElements from '../elements/change_password_page_elements.js'
 import flashNoticePageElements from '../elements/flash_notice_page_elements.js'
@@ -55,8 +55,10 @@ export function verifyClassCount(count){
     cy.get(studentRosterPageElements.CLASS_COUNT).should('have.text', count);
 }
 
-export function getUserNameElement(studentFullName) {
-  return cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).contains('td', studentFullName).parent().find('td:nth-child(2)');
+export function getStudentUsername(studentName) {
+  return cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).contains('td', studentName).parent().find('td:nth-child(2)').then(($elem) => {
+     return $elem.text();
+  });
 }
 
 export function changeStudentPassword(studentFullName, studentUserName, newPassword) {
