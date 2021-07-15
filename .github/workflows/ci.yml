@@ -55,7 +55,6 @@ jobs:
         continue-on-error: true
         with:
           record: true
-          browser: chrome
           spec: cypress/integration/tests/**/*
           # only do parallel if we have a record key
           parallel: ${{ !!secrets.CYPRESS_RECORD_KEY }}

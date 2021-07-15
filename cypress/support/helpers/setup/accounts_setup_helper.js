@@ -19,7 +19,7 @@ export function accountsSetup() {
 
 export function accountsTeardown() {
   var teachers = ["TEACHER1", "TEACHER2", "TEACHER3", "TEACHER4", "TEACHER5"];
-  var students = ["STUDENT1", "STUDENT2", "STUDENT3", "STUDENT4", "STUDENT5"];
+  var students = ["STUDENT1", "STUDENT2", "STUDENT3", "STUDENT4", "STUDENT5", "STUDENT6", "STUDENT7", "STUDENT8"];
 
   cy.visit(constants.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
   cy.login(constants.ADMIN_USERNAME, constants.ADMIN_PASSWORD); // Login as admin user
@@ -96,7 +96,7 @@ function createTeacherAccounts() {
       }
     });
     cy.get(signupPageElements.REGISTER_BUTTON).click();
-    cy.wait(1000);
+    cy.get(signupPageElements.TEACHER_REGISTRATION_CONFIRM).contains('Thanks for signing up!').should('exist');
     cy.get(signupPageElements.CLOSE_BUTTON).click();
   });
 }

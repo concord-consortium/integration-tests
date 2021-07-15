@@ -1,5 +1,4 @@
 import signupPageElements from "../elements/signup_page_elements";
-import studentRosterPageElements from "../elements/student_roster_page_elements";
 import studentHomePageElements from "../elements/student_home_page_elements";
 
 export function checkClassNameAppears(className) {
@@ -27,8 +26,8 @@ export function registerStudent(username, firstName, lastName, password, classWo
     cy.get(signupPageElements.BTN_I_AM_STUDENT).click();
     cy.get(signupPageElements.TXT_FIRST_NAME).type(firstName);
     cy.get(signupPageElements.TXT_LAST_NAME).type(lastName);
-    cy.get(signupPageElements.TXT_PASSWORD).type(password);
-    cy.get(signupPageElements.TXT_CONFIRM_PASSWORD).type(password);
+    cy.get(signupPageElements.TXT_PASSWORD).type(password, { log: false });
+    cy.get(signupPageElements.TXT_CONFIRM_PASSWORD).type(password, { log: false });
     cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();
     cy.get(signupPageElements.TXT_CLASS_WORD).type(classWord);
     cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();

@@ -45,7 +45,7 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
     cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
     cy.get(signinPageElements.LOGIN_BUTTON).click();
-    cy.wait(5000);
+    cy.contains(flashNoticePageElements.BANNER, "Signed in successfully.");
   });
 });
 
@@ -58,7 +58,6 @@ Cypress.Commands.add('loginNoFlashNotice', (username, password) => {
   cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
   cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
   cy.get(signinPageElements.LOGIN_BUTTON).click();
-  cy.wait(5000);
 });
 
 // LEARN Portal Login Page
@@ -67,7 +66,6 @@ Cypress.Commands.add('loginPortal', (username, password) => {
   cy.get(signinPageElements.USERNAME_FIELD_SIGNIN_PAGE).type(username);
   cy.get(signinPageElements.PASSWORD_FIELD_SIGNIN_PAGE).type(password, { log: false });
   cy.get(signinPageElements.SUBMIT_BUTTON_SIGNIN_PAGE).click();
-  cy.wait(5000);
 });
 
 Cypress.Commands.add('retryLogin', (username, password) => {
@@ -77,7 +75,7 @@ Cypress.Commands.add('retryLogin', (username, password) => {
   cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
   cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
   cy.get(signinPageElements.LOGIN_BUTTON).click();
-  cy.wait(5000);
+  cy.contains(flashNoticePageElements.BANNER, "Signed in successfully.");
 });
 
 Cypress.Commands.add('logout', () => {
@@ -85,7 +83,7 @@ Cypress.Commands.add('logout', () => {
     if($header.find(landingPageElements.LOGOUT_BUTTON).length > 0) {
       cy.log("Logout");
       cy.get(landingPageElements.LOGOUT_BUTTON).click();
-      cy.wait(5000);
+      cy.contains(flashNoticePageElements.BANNER, "Signed out successfully.");
     }
   });
 });

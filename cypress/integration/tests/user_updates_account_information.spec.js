@@ -9,13 +9,8 @@ import * as teacherHelper from '../../support/helpers/teacherHelper'
 // Note for db tracking : No db tracking required, using existing records
 
 const TEACHER4_NEW_FULLNAME = c.TEACHER4_FIRSTNAME + 'a' + " " + c.TEACHER4_LASTNAME + 'a';
-const STUDENT_FIRSTNAME = 'Cypress';
-const STUDENT_LASTNAME = 'AutomationStudent6';
-const STUDENT_NAME = STUDENT_LASTNAME + ", " + STUDENT_FIRSTNAME;
-const STUDENT_FULLNAME = STUDENT_FIRSTNAME + " " + STUDENT_LASTNAME;
-const STUDENT_PASSWORD = c.STUDENT1_PASSWORD;
-let STUDENT_USERNAME = undefined;
-const STUDENT_NEW_FULLNAME = STUDENT_FIRSTNAME + 'a' + " " + STUDENT_LASTNAME + 'a';
+let STUDENT8_USERNAME = undefined;
+const STUDENT8_NEW_FULLNAME = c.STUDENT8_FIRSTNAME + 'a' + " " + c.STUDENT8_LASTNAME + 'a';
 const CLASS_WORD = c.CLASS_WORD;
 const CLASS_NAME = 'Class ' + CLASS_WORD;
 
@@ -26,9 +21,9 @@ context("Verify user updates to account information", () => {
     cy.login(c.TEACHER4_USERNAME, c.TEACHER4_PASSWORD); // Login as teacher user
     teacherHelper.addClass(CLASS_NAME, c.CLASS_DESC, CLASS_WORD); // Teacher adds a class
     teacherHelper.openStudentRosterSection(CLASS_NAME);
-    teacherHelper.addUnregisteredStudentToClass(STUDENT_NAME, STUDENT_FIRSTNAME, STUDENT_LASTNAME, STUDENT_PASSWORD);
-    teacherHelper.getStudentUsername(STUDENT_NAME).then(($studentUsername) => {
-      STUDENT_USERNAME = $studentUsername;
+    teacherHelper.addUnregisteredStudentToClass(c.STUDENT8_NAME, c.STUDENT8_FIRSTNAME, c.STUDENT8_LASTNAME, c.STUDENT8_PASSWORD);
+    teacherHelper.getStudentUsername(c.STUDENT8_NAME).then(($studentUsername) => {
+      STUDENT8_USERNAME = $studentUsername;
     });
   });
 
@@ -67,7 +62,7 @@ context("Verify user updates to account information", () => {
 
   it("Logout as teacher and login as student", () => {
     cy.logout(); // Logout as teacher
-    cy.login(STUDENT_USERNAME, STUDENT_PASSWORD); // Login as student
+    cy.login(STUDENT8_USERNAME, c.STUDENT8_PASSWORD); // Login as student
   });
 
   it("Verify student user is able to update first name , last name", () => {
@@ -80,9 +75,9 @@ context("Verify user updates to account information", () => {
     cy.url().should('include', '/my_classes');
 
     cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings link
-    cy.get(userSettingsPageElements.FORM_LEGEND).contains(STUDENT_NEW_FULLNAME); // Form legend should have student's new name with 'a' appended to first and last names
-    cy.get(userSettingsPageElements.FIRST_NAME_FIELD).type('{selectall}{backspace}' + STUDENT_FIRSTNAME); // Revert to teacher's original first name
-    cy.get(userSettingsPageElements.LAST_NAME_FIELD).type('{selectall}{backspace}' + STUDENT_LASTNAME); // Revert to teacher's original last name
+    cy.get(userSettingsPageElements.FORM_LEGEND).contains(STUDENT8_NEW_FULLNAME); // Form legend should have student's new name with 'a' appended to first and last names
+    cy.get(userSettingsPageElements.FIRST_NAME_FIELD).type('{selectall}{backspace}' + c.STUDENT8_FIRSTNAME); // Revert to teacher's original first name
+    cy.get(userSettingsPageElements.LAST_NAME_FIELD).type('{selectall}{backspace}' + c.STUDENT8_LASTNAME); // Revert to teacher's original last name
     cy.get(userSettingsPageElements.SAVE_BUTTON).click(); // Click 'Save' button
     cy.url().should('include', '/my_classes');
   });
@@ -90,11 +85,11 @@ context("Verify user updates to account information", () => {
   it("Verify student user is able to update password", () => {
     cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings in left nav
     cy.get(userSettingsPageElements.CHANGE_PASSWORD_BUTTON).click(); // Click Change password button
-    cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(STUDENT_PASSWORD); // Enter a new password in the new password field
-    cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(STUDENT_PASSWORD); // Confirm the new password
+    cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(c.STUDENT8_PASSWORD); // Enter a new password in the new password field
+    cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(c.STUDENT8_PASSWORD); // Confirm the new password
     cy.get(changePasswordPageElements.SAVE_BUTTON).click(); // Click 'Save button'
     cy.url().should('include', '/preferences');
-    cy.get(flashNoticePageElements.BANNER).contains('Password for '+ STUDENT_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
+    cy.get(flashNoticePageElements.BANNER).contains('Password for '+ STUDENT8_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
     cy.get(userSettingsPageElements.CANCEL_BUTTON).click(); // Click 'Cancel' button to close the form
     cy.url().should('include', '/my_classes');
     cy.logout();
@@ -103,7 +98,7 @@ context("Verify user updates to account information", () => {
   it("Verify teacher cleans up the class", () => {
     cy.login(c.TEACHER4_USERNAME, c.TEACHER4_PASSWORD); // Login as teacher
     teacherHelper.openStudentRosterSection(CLASS_NAME);
-    teacherHelper.removeStudentFromRoster(STUDENT_NAME, CLASS_NAME);
+    teacherHelper.removeStudentFromRoster(c.STUDENT8_NAME, CLASS_NAME);
     teacherHelper.verifyClassCount(0);
   });
 
@@ -117,6 +112,6 @@ context("Verify user updates to account information", () => {
   it("Verify admin is able to remove student account", () => {
     cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD); // Login as admin user
     adminHelper.openUsersAdminSection();
-    adminHelper.removeUser(STUDENT_USERNAME, STUDENT_FULLNAME);
+    adminHelper.removeUser(STUDENT8_USERNAME, c.STUDENT8_FULLNAME);
   });
 });

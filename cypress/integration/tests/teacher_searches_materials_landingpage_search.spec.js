@@ -4,7 +4,6 @@ import * as teacherHelper from "../../support/helpers/teacherHelper"
 import { uid } from 'uid';
 import adminAuthoringPageElements from "../../support/elements/admin_authoring_page_elements"
 import advancedSearchMaterialsPage from "../../support/elements/advanced_search_materials_page"
-import browseMaterialsPageElements from "../../support/elements/browse_materials_page_elements"
 import assignPageElements from "../../support/elements/assign_page_elements"
 import teacherHomePageElements from "../../support/elements/teacher_home_page_elements";
 import landingpageSearchMaterialsPage from "../../support/elements/landingpage_search_materials_elements"
@@ -93,8 +92,8 @@ context("Verify admin can filter instructional materials", () => {
     cy.visit(c.LEARN_PORTAL_BASE_URL);
     cy.get(landingpageSearchMaterialsPage.TXT_KEYWORDS_INPUT).type(ACTIVITY2 + '{enter}').then(() => {
       cy.get(landingpageSearchMaterialsPage.SUBJECT_PHYSICS).click().then(() => {
-        cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY1).should('exist');
-        cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY1).contains('Assign or Share').click();
+        cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY2).should('exist');
+        cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY2).contains('Assign or Share').click();
       });
     });
     cy.contains(assignPageElements.CLASS_NAME, CLASS_NAME1).find(assignPageElements.CLASS_CHECKBOX).click();
@@ -105,17 +104,17 @@ context("Verify admin can filter instructional materials", () => {
   it("Verify teacher is able to see classes assigned for activities in search page", () => {
     cy.visit(c.LEARN_PORTAL_BASE_URL);
     cy.get(landingpageSearchMaterialsPage.TXT_KEYWORDS_INPUT).type(ACTIVITY1 + '{enter}').then(() => {
-      cy.get(landingpageSearchMaterialsPage.BTN_KEYWORDS_GO).click().then(() => {
+      cy.get(landingpageSearchMaterialsPage.SUBJECT_MATHEMATICS).click().then(() => {
         cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY1).then(() => {
-          cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY1).contains("(Assigned to ").should('exist');
+          cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY1).contains("Assigned to ").should('exist');
         });
       });
     });
     cy.visit(c.LEARN_PORTAL_BASE_URL);
     cy.get(landingpageSearchMaterialsPage.TXT_KEYWORDS_INPUT).type(ACTIVITY2 + '{enter}').then(() => {
-      cy.get(landingpageSearchMaterialsPage.BTN_KEYWORDS_GO).click().then(() => {
+      cy.get(landingpageSearchMaterialsPage.SUBJECT_PHYSICS).click().then(() => {
         cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY2).then(() => {
-          cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY2).contains("(Assigned to ").should('exist');
+          cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY2).contains("Assigned to ").should('exist');
         });
       });
     });

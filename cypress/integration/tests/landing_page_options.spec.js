@@ -9,6 +9,7 @@ context("Verify landing page options", () => {
 
   before(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
+    cy.logout();
   });
 
   it("Verify buttons are visible", () => {

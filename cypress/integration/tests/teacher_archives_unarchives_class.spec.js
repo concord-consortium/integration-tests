@@ -1,11 +1,7 @@
-import {uid} from 'uid'
-
 import * as c from '../../support/constants.js'
 import * as teacherHelper from '../../support/helpers/teacherHelper'
 
 // Note for db tracking : No db tracking required, using existing records
-
-let className = undefined;
 
 const CLASS_WORD = c.CLASS_WORD;
 const CLASS_NAME = 'Class ' + CLASS_WORD;

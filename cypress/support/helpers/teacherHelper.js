@@ -2,7 +2,6 @@ import teacherHomePageElements from "../elements/teacher_home_page_elements";
 import addClassPageElements from "../elements/add_class_page_elements";
 import userHomePageElements from "../elements/user_home_page_elements";
 import studentRosterPageElements from "../elements/student_roster_page_elements";
-import assignmentsPageElements from '../elements/assignments_page_elements.js';
 import advancedSearchMaterialsPage from '../elements/advanced_search_materials_page.js';
 import registerAddStudentPageElements from '../elements/register_add_student_page_elements.js'
 import changePasswordPageElements from '../elements/change_password_page_elements.js'
@@ -21,12 +20,12 @@ export function addClass(className, classDesc, classWord) {
 
 export function addAssignment(className, assignmentName){
     cy.visit(C.LEARN_PORTAL_BASE_URL + '/search');
-    cy.get(searchAssignmentsPage.TXT_SEARCH_BAR).type(assignmentName);
-    cy.get(searchAssignmentsPage.CHK_AUTHORSHIP_COMMUNITY).click();
-    cy.get(searchAssignmentsPage.CHK_AUTHORSHIP_OFFICIAL).click();
+    cy.get(advancedSearchMaterialsPage.TXT_SEARCH_BAR).type(assignmentName);
+    cy.get(advancedSearchMaterialsPage.CHK_AUTHORSHIP_COMMUNITY).click();
+    cy.get(advancedSearchMaterialsPage.CHK_AUTHORSHIP_OFFICIAL).click();
     cy.get('div[data-material_name=\"'+assignmentName+'\"').contains('a.button', 'Assign or Share').click();
     cy.contains('label.clazz_name', className).click();
-    cy.get(searchAssignmentsPage.BTN_SAVE_ASSIGN_DIALOG).contains('Save').click();
+    cy.get(advancedSearchMaterialsPage.BTN_SAVE_ASSIGN_DIALOG).contains('Save').click();
     cy.get('div.ReactModal__Content button').contains('OK').click();
 }
 
@@ -42,10 +41,10 @@ export function addUnregisteredStudentToClass(studentName, studentFirstName, stu
   cy.get(studentRosterPageElements.REGISTER_ADD_STUDENT_LINK).click(); // Click 'Register & Add Student' link
   cy.get(registerAddStudentPageElements.FIRST_NAME_FIELD).type(studentFirstName, ); // Type student first name in the Register and add student form
   cy.get(registerAddStudentPageElements.LAST_NAME_FIELD).type(studentLastName); // Type student last name in the Register and add student form
-  cy.get(registerAddStudentPageElements.PASSWORD_FIELD).type(studentPassword); // Type student password in the Register and add student form
-  cy.get(registerAddStudentPageElements.CONFIRM_PASSWORD_FIELD).type(studentPassword); // Confirm password in the Register and add student form
+  cy.get(registerAddStudentPageElements.PASSWORD_FIELD).type(studentPassword, { log: false }); // Type student password in the Register and add student form
+  cy.get(registerAddStudentPageElements.CONFIRM_PASSWORD_FIELD).type(studentPassword, { log: false }); // Confirm password in the Register and add student form
   cy.get(registerAddStudentPageElements.SUBMIT_BUTTON).click(); // Click 'Submit' button
-  cy.wait(15000);
+  cy.get(registerAddStudentPageElements.STUDENT_REGISTER_FORM).should('not.exist');
   cy.get(registerAddStudentPageElements.DIALOG_TEXT).contains("Success! The student was registered and added to the class"); // Check success dialog text
   cy.get(registerAddStudentPageElements.DIALOG_CANCEL_BUTTON).click(); // Click 'Add Another Student' in success dialog
   cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).contains('td', studentName);
@@ -63,8 +62,8 @@ export function getStudentUsername(studentName) {
 
 export function changeStudentPassword(studentFullName, studentUserName, newPassword) {
   cy.get(studentRosterPageElements.STUDENT_ROSTER_TABLE).contains('td', studentFullName).parent().contains('td span', "Change Password").click();
-  cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(newPassword); //Type new password in the change password form
-  cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(newPassword); // Confirm new password in the change password form
+  cy.get(changePasswordPageElements.NEW_PASSWORD_FIELD).type(newPassword, { log: false }); //Type new password in the change password form
+  cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(newPassword, { log: false }); // Confirm new password in the change password form
   cy.get(changePasswordPageElements.SAVE_BUTTON).click(); // Click 'Save' button`
   cy.get(flashNoticePageElements.BANNER).contains("Password for " + studentUserName + " was successfully updated."); // Check banner for password change success message
 }
