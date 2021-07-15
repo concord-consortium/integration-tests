@@ -12,7 +12,7 @@ import {automatedtestactivity1LaraData} from "../../support/testdata/testdata_au
 import * as ReportHelper from '../../support/helpers/reportHelper';
 
 const CLASS_WORD = c.CLASS_WORD;
-const CLASS_NAME = 'AutoClass '+ CLASS_WORD;
+const CLASS_NAME = 'Class '+ CLASS_WORD;
 const ASSIGNMENT_NAME = 'Cypress_AutomatedTestActivity1_LARA';
 const STUDENTS = ["STUDENT1", "STUDENT2", "STUDENT3", "STUDENT4", "STUDENT5"];
 

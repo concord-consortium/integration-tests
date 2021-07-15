@@ -24,6 +24,7 @@ context("Student joins another class tests", () => {
     });
 
     after(function() {
+       cy.visit(c.LEARN_PORTAL_BASE_URL);
        cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD);
        cy.get(adminPageElements.LNK_ADMIN).click();
        cy.get(adminPageElements.USERS_LINK).click();
@@ -40,19 +41,6 @@ context("Student joins another class tests", () => {
         cy.login(c.TEACHER2_USERNAME, c.TEACHER2_PASSWORD);
         TeacherHelper.addClass(CLASS_NAME_2, c.CLASS_DESC, CLASS_WORD_2);
         cy.logout();
-    });
-
-    it("Verify student registration with invalid word shows error", () => {
-        cy.get(signupPageElements.BTN_REGISTER_USER).click();
-        cy.get(signupPageElements.BTN_I_AM_STUDENT).click();
-        cy.get(signupPageElements.TXT_FIRST_NAME).type('testfirstname');
-        cy.get(signupPageElements.TXT_LAST_NAME).type('testlastname');
-        cy.get(signupPageElements.TXT_PASSWORD).type('testpassword');
-        cy.get(signupPageElements.TXT_CONFIRM_PASSWORD).type('testpassword');
-        cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();
-        cy.get(signupPageElements.TXT_CLASS_WORD).type('invalid class word');
-        cy.get(signupPageElements.LBL_INVALID_WORD_ERROR).should('have.text', 'You must enter a valid class word');
-        cy.get(signupPageElements.CLOSE_BUTTON).click();
     });
 
     it("New student registration for class_word_1 and joins another class class_word_2", () => {
@@ -76,6 +64,19 @@ context("Student joins another class tests", () => {
         cy.get(adminPageElements.USERS_LINK).click();
         AdminHelper.removeUser(STUDENT_USERNAME, STUDENT_FIRSTNAME + ' ' + STUDENT_LASTNAME);
         cy.logout();
+    });
+
+    it("Verify student registration with invalid word shows error", () => {
+        cy.get(signupPageElements.BTN_REGISTER_USER).click();
+        cy.get(signupPageElements.BTN_I_AM_STUDENT).click();
+        cy.get(signupPageElements.TXT_FIRST_NAME).type('testfirstname');
+        cy.get(signupPageElements.TXT_LAST_NAME).type('testlastname');
+        cy.get(signupPageElements.TXT_PASSWORD).type('testpassword');
+        cy.get(signupPageElements.TXT_CONFIRM_PASSWORD).type('testpassword');
+        cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();
+        cy.get(signupPageElements.TXT_CLASS_WORD).type('invalid class word');
+        cy.get(signupPageElements.LBL_INVALID_WORD_ERROR).should('have.text', 'You must enter a valid class word');
+        cy.get(signupPageElements.CLOSE_BUTTON).click();
     });
 
 });
