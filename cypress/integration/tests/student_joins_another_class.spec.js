@@ -24,6 +24,7 @@ context("Student joins another class tests", () => {
     });
 
     after(function() {
+       cy.visit(c.LEARN_PORTAL_BASE_URL);
        cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD);
        cy.get(adminPageElements.LNK_ADMIN).click();
        cy.get(adminPageElements.USERS_LINK).click();
