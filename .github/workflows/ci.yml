@@ -68,7 +68,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   cypress-tests-firefox:
-    needs: [cypress-setup, cypress-test-chrome]
+    needs: [cypress-setup, cypress-tests-chrome]
     if: always()
     runs-on: ubuntu-latest
     strategy:
