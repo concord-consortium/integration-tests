@@ -1,4 +1,4 @@
-const searchAssignmentsPage = {
+const advancedSearchMaterialsPage = {
     TXT_SEARCH_BAR: '#search_term',
     CHK_SUBJECT_MATH: '#subject_area_mathematics',
     CHK_SUBJECT_PHYSICS: '#subject_area_physics',
@@ -23,4 +23,4 @@ const searchAssignmentsPage = {
     MATERIAL_BODY : '.material_body i'
 };
 
-export default searchAssignmentsPage;
+export default advancedSearchMaterialsPage;

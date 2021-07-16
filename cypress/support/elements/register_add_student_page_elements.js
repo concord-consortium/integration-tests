@@ -1,5 +1,6 @@
 // Register and Add new students form elements
 const registerAddNewStudentPageElements = {
+  STUDENT_REGISTER_FORM : 'div[class^=modal] form',
   FIRST_NAME_FIELD : 'div[class^=modal] form tr:nth-child(1) input',
   LAST_NAME_FIELD : 'div[class^=modal] form tr:nth-child(2) input',
   PASSWORD_FIELD : 'div[class^=modal] form tr:nth-child(3) input',

@@ -6,7 +6,7 @@ import * as teacherHelper from '../../support/helpers/teacherHelper'
 // Note for db tracking : This test adds a class at the start and then archives it at the end
 // Note for db tracking : No db tracking required, using existing records (except for 2 student accounts, which are added and then deleted at the end)
 
-const STUDENT_NEW_PASSWORD = c.STUDENT_PASSWORD + "1";
+const STUDENT_NEW_PASSWORD = c.STUDENT1_PASSWORD + "1";
 const CLASS_WORD = c.CLASS_WORD
 const CLASS_NAME = 'Class ' + CLASS_WORD;
 
@@ -31,12 +31,12 @@ context("Verify teacher can add a new student to a class", () => {
     teacherHelper.addUnregisteredStudentToClass(c.STUDENT2_NAME, c.STUDENT2_FIRSTNAME, c.STUDENT2_LASTNAME, c.STUDENT2_PASSWORD);
     teacherHelper.verifyClassCount(2);
 
-    teacherHelper.getUserNameElement(c.STUDENT1_NAME).then(($username) => {
-      c.STUDENT1_USERNAME = $username.text();
+    teacherHelper.getStudentUsername(c.STUDENT1_NAME).then(($username) => {
+      c.STUDENT1_USERNAME = $username;
     });
 
-    teacherHelper.getUserNameElement(c.STUDENT2_NAME).then(($username) => {
-      c.STUDENT2_USERNAME = $username.text();
+    teacherHelper.getStudentUsername(c.STUDENT2_NAME).then(($username) => {
+      c.STUDENT2_USERNAME = $username;
     });
   });
 

@@ -32,5 +32,6 @@ context("Verify students cannot see deactivated offerings", () => {
 
         cy.login(C.STUDENT1_USERNAME, C.STUDENT1_PASSWORD);
         StudentHelper.verifyNoOfferingsAvailable(CLASS_NAME);
+        cy.logout();
     });
 });

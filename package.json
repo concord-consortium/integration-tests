@@ -4,7 +4,7 @@
   "description": "LEARN Portal Integration Tests",
   "main": "index.js",
   "scripts": {
-    "test:run":"cypress run --spec cypress/integration/**/*",
+    "test:run":"cypress run --spec \"cypress/integration/**/*\"",
     "test:open":"cypress open"
   },
   "repository": {
