@@ -11,6 +11,10 @@ const assignmentsPageElements = {
 
 export default assignmentsPageElements;
 
+export function getAPAssignmentSectionElement(assignmentName){
+  return cy.get('#assignments-page').contains('span', assignmentName).parent().parent().contains('a', 'AP Report');
+}
+
 export function getActiveCheckboxElement(assignmentName){
   let selector = '#assignments-page div div:nth-child(2)';
   return cy.get(selector).find('span', assignmentName).parent().find('span:nth-child(3) input');
