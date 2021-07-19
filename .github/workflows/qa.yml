@@ -1,10 +1,9 @@
 name: Continuous Integration
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '0 12 * * 1'
 
 jobs:
   cypress-setup:
@@ -51,11 +50,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Run Cypress Integration Tests
+      - name: Chrome Run for Cypress Integration Tests
         uses: cypress-io/github-action@v2
         continue-on-error: true
         with:
           browser: chrome
+          record: true
+          spec: cypress/integration/tests/**/*
+          # only do parallel if we have a record key
+          parallel: ${{ !!secrets.CYPRESS_RECORD_KEY }}
+        env:
+          CYPRESS_password: ${{ secrets.QA_PASSWORD }}
+          CYPRESS_testEnv: qa
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Firefox Run for Cypress Integration Tests
+        uses: cypress-io/github-action@v2
+        continue-on-error: true
+        with:
+          browser: firefox
           record: true
           spec: cypress/integration/tests/**/*
           # only do parallel if we have a record key
