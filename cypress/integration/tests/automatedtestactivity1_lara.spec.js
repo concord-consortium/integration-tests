@@ -106,7 +106,7 @@ context("Verify Student Activity Work Flow", () => {
                 ReportHelper.provideFeedbackForAQuestion(pageIndex, questionIndex, currentQuestion, STUDENTS);
             }
         }
-        ReportHelper.provideOverallFeedback(STUDENTS, automatedtestactivity1LaraData.overallFeedback);
+        // ReportHelper.provideOverallFeedback(STUDENTS, automatedtestactivity1LaraData.overallFeedback);
         cy.go("back");
         cy.logout();
     });
@@ -120,7 +120,7 @@ context("Verify Student Activity Work Flow", () => {
         studentIndex++;
 
         cy.login(username, password);
-        let studentGenerateReportLnk = getLinkGenerateReport(CLASS_NAME);
+        let studentGenerateReportLnk = getLinkGenerateReport(CLASS_NAME, 'Generate a report of your work');
         studentGenerateReportLnk.invoke('removeAttr', 'target').click();
         let totalPagesInAssignment = automatedtestactivity1LaraData.assignmentPages.totalPages;
         for(let pageIndex = 1 ; pageIndex <= totalPagesInAssignment; pageIndex++){
@@ -144,6 +144,7 @@ context("Verify Student Activity Work Flow", () => {
     });
 
     it("Verify teacher archive class", () => {
+        cy.visit(c.LEARN_PORTAL_BASE_URL); //even if the previous test fails in loading the report this test will pass with this.
         cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as admin user
         TeacherHelper.archiveClass(CLASS_NAME);
         cy.logout();

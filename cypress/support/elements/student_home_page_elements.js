@@ -7,7 +7,7 @@ const studentHomePageElements = {
   BTN_RUN_CLASS_5614840edb5: '#item_portal__clazz_2 .offering_container .run_buttons>a',
   LBL_STUDENT_CLASS_SECTION: 'div.item_collection div.item div.action_menu div.action_menu_header_left',
   LBL_TEACHER_NAME_CLASS_SECTION: 'div.item_collection div.item div.action_menu div.action_menu_header_right',
-  LNK_STUDENT_GENERATE_REPORT: 'div.status_graphs div.run_graph span.lightbox_report_link a[href$=\"student_report\"]',
+  LNK_STUDENT_GENERATE_REPORT: 'div.status_graphs div.run_graph span.lightbox_report_link a',
   ASSIGNMENT_SECTION: 'div.offering_for_student',
   NO_OFFERINGS_TEXT: 'ul.quiet_list li div.tiny',
 
@@ -28,8 +28,8 @@ export function getClassSectionElement(className){
   return cy.get(studentHomePageElements.LBL_STUDENT_CLASS_SECTION).contains(className).parent().parent();
 }
 
-export function getLinkGenerateReport(className){
-  return getClassSectionElement(className).contains(studentHomePageElements.LNK_STUDENT_GENERATE_REPORT, 'Generate a report of your work');
+export function getLinkGenerateReport(className, linkText){
+  return getClassSectionElement(className).contains(studentHomePageElements.LNK_STUDENT_GENERATE_REPORT, linkText);
 }
 
 export default studentHomePageElements;
