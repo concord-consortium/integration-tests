@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Tests for QA on Electron
 
 on:
   push:
@@ -33,11 +33,10 @@ jobs:
           # pass GitHub token to allow accurately detecting a build vs a re-run build
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  cypress-tests-chrome:
+  cypress-tests:
     needs: cypress-setup
     if: always()
     runs-on: ubuntu-latest
-    container: cypress/browsers:node14.17.0-chrome91-ff89
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -55,7 +54,6 @@ jobs:
         uses: cypress-io/github-action@v2
         continue-on-error: true
         with:
-          browser: chrome
           record: true
           spec: cypress/integration/tests/**/*
           # only do parallel if we have a record key
