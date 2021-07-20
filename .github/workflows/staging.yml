@@ -32,11 +32,12 @@ jobs:
           # pass GitHub token to allow accurately detecting a build vs a re-run build
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  cypress-tests-chrome:
+cypress-tests:
     needs: cypress-setup
     if: always()
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.17.0-chrome91-ff89
+    options: --user 1001
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes

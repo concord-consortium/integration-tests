@@ -1,4 +1,4 @@
-name: Tests for QA on Electron
+name: CI with QA, Electron
 
 on:
   push:
