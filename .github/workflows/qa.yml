@@ -42,8 +42,9 @@ jobs:
     needs: cypress-setup
     if: always()
     runs-on: ubuntu-latest
-    container: cypress/browsers:node14.17.0-chrome91-ff89
-    options: --user 1001
+    container:
+      image: cypress/browsers:node14.17.0-chrome91-ff89
+      options: --user 1001
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
