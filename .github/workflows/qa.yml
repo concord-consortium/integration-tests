@@ -1,6 +1,12 @@
 name: Tests for QA on Chrome, FF
 
 on:
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: Please type chrome or firerox
+        default: chrome
+        required: true
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: '0 12 * * 1'
@@ -48,27 +54,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Chrome Run for Cypress Integration Tests
+      - name: Run for Cypress Integration Tests
         uses: cypress-io/github-action@v2
         continue-on-error: true
         with:
-          browser: chrome
-          record: true
-          spec: cypress/integration/tests/**/*
-          parallel: false
-        env:
-          CYPRESS_password: ${{ secrets.QA_PASSWORD }}
-          CYPRESS_testEnv: qa
-          # pass the Dashboard record key as an environment variable
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # pass GitHub token to allow accurately detecting a build vs a re-run build
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Firefox Run for Cypress Integration Tests
-        uses: cypress-io/github-action@v2
-        continue-on-error: true
-        with:
-          browser: firefox
+          browser: ${{ github.event.inputs.browser }}
           record: true
           spec: cypress/integration/tests/**/*
           parallel: false
