@@ -102,13 +102,6 @@ context("Verify user updates to account information", () => {
     teacherHelper.verifyClassCount(0);
   });
 
-  it("Verify teacher is able to archive the class", () => {
-    cy.logout(); // Logout as teacher
-    cy.login(c.TEACHER4_USERNAME, c.TEACHER4_PASSWORD); // Login as teacher
-    teacherHelper.archiveClass(CLASS_NAME);
-    cy.logout(); // Logout as teacher
-  });
-
   it("Verify admin is able to remove student account", () => {
     cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD); // Login as admin user
     adminHelper.openUsersAdminSection();

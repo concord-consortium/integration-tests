@@ -26,6 +26,4 @@ context("Verify teacher can archive and unarchive a class", () => {
   it("Verify teacher is able to unarchive a class", () => {
    teacherHelper.unArchiveClass(CLASS_NAME);
   });
-
-
 });
