@@ -64,9 +64,4 @@ context("Verify teacher can add a new student to a class", () => {
     studentHelper.checkClassNameDoesNotExist(CLASS_NAME);
     cy.logout(); // Logout as student 1
   });
-
-  it("Verify teacher is able to archive the class", () => {
-    cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher
-    teacherHelper.archiveClass(CLASS_NAME);
-  });
 });

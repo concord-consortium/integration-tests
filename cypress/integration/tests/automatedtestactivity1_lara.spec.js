@@ -142,11 +142,4 @@ context("Verify Student Activity Work Flow", () => {
         cy.logout();
       });
     });
-
-    it("Verify teacher archive class", () => {
-        cy.visit(c.LEARN_PORTAL_BASE_URL); //even if the previous test fails in loading the report this test will pass with this.
-        cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as admin user
-        TeacherHelper.archiveClass(CLASS_NAME);
-        cy.logout();
-    });
 });

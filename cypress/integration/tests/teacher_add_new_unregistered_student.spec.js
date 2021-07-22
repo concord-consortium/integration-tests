@@ -95,12 +95,6 @@ context("Verify teacher can add a new student to a class", () => {
     cy.logout(); // Logout as student 2
   });
 
-  it("Verify teacher is able to archive the class", () => {
-    cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher
-    teacherHelper.archiveClass(CLASS_NAME);
-    cy.logout(); // Logout as teacher
-  });
-
   it("Verify admin is able to remove student accounts", () => {
     cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD); // Login as admin user
     adminHelper.openUsersAdminSection();

@@ -66,8 +66,4 @@ context("Verify teacher can add and edit a class", () => {
     cy.get(assignmentsPageElements.HEADING).should("have.text", "Assignments for "+ CLASS_NAME); // Check name of class in the Assignments page
     cy.get(assignmentsPageElements.CLASS_WORD).contains(CLASS_WORD); // Check Class word in the Assignments page
   });
-
-  it("Verify teacher is able to archive the class", () => {
-    teacherHelper.archiveClass(CLASS_NAME);
-  });
 });
