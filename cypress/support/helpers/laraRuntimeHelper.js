@@ -3,6 +3,7 @@ import * as ACTIVITY_PAGES from "../elements/activity_pagination_header";
 
 export function goToPageNumber(pageNumber){
     cy.get(ACTIVITY_PAGES.BTN_ACTIVITY_PAGE(pageNumber)).click();
+    cy.wait(2000);
 }
 
 export function answerQuestion(questionNumberInPage, currentQuestion, studentIndex){
