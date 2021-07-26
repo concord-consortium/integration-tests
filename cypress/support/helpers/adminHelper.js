@@ -11,7 +11,7 @@ export function disableOpenInNewWindow(activityName){
     cy.get(userHomePageElements.LEFT_NAV_ADMIN_LINK).click();
     cy.get(adminPageElements.LNK_AUTHORING).click();
     cy.get('li a').contains(activityName).click();
-    cy.get('#material_clazz_count a').contains('(portal settings)').click();
+    cy.get('.portal-pages-action-buttons > a').contains('Settings').click();
     cy.get('div.config').contains(' Open the url in a new window ').get('input#external_activity_popup').uncheck();
     cy.get('.action_menu_header_right ul li input[value=\"Save\"]').click();
 }

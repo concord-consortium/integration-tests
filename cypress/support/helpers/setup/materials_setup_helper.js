@@ -103,19 +103,19 @@ function publishMaterial(type) {
   cy.get(laraPageElements.CLOSE_PUBLISH_MODAL).click(); // Close the publish modal
 }
 
-function deleteMaterial(materialUrl) {
-  let type
-  if (materialUrl.indexOf("/activities/") !== -1) {
-    type = "activities"
-  } else {
-    type = "sequences"
-  }
-  const [ baseUrl, id ] = materialUrl.split(`/${type}/`)
-  return requestWithCSRF({
-    url: `${baseUrl}/api/v1/${type}/${id}`,
-    method: "DELETE",
-  });
-}
+// function deleteMaterial(materialUrl) {
+//   let type
+//   if (materialUrl.indexOf("/activities/") !== -1) {
+//     type = "activities"
+//   } else {
+//     type = "sequences"
+//   }
+//   const [ baseUrl, id ] = materialUrl.split(`/${type}/`)
+//   return requestWithCSRF({
+//     url: `${baseUrl}/api/v1/${type}/${id}`,
+//     method: "DELETE",
+//   });
+// }
 
 function requestWithCSRF(options) {
   return cy.get('meta[name="csrf-token"]', {log: false}).then(token => {
