@@ -37,6 +37,7 @@ export function answerQuestionsInPage(pageNumber, allQuestionsInPage, userIndex)
 
 export function gotoPage(pageNumber){
     cy.get(activityPlayerElements.getLinkPageNumberSelector(pageNumber)).first().click();
+    cy.wait(2000);
 }
 
 const getIframeBody = (iFrameSelector) => {
