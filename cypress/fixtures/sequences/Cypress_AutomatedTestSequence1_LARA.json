@@ -11,7 +11,7 @@
 	"activities": [{
 		"description": "",
 		"editor_mode": 0,
-		"id": 6,
+		"id": 21095,
 		"layout": 0,
 		"name": "Cypress_AutomatedTestActivity2_LARA",
 		"notes": "",
@@ -27,7 +27,7 @@
 		"pages": [{
 			"additional_sections": null,
 			"embeddable_display_mode": "stacked",
-			"id": 14,
+			"id": 309210,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -66,7 +66,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -74,7 +74,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Multiple Choice (master)",
+							"name": "Multiple Choice S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -85,7 +85,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "11-ManagedInteractive",
+					"ref_id": "2823-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -115,7 +115,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -123,7 +123,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Multiple Choice (master)",
+							"name": "Multiple Choice S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -134,7 +134,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "12-ManagedInteractive",
+					"ref_id": "2824-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -164,7 +164,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -172,7 +172,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Multiple Choice (master)",
+							"name": "Multiple Choice S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -183,7 +183,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "13-ManagedInteractive",
+					"ref_id": "2825-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -213,7 +213,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -221,7 +221,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Multiple Choice (master)",
+							"name": "Multiple Choice S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -232,7 +232,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "14-ManagedInteractive",
+					"ref_id": "2826-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -240,7 +240,7 @@
 		}, {
 			"additional_sections": null,
 			"embeddable_display_mode": "stacked",
-			"id": 15,
+			"id": 309211,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -279,7 +279,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/open-response/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/open-response/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "This shouldn't be used by any real activities it is still under development.",
@@ -287,7 +287,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Open Response (master)",
+							"name": "Open Response S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -298,7 +298,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "15-ManagedInteractive",
+					"ref_id": "2827-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -328,7 +328,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/open-response/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/open-response/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "This shouldn't be used by any real activities it is still under development.",
@@ -336,7 +336,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Open Response (master)",
+							"name": "Open Response S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -347,7 +347,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "16-ManagedInteractive",
+					"ref_id": "2828-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -355,7 +355,7 @@
 		}, {
 			"additional_sections": null,
 			"embeddable_display_mode": "stacked",
-			"id": 16,
+			"id": 309212,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -394,7 +394,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/fill-in-the-blank/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/fill-in-the-blank/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "",
@@ -402,7 +402,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Fill In The Blank (master)",
+							"name": "Fill In The Blank S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -413,7 +413,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "17-ManagedInteractive",
+					"ref_id": "2829-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -443,7 +443,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/fill-in-the-blank/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/fill-in-the-blank/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "",
@@ -451,7 +451,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Fill In The Blank (master)",
+							"name": "Fill In The Blank S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -462,7 +462,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "18-ManagedInteractive",
+					"ref_id": "2830-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -475,7 +475,7 @@
 	}, {
 		"description": "",
 		"editor_mode": 0,
-		"id": 10,
+		"id": 21096,
 		"layout": 0,
 		"name": "Cypress_AutomatedTestActivity3_LARA",
 		"notes": "",
@@ -491,7 +491,7 @@
 		"pages": [{
 			"additional_sections": null,
 			"embeddable_display_mode": "stacked",
-			"id": 28,
+			"id": 309213,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -530,7 +530,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -538,7 +538,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Multiple Choice (master)",
+							"name": "Multiple Choice S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -549,7 +549,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "47-ManagedInteractive",
+					"ref_id": "2831-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -579,7 +579,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -587,7 +587,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Multiple Choice (master)",
+							"name": "Multiple Choice S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -598,7 +598,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "48-ManagedInteractive",
+					"ref_id": "2832-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -628,7 +628,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -636,7 +636,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Multiple Choice (master)",
+							"name": "Multiple Choice S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -647,7 +647,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "49-ManagedInteractive",
+					"ref_id": "2833-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -677,7 +677,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -685,7 +685,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Multiple Choice (master)",
+							"name": "Multiple Choice S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -696,7 +696,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "50-ManagedInteractive",
+					"ref_id": "2834-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -704,7 +704,7 @@
 		}, {
 			"additional_sections": null,
 			"embeddable_display_mode": "stacked",
-			"id": 29,
+			"id": 309214,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -743,7 +743,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/open-response/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/open-response/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "This shouldn't be used by any real activities it is still under development.",
@@ -751,7 +751,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Open Response (master)",
+							"name": "Open Response S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -762,7 +762,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "51-ManagedInteractive",
+					"ref_id": "2835-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -792,7 +792,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/open-response/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/open-response/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "This shouldn't be used by any real activities it is still under development.",
@@ -800,7 +800,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Open Response (master)",
+							"name": "Open Response S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -811,7 +811,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "52-ManagedInteractive",
+					"ref_id": "2836-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -819,7 +819,7 @@
 		}, {
 			"additional_sections": null,
 			"embeddable_display_mode": "stacked",
-			"id": 30,
+			"id": 309215,
 			"is_completion": false,
 			"is_hidden": false,
 			"layout": "l-6040",
@@ -858,7 +858,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/fill-in-the-blank/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/fill-in-the-blank/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "",
@@ -866,7 +866,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Fill In The Blank (master)",
+							"name": "Fill In The Blank S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -877,7 +877,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "53-ManagedInteractive",
+					"ref_id": "2837-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"
@@ -907,7 +907,7 @@
 						"data": {
 							"aspect_ratio_method": "DEFAULT",
 							"authoring_guidance": "",
-							"base_url": "https://models-resources.concord.org/question-interactives/branch/master/fill-in-the-blank/",
+							"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/fill-in-the-blank/index.html",
 							"click_to_play": false,
 							"click_to_play_prompt": null,
 							"description": "",
@@ -915,7 +915,7 @@
 							"full_window": false,
 							"has_report_url": false,
 							"image_url": null,
-							"name": "Fill In The Blank (master)",
+							"name": "Fill In The Blank S3 (master)",
 							"native_height": 435,
 							"native_width": 576,
 							"no_snapshots": false,
@@ -926,7 +926,7 @@
 						}
 					},
 					"type": "ManagedInteractive",
-					"ref_id": "54-ManagedInteractive",
+					"ref_id": "2838-ManagedInteractive",
 					"linked_interactives": []
 				},
 				"section": "interactive_box"

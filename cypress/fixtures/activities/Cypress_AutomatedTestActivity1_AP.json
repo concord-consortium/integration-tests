@@ -1,11 +1,11 @@
 {
-	"description": "This Description is used to verify in automation.",
+	"description": "\u003Cp\u003EThis Description is used to verify in automation.\u003C/p\u003E",
 	"editor_mode": 0,
-	"id": 9,
+	"id": 21098,
 	"layout": 0,
 	"name": "Cypress_AutomatedTestActivity1_AP",
 	"notes": "This Notes is verified in automation",
-	"related": "This Related Contents is used to verify in automation.",
+	"related": "\u003Cp\u003EThis Related Contents is used to verify in automation.\u003C/p\u003E",
 	"runtime": "Activity Player",
 	"show_submit_button": true,
 	"student_report_enabled": true,
@@ -17,7 +17,7 @@
 	"pages": [{
 		"additional_sections": {},
 		"embeddable_display_mode": "stacked",
-		"id": 24,
+		"id": 309221,
 		"is_completion": false,
 		"is_hidden": false,
 		"layout": "l-6040",
@@ -34,56 +34,7 @@
 			"embeddable": {
 				"name": "Q1-P1Q1 OPEN RESPONSE TYPE",
 				"url_fragment": null,
-				"authored_state": "{\"version\":1,\"questionType\":\"open_response\",\"prompt\":\"\u003Cp\u003EOpen response type question\u003C/p\u003E\",\"required\":false,\"predictionFeedback\":\"\u003Cp\u003EThis is post-submission feedback\u003C/p\u003E\",\"hint\":\"\u003Cp\u003EThis is the hint\u003C/p\u003E\",\"defaultAnswer\":\"This is the default answer\"}",
-				"is_hidden": false,
-				"is_full_width": false,
-				"show_in_featured_question_report": true,
-				"inherit_aspect_ratio_method": true,
-				"custom_aspect_ratio_method": null,
-				"inherit_native_width": true,
-				"custom_native_width": 576,
-				"inherit_native_height": true,
-				"custom_native_height": 435,
-				"inherit_click_to_play": true,
-				"custom_click_to_play": false,
-				"inherit_full_window": true,
-				"custom_full_window": false,
-				"inherit_click_to_play_prompt": true,
-				"custom_click_to_play_prompt": null,
-				"inherit_image_url": true,
-				"custom_image_url": null,
-				"library_interactive": {
-					"data": {
-						"aspect_ratio_method": "DEFAULT",
-						"authoring_guidance": "",
-						"base_url": "https://models-resources.concord.org/question-interactives/branch/master/open-response/",
-						"click_to_play": false,
-						"click_to_play_prompt": null,
-						"description": "This shouldn't be used by any real activities it is still under development.",
-						"enable_learner_state": true,
-						"full_window": false,
-						"has_report_url": false,
-						"image_url": null,
-						"name": "Open Response (master)",
-						"native_height": 435,
-						"native_width": 576,
-						"no_snapshots": false,
-						"show_delete_data_button": false,
-						"thumbnail_url": "",
-						"customizable": false,
-						"authorable": true
-					}
-				},
-				"type": "ManagedInteractive",
-				"ref_id": "30-ManagedInteractive",
-				"linked_interactives": []
-			},
-			"section": "interactive_box"
-		}, {
-			"embeddable": {
-				"name": "OpenResponseQ2",
-				"url_fragment": null,
-				"authored_state": "{\"version\":1,\"questionType\":\"open_response\",\"prompt\":\"\u003Cp\u003EThis is the question\u003C/p\u003E\",\"hint\":\"\u003Cp\u003EThis is the hint\u003C/p\u003E\",\"defaultAnswer\":\"This is the default answer\",\"required\":true,\"predictionFeedback\":\"\u003Cp\u003EThis is the post-submission feedback\u003C/p\u003E\"}",
+				"authored_state": "{\"version\":1,\"questionType\":\"open_response\",\"prompt\":\"\u003Cp\u003EOpen response type question\u003C/p\u003E\",\"hint\":\"\u003Cp\u003EThis is the hint\u003C/p\u003E\",\"defaultAnswer\":\"This is the default answer\"}",
 				"is_hidden": false,
 				"is_full_width": true,
 				"show_in_featured_question_report": true,
@@ -105,7 +56,7 @@
 					"data": {
 						"aspect_ratio_method": "DEFAULT",
 						"authoring_guidance": "",
-						"base_url": "https://models-resources.concord.org/question-interactives/branch/master/open-response/",
+						"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/open-response/index.html",
 						"click_to_play": false,
 						"click_to_play_prompt": null,
 						"description": "This shouldn't be used by any real activities it is still under development.",
@@ -113,7 +64,7 @@
 						"full_window": false,
 						"has_report_url": false,
 						"image_url": null,
-						"name": "Open Response (master)",
+						"name": "Open Response S3 (master)",
 						"native_height": 435,
 						"native_width": 576,
 						"no_snapshots": false,
@@ -124,7 +75,56 @@
 					}
 				},
 				"type": "ManagedInteractive",
-				"ref_id": "43-ManagedInteractive",
+				"ref_id": "2843-ManagedInteractive",
+				"linked_interactives": []
+			},
+			"section": "interactive_box"
+		}, {
+			"embeddable": {
+				"name": "OpenResponseQ2",
+				"url_fragment": null,
+				"authored_state": "{\"version\":1,\"questionType\":\"open_response\",\"prompt\":\"\u003Cp\u003EThis is the question\u003C/p\u003E\",\"hint\":\"\",\"defaultAnswer\":\"This is the default answer\",\"required\":true,\"predictionFeedback\":\"\u003Cp\u003EThis is the post-submission feedback\u003C/p\u003E\"}",
+				"is_hidden": false,
+				"is_full_width": true,
+				"show_in_featured_question_report": true,
+				"inherit_aspect_ratio_method": true,
+				"custom_aspect_ratio_method": null,
+				"inherit_native_width": true,
+				"custom_native_width": 576,
+				"inherit_native_height": true,
+				"custom_native_height": 435,
+				"inherit_click_to_play": true,
+				"custom_click_to_play": false,
+				"inherit_full_window": true,
+				"custom_full_window": false,
+				"inherit_click_to_play_prompt": true,
+				"custom_click_to_play_prompt": null,
+				"inherit_image_url": true,
+				"custom_image_url": null,
+				"library_interactive": {
+					"data": {
+						"aspect_ratio_method": "DEFAULT",
+						"authoring_guidance": "",
+						"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/open-response/index.html",
+						"click_to_play": false,
+						"click_to_play_prompt": null,
+						"description": "This shouldn't be used by any real activities it is still under development.",
+						"enable_learner_state": true,
+						"full_window": false,
+						"has_report_url": false,
+						"image_url": null,
+						"name": "Open Response S3 (master)",
+						"native_height": 435,
+						"native_width": 576,
+						"no_snapshots": false,
+						"show_delete_data_button": false,
+						"thumbnail_url": "",
+						"customizable": false,
+						"authorable": true
+					}
+				},
+				"type": "ManagedInteractive",
+				"ref_id": "2844-ManagedInteractive",
 				"linked_interactives": []
 			},
 			"section": "interactive_box"
@@ -132,7 +132,7 @@
 	}, {
 		"additional_sections": {},
 		"embeddable_display_mode": "stacked",
-		"id": 26,
+		"id": 309222,
 		"is_completion": false,
 		"is_hidden": false,
 		"layout": "l-6040",
@@ -149,7 +149,7 @@
 			"embeddable": {
 				"name": "MCQ1",
 				"url_fragment": null,
-				"authored_state": "{\"version\":1,\"questionType\":\"multiple_choice\",\"multipleAnswers\":true,\"layout\":\"vertical\",\"choices\":[{\"id\":\"1\",\"content\":\"a\",\"correct\":true,\"choiceFeedback\":\"Good job.\"},{\"id\":\"2\",\"content\":\"b\",\"correct\":true,\"choiceFeedback\":\"Nice work.\"},{\"id\":\"3\",\"content\":\"c\",\"correct\":false,\"choiceFeedback\":\"Nope.\"}],\"prompt\":\"\u003Cp\u003Ewhy does\u003C/p\u003E\",\"hint\":\"\u003Cp\u003Ethis is the hint\u003C/p\u003E\",\"enableCheckAnswer\":true,\"required\":true,\"customFeedback\":true,\"predictionFeedback\":\"\u003Cp\u003EThis is the post-submission feedback\u003C/p\u003E\"}",
+				"authored_state": "{\"version\":1,\"questionType\":\"multiple_choice\",\"multipleAnswers\":true,\"layout\":\"vertical\",\"choices\":[{\"id\":\"1\",\"content\":\"a\",\"correct\":true,\"choiceFeedback\":\"Good job.\"},{\"id\":\"2\",\"content\":\"b\",\"correct\":true,\"choiceFeedback\":\"Nice work.\"},{\"id\":\"3\",\"content\":\"c\",\"correct\":false,\"choiceFeedback\":\"Nope.\"}],\"prompt\":\"\u003Cp\u003Ewhy does\u003C/p\u003E\",\"required\":true,\"predictionFeedback\":\"\u003Cp\u003EThis is the post-submission feedback\u003C/p\u003E\",\"enableCheckAnswer\":true,\"customFeedback\":true}",
 				"is_hidden": false,
 				"is_full_width": true,
 				"show_in_featured_question_report": true,
@@ -171,7 +171,7 @@
 					"data": {
 						"aspect_ratio_method": "DEFAULT",
 						"authoring_guidance": "",
-						"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+						"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 						"click_to_play": false,
 						"click_to_play_prompt": null,
 						"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -179,7 +179,7 @@
 						"full_window": false,
 						"has_report_url": false,
 						"image_url": null,
-						"name": "Multiple Choice (master)",
+						"name": "Multiple Choice S3 (master)",
 						"native_height": 435,
 						"native_width": 576,
 						"no_snapshots": false,
@@ -190,7 +190,7 @@
 					}
 				},
 				"type": "ManagedInteractive",
-				"ref_id": "44-ManagedInteractive",
+				"ref_id": "2845-ManagedInteractive",
 				"linked_interactives": []
 			},
 			"section": "interactive_box"
@@ -220,7 +220,7 @@
 					"data": {
 						"aspect_ratio_method": "DEFAULT",
 						"authoring_guidance": "",
-						"base_url": "https://models-resources.concord.org/question-interactives/branch/master/multiple-choice/",
+						"base_url": "https://models-resources.s3.amazonaws.com/question-interactives/branch/master/multiple-choice/index.html",
 						"click_to_play": false,
 						"click_to_play_prompt": null,
 						"description": "A basic multiple choice interactive. This is pointing to the master branch and is in development so it shouldn't be used by real activities. \r\n",
@@ -228,7 +228,7 @@
 						"full_window": false,
 						"has_report_url": false,
 						"image_url": null,
-						"name": "Multiple Choice (master)",
+						"name": "Multiple Choice S3 (master)",
 						"native_height": 435,
 						"native_width": 576,
 						"no_snapshots": false,
@@ -239,7 +239,7 @@
 					}
 				},
 				"type": "ManagedInteractive",
-				"ref_id": "46-ManagedInteractive",
+				"ref_id": "2846-ManagedInteractive",
 				"linked_interactives": []
 			},
 			"section": "interactive_box"
@@ -247,7 +247,7 @@
 	}, {
 		"additional_sections": {},
 		"embeddable_display_mode": "stacked",
-		"id": 27,
+		"id": 309223,
 		"is_completion": false,
 		"is_hidden": false,
 		"layout": "l-6040",
@@ -268,7 +268,7 @@
 				"is_hidden": false,
 				"name": "This is a heading",
 				"type": "Embeddable::Xhtml",
-				"ref_id": "8-Embeddable::Xhtml"
+				"ref_id": "273328-Embeddable::Xhtml"
 			},
 			"section": "interactive_box"
 		}]

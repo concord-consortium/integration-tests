@@ -152,10 +152,4 @@ context("Verify Student Activity Work Flow", () => {
         });
 
     });
-
-    it("Verify teacher archive class", () => {
-        cy.login(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD); // Login as admin user
-        TeacherHelper.archiveClass(CLASS_NAME);
-        cy.logout();
-    });
 });
