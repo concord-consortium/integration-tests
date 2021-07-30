@@ -13,7 +13,6 @@ import assignmentsPageElements from "../../support/elements/assignments_page_ele
 import * as assignmentPageFunctions from '../../support/elements/assignments_page_elements';
 import * as ReportHelper from "../../support/helpers/reportHelper";
 import * as C from "../../support/constants";
-import * as c from "../../support/constants";
 
 const CLASS_WORD = C.CLASS_WORD;
 const CLASS_NAME = 'Class '+ CLASS_WORD;
