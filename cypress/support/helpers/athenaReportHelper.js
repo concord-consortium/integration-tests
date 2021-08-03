@@ -1,6 +1,6 @@
-import adminPageElements from "../elements/admin_page_elements";
 import signinPageElements from "../elements/signin_page_elements";
 import researcherReportsPageElements from "../elements/researcher_reports_page_elements";
+import learnersReportPageElements from "../elements/learners_report_page_elements";
 
 const ATHENA_REPORTS_URL = 'https://learn-report.staging.concord.org/auth/login?after_sign_in_path=%2Freport%2Flearner';
 
@@ -16,12 +16,43 @@ export function loginToAthenaReports(username, password){
 
 }
 
-export function invokeUsageReportAPI(reportAPI, expectedOutputFile){
-    invokeReportAPI(reportAPI, expectedOutputFile, true);
+export function addFiltersInUI(uiSelectElement, items){
+    items.forEach(eachItem => {
+        cy.get (uiSelectElement).type(eachItem.name + '{enter}', {force: true});
+    });
 }
 
-export function invokeDetailedReportAPI(reportAPI, expectedOutputFile){
-    invokeReportAPI(reportAPI, expectedOutputFile, false);
+export function verifyCountersInUI(counters){
+    cy.get(learnersReportPageElements.LBL_LEARNERS_COUNT).should('have.text', counters.learnersCount);
+    cy.get(learnersReportPageElements.LBL_STUDENTS_COUNT).should('have.text', counters.studentsCount);
+    cy.get(learnersReportPageElements.LBL_CLASSES_COUNT).should('have.text', counters.classesCount);
+    cy.get(learnersReportPageElements.LBL_RUNNABLES_COUNT).should('have.text', counters.runnableCount);
+    cy.get(learnersReportPageElements.LBL_TEACHERS_COUNT).should('have.text', counters.teachersCount);
+}
+
+/**
+ * This api is to build the athena report url with filters from UI.
+ * filterValues is a list of objects [ {name: 'filter name', id: 'filter id' } ] format.
+ * filter name is used in UI to filter.
+ * filter id is used in API to query.
+ */
+export function addLearnerReportFilter(learnerUrl, filterKey, filterValues){
+    if(filterValues === null || !filterValues ){
+        return learnerUrl;
+    }
+
+    if(filterValues.length > 0){
+       learnerUrl = learnerUrl + '&' + filterKey + '=';
+       let index = 0;
+       filterValues.forEach( filterValue => {
+           index++;
+           learnerUrl = learnerUrl + filterValue.id
+           if(index < filterValues.length){
+               learnerUrl += ',';
+           }
+       });
+    }
+    return learnerUrl;
 }
 
 export function invokeReportAPI(reportAPI, expectedOutputFile, isUsageReport){
@@ -47,7 +78,7 @@ function invokeLambdaFunction(inputData, expectedOutputFile, isUsageReport){
             allowDebug: 1,
             signature: null,
         },
-    }).then((resp) => {
+    }).then((ignoreResp) => {
         downloadReport(expectedOutputFile);
     });
 }
@@ -78,7 +109,7 @@ function readExpectedOutAndCompare(expectedOutputFile, actualOutput){
         if (!isTestPass) {
             //If the test fails we store the current report with suffix "_actual_output" so that we can compare with expected output file
             // to see if we have a bug. If the change is expected. delete the old expected out put file and use the new one as expected output.
-            cy.writeFile(expectedOutputFile + '_actual_output' , actualOutput, 'binary').then((writeoutput) => {
+            cy.writeFile(expectedOutputFile + '_actual_output' , actualOutput, 'binary').then((ignoreOutput) => {
                 throw new Error("Expected output and actual output do not match. Please compare the files in fixtures/recording");
             });
         }
