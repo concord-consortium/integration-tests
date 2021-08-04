@@ -6,9 +6,9 @@ import {addLearnerReportFilter} from "../../support/helpers/athenaReportHelper";
 
 const LEARNER_REPORT_BASE_URL = 'https://learn-report.staging.concord.org/api/v1/report_learners_es/external_report_query_jwt?';
 
-context("Athena Reports Testing", () => {
+context("Verify Athena Reports in Staging", () => {
 
-    it('Verify Learners Report with 1 school, 1 teacher and 1 runnable', () => {
+    it('Verify Learners Report with 1 teacher and 1 runnable', () => {
 
         let inputData = athenaReportsTestDataStaging.test1.input;
         let outputData = athenaReportsTestDataStaging.test1.output
@@ -28,13 +28,12 @@ context("Athena Reports Testing", () => {
 
     });
 
-    it('Verify Learners Report with 1 school, 1 teacher and 1 runnable', () => {
+    it('Verify Learners Report with 1 runnable', () => {
 
         let inputData = athenaReportsTestDataStaging.test2.input;
         let outputData = athenaReportsTestDataStaging.test2.output
 
         AthenaReportsHelper.loginToAthenaReports(C.ADMIN_USERNAME, C.ADMIN_PASSWORD);
-        AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_TEACHERS, inputData.teachers);
         AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_RUNNABLES, inputData.runnables);
         AthenaReportsHelper.verifyCountersInUI(outputData);
 
