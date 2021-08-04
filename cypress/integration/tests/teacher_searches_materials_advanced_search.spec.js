@@ -52,6 +52,7 @@ context("Verify admin can filter instructional materials", () => {
         adminHelper.createExternalActivity1(ACTIVITY2, adminAuthoringPageElements.GRADE_LEVEL_7, adminAuthoringPageElements.SUBJECT_AREAS_PHYSICS);
       }
     });
+    cy.logout();
   });
 
   it("Verify search filter for activity 1", () => {

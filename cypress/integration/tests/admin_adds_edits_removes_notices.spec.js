@@ -32,8 +32,6 @@ context("Verify admin user is able to add a notice and see it in the getting sta
 
   it("Verify admin user is able to remove a notice", () => {
     noticeHelper.deleteNotice(NEW_NOTICE_TEXT);
-    cy.get(userHomePageElements.HEADER_MYCLASSES).click(); // Click 'My Classes' at the top header
-    noticeHelper.noticeTableDoesNotExist();
   });
 
   it("Verify admin user can not add a blank notice", () => {
