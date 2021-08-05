@@ -4,47 +4,46 @@ import learnersReportPageElements from "../../support/elements/learners_report_p
 import {athenaReportsTestDataStaging} from "../../support/testdata/testdata_athena_reports";
 import {addLearnerReportFilter} from "../../support/helpers/athenaReportHelper";
 
-const LEARNER_REPORT_BASE_URL = 'https://learn-report.staging.concord.org/api/v1/report_learners_es/external_report_query_jwt?';
-
 context("Verify Athena Reports in Staging", () => {
 
-    it('Verify Learners Report with 1 teacher and 1 runnable', () => {
 
-        let inputData = athenaReportsTestDataStaging.test1.input;
-        let outputData = athenaReportsTestDataStaging.test1.output
+    athenaReportsTestDataStaging.forEach((eachTest, index, arr) => {
 
-        AthenaReportsHelper.loginToAthenaReports(C.ADMIN_USERNAME, C.ADMIN_PASSWORD);
-        AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_TEACHERS, inputData.teachers);
-        AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_RUNNABLES, inputData.runnables);
-        AthenaReportsHelper.verifyCountersInUI(outputData);
+        it("Verify Athena Reports Test " + (index + 1), () => {
 
-        let reportUrl = AthenaReportsHelper.addLearnerReportFilter(LEARNER_REPORT_BASE_URL, 'schools', inputData.schools);
-        reportUrl = addLearnerReportFilter(reportUrl, 'teachers', inputData.teachers);
-        reportUrl = addLearnerReportFilter(reportUrl, 'runnables', inputData.runnables);
-        reportUrl = addLearnerReportFilter(reportUrl, 'permission_forms', inputData.permissionForms);
+            let inputData = eachTest.input;
+            let outputData = eachTest.output;
 
-        AthenaReportsHelper.invokeReportAPI(reportUrl, inputData.usageReportExpectedOutput, true);
-        AthenaReportsHelper.invokeReportAPI(reportUrl, inputData.detailedReportExpectedOutput, false);
+            AthenaReportsHelper.loginToAthenaReports(C.ADMIN_USERNAME, C.ADMIN_PASSWORD);
+            cy.waitForReact(1000, '#form-container');
+            AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_SCHOOLS, inputData.schools);
+            AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_TEACHERS, inputData.teachers);
+            AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_RUNNABLES, inputData.runnables);
+            AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_PERMISSION_FORMS, inputData.permissionForms);
+            AthenaReportsHelper.verifyCountersInUI(outputData);
 
-    });
+            let queryUrl = null;
+            let usageReportUrl = null;
+            let detailedReportUrl = null;
 
-    it('Verify Learners Report with 1 runnable', () => {
+            cy.getReact('*', { props: { label: 'NEW Details Report' } }).getProps().then(detailedReportProps => {
 
-        let inputData = athenaReportsTestDataStaging.test2.input;
-        let outputData = athenaReportsTestDataStaging.test2.output
+                //Get Detailed Report URLS
+                queryUrl = AthenaReportsHelper.getLearnerReportUrl(detailedReportProps);
+                detailedReportUrl = detailedReportProps.reportUrl;
+            }).then( () => {
 
-        AthenaReportsHelper.loginToAthenaReports(C.ADMIN_USERNAME, C.ADMIN_PASSWORD);
-        AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_RUNNABLES, inputData.runnables);
-        AthenaReportsHelper.verifyCountersInUI(outputData);
+                //NOW Get Usage Report URLS
+                cy.getReact('*', { props: { label: 'NEW Usage Report' } }).getProps().then(usageReportProps => {
+                    usageReportUrl = usageReportProps.reportUrl;
 
-        let reportUrl = AthenaReportsHelper.addLearnerReportFilter(LEARNER_REPORT_BASE_URL, 'schools', inputData.schools);
-        reportUrl = addLearnerReportFilter(reportUrl, 'teachers', inputData.teachers);
-        reportUrl = addLearnerReportFilter(reportUrl, 'runnables', inputData.runnables);
-        reportUrl = addLearnerReportFilter(reportUrl, 'permission_forms', inputData.permissionForms);
+                    //Invoke detailed report api and usage report api.
+                    AthenaReportsHelper.invokeQueryAPI(queryUrl, detailedReportUrl, inputData.detailedReportExpectedOutput);
+                    AthenaReportsHelper.invokeQueryAPI(queryUrl, usageReportUrl, inputData.usageReportExpectedOutput);
+                });
+            });
 
-        AthenaReportsHelper.invokeReportAPI(reportUrl, inputData.usageReportExpectedOutput, true);
-        AthenaReportsHelper.invokeReportAPI(reportUrl, inputData.detailedReportExpectedOutput, false);
-
+        });
     });
 
 });

@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import 'cypress-react-selector';
 
 Cypress.Cookies.defaults({
   preserve: '_rails_portal_session',

@@ -17,8 +17,12 @@ export function loginToAthenaReports(username, password){
 }
 
 export function addFiltersInUI(uiSelectElement, items){
+    if(!items){
+        return;
+    }
+
     items.forEach(eachItem => {
-        cy.get (uiSelectElement).type(eachItem.name + '{enter}', {force: true});
+        cy.get (uiSelectElement).type(eachItem + '{enter}', {force: true});
     });
 }
 
@@ -30,56 +34,49 @@ export function verifyCountersInUI(counters){
     cy.get(learnersReportPageElements.LBL_TEACHERS_COUNT).should('have.text', counters.teachersCount);
 }
 
-/**
- * This api is to build the athena report url with filters from UI.
- * filterValues is a list of objects [ {name: 'filter name', id: 'filter id' } ] format.
- * filter name is used in UI to filter.
- * filter id is used in API to query.
- */
-export function addLearnerReportFilter(learnerUrl, filterKey, filterValues){
-    if(filterValues === null || !filterValues ){
-        return learnerUrl;
+export function getLearnerReportUrl(props){
+    let learnerReportUrl = 'https://learn-report.staging.concord.org' + props.queryUrl;
+    let queryParams = props.queryParams;
+    learnerReportUrl += '?'
+    if(queryParams.schools){
+        learnerReportUrl += ('schools=' + queryParams.schools + '&');
     }
 
-    if(filterValues.length > 0){
-       learnerUrl = learnerUrl + '&' + filterKey + '=';
-       let index = 0;
-       filterValues.forEach( filterValue => {
-           index++;
-           learnerUrl = learnerUrl + filterValue.id
-           if(index < filterValues.length){
-               learnerUrl += ',';
-           }
-       });
+    if(queryParams.teachers){
+        learnerReportUrl += ('teachers=' + queryParams.teachers + '&');
     }
-    return learnerUrl;
+
+    if(queryParams.runnables){
+        learnerReportUrl += ('runnables=' + queryParams.runnables );
+    }
+
+    if(queryParams.permission_forms){
+        learnerReportUrl += ('permission_forms=' + queryParams.permission_forms );
+    }
+
+    return learnerReportUrl;
 }
 
-export function invokeReportAPI(reportAPI, expectedOutputFile, isUsageReport){
-    cy.request(reportAPI).then((reportAPIResponse) => {
-        invokeLambdaFunction(reportAPIResponse.body, expectedOutputFile, isUsageReport);
-    });
+export function invokeQueryAPI(queryUrl, reportUrl, expectedOutputRile){
+    cy.log("URL : " + queryUrl);
+    cy.request(queryUrl).then(queryUrlResp => {
+        invokeReportUrl(queryUrlResp.body, reportUrl, expectedOutputRile)
+    })
 }
 
-function invokeLambdaFunction(inputData, expectedOutputFile, isUsageReport){
-
-    const USAGE_REPORT_LAMBDA = 'https://bn84q7k6u0.execute-api.us-east-1.amazonaws.com/Prod/create-query/?reportServiceSource=authoring.staging.concord.org&tokenServiceEnv=staging&usageReport=true';
-    const DETAILED_REPORT_LAMBDA = 'https://bn84q7k6u0.execute-api.us-east-1.amazonaws.com/Prod/create-query/?reportServiceSource=authoring.staging.concord.org&tokenServiceEnv=staging';
-
-    let currentUrl = isUsageReport ? USAGE_REPORT_LAMBDA : DETAILED_REPORT_LAMBDA;
-
+function invokeReportUrl(queryUrlResp, reportUrl, expectedOutputRile){
     cy.request({
         method: 'POST',
-        url: currentUrl,
+        url: reportUrl,
         form: true,
         body: {
-            json: JSON.stringify(inputData.json),
-            jwt: inputData.token,
+            json: JSON.stringify(queryUrlResp.json),
+            jwt: queryUrlResp.token,
             allowDebug: 1,
             signature: null,
         },
     }).then((ignoreResp) => {
-        downloadReport(expectedOutputFile);
+        downloadReport(expectedOutputRile);
     });
 }
 

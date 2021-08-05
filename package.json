@@ -4,8 +4,8 @@
   "description": "LEARN Portal Integration Tests",
   "main": "index.js",
   "scripts": {
-    "test:run":"cypress run --spec \"cypress/integration/**/*\"",
-    "test:open":"cypress open"
+    "test:run": "cypress run --spec \"cypress/integration/**/*\"",
+    "test:open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
     "mocha-junit-reporter": "^2.0.0",
     "uid": "^2.0.0",
     "uuid": "^8.3.2"
+  },
+  "dependencies": {
+    "cypress-react-selector": "^2.3.11"
   }
 }
