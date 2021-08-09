@@ -2,10 +2,11 @@ import signinPageElements from "../elements/signin_page_elements";
 import researcherReportsPageElements from "../elements/researcher_reports_page_elements";
 import learnersReportPageElements from "../elements/learners_report_page_elements";
 
-const ATHENA_REPORTS_URL = 'https://learn-report.staging.concord.org/auth/login?after_sign_in_path=%2Freport%2Flearner';
+const STAGING_LEARNER_REPORT_URL = 'https://learn-report.staging.concord.org/auth/login?after_sign_in_path=%2Freport%2Flearner';
+const STAGING_REPORT_URL = 'https://learn-report.staging.concord.org';
 
 export function loginToAthenaReports(username, password){
-    cy.visit(ATHENA_REPORTS_URL);
+    cy.visit(STAGING_LEARNER_REPORT_URL);
     cy.url().then(url => {
         if(url.includes('/auth/login')){
             cy.get(signinPageElements.USERNAME_FIELD_SIGNIN_PAGE).type(username);
@@ -35,7 +36,7 @@ export function verifyCountersInUI(counters){
 }
 
 export function getLearnerReportUrl(props){
-    let learnerReportUrl = 'https://learn-report.staging.concord.org' + props.queryUrl;
+    let learnerReportUrl = STAGING_REPORT_URL + props.queryUrl;
     let queryParams = props.queryParams;
     learnerReportUrl += '?'
     if(queryParams.schools){
@@ -47,11 +48,11 @@ export function getLearnerReportUrl(props){
     }
 
     if(queryParams.runnables){
-        learnerReportUrl += ('runnables=' + queryParams.runnables );
+        learnerReportUrl += ('runnables=' + queryParams.runnables + '&');
     }
 
     if(queryParams.permission_forms){
-        learnerReportUrl += ('permission_forms=' + queryParams.permission_forms );
+        learnerReportUrl += ('permission_forms=' + queryParams.permission_forms  );
     }
 
     return learnerReportUrl;
@@ -64,7 +65,7 @@ export function invokeQueryAPI(queryUrl, reportUrl, expectedOutputRile){
     })
 }
 
-function invokeReportUrl(queryUrlResp, reportUrl, expectedOutputRile){
+function invokeReportUrl(queryUrlResp, reportUrl, expectedOutputFile){
     cy.request({
         method: 'POST',
         url: reportUrl,
@@ -76,7 +77,7 @@ function invokeReportUrl(queryUrlResp, reportUrl, expectedOutputRile){
             signature: null,
         },
     }).then((ignoreResp) => {
-        downloadReport(expectedOutputRile);
+        downloadReport(expectedOutputFile);
     });
 }
 

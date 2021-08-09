@@ -9,7 +9,7 @@ context("Verify Athena Reports in Staging", () => {
 
     athenaReportsTestDataStaging.forEach((eachTest, index, arr) => {
 
-        it("Verify Athena Reports Test " + (index + 1), () => {
+        it("Verify " + eachTest.testName, () => {
 
             let inputData = eachTest.input;
             let outputData = eachTest.output;
