@@ -21,7 +21,7 @@ export function createProject() {
   cy.get(adminPageElements.PROJECTS_LINK).click(); // Click 'Projects' link from left nav
   projects.forEach(eachProject => {
 
-    cy.get(projectPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + eachProject.projectName);
+    cy.get(projectPageElements.SEARCH_FIELD).click().clear().type(eachProject.projectName);
     cy.get(projectPageElements.SEARCH_BUTTON).click(); // Click 'Search' button
 
     cy.get(projectPageElements.PROJECT_PAGE_CONTENT).then(($content) => {
