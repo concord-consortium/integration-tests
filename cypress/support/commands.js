@@ -41,9 +41,9 @@ Cypress.Commands.add('login', (username, password) => {
     cy.log("Logging in as user : " + username);
     cy.get(landingPageElements.LOGIN_BUTTON).click();
     cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
-    cy.get(signinPageElements.USERNAME_FIELD).type('{selectall}{backspace}' + username);
+    cy.get(signinPageElements.USERNAME_FIELD).click().clear().type(username);
     cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
-    cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
+    cy.get(signinPageElements.PASSWORD_FIELD).click().clear().type(password, { log: false });
     cy.get(signinPageElements.LOGIN_BUTTON).click();
     cy.contains(flashNoticePageElements.BANNER, "Signed in successfully.");
   });
@@ -54,9 +54,9 @@ Cypress.Commands.add('loginNoFlashNotice', (username, password) => {
   cy.log("Logging in as user : " + username);
   cy.get(landingPageElements.LOGIN_BUTTON).click();
   cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
-  cy.get(signinPageElements.USERNAME_FIELD).type('{selectall}{backspace}' + username);
+  cy.get(signinPageElements.USERNAME_FIELD).click().clear().type(username);
   cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
-  cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
+  cy.get(signinPageElements.PASSWORD_FIELD).click().clear().type(password, { log: false });
   cy.get(signinPageElements.LOGIN_BUTTON).click();
 });
 
@@ -71,9 +71,9 @@ Cypress.Commands.add('loginPortal', (username, password) => {
 Cypress.Commands.add('retryLogin', (username, password) => {
   cy.log("Logging in as user : " + username);
   cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
-  cy.get(signinPageElements.USERNAME_FIELD).type('{selectall}{backspace}' + username);
+  cy.get(signinPageElements.USERNAME_FIELD).click().clear().type(username);
   cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
-  cy.get(signinPageElements.PASSWORD_FIELD).type('{selectall}{backspace}' + password, { log: false });
+  cy.get(signinPageElements.PASSWORD_FIELD).click().clear().type(password, { log: false });
   cy.get(signinPageElements.LOGIN_BUTTON).click();
   cy.contains(flashNoticePageElements.BANNER, "Signed in successfully.");
 });

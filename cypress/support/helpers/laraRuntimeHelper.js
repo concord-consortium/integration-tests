@@ -29,7 +29,7 @@ export function answerQuestion(questionNumberInPage, currentQuestion, studentInd
 
 export function answerOpenResponseQuestion(questionNumberInPage, studentAnswer){
     let selector = 'div.questions-mod div.question:nth-child('+questionNumberInPage+') #embeddable_open_response_answer_answer_text';
-    cy.get(selector).type('{selectall}{backspace}' + studentAnswer);
+    cy.get(selector).click().clear().type(studentAnswer);
 }
 
 export function answerMCQQuestion(questionNumberInPage, selectOptions, shouldCheckAnswer, isSubmitEnabled){

@@ -49,7 +49,7 @@ context("Student registration tests", () => {
         cy.get(signupPageElements.LBL_ERROR_CONFIRM_PASSWORD).should('have.text', 'Passwords do not match');
         cy.get(signupPageElements.BTN_SUBMIT_BUTTON).should('be.disabled');
 
-        cy.get(signupPageElements.TXT_CONFIRM_PASSWORD).type('{selectall}{backspace}' + c.STUDENT7_PASSWORD);
+        cy.get(signupPageElements.TXT_CONFIRM_PASSWORD).click().clear().type(c.STUDENT7_PASSWORD);
         cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();
 
         cy.get(signupPageElements.TXT_CLASS_WORD).type("invalid class word");

@@ -41,7 +41,7 @@ export function copyLaraActivity(existingActivityName, newActivityName){
     //copy activity is in an iframe so, we need use this custom logic for accessing elements in an iframe.
     cy.get('iframe').then($iframe => {
         const $body = $iframe.contents().find('body')
-        cy.wrap($body).find('#lightweight_activity_name').type('{selectall}{backspace}' + newActivityName);
+        cy.wrap($body).find('#lightweight_activity_name').click().clear().type(newActivityName);
         cy.wrap($body).find('input#save-top').first().click();
     })
 
@@ -58,7 +58,7 @@ export function copyLaraActivity(existingActivityName, newActivityName){
 
 export function activateUser(userName, fullName, firstName, lastName) {
 
-  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + userName); // Type student 1's username in the search input field
+  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).click().clear().type(userName); // Type student 1's username in the search input field
   cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click(); // Click 'Search' button
 
   cy.get(adminSettingsUsersPageElements.SEARCH_LIST_HEADER).then(($searchResults) => {
@@ -72,7 +72,7 @@ export function activateUser(userName, fullName, firstName, lastName) {
 
 export function removeUser(userName, fullName) {
 
-  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + userName); // Type student 1's username in the search input field
+  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).click().clear().type(userName); // Type student 1's username in the search input field
   cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click(); // Click 'Search' button
 
   cy.get(adminSettingsUsersPageElements.SEARCH_LIST_HEADER).then(($searchResults) => {
@@ -89,7 +89,7 @@ export function removeUser(userName, fullName) {
 }
 
 export function editAndSaveUser(userName, fullName) {
-  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + userName);
+  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).click().clear().type(userName);
   cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click();
 
   cy.get(adminSettingsUsersPageElements.SEARCH_LIST_HEADER).then(($searchResults) => {
@@ -103,7 +103,7 @@ export function editAndSaveUser(userName, fullName) {
 }
 
 export function addAdminRoleToUser(userName, fullName) {
-  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + userName);
+  cy.get(adminSettingsUsersPageElements.SEARCH_FIELD).click().clear().type(userName);
   cy.get(adminSettingsUsersPageElements.SEARCH_BUTTON).click();
 
   cy.get(adminSettingsUsersPageElements.SEARCH_LIST_HEADER).then(($searchResults) => {

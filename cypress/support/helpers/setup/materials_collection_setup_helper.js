@@ -24,7 +24,7 @@ export function createCollections() {
   cy.get(adminPageElements.MATERIALS_COLLECTION_LINK).click(); // Click 'Materials Collection' link from left nav
   collections.forEach(eachCollection => {
 
-    cy.get(materialsCollectionPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + eachCollection.collectionName);
+    cy.get(materialsCollectionPageElements.SEARCH_FIELD).click().clear().type(eachCollection.collectionName);
     cy.get(materialsCollectionPageElements.SEARCH_BUTTON).click(); // Click 'Search' button
 
     cy.get(materialsCollectionPageElements.MATERIALS_COLLECTION_PAGE_CONTENT).then(($content) => {

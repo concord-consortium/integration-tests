@@ -46,7 +46,7 @@ export function createTags() {
   cy.get(adminPageElements.TAGS_LINK).click(); // Click 'Notices' link from left nav
   tags.forEach(eachTag => {
 
-    cy.get(tagsPageElements.SEARCH_FIELD).type('{selectall}{backspace}' + eachTag.tagName);
+    cy.get(tagsPageElements.SEARCH_FIELD).click().clear().type(eachTag.tagName);
     cy.get(tagsPageElements.SEARCH_BUTTON).click(); // Click 'Search' button
 
     cy.get(tagsPageElements.TAGS_PAGE_CONTENT).then(($content) => {

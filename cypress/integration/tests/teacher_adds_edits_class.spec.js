@@ -60,8 +60,8 @@ context("Verify teacher can add and edit a class", () => {
 
   it("Verify edits made to class can be reverted", () => {
     teacherHelper.openClassSetupSection(CLASS_NAME + "-1a");
-    cy.get(classSetupPageElements.CLASS_NAME_FIELD).type('{selectall}{backspace}' + CLASS_NAME); // Revert class name to original name
-    cy.get(classSetupPageElements.CLASS_WORD_FIELD).type('{selectall}{backspace}' + CLASS_WORD); // Revert class word to original word
+    cy.get(classSetupPageElements.CLASS_NAME_FIELD).click().clear().type(CLASS_NAME); // Revert class name to original name
+    cy.get(classSetupPageElements.CLASS_WORD_FIELD).click().clear().type(CLASS_WORD); // Revert class word to original word
     cy.get(classSetupPageElements.SUBMIT_BUTTON).click(); // Click 'Submit' button
     cy.get(assignmentsPageElements.HEADING).should("have.text", "Assignments for "+ CLASS_NAME); // Check name of class in the Assignments page
     cy.get(assignmentsPageElements.CLASS_WORD).contains(CLASS_WORD); // Check Class word in the Assignments page

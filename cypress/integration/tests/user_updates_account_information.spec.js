@@ -42,8 +42,8 @@ context("Verify user updates to account information", () => {
     cy.url().should('include', '/recent_activity');
     cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings link
     cy.get(userSettingsPageElements.FORM_LEGEND).contains(TEACHER4_NEW_FULLNAME); // Form legend should have teacher's new name with 'a' appended to first and last names
-    cy.get(userSettingsPageElements.FIRST_NAME_FIELD).type('{selectall}{backspace}' + c.TEACHER4_FIRSTNAME); // Revert to teacher's original first name
-    cy.get(userSettingsPageElements.LAST_NAME_FIELD).type('{selectall}{backspace}' + c.TEACHER4_LASTNAME); // Revert to teacher's original last name
+    cy.get(userSettingsPageElements.FIRST_NAME_FIELD).click().clear().type(c.TEACHER4_FIRSTNAME); // Revert to teacher's original first name
+    cy.get(userSettingsPageElements.LAST_NAME_FIELD).click().clear().type(c.TEACHER4_LASTNAME); // Revert to teacher's original last name
     cy.get(userSettingsPageElements.SAVE_BUTTON).click(); // Click 'Save' button
     cy.url().should('include', '/recent_activity');
   });
@@ -76,8 +76,8 @@ context("Verify user updates to account information", () => {
 
     cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings link
     cy.get(userSettingsPageElements.FORM_LEGEND).contains(STUDENT8_NEW_FULLNAME); // Form legend should have student's new name with 'a' appended to first and last names
-    cy.get(userSettingsPageElements.FIRST_NAME_FIELD).type('{selectall}{backspace}' + c.STUDENT8_FIRSTNAME); // Revert to teacher's original first name
-    cy.get(userSettingsPageElements.LAST_NAME_FIELD).type('{selectall}{backspace}' + c.STUDENT8_LASTNAME); // Revert to teacher's original last name
+    cy.get(userSettingsPageElements.FIRST_NAME_FIELD).click().clear().type(c.STUDENT8_FIRSTNAME); // Revert to teacher's original first name
+    cy.get(userSettingsPageElements.LAST_NAME_FIELD).click().clear().type(c.STUDENT8_LASTNAME); // Revert to teacher's original last name
     cy.get(userSettingsPageElements.SAVE_BUTTON).click(); // Click 'Save' button
     cy.url().should('include', '/my_classes');
   });
