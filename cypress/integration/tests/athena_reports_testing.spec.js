@@ -20,6 +20,9 @@ context("Verify Athena Reports in Staging", () => {
             AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_TEACHERS, inputData.teachers);
             AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_RUNNABLES, inputData.runnables);
             AthenaReportsHelper.addFiltersInUI(learnersReportPageElements.SELECT_PERMISSION_FORMS, inputData.permissionForms);
+            if(inputData.start_date && inputData.end_date){
+                AthenaReportsHelper.addDateFilter(inputData.start_date, inputData.end_date);
+            }
             AthenaReportsHelper.verifyCountersInUI(outputData);
 
             let queryUrl = null;

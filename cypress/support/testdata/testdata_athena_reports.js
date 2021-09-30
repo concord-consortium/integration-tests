@@ -42,6 +42,8 @@ export const athenaReportsTestDataStaging = [
         testName: 'Multiple Teachers',
         input: {
             teachers: ['Tejal Admin', 'srivardhan sunkesula'],
+            start_date: '04/01/2021',
+            end_date: '08/31/2021',
 
             usageReportExpectedOutput: 'cypress/fixtures/recordings/ur-t_tejaladmin_srivardhansunkesula.csv',
             detailedReportExpectedOutput: 'cypress/fixtures/recordings/dr-t_tejaladmin_srivardhansunkesula.csv',
@@ -49,9 +51,9 @@ export const athenaReportsTestDataStaging = [
         output: {
             learnersCount: 89,
             studentsCount: 18,
-            classesCount: 21,
+            classesCount: 22,
             teachersCount: 2,
-            runnableCount: 34,
+            runnableCount: 32,
         }
     },
     {
