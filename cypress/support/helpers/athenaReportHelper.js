@@ -27,6 +27,12 @@ export function addFiltersInUI(uiSelectElement, items){
     });
 }
 
+export function addDateFilter(startDate, endDate){
+    cy.get(learnersReportPageElements.START_DATE).type(startDate, {force: true});
+    cy.get(learnersReportPageElements.END_DATE).type(endDate, {force: true});
+    cy.get(learnersReportPageElements.LBL_LEARNERS_COUNT).click({force: true});
+}
+
 export function verifyCountersInUI(counters){
     cy.get(learnersReportPageElements.LBL_LEARNERS_COUNT).should('have.text', counters.learnersCount);
     cy.get(learnersReportPageElements.LBL_STUDENTS_COUNT).should('have.text', counters.studentsCount);
