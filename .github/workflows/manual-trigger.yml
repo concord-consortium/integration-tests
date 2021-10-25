@@ -77,14 +77,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: QA Run for Cypress Integration Tests
+      - name: QA Run for Cypress Functional Tests
         uses: cypress-io/github-action@v2
         if: github.event.inputs.environment != 'staging'
         continue-on-error: true
         with:
           browser: ${{ github.event.inputs.browser }}
           record: true
-          spec: cypress/integration/tests/**/*
+          spec: cypress/integration/functional/**/*
+          parallel: false
+        env:
+          CYPRESS_testEnv: qa
+          CYPRESS_password: ${{ secrets.QA_PASSWORD }}
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: QA Run for Cypress end-end Tests
+        uses: cypress-io/github-action@v2
+        if: github.event.inputs.environment != 'staging'
+        continue-on-error: true
+        with:
+          browser: ${{ github.event.inputs.browser }}
+          record: true
+          spec: cypress/integration/end-end/**/*
           parallel: false
         env:
           CYPRESS_testEnv: qa
@@ -101,7 +118,24 @@ jobs:
         with:
           browser: ${{ github.event.inputs.browser }}
           record: true
-          spec: cypress/integration/tests/**/*
+          spec: cypress/integration/functional/**/*
+          parallel: false
+        env:
+          CYPRESS_testEnv: staging
+          CYPRESS_password: ${{ secrets.STAGING_PASSWORD }}
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Staging Run for Cypress end-end Tests
+        uses: cypress-io/github-action@v2
+        if: github.event.inputs.environment == 'staging'
+        continue-on-error: true
+        with:
+          browser: ${{ github.event.inputs.browser }}
+          record: true
+          spec: cypress/integration/end-end/**/*
           parallel: false
         env:
           CYPRESS_testEnv: staging

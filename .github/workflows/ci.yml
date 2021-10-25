@@ -55,7 +55,7 @@ jobs:
         continue-on-error: true
         with:
           record: true
-          spec: cypress/integration/tests/**/*
+          spec: cypress/integration/functional/**/*
           # only do parallel if we have a record key
           parallel: ${{ !!secrets.CYPRESS_RECORD_KEY }}
         env:
