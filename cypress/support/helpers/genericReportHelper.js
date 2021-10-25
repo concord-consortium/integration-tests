@@ -14,8 +14,8 @@ export function provideOverallFeedback(studentsData, overallFeedbackData){
             password: C[eachStudent + '_PASSWORD']
         }
         let feedbackDataOfStudent = overallFeedbackData[studentObj.username];
-        allReportElements.getOverallFeedbackTextAreaElementForAStudent(studentObj.firstName, studentObj.lastName).type(feedbackDataOfStudent.teacherFeedback)
-        allReportElements.getOverallFeedbackScoreTextElementForStudent(studentObj.firstName, studentObj.lastName).type(feedbackDataOfStudent.teacherScore);
+        allReportElements.getOverallFeedbackTextAreaElementForAStudent(studentObj.firstName, studentObj.lastName).clear().type(feedbackDataOfStudent.teacherFeedback)
+        allReportElements.getOverallFeedbackScoreTextElementForStudent(studentObj.firstName, studentObj.lastName).clear().type(feedbackDataOfStudent.teacherScore);
         allReportElements.getOverallFeedbackCompleteChkBoxElementForStudent(studentObj.firstName, studentObj.lastName).check();
     });
     cy.get(allReportElements.getDoneButtonSelectorForQuestionFeedback()).click();
@@ -42,10 +42,10 @@ export function provideFeedbackForAQuestion(activityNumber, pageNumber, question
         if(questionData.questionType !== 'MCQ' || studentQuestionData.answer.length > 0 ){
 
             if(studentQuestionData.teacherFeedback !== undefined && studentQuestionData.teacherFeedback !== ''){
-                allReportElements.getQuestionFeedbackTextAreaElementForAStudent(studentObj.firstName, studentObj.lastName).type(studentQuestionData.teacherFeedback);
+                allReportElements.getQuestionFeedbackTextAreaElementForAStudent(studentObj.firstName, studentObj.lastName).clear().type(studentQuestionData.teacherFeedback);
             }
             if( studentQuestionData.teacherScore !== undefined && studentQuestionData.teacherScore !== ''){
-                allReportElements.getQuestionScoreTextElementForStudent(studentObj.firstName, studentObj.lastName).type(studentQuestionData.teacherScore);
+                allReportElements.getQuestionScoreTextElementForStudent(studentObj.firstName, studentObj.lastName).clear().type(studentQuestionData.teacherScore);
             }
             allReportElements.getQuestionFeedbackCompleteChkBoxElementForStudent(studentObj.firstName, studentObj.lastName).click();
         }
