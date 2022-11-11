@@ -8,8 +8,8 @@ on:
         default: chrome
         required: true
       environment:
-        description: Environment (can be qa or staging)
-        default: qa
+        description: Environment (can be migrate or staging)
+        default: migrate
         required: true
 
 jobs:
@@ -28,17 +28,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: QA Setup before Integration Tests
+      - name: Migrate Setup before Integration Tests
         uses: cypress-io/github-action@v2
         if: github.event.inputs.environment != 'staging'
         continue-on-error: true
         with:
           browser: ${{ github.event.inputs.browser }}
           record: true
-          spec: cypress/integration/setup/setup.spec.js
+          spec: cypress/e2e/setup/setup.spec.js
         env:
-          CYPRESS_testEnv: qa
-          CYPRESS_password: ${{ secrets.QA_PASSWORD }}
+          CYPRESS_testEnv: migrate
+          CYPRESS_password: ${{ secrets.MIGRATE_PASSWORD }}
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # pass GitHub token to allow accurately detecting a build vs a re-run build
@@ -51,7 +51,7 @@ jobs:
         with:
           browser: ${{ github.event.inputs.browser }}
           record: true
-          spec: cypress/integration/setup/setup.spec.js
+          spec: cypress/e2e/setup/setup.spec.js
         env:
           CYPRESS_testEnv: staging
           CYPRESS_password: ${{ secrets.STAGING_PASSWORD }}
@@ -77,35 +77,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: QA Run for Cypress Functional Tests
+      - name: Migrate Run for Cypress Functional Tests
         uses: cypress-io/github-action@v2
         if: github.event.inputs.environment != 'staging'
         continue-on-error: true
         with:
           browser: ${{ github.event.inputs.browser }}
           record: true
-          spec: cypress/integration/functional/**/*
+          spec: cypress/e2e/functional/**/*
           parallel: false
         env:
-          CYPRESS_testEnv: qa
-          CYPRESS_password: ${{ secrets.QA_PASSWORD }}
+          CYPRESS_testEnv: migrate
+          CYPRESS_password: ${{ secrets.MIGRATE_PASSWORD }}
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # pass GitHub token to allow accurately detecting a build vs a re-run build
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: QA Run for Cypress end-end Tests
+      - name: Migrate Run for Cypress end-end Tests
         uses: cypress-io/github-action@v2
         if: github.event.inputs.environment != 'staging'
         continue-on-error: true
         with:
           browser: ${{ github.event.inputs.browser }}
           record: true
-          spec: cypress/integration/end-end/**/*
+          spec: cypress/e2e/end-end/**/*
           parallel: false
         env:
-          CYPRESS_testEnv: qa
-          CYPRESS_password: ${{ secrets.QA_PASSWORD }}
+          CYPRESS_testEnv: migrate
+          CYPRESS_password: ${{ secrets.MIGRATE_PASSWORD }}
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # pass GitHub token to allow accurately detecting a build vs a re-run build
@@ -118,7 +118,7 @@ jobs:
         with:
           browser: ${{ github.event.inputs.browser }}
           record: true
-          spec: cypress/integration/functional/**/*
+          spec: cypress/e2e/functional/**/*
           parallel: false
         env:
           CYPRESS_testEnv: staging
@@ -135,7 +135,7 @@ jobs:
         with:
           browser: ${{ github.event.inputs.browser }}
           record: true
-          spec: cypress/integration/end-end/**/*
+          spec: cypress/e2e/end-end/**/*
           parallel: false
         env:
           CYPRESS_testEnv: staging

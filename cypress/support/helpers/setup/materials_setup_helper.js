@@ -4,10 +4,10 @@ import laraPageElements from '../../elements/lara_page_elements.js'
 export function materialsSetup() {
 
   const testMaterials = [
-    { materialPath: "activities/Cypress_AutomatedTestActivity1_AP.json", materialName: 'Cypress_AutomatedTestActivity1_AP', materialType: 'activities' },
-    { materialPath: "activities/Cypress_AutomatedTestActivity1_LARA.json", materialName: 'Cypress_AutomatedTestActivity1_LARA', materialType: 'activities' },
+    { materialPath: "cypress/fixtures/activities/Cypress_AutomatedTestActivity1_AP.json", materialName: 'Test Coastal Erosion Activity', materialType: 'activities' },
+    //{ materialPath: "activities/Cypress_AutomatedTestActivity1_LARA.json", materialName: 'Cypress_AutomatedTestActivity1_LARA', materialType: 'activities' },
     //{ materialPath: "sequences/Cypress_AutomatedTestSequence1_AP.json", materialName: 'Cypress_AutomatedTestSequence1_AP', materialType: 'investigations' },
-    { materialPath: "sequences/Cypress_AutomatedTestSequence1_LARA.json", materialName: 'Cypress_AutomatedTestSequence1_LARA', materialType: 'investigations' }
+    //{ materialPath: "sequences/Cypress_AutomatedTestSequence1_LARA.json", materialName: 'Cypress_AutomatedTestSequence1_LARA', materialType: 'investigations' }
   ];
 
   cy.visit(constants.AUTHORING_BASE_URL); // Visit Authoring Portal page
@@ -29,9 +29,7 @@ export function materialsSetup() {
       cy.log("materialExists : " + JSON.stringify(materialExists));
 
       if(!materialExists) {
-        importMaterial(constants.AUTHORING_BASE_URL, `${material.materialPath}`, `${material.materialName}`);
-        cy.reload();
-        publishMaterial(`${material.materialType}`);
+        importMaterial(constants.AUTHORING_BASE_URL, `${material.materialPath}`);
         cy.wait(1000);
       }
     });
@@ -54,76 +52,18 @@ function checkMaterialExistsInPortal(materialName) {
   });
 }
 
-function importMaterial(baseUrl, fixturePath, materialNewName) {
+function importMaterial(baseUrl, fixturePath) {
+  var learnPortalBaseUrl = constants.LEARN_PORTAL_BASE_URL;
+    var learnUrl = learnPortalBaseUrl.replace('https://', '');
   cy.visit(baseUrl); // Visit Authoring Portal page
-  const url = baseUrl + '/api/v1/import';
 
-  Cypress.log({
-    name: "importMaterial",
-    displayName: "import",
-    message: fixturePath,
-    consoleProps: () => {
-      return {
-        fixturePath: fixturePath,
-        importUrl: url
-      }
-    }
-  });
+  cy.get('.top-header [href="/import"]').click();
+  cy.get('input.import_file').selectFile(fixturePath);
+  cy.get('.import_activity_sequence .import.btn-primary').click();
 
-  return cy.fixture(fixturePath).then(materialJSON => {
-    materialJSON.name = materialNewName;
-    materialJSON.title = materialNewName;
-    return requestWithCSRF({
-      url: url,
-      method: "POST",
-      body: {"import": materialJSON},
-      followRedirect: false,
-      log: false
-    }).then(response => {
-      if (response.status !== 200){
-        throw Error("Import response status was: " + response.status + " instead of 200. " +
-          "The url was: " + url);
-      }
-      const body = response.body;
-      if (!body.success) {
-        throw Error("Import has failed " + response.body.error);
-      }
-      return body.url;
-    });
-  });
-}
+  cy.get('#publication-details  .publication_details .btn-primary').click();
+  cy.get('.publication [href*="'+ learnUrl + '"]').click();
+  cy.get('.publication .close_link').click();
 
-function publishMaterial(type) {
-  if(type === "investigations")
-    cy.get(laraPageElements.PUBLISH_LINK_SEQUENCES).click(); // Click Publish for that sequence
-  else if(type === "activities")
-    cy.get(laraPageElements.PUBLISH_LINK_ACTIVITIES).click(); // Click Publish for that activity
-  cy.get(laraPageElements.PUBLISH_MODAL_ROW).contains(constants.PUBLISH_ENV).contains(laraPageElements.ADD_TO_PORTAL_LINK, "add to").click(); // Click 'add to' to publish
-  cy.get(laraPageElements.PUBLISHED_TO_PORTAL_LABEL).should("have.text", "added"); // Check that the text 'added' appears in the modal
-  cy.get(laraPageElements.CLOSE_PUBLISH_MODAL).click(); // Close the publish modal
-}
-
-// function deleteMaterial(materialUrl) {
-//   let type
-//   if (materialUrl.indexOf("/activities/") !== -1) {
-//     type = "activities"
-//   } else {
-//     type = "sequences"
-//   }
-//   const [ baseUrl, id ] = materialUrl.split(`/${type}/`)
-//   return requestWithCSRF({
-//     url: `${baseUrl}/api/v1/${type}/${id}`,
-//     method: "DELETE",
-//   });
-// }
-
-function requestWithCSRF(options) {
-  return cy.get('meta[name="csrf-token"]', {log: false}).then(token => {
-    const newOptions = Object.assign({}, options)
-    if (!newOptions.headers) {
-      newOptions.headers = {}
-    }
-    newOptions.headers['X-CSRF-Token'] = token.attr('content');
-    return cy.request(newOptions)
-  });
+  cy.get('.breadcrumbs [href="/"]').click();
 }

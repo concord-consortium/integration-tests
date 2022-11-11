@@ -146,7 +146,7 @@ Cypress.Commands.add("loginLARA", (username, password) => {
 Cypress.Commands.add("loginLARAWithSSO", (username, password) => {
   cy.log("Logging in as user : " + username);
   cy.get(laraPageElements.LOGIN_LINK).click();
-  cy.get(laraPageElements.LOGIN_SESSION_LINK).contains('Sign in via ' + constants.LARA_PORTAL_ENV).click();
+  cy.get(laraPageElements.LOGIN_SESSION_LINK).contains('Log in via ' + constants.LARA_PORTAL_ENV).click();
   cy.loginPortal(username, password);
 });
 

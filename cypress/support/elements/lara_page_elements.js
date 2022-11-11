@@ -1,7 +1,7 @@
 const laraPageElements = {
   // Home page elements
-  LOGIN_LINK : '#session .login_portal_widget_toggle',
-  LOGIN_SESSION_LINK : '#session .login_portals_widget .text-link a',
+  LOGIN_LINK : '.login-link',
+  LOGIN_SESSION_LINK : '.authoring-header .header-menu-links.show a',
   LOGOUT_LINK : '[href="/users/sign_out"]',
   PUBLISH_LINK_ACTIVITIES : '.quiet_list.activities .item.community:first-child .publish > a',
   PUBLISH_LINK_SEQUENCES : '.quiet_list.sequences .item:first-child .publish > a',
