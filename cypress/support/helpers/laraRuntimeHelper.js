@@ -2,7 +2,7 @@ import automatedTestActivity1_Lara from "../elements/automated_test_activity1_la
 import * as ACTIVITY_PAGES from "../elements/activity_pagination_header";
 
 export function goToPageNumber(pageNumber){
-    cy.get(ACTIVITY_PAGES.BTN_ACTIVITY_PAGE(pageNumber)).click();
+    cy.get(ACTIVITY_PAGES.BTN_ACTIVITY_PAGE()).eq(pageNumber).click();
     cy.wait(2000);
 }
 

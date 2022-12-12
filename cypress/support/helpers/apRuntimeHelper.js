@@ -1,5 +1,6 @@
 import activityPlayerRuntimeElements from "../elements/ap_runtime_page_elements";
 import * as activityPlayerElements from "../elements/ap_runtime_page_elements";
+import * as ACTIVITY_PAGES from "../elements/activity_pagination_header";
 
 /*
 In Lara runtime Dom has all pages with questions.
@@ -31,6 +32,29 @@ export function answerQuestionsInPage(pageNumber, allQuestionsInPage, userIndex)
             case 'IMAGE_QUESTION':
                 answerImageQuestion(questionIndex, currentQuestion, currentQuestion[userIndex]);
                 break;
+
+            case 'CODAP_QUESTION':
+                  answerCodapQuestion(questionIndex, currentQuestion, currentQuestion[userIndex]);
+                  break;
+
+            case 'SAGE_QUESTION':
+                  answerSageQuestion(questionIndex, currentQuestion, currentQuestion[userIndex]);
+                  break;
+
+            case 'MONITOR_MY_WORLD_QUESTION1':
+                  cy.wait(10000);
+                  answerMonitorMyWorldQuestion1(questionIndex, currentQuestion, currentQuestion[userIndex]);
+                  break;
+
+            case 'MONITOR_MY_WORLD_QUESTION2':
+                  cy.wait(10000);
+                  answerMonitorMyWorldQuestion2(questionIndex, currentQuestion, currentQuestion[userIndex]);
+                  break;
+
+            case 'GRAPH_INTERACTIVE_QUESTION':
+                  cy.wait(2000);
+                  verifyGraphInteractiveQuestion(questionIndex, currentQuestion, currentQuestion[userIndex]);
+                  break;
         }
     }
 }
@@ -141,4 +165,73 @@ export function answerImageQuestion(questionNumberInPage, questionDetails, userA
 
 export function showReport(){
     cy.get(activityPlayerRuntimeElements.BTN_SHOW_MY_WORK).click();
+}
+
+export function goToActivityHome(activityName){
+  cy.get("body #app .app").then($body => {
+    if ($body.find("[data-cy=activity-summary]").length > 0) {
+      cy.log("Verify Activity Name");
+      cy.get("[data-cy=activity-summary] .activity-title h1").should('have.text', activityName);
+    } else {
+      cy.log("Activity Home Page");
+      cy.get("[data-cy=home-button]").eq(0).click();
+      cy.wait(2000);
+      cy.get("[data-cy=activity-summary] .activity-title h1").should('have.text', activityName);
+    }
+  });
+}
+
+export function answerMonitorMyWorldQuestion1(questionNumberInPage, questionDetails, userAnswerData){
+
+    cy.get(activityPlayerElements.getQuestionSectionSelector(questionNumberInPage)).find('iframe').then($iframe => {
+      const $body = $iframe.contents().find('#app')
+            cy.wrap($body).find('.data-table-field-module-button-vortex:nth-child(1)').click();
+            cy.wrap($body).find('tr:nth-child(2) input').eq(0).type(userAnswerData.temp);
+            cy.wait(1000);
+            cy.wrap($body).find('tr:nth-child(2) input').eq(1).type(userAnswerData.humidity);
+            cy.wait(1000);
+            cy.wrap($body).find('tr:nth-child(2) input').eq(2).type(userAnswerData.light);
+            cy.wait(1000);
+            cy.wrap($body).find('.data-table-field-module-button-vortex:nth-child(1)').click();
+    });
+    cy.wait(2000);
+}
+
+export function answerMonitorMyWorldQuestion2(questionNumberInPage, questionDetails, userAnswerData){
+
+    cy.get(activityPlayerElements.getQuestionSectionSelector(questionNumberInPage)).find('iframe').then($iframe => {
+      const $body = $iframe.contents().find('#app')
+            cy.wrap($body).find('.data-table-field-module-button-vortex:nth-child(1)').click();
+            cy.wrap($body).find('tr:nth-child(2) input').eq(0).type(userAnswerData.ph);
+            cy.wait(1000);
+            cy.wrap($body).find('tr:nth-child(2) input').eq(1).type(userAnswerData.airTemp);
+            cy.wait(1000);
+            cy.wrap($body).find('tr:nth-child(2) input').eq(2).type(userAnswerData.waterTemp);
+            cy.wait(1000);
+            cy.wrap($body).find('tr:nth-child(2) input').eq(3).type(userAnswerData.nitrate);
+            cy.wait(1000);
+            cy.wrap($body).find('tr:nth-child(2) input').eq(4).type(userAnswerData.phosphate);
+            cy.wait(1000);
+            cy.wrap($body).find('tr:nth-child(2) input').eq(5).type(userAnswerData.oxygen);
+            cy.wait(1000);
+            cy.wrap($body).find('tr:nth-child(2) input').eq(6).type(userAnswerData.turbidity);
+            cy.wait(1000);
+            cy.wrap($body).find('.data-table-field-module-button-vortex:nth-child(1)').click();
+    });
+    cy.wait(2000);
+}
+
+export function verifyGraphInteractiveQuestion(questionNumberInPage, questionDetails, userAnswerData){
+
+    cy.get(activityPlayerElements.getQuestionSectionSelector(questionNumberInPage)).find('.header').contains(userAnswerData.header)
+    cy.wait(6000);
+}
+
+export function goToPageNumber(pageNumber){
+    cy.get(ACTIVITY_PAGES.BTN_ACTIVITY_PAGE()).eq(pageNumber).click();
+    cy.wait(2000);
+}
+
+export function getVersionInfo(){
+    cy.get('[data-cy=version-info]').scrollIntoView().should('be.visible');
 }

@@ -5,7 +5,7 @@ const assignmentsPageElements = {
   CLASS_WORD : 'table[class^=\"classInfo\"] > tbody > :nth-child(2) :nth-child(2)',
   BTN_ASSIGN_MATERIALS: '[class^=assignMaterials] button',
   BTN_ALL_RESOURCES: '[class^=assignMaterials] button li',
-  BTN_REPORT: '#assignments-page a[title=\"Report\"]',
+  BTN_REPORT: '#assignments-page',
   BTN_SHOW_DETAILS_ASSIGNMENT: '#assignments-page button.textButton.adminOption',
 };
 

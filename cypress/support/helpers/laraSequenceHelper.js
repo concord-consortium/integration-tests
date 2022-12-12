@@ -13,7 +13,7 @@ export function answerLaraActivity(activityName, activityTestData, studentIndex)
 
     for(let pageIndex = 1 ; pageIndex <= totalPagesInAssignment; pageIndex++){
 
-        laraRuntimeHelper.goToPageNumber(pageIndex);
+        laraRuntimeHelper.goToPageNumber(pageIndex - 1);
 
         if(activityTestData.assignmentPages[pageIndex] === undefined){
             continue;
@@ -29,9 +29,9 @@ export function answerLaraActivity(activityName, activityTestData, studentIndex)
                 continue;
             }
             cy.log("question : " + questionIndex + " prompt : "+ currentQuestion.prompt);
-            if(currentQuestion.prompt && currentQuestion.prompt.length > 0){
-                verifyQuestionPrompt(questionIndex, currentQuestion.prompt);
-            }
+            // if(currentQuestion.prompt && currentQuestion.prompt.length > 0){
+            //     verifyQuestionPrompt(questionIndex, currentQuestion.prompt);
+            // }
             answerQuestion(questionIndex, currentQuestion, studentIndex);
         }
     }
@@ -40,15 +40,44 @@ export function answerLaraActivity(activityName, activityTestData, studentIndex)
 }
 
 export function verifyLaraSequenceHeader(sequenceName){
-    cy.get(laraSequenceElements.LNK_HEADER_SEQUENCE_NAME).should('have.text', sequenceName);
+  cy.get("body #app .app").then($body => {
+    if ($body.find("[data-cy=activity-nav-header]").length > 0) {
+      cy.log("Navigate To Sequence Home Page");
+      cy.get('.title-container.link .sequence-icon').click();
+      cy.wait(2000);
+      cy.get(laraSequenceElements.LNK_HEADER_SEQUENCE_NAME).should('have.text', sequenceName);
+    } else {
+      cy.log("Sequence Home Page");
+      cy.get(laraSequenceElements.LNK_HEADER_SEQUENCE_NAME).should('have.text', sequenceName);
+    }
+  });
+}
+
+export function goToActivityHome(activityName){
+  cy.get("body #app .app").then($body => {
+    if ($body.find("[data-cy=activity-summary]").length > 0) {
+      cy.log("Verify Activity Name");
+      cy.get("[data-cy=activity-summary] .activity-title h1").should('have.text', activityName);
+    } else {
+      cy.log("Activity Home Page");
+      cy.get("[data-cy=home-button]").eq(0).click();
+      cy.wait(2000);
+      cy.get("[data-cy=activity-summary] .activity-title h1").should('have.text', activityName);
+    }
+  });
 }
 
 export function goToLaraSequenceHome(){
     cy.get(laraSequenceElements.LNK_HEADER_SEQUENCE_NAME).click();
 }
 
+// export function goToActivity(activityIndex){
+//     cy.get(laraSequenceFunctionElements.getActivityLinkInSequenceSelector(activityIndex)).click();
+// }
+
 export function goToActivity(activityIndex){
-    cy.get(laraSequenceFunctionElements.getActivityLinkInSequenceSelector(activityIndex)).click();
+    cy.get(laraSequenceFunctionElements.getActivityLinkInSequenceSelector()).eq(activityIndex).click();
+    cy.wait(6000);
 }
 
 export function verifyIfActivityComplete(activityIndex){
@@ -69,7 +98,7 @@ function answerQuestion(questionNumberInPage, currentQuestion, username){
     }
     switch (currentQuestion.questionType){
         case 'OPEN_RESPONSE_QUESTION':
-            cy.wait(2000);
+            cy.wait(6000);
             iFrameHelper.answerOpenResponseQuestion(iFrameSelector, currentQuestion, studentAnswer);
             break;
         case 'MCQ':
@@ -79,6 +108,14 @@ function answerQuestion(questionNumberInPage, currentQuestion, username){
         case 'FILL_IN_THE_BLANKS':
             cy.wait(2000); //This is taking way too long to load and consistently failing
             iFrameHelper.answerFillInTheBlanksQuestion(iFrameSelector, currentQuestion, studentAnswer);
+            break;
+        case 'MULTI_SELECT':
+            cy.wait(2000); //This is taking way too long to load and consistently failing
+            iFrameHelper.answerMultiSelectQuestion(iFrameSelector, currentQuestion, studentAnswer);
+            break;
+        case 'IMAGE_QUESTION':
+            cy.wait(2000); //This is taking way too long to load and consistently failing
+            iFrameHelper.answerImageQuestion(iFrameSelector, currentQuestion, studentAnswer);
             break;
         default:
             break;
@@ -90,4 +127,40 @@ export function endAssignment(){
     cy.get(laraSequenceElements.LNK_NOT_YOU).click();
 }
 
+export function answerWildFireSim(){
+    laraRuntimeHelper.goToPageNumber(2);
+    cy.wait(6000);
+    cy.log("WildFire Explorer Sim");
+    cy.get("[title='Wildfire Explorer']").then($iframe => {
+      const $body = $iframe.contents().find('#app')
+            cy.wrap($body).find('[data-test=spark-button]').click();
+            cy.wrap($body).find("[class^=app--mainContent] canvas").click(600, 400);
+            cy.wrap($body).find('[data-test=spark-button]').click();
+            cy.wrap($body).find("[class^=app--mainContent] canvas").click(400, 400);
+            cy.wrap($body).find('[data-test=start-button]').click();
+            cy.wait(6000);
+            cy.wrap($body).find('[data-test=start-button]').click();
+            cy.wrap($body).find('[data-test=restart-button]').click();
+            cy.wait(1000);
+            cy.wrap($body).find('[data-test=reload-button]').click();
+            cy.wait(1000);
+    });
+}
 
+export function answerHurricaneSim(){
+    laraRuntimeHelper.goToPageNumber(1);
+    cy.wait(6000);
+    cy.log("Hurricane Explorer Sim");
+    cy.get("[title='Hurricane Explorer']").then($iframe => {
+      const $body = $iframe.contents().find('#app')
+            cy.wrap($body).find('[class^="wind-arrows-toggle"] input').click();
+            cy.wrap($body).find('[class^="hurricane-image-toggle"] input').click();
+            cy.wrap($body).find('[data-test=start-button]').click();
+            cy.wait(2000);
+            cy.wrap($body).find('[data-test=start-button]').click();
+            cy.wrap($body).find('[data-test=restart-button]').click();
+            cy.wait(1000);
+            cy.wrap($body).find('[data-test=reload-button]').click();
+            cy.wait(1000);
+    });
+}

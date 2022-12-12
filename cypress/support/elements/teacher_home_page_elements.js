@@ -2,9 +2,9 @@
 const teacherHomePageElements = {
   BTN_MY_CLASSES: "a.portal-pages-main-nav-item__link.button.register",
   NAV_CLASSES: "#clazzes_nav",
-  LEFT_NAV_CLASSES : '#clazzes_nav > div > ul > li[class^=\"section\"]',
+  LEFT_NAV_CLASSES : '#clazzes_nav > div > ul > li[class^="section"]',
   EXPANDED_LEFT_NAV_CLASSES : '#clazzes_nav > div > ul > li[class^=\"section\"][class*=\"open\"]',
-  LEFT_NAV_CLASS_NAME : '#clazzes_nav > div > ul > li[class^=\"section\"] > ul > li[class^=\"section\"]',
+  LEFT_NAV_CLASS_NAME : '#clazzes_nav > div > ul > li[class^="section"] > ul > li[class^="section"]',
   EXPANDED_LEFT_NAV_CLASS_NAME : '#clazzes_nav > div > ul > li[class^=\"section\"] > ul > li[class^=\"section\"][class*=\"open\"]',
   LEFT_NAV_CLASS_ASSIGNMENTS : 'a[href$=\"/materials\"]',
   LEFT_NAV_STUDENT_ROSTER : 'a[href$=\"/roster\"]',
