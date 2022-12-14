@@ -64,10 +64,8 @@ context("Verify Student Activity Work Flow", () => {
             // BTN_ACTIVITY_RUN(CLASS_NAME).click();
             BTN_ACTIVITY_RUN(CLASS_NAME).click();
             for(let activityIndex = 1 ; activityIndex <= totalActivitiesInSequence - 4; activityIndex++){
-                cy.log("For Loop Inside");
                 let currentActivity = automatedtestSequenceWildFireModuleData[activityIndex];
                 let activityName = currentActivity.name;
-                cy.log("Lara Sequence Helper");
                 cy.wait(15000);
                 LaraSequenceHelper.verifyLaraSequenceHeader(ASSIGNMENT_NAME);
                 // cy.get(laraSequenceElements.LNK_HEADER_SEQUENCE_NAME).contains(ASSIGNMENT_NAME).click();
@@ -98,10 +96,8 @@ context("Verify Student Activity Work Flow", () => {
             // BTN_ACTIVITY_RUN(CLASS_NAME).click();
             BTN_ACTIVITY_RUN(CLASS_NAME).click();
             for(let activityIndex = 2 ; activityIndex <= totalActivitiesInSequence - 4; activityIndex++){
-                cy.log("For Loop Inside");
                 let currentActivity = automatedtestSequenceWildFireModuleData[activityIndex];
                 let activityName = currentActivity.name;
-                cy.log("Lara Sequence Helper");
                 cy.wait(15000);
                 LaraSequenceHelper.verifyLaraSequenceHeader(ASSIGNMENT_NAME);
                 // cy.get(laraSequenceElements.LNK_HEADER_SEQUENCE_NAME).contains(ASSIGNMENT_NAME).click();

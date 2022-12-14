@@ -80,10 +80,8 @@ export function answerFillInTheBlanksQuestion(iFrameSelector, questionData, user
 }
 
 export function answerMultiSelectQuestion(iFrameSelector, questionDetails, userAnswer){
-  cy.log("Inside Multiselct Question");
         let choiceSelector1 = 'div.runtime--choices--question-int div.radio-choice:nth-child('+userAnswer.answer1+') input';
         let choiceSelector2 = 'div.runtime--choices--question-int div.radio-choice:nth-child('+userAnswer.answer2+') input';
-        cy.log("choiceSelector1 " + choiceSelector1)
         iFrameSelector.then($iframe => {
           const $body = $iframe.contents().find('#app')
                 cy.wrap($body).find(choiceSelector1).click();
