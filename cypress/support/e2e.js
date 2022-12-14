@@ -17,6 +17,10 @@
 import './commands'
 import 'cypress-react-selector';
 
+import installLogsCollector from 'cypress-terminal-report/src/installLogsCollector';
+
+installLogsCollector();
+
 Cypress.Cookies.defaults({
   preserve: '_rails_portal_session',
 })

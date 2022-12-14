@@ -41,10 +41,10 @@ export function provideFeedbackForAQuestion(pageNumber, questionNumberInPage, qu
           //as student did not answer we don't have a feedback option
       }else{
         if(studentQuestionData.teacherFeedback !== undefined && studentQuestionData.teacherFeedback !== ''){
-            LaraReportElements.getQuestionFeedbackTextAreaElementForAStudent(firstName, lastName).type(studentQuestionData.teacherFeedback);
+            LaraReportElements.getQuestionFeedbackTextAreaElementForAStudent(firstName, lastName).clear().type(studentQuestionData.teacherFeedback);
         }
         if( studentQuestionData.teacherScore !== undefined && studentQuestionData.teacherScore !== ''){
-            LaraReportElements.getQuestionScoreTextElementForStudent(firstName, lastName).type(studentQuestionData.teacherScore);
+            LaraReportElements.getQuestionScoreTextElementForStudent(firstName, lastName).clear().type(studentQuestionData.teacherScore);
         }
         LaraReportElements.getQuestionFeedbackCompleteChkBoxElementForStudent(firstName, lastName).click();
 
@@ -72,6 +72,9 @@ export function verifyReportForAQuestion(pageNumber, questionNumberInPage, quest
                 break;
             case 'MCQ':
                 verifyMCQAnswer(pageNumber, questionNumberInPage, eachStudent, questionData.options, studentAnswer);
+                break;
+            case 'MULTI_SELECT':
+                verifyMultiSelectAnswer(pageNumber, questionNumberInPage, eachStudent, questionData.options, questionData[studentIndex].answer1, questionData[studentIndex].answer2);
                 break;
             default:
                 break;
@@ -122,4 +125,16 @@ export function verifyMCQAnswer(pageNumber, questionNumberInPage, studentObj, op
        mcqAnswer = mcqAnswer + ', ' + options[studentAnswer[answerIndex]];
     }
     LaraReportElements.getStudentResponseElement(pageNumber, questionNumberInPage, studentName).should('have.text', mcqAnswer);
+}
+
+export function verifyMultiSelectAnswer(pageNumber, questionNumberInPage, studentObj, options, studentAnswer1, studentAnswer2){
+    //studentAnswer in MCQ is an array with one answer or more than one answer.
+    //if student do not submit any answer it would be an empty array.
+    var firstName = c[studentObj + '_FIRSTNAME'];
+    var lastName = c[studentObj + '_LASTNAME'];
+    let studentName = firstName + ' ' + lastName;
+
+       multiSelectAnswer = options[studentAnswer1] + ', ' + options[studentAnswer2];
+
+    LaraReportElements.getStudentResponseElement(pageNumber, questionNumberInPage, studentName).should('have.text', multiSelectAnswer);
 }

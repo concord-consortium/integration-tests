@@ -30,6 +30,15 @@ import signinPageElements from './elements/signin_page_elements.js'
 import flashNoticePageElements from './elements/flash_notice_page_elements.js'
 import laraPageElements from './elements/lara_page_elements.js'
 import constants from './constants.js'
+import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command"
+
+addMatchImageSnapshotCommand({
+  customDiffDir: "cypress/snapshots-diff",
+  failureThreshold: 0.03, // threshold for entire image
+  failureThresholdType: "percent", // percent of image or number of pixels
+  customDiffConfig: { threshold: 0.1 }, // threshold for each pixel
+  capture: "viewport" // capture viewport in screenshot
+});
 
 
 // LEARN Portal Login Form

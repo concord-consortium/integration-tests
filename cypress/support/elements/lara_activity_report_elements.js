@@ -51,11 +51,11 @@ export function getOverallFeedbackCompleteChkBoxElementForStudent(firstName, las
 
 export function getQuestionFeedbackTextAreaElementForAStudent(firstName, lastName){
     let studentName = firstName + ' ' + lastName;
-    return cy.get('div.student-answer h3').contains(studentName + "'s Answer").parent().parent().find('textarea[data-cy=\"feedbackBox\"]');
+    return cy.get('div.student-answer h3').contains(studentName + "'s Answer").parent().parent().find('textarea[data-cy="feedbackBox"]');
 }
 export function getQuestionFeedbackCompleteChkBoxElementForStudent(firstName, lastName){
     let studentName = firstName + ' ' + lastName;
-    return cy.get('div.student-answer h3').contains(studentName + "'s Answer").parent().parent().find('div.feedback-complete input[type=\"checkbox\"]')
+    return cy.get('div.student-answer h3').contains(studentName + "'s Answer").parent().parent().find('div.feedback-complete input[type="checkbox"]')
 }
 
 export function getQuestionScoreTextElementForStudent(firstName, lastName){
