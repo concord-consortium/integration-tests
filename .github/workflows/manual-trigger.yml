@@ -11,6 +11,10 @@ on:
         description: Environment (can be migrate or staging)
         default: migrate
         required: true
+      setup:
+        description: Setup accounts from scratch (can be true or false)
+        default: false
+        required: true
 
 jobs:
   cypress-setup:
@@ -30,7 +34,7 @@ jobs:
 
       - name: Migrate Setup before Integration Tests
         uses: cypress-io/github-action@v2
-        if: github.event.inputs.environment != 'staging'
+        if: ${{ github.event.inputs.environment != 'staging' && github.event.inputs.setup == 'true' }}
         continue-on-error: true
         with:
           browser: ${{ github.event.inputs.browser }}
@@ -46,7 +50,7 @@ jobs:
 
       - name: Staging Setup before Integration Tests
         uses: cypress-io/github-action@v2
-        if: github.event.inputs.environment == 'staging'
+        if: ${{github.event.inputs.environment == 'staging' && github.event.inputs.setup == 'true' }}
         continue-on-error: true
         with:
           browser: ${{ github.event.inputs.browser }}
