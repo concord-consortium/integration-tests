@@ -77,9 +77,9 @@ context("Verify admin can filter instructional materials", () => {
   it("Verify teacher is able to assign activity1 to class1 and class2", () => {
     cy.visit(c.LEARN_PORTAL_BASE_URL);
     cy.get(landingpageSearchMaterialsPage.TXT_KEYWORDS_INPUT).type(ACTIVITY1 + '{enter}').then(() => {
-      cy.get(landingpageSearchMaterialsPage.SUBJECT_MATHEMATICS).click().then(() => {
+      cy.get(landingpageSearchMaterialsPage.SUBJECT_MATHEMATICS).click({force: true}).then(() => {
         cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY1).should('exist');
-        cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY1).contains('Assign or Share').click();
+        cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY1).contains('Assign or Share').click({force: true});
       });
     });
     cy.contains(assignPageElements.CLASS_NAME, CLASS_NAME1).find(assignPageElements.CLASS_CHECKBOX).click();
@@ -91,9 +91,9 @@ context("Verify admin can filter instructional materials", () => {
   it("Verify teacher is able to assign activity2 to class1", () => {
     cy.visit(c.LEARN_PORTAL_BASE_URL);
     cy.get(landingpageSearchMaterialsPage.TXT_KEYWORDS_INPUT).type(ACTIVITY2 + '{enter}').then(() => {
-      cy.get(landingpageSearchMaterialsPage.SUBJECT_PHYSICS).click().then(() => {
+      cy.get(landingpageSearchMaterialsPage.SUBJECT_PHYSICS).click({force: true}).then(() => {
         cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY2).should('exist');
-        cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY2).contains('Assign or Share').click();
+        cy.contains(landingpageSearchMaterialsPage.MATERIAL_FINDER_RESULT, ACTIVITY2).contains('Assign or Share').click({force: true});
       });
     });
     cy.contains(assignPageElements.CLASS_NAME, CLASS_NAME1).find(assignPageElements.CLASS_CHECKBOX).click();

@@ -30,10 +30,10 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Migrate Setup before Integration Tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         if: ${{ github.event.inputs.environment != 'staging' && github.event.inputs.setup == 'true' }}
         continue-on-error: true
         with:
@@ -49,7 +49,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Staging Setup before Integration Tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         if: ${{github.event.inputs.environment == 'staging' && github.event.inputs.setup == 'true' }}
         continue-on-error: true
         with:
@@ -79,10 +79,10 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Migrate Run for Cypress Functional Tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         if: github.event.inputs.environment != 'staging'
         continue-on-error: true
         with:
@@ -99,7 +99,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Migrate Run for Cypress end-end Tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         if: github.event.inputs.environment != 'staging'
         continue-on-error: true
         with:
@@ -116,7 +116,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Staging Run for Cypress Integration Tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         if: github.event.inputs.environment == 'staging'
         continue-on-error: true
         with:
@@ -133,7 +133,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Staging Run for Cypress end-end Tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         if: github.event.inputs.environment == 'staging'
         continue-on-error: true
         with:
