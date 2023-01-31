@@ -3,6 +3,7 @@ import { uid } from 'uid';
 import * as TeacherHelper from "../../support/helpers/teacherHelper";
 import {
     BTN_ACTIVITY_RUN,
+    joinClass,
     getLinkGenerateReport
 } from "../../support/elements/student_home_page_elements";
 import * as adminHelper from "../../support/helpers/adminHelper";
@@ -35,16 +36,15 @@ context("Verify Student Acitivty Player Activity Work Flow", () => {
         cy.login(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD);
         TeacherHelper.addClass(CLASS_NAME, CLASS_NAME, CLASS_WORD);
         TeacherHelper.addAssignment(CLASS_NAME, ASSIGNMENT_NAME);
-        TeacherHelper.openStudentRosterSection(CLASS_NAME);
-        STUDENTS.forEach(eachStudent => {
-            var username = C[eachStudent + '_USERNAME'];
-            var firstName = C[eachStudent + '_FIRSTNAME'];
-            var lastName = C[eachStudent + '_LASTNAME'];
-            TeacherHelper.addRegisteredStudentToClass(username, firstName, lastName, CLASS_NAME);
-        });
         cy.logout();
     });
-
+    it("Verify students can use the class word and add themselves to the class", () => {
+        STUDENTS.forEach(eachStudent => {
+            cy.login(C[eachStudent + '_USERNAME'], C[eachStudent + '_PASSWORD']);
+            joinClass(CLASS_WORD);
+            cy.logout();
+        });
+    })
     it("Verify student submitting answers", () => {
         let studentIndex = 0;
         STUDENTS.forEach(eachStudent => {

@@ -20,6 +20,12 @@ const studentHomePageElements = {
 
 };
 
+export function joinClass(classword) {
+    cy.get(studentHomePageElements.TXT_CLASS_WORD).type(classword);
+    cy.get(studentHomePageElements.BTN_SUBMIT_CLASS_WORD).click();
+    cy.get(studentHomePageElements.BTN_JOIN_CLASS).click();
+}
+
 export function BTN_ACTIVITY_RUN(className){
   return cy.get('div.action_menu_header_left').contains(className).parent().parent().contains('a.button', 'Run');
 }

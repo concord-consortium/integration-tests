@@ -34,14 +34,14 @@ context("Verify user login/logout", () => {
   });
 
   it("Verify a user is unable to login with incorrect username", () => {
-    cy.loginNoFlashNotice("foo", c.TEACHER1_PASSWORD); // Login using incorrect username 'foo'
+    cy.login("foo", c.TEACHER1_PASSWORD); // Login using incorrect username 'foo'
     cy.alert("Error: Login failed."); // Confirm browser alert about login failure
     cy.retryLogin(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login using teacher user
     cy.logout(); // Logout as teacher user
   });
 
   it("Verify a user is unable to login with incorrect password", () => {
-    cy.loginNoFlashNotice(c.TEACHER1_USERNAME, "foo"); // Login using incorrect password 'foo'
+    cy.login(c.TEACHER1_USERNAME, "foo"); // Login using incorrect password 'foo'
     cy.alert("Error: Login failed."); // Confirm browser alert about login failure
     cy.retryLogin(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login using teacher user
     cy.logout(); // Logout as teacher user

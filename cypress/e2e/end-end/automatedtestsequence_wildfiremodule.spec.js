@@ -2,6 +2,7 @@ import * as C from '../../support/constants.js'
 import * as TeacherHelper from "../../support/helpers/teacherHelper";
 import {
     BTN_ACTIVITY_RUN,
+    joinClass,
     getLinkGenerateReport
 } from "../../support/elements/student_home_page_elements";
 import * as adminHelper from "../../support/helpers/adminHelper";
@@ -35,19 +36,16 @@ context("Verify Student Activity Work Flow", () => {
         cy.login(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD);
         TeacherHelper.addClass(CLASS_NAME, CLASS_NAME, CLASS_WORD);
         TeacherHelper.addAssignment(CLASS_NAME, ASSIGNMENT_NAME);
-        TeacherHelper.openStudentRosterSection(CLASS_NAME);
-        STUDENTS.forEach(eachStudent => {
-            let studentObj = {
-                username: C[eachStudent + '_USERNAME'],
-                firstName: C[eachStudent + '_FIRSTNAME'],
-                lastName: C[eachStudent + '_LASTNAME'],
-                password: C[eachStudent + '_PASSWORD'],
-            }
-            TeacherHelper.addRegisteredStudentToClass(studentObj.username, studentObj.firstName, studentObj.lastName, CLASS_NAME);
-        });
-
         cy.logout();
     });
+
+    it("Verify students can use the class word and add themselves to the class", () => {
+        STUDENTS.forEach(eachStudent => {
+            cy.login(C[eachStudent + '_USERNAME'], C[eachStudent + '_PASSWORD']);
+            joinClass(CLASS_WORD);
+            cy.logout();
+        });
+    })
 
     it("Run the assignment with students added to the class", () => {
         let totalActivitiesInSequence = automatedtestSequenceWildFireModuleData.totalActivities;

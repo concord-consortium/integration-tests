@@ -54,19 +54,9 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
     cy.get(signinPageElements.PASSWORD_FIELD).click().clear().type(password, { log: false });
     cy.get(signinPageElements.LOGIN_BUTTON).click();
-    cy.contains(flashNoticePageElements.BANNER, "Signed in successfully.");
+    cy.wait(1000);
+    cy.get(landingPageElements.LOGOUT_BUTTON).should("have.text", "Log Out");
   });
-});
-
-// LEARN Portal Login Form
-Cypress.Commands.add('loginNoFlashNotice', (username, password) => {
-  cy.log("Logging in as user : " + username);
-  cy.get(landingPageElements.LOGIN_BUTTON).click();
-  cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
-  cy.get(signinPageElements.USERNAME_FIELD).click().clear().type(username);
-  cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
-  cy.get(signinPageElements.PASSWORD_FIELD).click().clear().type(password, { log: false });
-  cy.get(signinPageElements.LOGIN_BUTTON).click();
 });
 
 // LEARN Portal Login Page
@@ -91,8 +81,9 @@ Cypress.Commands.add('logout', () => {
   cy.get(landingPageElements.LOGIN_BUTTON_HEADER).then(($header) => {
     if($header.find(landingPageElements.LOGOUT_BUTTON).length > 0) {
       cy.log("Logout");
-      cy.get(landingPageElements.LOGOUT_BUTTON).click();
-      cy.contains(flashNoticePageElements.BANNER, "Signed out successfully.");
+      cy.get(landingPageElements.LOGOUT_BUTTON).click({force:true});
+      cy.wait(1000);
+      cy.get(landingPageElements.LOGIN_BUTTON).should("have.text", "Log In");
     }
   });
 });
