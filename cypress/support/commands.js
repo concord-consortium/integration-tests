@@ -59,6 +59,22 @@ Cypress.Commands.add('login', (username, password) => {
   });
 });
 
+Cypress.Commands.add('loginFailed', (username, password) => {
+  cy.get(landingPageElements.LOGIN_BUTTON_HEADER).then(($header) => {
+    if($header.find(landingPageElements.LOGOUT_BUTTON).length > 0) {
+      cy.get(landingPageElements.LOGOUT_BUTTON).click();
+    }
+    cy.log("Logging in as user : " + username);
+    cy.get(landingPageElements.LOGIN_BUTTON).click();
+    cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
+    cy.get(signinPageElements.USERNAME_FIELD).click().clear().type(username);
+    cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
+    cy.get(signinPageElements.PASSWORD_FIELD).click().clear().type(password, { log: false });
+    cy.get(signinPageElements.LOGIN_BUTTON).click();
+    cy.wait(1000);
+  });
+});
+
 // LEARN Portal Login Page
 Cypress.Commands.add('loginPortal', (username, password) => {
   cy.log("Logging in as user : " + username);

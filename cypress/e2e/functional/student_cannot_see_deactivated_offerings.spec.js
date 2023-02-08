@@ -1,6 +1,7 @@
 import C from '../../support/constants.js';
 import * as TeacherHelper from '../../support/helpers/teacherHelper';
 import * as StudentHelper from '../../support/helpers/studentHelper';
+import * as StudentHomePage from "../../support/elements/student_home_page_elements";
 
 const CLASS_WORD = C.CLASS_WORD;
 const CLASS_NAME = 'Class '+ CLASS_WORD;
@@ -17,10 +18,11 @@ context("Verify students cannot see deactivated offerings", () => {
         TeacherHelper.addClass(CLASS_NAME, C.CLASS_DESC, CLASS_WORD);
         TeacherHelper.addAssignment(CLASS_NAME, ASSIGNMENT_NAME);
         TeacherHelper.openStudentRosterSection(CLASS_NAME);
-        TeacherHelper.addRegisteredStudentToClass(C.STUDENT1_USERNAME, C.STUDENT1_FIRSTNAME, C.STUDENT1_LASTNAME);
         cy.logout();
 
         cy.login(C.STUDENT1_USERNAME, C.STUDENT1_PASSWORD);
+        StudentHomePage.joinClass(CLASS_WORD);
+        cy.wait(1000);
         StudentHelper.checkClassNameAppears(CLASS_NAME);
         StudentHelper.verifyAssignmentExists(CLASS_NAME, ASSIGNMENT_NAME);
         cy.logout();
