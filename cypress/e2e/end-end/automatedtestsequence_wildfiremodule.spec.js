@@ -16,7 +16,7 @@ import * as laraRuntimeHelper from "../../support/helpers/laraRuntimeHelper";
 
 const CLASS_WORD = C.CLASS_WORD;
 const CLASS_NAME = 'Class '+ CLASS_WORD;
-const ASSIGNMENT_NAME = 'Cypress_AutomatedWildfire_Module';
+const ASSIGNMENT_NAME = 'Cypress_Automated_Wildfire_Module';
 const STUDENTS = ["STUDENT1"];
 
 
