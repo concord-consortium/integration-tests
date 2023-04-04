@@ -4,6 +4,7 @@ import landingPageElements from '../../elements/landing_page_elements.js'
 import signupPageElements from '../../elements/signup_page_elements.js'
 import userHomePageElements from '../../elements/user_home_page_elements.js'
 import * as teacherHelper from '../teacherHelper.js'
+import * as studentHelper from '../studentHelper.js'
 import * as adminHelper from '../adminHelper.js'
 import constants from '../../constants.js'
 
@@ -14,7 +15,8 @@ export function accountsSetup() {
   createTeacherAccounts();
   activateTeacherAccounts();
   createClass();
-  registerStudents();
+  createStudentAccounts();
+  archiveClass();
 }
 
 export function accountsTeardown() {
@@ -126,21 +128,35 @@ function activateTeacherAccounts() {
 function createClass() {
   cy.login(constants.TEACHER1_USERNAME, constants.TEACHER1_PASSWORD);
   teacherHelper.addClass("Setup Class", "Setup Class", constants.CLASS_WORD);
+  cy.logout();
 }
 
-function registerStudents() {
-  var students = ["STUDENT1", "STUDENT2", "STUDENT3", "STUDENT4", "STUDENT5"];
-  var className = "Setup Class";
-  teacherHelper.openStudentRosterSection(className);
+function createStudentAccounts() {
+  var students = ["STUDENT1", "STUDENT2", "STUDENT3", "STUDENT4", "STUDENT5", "STUDENT6", "STUDENT7", "STUDENT8"];
 
   students.forEach(eachStudent => {
     var firstName = constants[eachStudent + '_FIRSTNAME'];
     var lastName = constants[eachStudent + '_LASTNAME'];
-    var name = constants[eachStudent + '_NAME'];
+    var username = constants[eachStudent + '_USERNAME'];
     var password = constants[eachStudent + '_PASSWORD'];
 
-    teacherHelper.addUnregisteredStudentToClass(name, firstName, lastName, password);
+    cy.get(landingPageElements.REGISTER_BUTTON).click();
+    cy.get(signupPageElements.STUDENT_LINK).click();
+    cy.get(signupPageElements.TEACHER_FIRSTNAME).type(firstName);
+    cy.get(signupPageElements.TEACHER_LASTNAME).type(lastName);
+    cy.get(signupPageElements.TEACHER_PASSWORD).type(password);
+    cy.get(signupPageElements.TEACHER_CONFIRM_PASSWORD).type(password);
+    cy.get(signupPageElements.NEXT_BUTTON).click();
+    cy.get(signupPageElements.TXT_CLASS_WORD).type(constants.CLASS_WORD);
+    cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();
+    cy.get(signupPageElements.LBL_SIGNUP_SUCCESS).should("contain", "Success!");
+    cy.get(signupPageElements.CLOSE_BUTTON).click();
   });
-  teacherHelper.archiveClass(className);
+  cy.wait(1000);
+}
+
+function archiveClass() {
+  cy.login(constants.TEACHER1_USERNAME, constants.TEACHER1_PASSWORD);
+  teacherHelper.archiveClass("Setup Class");
   cy.logout();
 }

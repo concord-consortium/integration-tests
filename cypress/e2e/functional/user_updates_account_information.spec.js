@@ -5,6 +5,7 @@ import userHomePageElements from '../../support/elements/user_home_page_elements
 import userSettingsPageElements from '../../support/elements/user_settings_page_elements.js'
 import * as adminHelper from '../../support/helpers/adminHelper'
 import * as teacherHelper from '../../support/helpers/teacherHelper'
+import * as studentHelper from '../../support/helpers/studentHelper.js'
 
 // Note for db tracking : No db tracking required, using existing records
 
@@ -20,11 +21,6 @@ context("Verify user updates to account information", () => {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
     cy.login(c.TEACHER4_USERNAME, c.TEACHER4_PASSWORD); // Login as teacher user
     teacherHelper.addClass(CLASS_NAME, c.CLASS_DESC, CLASS_WORD); // Teacher adds a class
-    teacherHelper.openStudentRosterSection(CLASS_NAME);
-    teacherHelper.addUnregisteredStudentToClass(c.STUDENT8_NAME, c.STUDENT8_FIRSTNAME, c.STUDENT8_LASTNAME, c.STUDENT8_PASSWORD);
-    teacherHelper.getStudentUsername(c.STUDENT8_NAME).then(($studentUsername) => {
-      STUDENT8_USERNAME = $studentUsername;
-    });
   });
 
   after(function() {
@@ -62,7 +58,11 @@ context("Verify user updates to account information", () => {
 
   it("Logout as teacher and login as student", () => {
     cy.logout(); // Logout as teacher
-    cy.login(STUDENT8_USERNAME, c.STUDENT8_PASSWORD); // Login as student
+    cy.login(c.STUDENT8_USERNAME, c.STUDENT8_PASSWORD); // Login as student
+  });
+
+  it("Verify student joins the class", () => {
+    studentHelper.joinClass(CLASS_WORD, c.TEACHER4_FULLNAME);
   });
 
   it("Verify student user is able to update first name , last name", () => {
@@ -89,7 +89,7 @@ context("Verify user updates to account information", () => {
     cy.get(changePasswordPageElements.CONFIRM_PASSWORD_FIELD).type(c.STUDENT8_PASSWORD); // Confirm the new password
     cy.get(changePasswordPageElements.SAVE_BUTTON).click(); // Click 'Save button'
     cy.url().should('include', '/preferences');
-    cy.get(flashNoticePageElements.BANNER).contains('Password for '+ STUDENT8_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
+    cy.get(flashNoticePageElements.BANNER).contains('Password for '+ c.STUDENT8_USERNAME + ' was successfully updated.'); // Check banner that password was successfully updated
     cy.get(userSettingsPageElements.CANCEL_BUTTON).click(); // Click 'Cancel' button to close the form
     cy.url().should('include', '/my_classes');
     cy.logout();
@@ -105,6 +105,6 @@ context("Verify user updates to account information", () => {
   it("Verify admin is able to remove student account", () => {
     cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD); // Login as admin user
     adminHelper.openUsersAdminSection();
-    adminHelper.removeUser(STUDENT8_USERNAME, c.STUDENT8_FULLNAME);
+    adminHelper.removeUser(c.STUDENT8_USERNAME, c.STUDENT8_FULLNAME);
   });
 });

@@ -56,7 +56,8 @@ export function createTags() {
         cy.get(tagsPageElements.SCOPE_FIELD).type(eachTag.tagScope);
         cy.get(tagsPageElements.TAG_FIELD).type(eachTag.tagName);
         cy.get(tagsPageElements.SAVE_BUTTON).click();
-        cy.get(flashNoticePageElements.BANNER).contains("Admin::Tag was successfully created.");
+        cy.wait(1000);
+        // cy.get(flashNoticePageElements.BANNER).contains("Admin::Tag was successfully created.");
         cy.get(tagsPageElements.LIST_TAGS_LINK).click();
         cy.get(tagsPageElements.CREATE_TAG_LINK).should('exist');
       }

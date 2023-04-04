@@ -43,6 +43,7 @@ addMatchImageSnapshotCommand({
 
 // LEARN Portal Login Form
 Cypress.Commands.add('login', (username, password) => {
+  cy.reload();
   cy.get(landingPageElements.LOGIN_BUTTON_HEADER).then(($header) => {
     if($header.find(landingPageElements.LOGOUT_BUTTON).length > 0) {
       cy.get(landingPageElements.LOGOUT_BUTTON).click();
