@@ -45,7 +45,6 @@ context("Verify teacher can add and edit teachers in a class", () => {
   })
 
   it("Verify teacher can see other teacher options in teacher dropdown", () => {
-    cy.get(classSetupPageElements.TEACHERS_DROPDOWN).find('option').contains(c.TEACHER3_USERNAME);
     cy.get(classSetupPageElements.TEACHERS_DROPDOWN).find('option').contains(c.TEACHER4_USERNAME);
     cy.get(classSetupPageElements.TEACHERS_DROPDOWN).find('option').contains(c.TEACHER5_USERNAME);
   });
@@ -59,9 +58,9 @@ context("Verify teacher can add and edit teachers in a class", () => {
   });
 
   it("Verify newly added teacher can add other teachers to the class", () => {
-    cy.get(classSetupPageElements.TEACHERS_DROPDOWN).find('option').contains(c.TEACHER3_USERNAME)
-    .as('selectTeacher3').then( (selectTeacher3) => {
-      cy.get(classSetupPageElements.TEACHERS_DROPDOWN).select(`${selectTeacher3.text()}`)
+    cy.get(classSetupPageElements.TEACHERS_DROPDOWN).find('option').contains(c.TEACHER4_USERNAME)
+    .as('selectTeacher4').then( (selectTeacher4) => {
+      cy.get(classSetupPageElements.TEACHERS_DROPDOWN).select(`${selectTeacher4.text()}`)
       cy.get(classSetupPageElements.ADD_BUTTON).click();
       cy.get(classSetupPageElements.SUBMIT_BUTTON).click();
       cy.contains(flashNoticePageElements.BANNER, "Class was successfully updated.");
@@ -69,7 +68,7 @@ context("Verify teacher can add and edit teachers in a class", () => {
     });
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER1_USERNAME);
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER2_USERNAME);
-    cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER3_USERNAME);
+    cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER4_USERNAME);
   });
 
   it("Verify teacher can remove newly added teacher2 from the class", () => {
@@ -85,22 +84,22 @@ context("Verify teacher can add and edit teachers in a class", () => {
 
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER1_USERNAME).should('exist');
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER2_USERNAME).should('not.exist');
-    cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER3_USERNAME).should('exist');
+    cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER4_USERNAME).should('exist');
     cy.get(classSetupPageElements.SUBMIT_BUTTON).click();
   });
 
-  it("Verify teacher can remove newly added teacher3 from the class", () => {
+  it("Verify teacher can remove newly added teacher4 from the class", () => {
     teacherHelper.openClassSetupSection(CLASS_NAME);
 
-    cy.contains(classSetupPageElements.CURRENT_TEACHERS_ITEM, c.TEACHER3_USERNAME)
+    cy.contains(classSetupPageElements.CURRENT_TEACHERS_ITEM, c.TEACHER4_USERNAME)
       .find(classSetupPageElements.DELETE_TEACHER).click().then(() => {
-          cy.confirm("This action will remove the teacher: \'" + c.TEACHER3_LASTNAME
-          + ", C. (" + c.TEACHER3_USERNAME + ")\' from this class.\\n\\nAre you sure you want to do this?");
+          cy.confirm("This action will remove the teacher: \'" + c.TEACHER4_LASTNAME
+          + ", C. (" + c.TEACHER4_USERNAME + ")\' from this class.\\n\\nAre you sure you want to do this?");
     });
 
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER1_USERNAME);
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER2_USERNAME).should('not.exist');
-    cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER3_USERNAME).should('not.exist');
+    cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER4_USERNAME).should('not.exist');
     cy.get(classSetupPageElements.SUBMIT_BUTTON).click();
   });
 
@@ -110,6 +109,6 @@ context("Verify teacher can add and edit teachers in a class", () => {
       .find(classSetupPageElements.DELETE_TEACHER_DISABLED).should('exist');
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER1_USERNAME);
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER2_USERNAME).should('not.exist');
-    cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER3_USERNAME).should('not.exist');
+    cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER4_USERNAME).should('not.exist');
   });
 });

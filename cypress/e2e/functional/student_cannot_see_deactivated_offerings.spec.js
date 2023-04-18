@@ -5,7 +5,7 @@ import * as StudentHomePage from "../../support/elements/student_home_page_eleme
 
 const CLASS_WORD = C.CLASS_WORD;
 const CLASS_NAME = 'Class '+ CLASS_WORD;
-const ASSIGNMENT_NAME = 'Cypress_AutomatedTestActivity1_AP';
+const ASSIGNMENT_NAME = 'Cypress_Automated_Wildfire_Module';
 
 context("Verify students cannot see deactivated offerings", () => {
 
