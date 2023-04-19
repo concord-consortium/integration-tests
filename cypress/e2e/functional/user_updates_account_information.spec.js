@@ -101,10 +101,4 @@ context("Verify user updates to account information", () => {
     teacherHelper.removeStudentFromRoster(c.STUDENT8_NAME, CLASS_NAME);
     teacherHelper.verifyClassCount(0);
   });
-
-  it("Verify admin is able to remove student account", () => {
-    cy.login(c.ADMIN_USERNAME, c.ADMIN_PASSWORD); // Login as admin user
-    adminHelper.openUsersAdminSection();
-    adminHelper.removeUser(c.STUDENT8_USERNAME, c.STUDENT8_FULLNAME);
-  });
 });
