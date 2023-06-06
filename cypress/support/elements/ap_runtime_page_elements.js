@@ -57,3 +57,7 @@ export function getPreviousPageSelector(){
 export function getPageName(){
     return activityPlayerRuntimeElements.ALL_QUESTIONS_SECTION + ' div.name';
 }
+
+export function getIframeSectionSelector(){
+    return activityPlayerRuntimeElements.ALL_QUESTIONS_SECTION + ' div.embeddable div.managed-interactive';
+}
