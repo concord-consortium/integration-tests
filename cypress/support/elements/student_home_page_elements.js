@@ -38,4 +38,8 @@ export function getLinkGenerateReport(className, linkText){
   return getClassSectionElement(className).contains(studentHomePageElements.LNK_STUDENT_GENERATE_REPORT, linkText);
 }
 
+export function BTN_ACTIVITY_RUN_WITH_INDEX(className, index){
+  return cy.get('div.action_menu_header_left').contains(className).parent().parent().find('.solo.button').eq(index);
+}
+
 export default studentHomePageElements;
