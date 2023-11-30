@@ -23,7 +23,7 @@
     "eslint-plugin-cypress": "^2.11.3",
     "imports-loader": "^4.0.1",
     "junit-report-merger": "^2.2.2",
-    "mocha": "^8.3.2",
+    "mocha": "^10.2.0",
     "mocha-junit-reporter": "^2.0.0",
     "uid": "^2.0.0",
     "uuid": "^8.3.2",
