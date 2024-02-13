@@ -14,11 +14,11 @@ npm install
 ```
 - To run the headless version of the tests, run the following command :
 ```
-npm run -s test:run -- -e password=<...>,testEnv=<...>
+npm run -s test:cypress -- -e password=<...>,testEnv=<...>
 ```
 - To run the tests in a browser, run the following command :
 ```
-npm run -s test:open -- -e password=<...>,testEnv=<...>
+npm run -s test:cypress:open -- -e password=<...>,testEnv=<...>
 ```
 - Once the tests run, a HTML report is available at the location :
 ```

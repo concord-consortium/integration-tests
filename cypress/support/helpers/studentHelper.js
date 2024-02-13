@@ -31,7 +31,7 @@ export function registerStudent(username, firstName, lastName, password, classWo
     cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();
     cy.get(signupPageElements.TXT_CLASS_WORD).type(classWord);
     cy.get(signupPageElements.BTN_SUBMIT_BUTTON).click();
-    cy.get(signupPageElements.LBL_SIGNUP_SUCCESS).contains('Success! your username is '+username);
+    cy.get(signupPageElements.LBL_SIGNUP_SUCCESS).contains('Success! Your username is '+username);
     cy.retryLogin(username, password);
     cy.logout();
 }

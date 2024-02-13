@@ -135,22 +135,6 @@ Cypress.Commands.add('getTinyMceContent', (tinyMceId) => {
   });
 });
 
-Cypress.Commands.overwrite(
-  'contains',
-  (originalFn, subject, filter, text, options = {}) => {
-    // determine if a filter argument was passed
-    if (typeof text === 'object') {
-      options = text
-      text = filter
-      filter = undefined
-    }
-
-    options.matchCase = false
-
-    return originalFn(subject, filter, text, options)
-  }
-)
-
 // LARA Authoring
 Cypress.Commands.add("loginLARA", (username, password) => {
   cy.log("Logging in as user : " + username);

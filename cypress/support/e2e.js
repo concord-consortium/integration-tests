@@ -21,10 +21,6 @@ import installLogsCollector from 'cypress-terminal-report/src/installLogsCollect
 
 installLogsCollector();
 
-Cypress.Cookies.defaults({
-  preserve: '_rails_portal_session',
-})
-
 Cypress.on('uncaught:exception', (err, runnable) => {
   // we expect a 3rd party library error with message 'list not defined'
   // and don't want to fail the test so we return false
