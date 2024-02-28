@@ -58,27 +58,27 @@ context("Verify Student Acitivty Player Activity Work Flow", () => {
 				password: C[eachStudent + '_PASSWORD'],
 			};
 			studentIndex++;
-			cy.login(studentObj.username, studentObj.password);
-			BTN_ACTIVITY_RUN(CLASS_WORD).click();
-			cy.wait(10000);
-			apRuntimeHelper.goToPageNumber(0);
-			cy.wait(25000); //Added more waiting time to get constellations and stars loaded
-			starNavigationHelper.verifyInitialDisplay();
-			starNavigationHelper.makeChangesWithoutRouteMap();
-			apRuntimeHelper.goToPageNumber(1);
-			cy.wait(25000); //Added more waiting time to get constellations and stars loaded
-			starNavigationHelper.makeChangesWithRouteMap();
-			apRuntimeHelper.goToPageNumber(0);
-			cy.wait(25000); //Added more waiting time to get constellations and stars loaded
-			starNavigationHelper.verifyStateSavingWithoutRouteMap();
-			apRuntimeHelper.goToPageNumber(1);
-			cy.wait(25000); //Added more waiting time to get constellations and stars loaded
-			starNavigationHelper.verifyStateSavingWithRouteMap();
-			starNavigationHelper.verifyResetRoute();
-			starNavigationHelper.verifyDeleteSnapshot();
-			cy.go("back");
-			cy.logout();
-			clearCookies();
+    cy.login(studentObj.username, studentObj.password);
+    BTN_ACTIVITY_RUN(CLASS_WORD).click();
+    cy.wait(10000);
+    apRuntimeHelper.goToPageNumber(0);
+    cy.wait(25000); //Added more waiting time to get constellations and stars loaded
+    starNavigationHelper.verifyInitialDisplay();
+    starNavigationHelper.makeChangesWithoutRouteMap();
+    apRuntimeHelper.goToPageNumber(1);
+    cy.wait(25000); //Added more waiting time to get constellations and stars loaded
+    starNavigationHelper.makeChangesWithRouteMap();
+    apRuntimeHelper.goToPageNumber(0);
+    cy.wait(25000); //Added more waiting time to get constellations and stars loaded
+    starNavigationHelper.verifyStateSavingWithoutRouteMap();
+    apRuntimeHelper.goToPageNumber(1);
+    cy.wait(25000); //Added more waiting time to get constellations and stars loaded
+    starNavigationHelper.verifyStateSavingWithRouteMap();
+    starNavigationHelper.verifyResetRoute();
+    starNavigationHelper.verifyDeleteSnapshot();
+    cy.go("back");
+    cy.logout();
+    clearCookies();
 		});
 	});
 

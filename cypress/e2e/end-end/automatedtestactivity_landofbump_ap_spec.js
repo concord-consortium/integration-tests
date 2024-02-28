@@ -19,20 +19,20 @@ const STUDENTS = ["STUDENT3"];
 
 context("Verify Student Acitivty Player Activity Work Flow", () => {
 
-	before(function() {
-		cy.visit(C.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
-	});
+  before(function() {
+    cy.visit(C.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
+  });
 
-	function clearCookies() {
-		cy.clearAllCookies();
-	};
+  function clearCookies() {
+    cy.clearAllCookies();
+  };
 
-	it("Edit portal settings to open activity in same browser tab", () => {
-		cy.login(C.ADMIN_USERNAME, C.ADMIN_PASSWORD);
-		adminHelper.disableOpenInNewWindow(ASSIGNMENT_NAME);
-		cy.logout();
-		clearCookies();
-	});
+  it("Edit portal settings to open activity in same browser tab", () => {
+    cy.login(C.ADMIN_USERNAME, C.ADMIN_PASSWORD);
+    adminHelper.disableOpenInNewWindow(ASSIGNMENT_NAME);
+    cy.logout();
+    clearCookies();
+  });
 
 	it("Verify teacher adds class, assignment and 5 students to class", () => {
 		cy.login(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD);

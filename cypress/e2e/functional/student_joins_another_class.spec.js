@@ -30,12 +30,12 @@ context("Student joins another class tests", () => {
 		cy.clearAllCookies();
 	};
 
-	it("Teacher1 creates new class with class_word_1", () => {
-		cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
-		TeacherHelper.addClass(CLASS_NAME_1, c.CLASS_DESC, CLASS_WORD_1);
-		cy.logout();
-		clearCookies();
-	});
+  it("Teacher1 creates new class with class_word_1", () => {
+    cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
+    TeacherHelper.addClass(CLASS_NAME_1, c.CLASS_DESC, CLASS_WORD_1);
+    cy.logout();
+    clearCookies();
+  });
 
 	it("Teacher2 creates new class with class_word_2", () => {
 		cy.login(c.TEACHER2_USERNAME, c.TEACHER2_PASSWORD);
