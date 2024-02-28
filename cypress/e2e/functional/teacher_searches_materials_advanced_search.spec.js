@@ -28,6 +28,10 @@ context("Verify admin can filter instructional materials", () => {
     cy.logout();
   });
 
+  function clearCookies() {
+		cy.clearAllCookies();
+	};
+
   it("Verify admin can create activity1 if not already present", () => {
     adminHelper.openSearchMaterialsPage();
     cy.get(advancedSearchMaterialsPage.TXT_SEARCH_BAR).type(ACTIVITY1);
@@ -53,6 +57,7 @@ context("Verify admin can filter instructional materials", () => {
       }
     });
     cy.logout();
+    clearCookies();
   });
 
   it("Verify search filter for activity 1", () => {

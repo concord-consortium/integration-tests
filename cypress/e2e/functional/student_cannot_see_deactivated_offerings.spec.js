@@ -9,31 +9,39 @@ const ASSIGNMENT_NAME = 'Cypress_Automated_Wildfire_Module';
 
 context("Verify students cannot see deactivated offerings", () => {
 
-    before(function() {
-        cy.visit(C.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
-    });
+  before(function() {
+    cy.visit(C.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
+  });
 
-    it("Teacher creates a class assigns an assignment and assigns student", () => {
-        cy.login(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD);
-        TeacherHelper.addClass(CLASS_NAME, C.CLASS_DESC, CLASS_WORD);
-        TeacherHelper.addAssignment(CLASS_NAME, ASSIGNMENT_NAME);
-        TeacherHelper.openStudentRosterSection(CLASS_NAME);
-        cy.logout();
+  afterEach(function() {
+    cy.logout();
+    cy.clearAllCookies();
+  });
 
-        cy.login(C.STUDENT1_USERNAME, C.STUDENT1_PASSWORD);
-        StudentHomePage.joinClass(CLASS_WORD);
-        cy.wait(1000);
-        StudentHelper.checkClassNameAppears(CLASS_NAME);
-        StudentHelper.verifyAssignmentExists(CLASS_NAME, ASSIGNMENT_NAME);
-        cy.logout();
+  it("Teacher creates a class assigns an assignment and assigns student", () => {
+    cy.login(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD);
+    TeacherHelper.addClass(CLASS_NAME, C.CLASS_DESC, CLASS_WORD);
+    TeacherHelper.addAssignment(CLASS_NAME, ASSIGNMENT_NAME);
+    TeacherHelper.openStudentRosterSection(CLASS_NAME);
+  });
 
-        cy.login(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD);
-        TeacherHelper.openAssignmentsSection(CLASS_NAME);
-        TeacherHelper.deActivateAssignment(ASSIGNMENT_NAME);
-        cy.logout();
+  it("Verify student sees an assignment", () => {
 
-        cy.login(C.STUDENT1_USERNAME, C.STUDENT1_PASSWORD);
-        StudentHelper.verifyNoOfferingsAvailable(CLASS_NAME);
-        cy.logout();
-    });
+    cy.login(C.STUDENT1_USERNAME, C.STUDENT1_PASSWORD);
+    StudentHomePage.joinClass(CLASS_WORD);
+    cy.wait(1000);
+    StudentHelper.checkClassNameAppears(CLASS_NAME);
+    StudentHelper.verifyAssignmentExists(CLASS_NAME, ASSIGNMENT_NAME);
+  });
+
+  it("Teacher deactivates an assignment", () => {
+    cy.login(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD);
+    TeacherHelper.openAssignmentsSection(CLASS_NAME);
+    TeacherHelper.deActivateAssignment(ASSIGNMENT_NAME);
+  });
+
+  it("Verify student don't sees an assignment", () => {
+    cy.login(C.STUDENT1_USERNAME, C.STUDENT1_PASSWORD);
+    StudentHelper.verifyNoOfferingsAvailable(CLASS_NAME);
+  });
 });

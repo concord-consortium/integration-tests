@@ -28,6 +28,10 @@ context("Verify admin can filter instructional materials", () => {
     cy.logout();
   });
 
+  function clearCookies() {
+		cy.clearAllCookies();
+	};
+
   it("Verify admin can create activity1 if not already present", () => {
     adminHelper.openSearchMaterialsPage();
     cy.get(advancedSearchMaterialsPage.TXT_SEARCH_BAR).type(ACTIVITY1);
@@ -55,6 +59,9 @@ context("Verify admin can filter instructional materials", () => {
   });
 
   it("Verify search filter for activity 1", () => {
+    cy.logout();
+    clearCookies();
+    cy.visit(c.LEARN_PORTAL_BASE_URL);
     cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
     cy.visit(c.LEARN_PORTAL_BASE_URL);cy.visit(c.LEARN_PORTAL_BASE_URL);
     cy.get(landingpageSearchMaterialsPage.TXT_KEYWORDS_INPUT).type(ACTIVITY1 + '{enter}').then(() => {

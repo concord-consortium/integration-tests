@@ -11,11 +11,11 @@ context("Verify users can view, collapse and dismiss notices", () => {
 
     before(function() {
         cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
-
     });
 
     afterEach(function() {
         cy.logout();
+        cy.clearAllCookies();
     });
 
     it("Verify Admin can create notices", () => {

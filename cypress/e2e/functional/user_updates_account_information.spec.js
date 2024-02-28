@@ -27,6 +27,10 @@ context("Verify user updates to account information", () => {
     cy.logout();
   });
 
+  function clearCookies() {
+		cy.clearAllCookies();
+	};
+
   it("Verify teacher user is able to update first name , last name, email", () => {
     cy.get(userHomePageElements.LEFT_NAV_SETTINGS_LINK).click(); // Click Settings link in left nav
     cy.get(userSettingsPageElements.FORM_LEGEND).contains(c.TEACHER4_FULLNAME); // The form legend should contain teacher name
@@ -58,6 +62,8 @@ context("Verify user updates to account information", () => {
 
   it("Logout as teacher and login as student", () => {
     cy.logout(); // Logout as teacher
+    clearCookies();
+    cy.visit(c.LEARN_PORTAL_BASE_URL);
     cy.login(c.STUDENT8_USERNAME, c.STUDENT8_PASSWORD); // Login as student
   });
 
@@ -93,6 +99,7 @@ context("Verify user updates to account information", () => {
     cy.get(userSettingsPageElements.CANCEL_BUTTON).click(); // Click 'Cancel' button to close the form
     cy.url().should('include', '/my_classes');
     cy.logout();
+    clearCookies();
   });
 
   it("Verify teacher cleans up the class", () => {
