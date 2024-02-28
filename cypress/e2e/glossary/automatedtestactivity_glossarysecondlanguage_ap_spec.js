@@ -15,6 +15,10 @@ context("Verify Student Acitivty Player Glossary Second Language Display", () =>
     cy.visit(C.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
   });
 
+  function clearCookies() {
+		cy.clearAllCookies();
+	};
+
   it("Verify glossary second language is displayed first", () => {
       let studentIndex = 0;
       STUDENTS.forEach(eachStudent => {
@@ -31,12 +35,13 @@ context("Verify Student Acitivty Player Glossary Second Language Display", () =>
       apRuntimeHelper.goToActivityHome(ASSIGNMENT_NAME);
       apRuntimeHelper.goToPageNumber(0);
       cy.wait(5000);
-      glossary.getGlossaryWord().click();
+      glossary.getGlossaryWord().click({ force: true });
       glossary.verifyLanguageButton(0, "Spanish");
       glossary.verifyLanguageButton(1, "English");
       glossary.verifyTestTerm("Test Term Spanish");
       cy.go("back");
       cy.logout();
+      clearCookies();
     });
   });
   it("Verify glossary second language is not displayed first", () => {
@@ -49,6 +54,7 @@ context("Verify Student Acitivty Player Glossary Second Language Display", () =>
         password: C[eachStudent + '_PASSWORD'],
       };
       studentIndex++;
+      cy.visit(C.LEARN_PORTAL_BASE_URL);
       cy.login(studentObj.username, studentObj.password);
       cy.wait(5000);
       BTN_ACTIVITY_RUN_WITH_INDEX("Glossary Class", 1).click({ force: true });
@@ -56,7 +62,7 @@ context("Verify Student Acitivty Player Glossary Second Language Display", () =>
       apRuntimeHelper.goToActivityHome(ASSIGNMENT_NAME1);
       apRuntimeHelper.goToPageNumber(0);
       cy.wait(5000);
-      glossary.getGlossaryWord().click();
+      glossary.getGlossaryWord().click({ force: true });
       glossary.verifyLanguageButton(0, "English");
       glossary.verifyLanguageButton(1, "Spanish");
       glossary.verifyTestTerm('What do you think "Test Term" means?');

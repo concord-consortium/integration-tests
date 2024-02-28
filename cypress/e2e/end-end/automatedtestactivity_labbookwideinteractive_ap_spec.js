@@ -22,10 +22,15 @@ context("Verify Student Acitivty Player Activity Work Flow", () => {
         cy.visit(C.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
     });
 
+    function clearCookies() {
+		cy.clearAllCookies();
+	};
+
     it("Edit portal settings to open activity in same browser tab", () => {
         cy.login(C.ADMIN_USERNAME, C.ADMIN_PASSWORD);
         adminHelper.disableOpenInNewWindow(ASSIGNMENT_NAME);
         cy.logout();
+        clearCookies();
     });
 
     it("Verify teacher adds class, assignment and 5 students to class", () => {
@@ -33,12 +38,14 @@ context("Verify Student Acitivty Player Activity Work Flow", () => {
         TeacherHelper.addClass(CLASS_NAME, CLASS_NAME, CLASS_WORD);
         TeacherHelper.addAssignment(CLASS_NAME, ASSIGNMENT_NAME);
         cy.logout();
+        clearCookies();
     });
     it("Verify students can use the class word and add themselves to the class", () => {
         STUDENTS.forEach(eachStudent => {
             cy.login(C[eachStudent + '_USERNAME'], C[eachStudent + '_PASSWORD']);
             joinClass(CLASS_WORD);
             cy.logout();
+            clearCookies();
         });
     });
     it("Verify Labbook Wide Interactive", () => {
