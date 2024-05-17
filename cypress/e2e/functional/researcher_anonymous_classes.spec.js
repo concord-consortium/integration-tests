@@ -2,7 +2,7 @@ import * as c from '../../support/constants.js'
 import * as researchClassesHelper from "../../support/helpers/researcherClassesHelper.js"
 import {ResearcherClassesElements as researchClasses} from "../../support/elements/researcher_anonymous_classes_elements";
 
-context("Researcher classes side bar, filters, resutls table", () => {
+context("Researcher classes side bar, filters, results table", () => {
 
   before(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
@@ -14,18 +14,19 @@ context("Researcher classes side bar, filters, resutls table", () => {
     cy.clearAllCookies();
   });
 
-  it("Verify research project in sidebar", () => {
+  it("Verify research classes landing page", () => {
+    cy.log("Verify research project in sidebar");
     researchClassesHelper.expandResearchProjects(); 
     researchClassesHelper.getResearchProjectsOpen().should("exist");
-  });
-  it("Verify research classes landing page", () => {
+
+    cy.log("Verify landing page")
     researchClassesHelper.verifyProjectsDisplayed();
     researchClassesHelper.clickProject();
     researchClassesHelper.getResearchClassLandingPage().should("exist");
     researchClasses.getHeader().contains("Research Classes: Test Project For Researcher");
-    researchClasses.verifyCohortsHeader();
-    researchClasses.verifyTeachersHeader();
-    researchClasses.verifyResourcesHeader();
+    researchClasses.verifyDropDownHeader("Cohorts");
+    researchClasses.verifyDropDownHeader("Teachers");
+    researchClasses.verifyDropDownHeader("Resources");
     researchClasses.getRemoveConcordConsortiumTeachersCheckbox().should("exist");
     researchClasses.verifyCheckboxText();
     researchClasses.verifyFooterNoteText();
@@ -54,6 +55,7 @@ context("Researcher classes side bar, filters, resutls table", () => {
     researchClasses.verifyResultsLabel();
     researchClasses.getShowSchoolNameCheckbox().parent().contains("Show School Name");
     researchClasses.verifyResultsTableHeader();
+    researchClasses.verifyViewClassLink();
     researchClasses.verifyResultsTableHeaderSortIcon("Cohort");
     researchClasses.verifyResultsTableHeaderSortIcon("Teacher");
     researchClasses.verifyResultsTableHeaderSortIcon("Class");
@@ -66,17 +68,17 @@ context("Researcher classes side bar, filters, resutls table", () => {
   });
   it("Verify sorting", () => {
     researchClasses.clickSortIcon(0);
-    researchClasses.verifyFirstRowData(0, "Test Cohort");
+    researchClasses.verifyFirstRowOfSort(0, "Test Cohort");
     researchClasses.clickSortIcon(0);
-    researchClasses.verifyFirstRowData(0, "Test Cohort, Test Cohort For Researcher");
+    researchClasses.verifyFirstRowOfSort(0, "Test Cohort, Test Cohort For Researcher");
     researchClasses.clickSortIcon(1);
-    researchClasses.verifyFirstRowData(1, "Cypress AutomationTeacher3");
+    researchClasses.verifyFirstRowOfSort(1, "Cypress AutomationTeacher3");
     researchClasses.clickSortIcon(1);
-    researchClasses.verifyFirstRowData(1, "Teacher School");
+    researchClasses.verifyFirstRowOfSort(1, "Teacher School");
     researchClasses.clickSortIcon(3);
-    researchClasses.verifyFirstRowData(3, "Concord Consortium");
+    researchClasses.verifyFirstRowOfSort(3, "Concord Consortium");
     researchClasses.clickSortIcon(3);
-    researchClasses.verifyFirstRowData(3, "Cypress Automation Test School");
+    researchClasses.verifyFirstRowOfSort(3, "Cypress Automation Test School");
   });
   it("Verify Reset All", () => {
     researchClasses.getResetAllButton().should("exist");
@@ -128,19 +130,17 @@ context("Project Expiration Date", () => {
   });
 
   it("Verify project expiration date", () => {
-    researchClasses.getResearcherProjectChecbox().click({ force: true });
+    researchClasses.getResearcherProjectCheckbox().click({ force: true });
     researchClasses.verifyDateInputNotShown();
-    researchClasses.getResearcherProjectChecbox().click({ force: true });
+    researchClasses.getResearcherProjectCheckbox().click({ force: true });
     researchClasses.verifyDateInputShown();
     researchClasses.getResearcherProjectDateInput().click({ force: true }).type("2024-04-01");
-    cy.wait(500);
     researchClasses.getSaveButton().click({ force: true });;
     researchClassesHelper.expandResearchProjects(); 
     researchClassesHelper.getResearchProjectsOpen().should("exist");
     researchClassesHelper.verifyProjectsNotDisplayed();
     cy.visit(c.LEARN_PORTAL_BASE_URL + '/users/78/edit');
     researchClasses.getResearcherProjectDateInput().click({ force: true }).clear();
-    cy.wait(500);
     researchClasses.getSaveButton().click({ force: true });;
     researchClassesHelper.expandResearchProjects();   
     researchClassesHelper.getResearchProjectsOpen().should("exist");

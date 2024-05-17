@@ -1,23 +1,17 @@
 
 export const ResearcherClassesElements = {
-	getHeader() {
-		return cy.get("#primary h1");
-	},
-	verifyCohortsHeader() {
-		cy.get('#form-container form div span').eq(0).contains("Cohorts");
-	},
-	verifyTeachersHeader() {
-		cy.get('#form-container form div span').eq(2).contains("Teachers");
-	},
-	verifyResourcesHeader() {
-		cy.get('#form-container form div span').eq(4).contains("Resources");
-	},
-	getRemoveConcordConsortiumTeachersCheckbox() {
-		return cy.get('#form-container form [type=checkbox]');
-	},
-	verifyCheckboxText() {
-		cy.get('#form-container form [type=checkbox]').parent().should("contain", " Remove Concord Consortium Teachers? *");
-	},
+  getHeader() {
+    return cy.get("#primary h1");
+  },
+  verifyDropDownHeader(header) {
+    cy.get('#form-container form div span').contains(header);
+  },
+  getRemoveConcordConsortiumTeachersCheckbox() {
+    return cy.get('#form-container form [type=checkbox]');
+  },
+  verifyCheckboxText() {
+    cy.get('#form-container form [type=checkbox]').parent().should("contain", " Remove Concord Consortium Teachers? *");
+  },
 	verifyFooterNoteText() {
 		cy.get('#form-container form').should("contain", '* Concord Consortium Teachers belong to schools named "Concord Consortium".');
 	},
@@ -53,7 +47,7 @@ export const ResearcherClassesElements = {
 		const option = ["Cohort", "Teacher", "Class"];
 		this.getResultsTable().find('thead tr th').eq(option.indexOf(column)).find('.icon-sort').should("exist");
 	},
-	getViewClassLink() {
+	verifyViewClassLink() {
 		this.getResultsTable().find('tbody tr').eq(0).find('[class^=linkCell--]').should("contain", "View Class");
 		this.getResultsTable().find('tbody tr').eq(0).find('[class^=linkCell--] a').should("exist");
 	},
@@ -66,7 +60,7 @@ export const ResearcherClassesElements = {
 	clickSortIcon(column) {
 		this.getResultsTable().find('thead tr th').eq(column).find('.icon-sort').click();
 	},
-	verifyFirstRowData(column, data) {
+	verifyFirstRowOfSort(column, data) {
 		this.getResultsTable().find('tbody tr').eq(0).find('td').eq(column).should("contain", data);
 	},
 	getResetAllButton() {
@@ -128,7 +122,7 @@ export const ResearcherClassesElements = {
   getResearcherProject() {
     return cy.get('.options-list .inline-fields label').contains("Test Project For Researcher").parent();
   },
-  getResearcherProjectChecbox() {
+  getResearcherProjectCheckbox() {
     return this.getResearcherProject().find('.project-checkbox');
   },
   getResearcherProjectDateInput() {
