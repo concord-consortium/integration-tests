@@ -12,72 +12,72 @@ export const ResearcherClassesElements = {
   verifyCheckboxText() {
     cy.get('#form-container form [type=checkbox]').parent().should("contain", " Remove Concord Consortium Teachers? *");
   },
-	verifyFooterNoteText() {
-		cy.get('#form-container form').should("contain", '* Concord Consortium Teachers belong to schools named "Concord Consortium".');
-	},
-	clickDropDown(dropDown) {
-		const option = ["Cohorts", "Teachers", "Resources"];
-		cy.get('#form-container form #react-select-'+(option.indexOf(dropDown)+2)+'-input').click({ force: true });
-	},
-	getCohortsDropDown() {
-		return cy.get('#form-container form #react-select-2-option-0').parent();
-	},
-	getTeachersDropDown() {
-		return cy.get('#form-container form #react-select-3-option-0').parent();
-	},
-	getResourcesDropDown() {
-		return cy.get('#form-container form #react-select-4-option-0').parent();
-	},
-	getResultsTable() {
-		return cy.get('#form-container [class^=researcherClassesTable--]');
-	},
-	verifyResultsLabel() {
-		this.getResultsTable().find('[class^=resultsLabel--]').should("contain", "Results");
-	},
-	verifyResultsTableHeader() {
-		this.getResultsTable().find('thead tr')
-		.should("contain", "Cohort")
-		.should("contain", "Teacher")
-		.should("contain", "Class");
-	},
-	getShowSchoolNameCheckbox() {
-		return this.getResultsTable().find('input');
-	},
-	verifyResultsTableHeaderSortIcon(column) {
-		const option = ["Cohort", "Teacher", "Class"];
-		this.getResultsTable().find('thead tr th').eq(option.indexOf(column)).find('.icon-sort').should("exist");
-	},
-	verifyViewClassLink() {
-		this.getResultsTable().find('tbody tr').eq(0).find('[class^=linkCell--]').should("contain", "View Class");
-		this.getResultsTable().find('tbody tr').eq(0).find('[class^=linkCell--] a').should("exist");
-	},
-	getResultsTableSchoolColumn() {
-		return this.getResultsTable().find('thead tr th').eq(3);
-	},
-	verifySchoolColumnSortIcon() {
-		this.getResultsTableSchoolColumn().find('.icon-sort').should("exist");
-	},
-	clickSortIcon(column) {
-		this.getResultsTable().find('thead tr th').eq(column).find('.icon-sort').click();
-	},
-	verifyFirstRowOfSort(column, data) {
-		this.getResultsTable().find('tbody tr').eq(0).find('td').eq(column).should("contain", data);
-	},
-	getResetAllButton() {
+  verifyFooterNoteText() {
+    cy.get('#form-container form').should("contain", '* Concord Consortium Teachers belong to schools named "Concord Consortium".');
+  },
+  clickDropDown(dropDown) {
+    const option = ["Cohorts", "Teachers", "Resources"];
+    cy.get('#form-container form #react-select-'+(option.indexOf(dropDown)+2)+'-input').click({ force: true });
+  },
+  getCohortsDropDown() {
+    return cy.get('#form-container form #react-select-2-option-0').parent();
+  },
+  getTeachersDropDown() {
+    return cy.get('#form-container form #react-select-3-option-0').parent();
+  },
+  getResourcesDropDown() {
+    return cy.get('#form-container form #react-select-4-option-0').parent();
+  },
+  getResultsTable() {
+    return cy.get('#form-container [class^=researcherClassesTable--]');
+  },
+  verifyResultsLabel() {
+    this.getResultsTable().find('[class^=resultsLabel--]').should("contain", "Results");
+  },
+  verifyResultsTableHeader() {
+    this.getResultsTable().find('thead tr')
+    .should("contain", "Cohort")
+    .should("contain", "Teacher")
+    .should("contain", "Class");
+  },
+  getShowSchoolNameCheckbox() {
+    return this.getResultsTable().find('input');
+  },
+  verifyResultsTableHeaderSortIcon(column) {
+    const option = ["Cohort", "Teacher", "Class"];
+    this.getResultsTable().find('thead tr th').eq(option.indexOf(column)).find('.icon-sort').should("exist");
+  },
+  verifyViewClassLink() {
+    this.getResultsTable().find('tbody tr').eq(0).find('[class^=linkCell--]').should("contain", "View Class");
+    this.getResultsTable().find('tbody tr').eq(0).find('[class^=linkCell--] a').should("exist");
+  },
+  getResultsTableSchoolColumn() {
+    return this.getResultsTable().find('thead tr th').eq(3);
+  },
+  verifySchoolColumnSortIcon() {
+    this.getResultsTableSchoolColumn().find('.icon-sort').should("exist");
+  },
+  clickSortIcon(column) {
+    this.getResultsTable().find('thead tr th').eq(column).find('.icon-sort').click();
+  },
+  verifyFirstRowOfSort(column, data) {
+    this.getResultsTable().find('tbody tr').eq(0).find('td').eq(column).should("contain", data);
+  },
+  getResetAllButton() {
     return cy.get('#form-container#form-container [class^=bottom--] [class^=summary--] button');
-	},
+  },
   verifySummary() {
     cy.get('#form-container#form-container [class^=bottom--] [class^=summary--]').should("contain", "Your filter matches: ");
-	},
+  },
   verifySummaryNotDisplayed() {
     cy.get('#form-container#form-container [class^=bottom--] [class^=summary--]').should("not.exist");
-	},
-	verifyConcordConsortiumSchoolNameDisplayed() {
-		this.getResultsTable().find('tbody tr').eq(0).find('td').eq(3).should("contain", "Concord Consortium");
-	},
-	verifyConcordConsortiumSchoolNameNotDisplayed() {
-		this.getResultsTable().find('tbody tr').eq(0).find('td').eq(3).should("not.contain", "Concord Consortium");
-	},
+  },
+  verifyConcordConsortiumSchoolNameDisplayed() {
+    this.getResultsTable().find('tbody tr').eq(0).find('td').eq(3).should("contain", "Concord Consortium");
+  },
+  verifyConcordConsortiumSchoolNameNotDisplayed() {
+    this.getResultsTable().find('tbody tr').eq(0).find('td').eq(3).should("not.contain", "Concord Consortium");
+  },
 
   // Research classes landing page
 
@@ -135,6 +135,6 @@ export const ResearcherClassesElements = {
     this.getResearcherProjectDateInput().invoke("attr", "style").should("contain", "inline-block");
   },
   getSaveButton() {
-		return cy.get('.action_menu_header_right input ').eq(0);
+    return cy.get('.action_menu_header_right input ').eq(0);
   }
 }
