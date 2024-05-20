@@ -13,7 +13,8 @@ const teacherHomePageElements = {
   LEFT_NAV_MANAGE_CLASSES : 'a[href=\"/portal/classes/manage\"]',
   LEFT_NAV_ALL_CLASSES_PARENT : '#clazzes_nav li[class^="section"]',
   LEFT_NAV_MANAGE_CLASSES_ID : "#manage-classes-component",
-  MANAGE_CLASSES_HEADER : '#manage_classes_panel'
+  MANAGE_CLASSES_HEADER : '#manage_classes_panel',
+  LEFT_NAV_RESEARCH_PROJECTS : '#clazzes_nav > div > ul > li[class^="section"]',
 };
 
 export default teacherHomePageElements;
