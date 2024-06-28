@@ -201,24 +201,24 @@ export const ResearcherPermissionFormsElements = {
     // Click links in a specified row of the Permission Forms table
     clickPermissionFormEdit(permissionFormName) {
         this.clickPermissionFormLink(permissionFormName, 'editColumn--nW9BjVVG', 'Edit');
-        cy.wait(2000);
+        // cy.wait(2000);
     },
     clickPermissionFormArchive(permissionFormName) {
         this.clickPermissionFormLink(permissionFormName, 'archiveColumn--vezR01zs', 'Archive');
-        cy.wait(2000);
+        // cy.wait(2000);
     },
     clickPermissionFormUnarchive(permissionFormName) {
         this.clickPermissionFormLink(permissionFormName, 'archiveColumn--vezR01zs', 'Unarchive', 'button', true);
-        cy.wait(2000);
+        // cy.wait(2000);
     },
     clickPermissionFormDelete(permissionFormName) {
         this.clickPermissionFormLink(permissionFormName, 'deleteColumn--IzVI9YZC', 'Delete');
-        cy.wait(2000);
+        // cy.wait(2000);
     },
     // TODO: this is currently unused, because it would bring up another tab
     clickPermissionFormUrl(permissionFormName) {
         this.clickPermissionFormLink(permissionFormName, 'urlColumn--z1WHekGk', 'https://', 'a');
-        cy.wait(2000);
+        // cy.wait(2000);
     },
 
     // Get / verify the text of a URL link
