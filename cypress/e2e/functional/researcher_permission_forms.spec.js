@@ -18,7 +18,6 @@ context("Researcher uses permission forms", () => {
     
     after(function() {
         cy.clearAllCookies();
-        cy.ge
     });
 
     it("Tests Permission forms", () => {
@@ -55,9 +54,10 @@ context("Researcher uses permission forms", () => {
             false, TEST_PROJECT_NAME);
         pf.createNewPermissionForm(TEST_PROJECT_NAME, TEST_PERMISSION_FORM_NAME+'4', 'learn.portal.staging.'+TEST_PERMISSION_FORM_URL,
             false, TEST_PROJECT_NAME);
-            
-        cy.log("Select a Project from the dropdown (on the 'Create New Permission Form' tab)");
-        pf.selectCreateManagePermissionsProject(TEST_PROJECT_NAME);
+
+        // TODO: Replace this unnecessary line(s) with a check that the Project name displayed is the one that we expect
+        // cy.log("Select a Project from the dropdown (on the 'Create New Permission Form' tab)");
+        // pf.selectCreateManagePermissionsProject(TEST_PROJECT_NAME);
 
         cy.log('Test the links on the Permission Forms table, starting with URL text, Archive, and Unarchive');
         pf.verifyPermissionFormUrlText(TEST_PERMISSION_FORM_NAME+'1', TEST_PERMISSION_FORM_URL);
