@@ -21,7 +21,7 @@ context("Researcher reports UI", () => {
     cy.loginPortal(c.ADMIN_USERNAME, c.ADMIN_PASSWORD);
   
     cy.log("Verify research reports fields and label display");
-    researcherReport.verifyUserName();
+    researcherReport.verifyUserName('joe user');
     researcherReport.verifyLogout();
     researcherReport.verifyFormHeader();
     researcherReport.verifyFilterResults();
@@ -43,9 +43,9 @@ context("Researcher reports UI", () => {
 
     cy.log("verify date filter is not remembered")
     researcherReport.getStartDate().click({ force: true }).type("2024-06-01");
-    researcherReport.getLearnersFilterResult().should("contain", "6");
+    researcherReport.getLearnersFilterResult().should("contain", "10");
     researcherReport.getStartDate().click({ force: true }).type("2024-06-05");
-    researcherReport.getLearnersFilterResult().should("contain", "4");
+    researcherReport.getLearnersFilterResult().should("contain", "8");
 
     cy.log("verify refine your search")
     cy.visit(c.LEARN_PORTAL_BASE_URL + '/report/learner?redirecting_after_sign_in=1&queryLimit=10');

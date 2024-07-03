@@ -5,8 +5,8 @@ export const ResearcherReportsPageElements = {
 	getHeader() {
 		return cy.get('#form-container').prev();
 	},
-	verifyUserName() {
-		this.getHeader().should("contain", "joe user");
+	verifyUserName(userName) {
+		this.getHeader().should("contain", userName);
 	},
 	verifyLogout() {
 		this.getHeader().find("a").contains("Logout");
