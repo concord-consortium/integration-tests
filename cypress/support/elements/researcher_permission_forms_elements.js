@@ -111,15 +111,8 @@ export const ResearcherPermissionFormsElements = {
         cy.get(pfe.CREATE_NEW_PERMISSION_FORM_BUTTON).click();
     },
 
-    // On the 'Create New Permission Form' dialog ...
-    verifyCreateNewPermissionFormDialog(project='Select a project...', name='', url='') {
-        this.verifyElementIsPresent(pfe.CREATE_EDIT_PERMISSION_FORM_DIALOG, 'Create New Permission Form');
-        this.verifyElementIsVisible(pfe.CREATE_EDIT_PERM_SELECT_PROJECT_DD, project);
-        this.verifyElementWithValueIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_NAME, name);
-        this.verifyElementWithValueIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_URL,  url);
-        this.verifyElementIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_CANCEL, 'Cancel');
-        this.verifyElementIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_SAVE,   'Save');
-    },
+    // On the 'Create New Permission Form' dialog; or the nearly identical
+    // 'EDIT: <Permission Form name>' dialog ...
     verifyCreateEditPermissionFormSaveButtonEnabled(enabled=true) {
         if (enabled) {
             cy.get(pfe.CREATE_EDIT_PERMISSION_FORM_SAVE).should('not.have.attr', 'disabled');
@@ -162,6 +155,35 @@ export const ResearcherPermissionFormsElements = {
         cy.get(pfe.CREATE_EDIT_PERM_FORM_SAVE_CHANGES).click();
     },
 
+
+    // A utility method used by both of the methods below
+    verifyCreateEditPermissionFormDialog(project='', name='', url='',
+            formHeaderText='Create New Permission Form', SaveButtonText='Save') {
+        this.verifyElementIsPresent(pfe.CREATE_EDIT_PERMISSION_FORM_DIALOG, formHeaderText);
+        this.verifyElementIsVisible(pfe.CREATE_EDIT_PERM_SELECT_PROJECT_DD, project);
+        this.verifyElementWithValueIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_NAME, name);
+        this.verifyElementWithValueIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_URL,  url);
+        this.verifyElementIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_CANCEL, 'Cancel');
+        this.verifyElementIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_SAVE,   SaveButtonText);
+    },
+
+    // Confirm that the 'Create New Permission Form' shows the expected values
+    // - very similar to verifyEditPermissionFormDialog() above
+    verifyCreateNewPermissionFormDialog(project='Select a project...', name='', url='') {
+        this.verifyCreateEditPermissionFormDialog(project, name, url);
+    },
+
+    // Confirm that the 'EDIT: <Permission Form name>' shows the expected values
+    // - very similar to verifyCreateNewPermissionFormDialog() above
+    verifyEditPermissionFormDialog(project='', name='', url='', oldName=null) {
+        let formHeaderText = 'EDIT: '+name;
+        if (oldName != null) {
+            formHeaderText = 'EDIT: '+oldName;
+        }
+        this.verifyCreateEditPermissionFormDialog(project, name, url, formHeaderText, 'Save Changes');
+    },
+
+
     // A method that creates a new Permission Form, using most of the methods above
     createNewPermissionForm(project, name, url='', current_project=null, cancel=false) {
         if (current_project == null) {
@@ -175,26 +197,12 @@ export const ResearcherPermissionFormsElements = {
         this.enterCreateEditPermissionFormName(name);
         this.verifyCreateEditPermissionFormSaveButtonEnabled();
         this.enterCreateEditPermissionFormUrl(url);
+        this.verifyCreateNewPermissionFormDialog(current_project, name, url);
         if (cancel) {
             this.clickCreateEditPermissionFormCancelButton();
         } else {
             this.clickCreatePermissionFormSaveButton();
         }
-    },
-
-
-    // On the 'EDIT: <Permission Form name>' dialog (almost identical to the 'Create New Permission Form' dialog)
-    verifyEditPermissionFormDialog(project='', name='', url='', oldName=null) {
-        if (oldName == null) {
-            this.verifyElementIsPresent(pfe.CREATE_EDIT_PERMISSION_FORM_DIALOG, 'EDIT: '+name);
-        } else {
-            this.verifyElementIsPresent(pfe.CREATE_EDIT_PERMISSION_FORM_DIALOG, 'EDIT: '+oldName);
-        }
-        this.verifyElementIsVisible(pfe.CREATE_EDIT_PERM_SELECT_PROJECT_DD, project);
-        this.verifyElementWithValueIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_NAME, name);
-        this.verifyElementWithValueIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_URL,  url);
-        this.verifyElementIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_CANCEL, 'Cancel');
-        this.verifyElementIsVisible(pfe.CREATE_EDIT_PERMISSION_FORM_SAVE,   'Save Changes');
     },
 
     // A method that edits an existing Permission Form, using methods above,
