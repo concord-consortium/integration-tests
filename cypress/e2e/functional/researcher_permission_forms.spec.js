@@ -141,5 +141,29 @@ context("Researcher uses permission forms", () => {
         pf.clickPermissionFormDelete(TEST_PERMISSION_FORM_NAME+'4');
         pf.clickPermissionFormDelete(TEST_PERMISSION_FORM_NAME+'5');
         // TODO: Confirm deletion
+
+        cy.log('Verify that Permission Forms exist for Active and Archived Classes');
+
+        cy.reload(); // Refresh the page
+
+        // Search for the teacher "AutomationTeacher1"
+        cy.get('.leftSideFirstRow--ZCtrhKNb input[type="text"]').type('AutomationTeacher1');
+        cy.contains('button', 'Search').click();
+
+        // Verify the teacher exists in the results
+        cy.contains('td', 'Cypress AutomationTeacher1').should('exist');
+
+        // Verify the "Show Classes" button exists
+        cy.get('td.expandButton--Ot3lxlcF button.linkButton--etS86e1u')
+        .contains('Show Classes')
+        .should('exist')
+        .click();
+
+        // Verify the "Setup Class" element exists
+        cy.contains('td', 'Setup Class').should('exist');
+
+        // Verify the class name exists
+        cy.contains('td', 'Class 4c470f080f7').should('exist');
+
     });
 });
