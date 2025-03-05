@@ -8,7 +8,7 @@ const userHomePageElements = {
   NO_NOTICES_TEXT : 'div[class^=\"siteNoticesListContainer\"]',
   LEFT_NAV_SETTINGS_LINK : 'a[href$=\"/preferences\"]',
   LEFT_NAV_ADMIN_LINK : 'a[href$=\"/admin\"]',
-  HEADER_MYCLASSES : '#portal-pages-header .portal-pages-main-nav-item:nth-child(3) a'
+  HEADER_MYCLASSES : '#portal-pages-header a.portal-pages-main-nav-item__link:has(i.icon-home)'
 };
 
 export default userHomePageElements;
