@@ -19,7 +19,7 @@ context("Verify the user is able to Filter Materials Collections automatically w
     materialsHelper.verifyMaterialsCollectionPage();
 
     cy.log("verify initial filter result");
-    materialsHelper.verifyFilterResult("all 6");
+    materialsHelper.verifyFilterResult("all 7");
 
     cy.log("verify filter materials collections for project 1");
     materialsHelper.selectProject("Test Project Images");
@@ -43,7 +43,7 @@ context("Verify the user is able to Filter Materials Collections automatically w
 
     cy.log("verify default materials collections");
     materialsHelper.selectProject("Select project...");
-    materialsHelper.verifyFilterResult("all 6");
+    materialsHelper.verifyFilterResult("all 7");
 
     cy.log("verify search material collection");
     materialsHelper.enterMaterialsName("Test Project Images");
