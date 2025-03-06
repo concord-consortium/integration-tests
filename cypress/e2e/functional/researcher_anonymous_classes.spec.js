@@ -23,7 +23,7 @@ context("Researcher classes side bar, filters, results table", () => {
     researchClassesHelper.verifyProjectsDisplayed();
     researchClassesHelper.clickProject();
     researchClassesHelper.getResearchClassLandingPage().should("exist");
-    researchClasses.getHeader().contains("Research Classes: Test Project For Researcher");
+    researchClasses.getHeader().contains("Research Classes: Cypress Test Project For Researcher");
     researchClasses.verifyDropDownHeader("Cohorts");
     researchClasses.verifyDropDownHeader("Teachers");
     researchClasses.verifyDropDownHeader("Resources");
@@ -34,7 +34,7 @@ context("Researcher classes side bar, filters, results table", () => {
   it("should verify research classes dropdown", () => {
     researchClasses.clickDropDown("Cohorts");
     researchClasses.getCohortsDropDown().should("not.contain", "Test Project: Test Cohort");
-    researchClasses.getCohortsDropDown().contains("Test Project For Researcher: Test Cohort");
+    researchClasses.getCohortsDropDown().contains("Cypress Test Project For Researcher: Test Cohort");
     researchClasses.clickDropDown("Teachers");
     researchClasses.getTeachersDropDown().contains("Cypress AutomationTeacher1 (cautomationTeacher1)");
     researchClasses.clickDropDown("Resources");
@@ -50,7 +50,7 @@ context("Researcher classes side bar, filters, results table", () => {
   it("should verify results table", () => {
     researchClasses.getResultsTable().should("not.exist");
     researchClasses.clickDropDown("Cohorts");
-    researchClasses.getCohortsDropDown().contains("Test Project For Researcher: Test Cohort").click({ force: true });
+    researchClasses.getCohortsDropDown().contains("Cypress Test Project For Researcher: Test Cohort").click({ force: true });
     researchClasses.getResultsTable().should("exist");
     researchClasses.verifyResultsLabel();
     researchClasses.getShowSchoolNameCheckbox().parent().contains("Show School Name");
