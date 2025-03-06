@@ -73,10 +73,10 @@ export const ResearcherClassesElements = {
     cy.get('#form-container#form-container [class^=bottom--] [class^=summary--]').should("not.exist");
   },
   verifyConcordConsortiumSchoolNameDisplayed() {
-    this.getResultsTable().find('tbody tr').eq(0).find('td').eq(3).should("contain", "Concord Consortium");
+    this.getResultsTable().find('tbody tr').eq(5).find('td').eq(3).should("contain", "Concord Consortium");
   },
   verifyConcordConsortiumSchoolNameNotDisplayed() {
-    this.getResultsTable().find('tbody tr').eq(0).find('td').eq(3).should("not.contain", "Concord Consortium");
+    this.getResultsTable().find('tbody tr').eq(5).find('td').eq(3).should("not.contain", "Concord Consortium");
   },
 
   // Research classes landing page

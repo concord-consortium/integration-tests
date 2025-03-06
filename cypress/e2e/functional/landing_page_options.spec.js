@@ -27,7 +27,6 @@ context("Verify landing page options", () => {
     cy.get(signinPageElements.FORGOT_LINK).should("be.visible"); // Check Forgot password link is visible in Signin Form
     cy.get(signinPageElements.LOGIN_BUTTON).should("be.visible"); // Check Login button is visible in Signin Form
     cy.get('body').click('topLeft'); // Clicks in the top-left corner to dismiss modal
-    cy.wait(1000); // Wait for modal to close
     cy.get('#login-default-modal').should('have.css', 'display', 'none'); // Check Signin Form modal is not visible anymore
   });
 

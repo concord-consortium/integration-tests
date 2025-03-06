@@ -14,12 +14,12 @@ context("Researcher classes side bar, filters, results table", () => {
     cy.clearAllCookies();
   });
 
-  it("Verify research classes landing page", () => {
-    cy.log("Verify research project in sidebar");
+  it("should verify research classes landing page", () => {
+    cy.log("should verify research project in sidebar");
     researchClassesHelper.expandResearchProjects(); 
     researchClassesHelper.getResearchProjectsOpen().should("exist");
 
-    cy.log("Verify landing page")
+    cy.log("should verify landing page")
     researchClassesHelper.verifyProjectsDisplayed();
     researchClassesHelper.clickProject();
     researchClassesHelper.getResearchClassLandingPage().should("exist");
@@ -31,23 +31,23 @@ context("Researcher classes side bar, filters, results table", () => {
     researchClasses.verifyCheckboxText();
     researchClasses.verifyFooterNoteText();
   });
-  it("Verify research classes dropdown", () => {
+  it("should verify research classes dropdown", () => {
     researchClasses.clickDropDown("Cohorts");
     researchClasses.getCohortsDropDown().should("not.contain", "Test Project: Test Cohort");
     researchClasses.getCohortsDropDown().contains("Test Project For Researcher: Test Cohort");
     researchClasses.clickDropDown("Teachers");
-    researchClasses.getTeachersDropDown().contains("Cypress AutomationTeacher3 (cautomationTeacher3)");
+    researchClasses.getTeachersDropDown().contains("Cypress AutomationTeacher1 (cautomationTeacher1)");
     researchClasses.clickDropDown("Resources");
     researchClasses.getResourcesDropDown().contains("AKSims Snapshot Test Activity");
   });
-  it("Verify remove concord consortium teachers checkbox", () => {
+  it("should verify remove concord consortium teachers checkbox", () => {
     researchClasses.clickDropDown("Teachers");
-    researchClasses.getTeachersDropDown().contains("Sara Admin (admin_sara)");
+    researchClasses.getTeachersDropDown().contains("Sara Researcher (sara_researcher)");
     researchClasses.getRemoveConcordConsortiumTeachersCheckbox().click({ force: true });
     researchClasses.clickDropDown("Teachers");
-    researchClasses.getTeachersDropDown().should("not.contain", "Sara Admin (admin_sara)");
+    researchClasses.getTeachersDropDown().should("not.contain", "Sara Researcher (sara_researcher)");
   });
-  it("Verify results table", () => {
+  it("should verify results table", () => {
     researchClasses.getResultsTable().should("not.exist");
     researchClasses.clickDropDown("Cohorts");
     researchClasses.getCohortsDropDown().contains("Test Project For Researcher: Test Cohort").click({ force: true });
@@ -66,21 +66,21 @@ context("Researcher classes side bar, filters, results table", () => {
     researchClasses.getRemoveConcordConsortiumTeachersCheckbox().click({ force: true });
     researchClasses.verifyConcordConsortiumSchoolNameDisplayed();
   });
-  it("Verify sorting", () => {
+  it("should verify sorting results table", () => {
     researchClasses.clickSortIcon(0);
     researchClasses.verifyFirstRowOfSort(0, "Test Cohort");
     researchClasses.clickSortIcon(0);
     researchClasses.verifyFirstRowOfSort(0, "Test Cohort, Test Cohort For Researcher");
     researchClasses.clickSortIcon(1);
-    researchClasses.verifyFirstRowOfSort(1, "Cypress AutomationTeacher3");
+    researchClasses.verifyFirstRowOfSort(1, "Cypress AutomationTeacher1");
     researchClasses.clickSortIcon(1);
     researchClasses.verifyFirstRowOfSort(1, "Teacher School");
     researchClasses.clickSortIcon(3);
     researchClasses.verifyFirstRowOfSort(3, "Concord Consortium");
     researchClasses.clickSortIcon(3);
-    researchClasses.verifyFirstRowOfSort(3, "Cypress Automation Test School");
+    researchClasses.verifyFirstRowOfSort(3, "Test School");
   });
-  it("Verify Reset All", () => {
+  it("should verify Reset All button", () => {
     researchClasses.getResetAllButton().should("exist");
     researchClasses.getResetAllButton().should("contain", "Reset All");
     researchClasses.verifySummary();
@@ -103,7 +103,7 @@ context("Researcher classes landing page", () => {
     cy.clearAllCookies();
   });
 
-  it("Verify research project in sidebar", () => {
+  it("should verify research project in sidebar", () => {
     researchClasses.getAssignmentPage().should("exist");
     researchClasses.verifyHeader();
     researchClasses.getOfferingsTable().should("exist");
@@ -120,8 +120,8 @@ context("Project Expiration Date", () => {
 
   before(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
-    cy.login(c.TEACHER3_USERNAME, c.TEACHER3_PASSWORD); // Login as teacher user
-    cy.visit(c.LEARN_PORTAL_BASE_URL + '/users/78/edit');
+    cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD); // Login as teacher user
+    cy.visit(c.LEARN_PORTAL_BASE_URL + '/users/76/limited_edit');
   });
 
   after(function() {
@@ -129,7 +129,7 @@ context("Project Expiration Date", () => {
     cy.clearAllCookies();
   });
 
-  it("Verify project expiration date", () => {
+  it("should verify project expiration date", () => {
     researchClasses.getResearcherProjectCheckbox().click({ force: true });
     researchClasses.verifyDateInputNotShown();
     researchClasses.getResearcherProjectCheckbox().click({ force: true });
@@ -139,7 +139,7 @@ context("Project Expiration Date", () => {
     researchClassesHelper.expandResearchProjects(); 
     researchClassesHelper.getResearchProjectsOpen().should("exist");
     researchClassesHelper.verifyProjectsNotDisplayed();
-    cy.visit(c.LEARN_PORTAL_BASE_URL + '/users/78/edit');
+    cy.visit(c.LEARN_PORTAL_BASE_URL + '/users/76/limited_edit');
     researchClasses.getResearcherProjectDateInput().click({ force: true }).clear();
     researchClasses.getSaveButton().click({ force: true });;
     researchClassesHelper.expandResearchProjects();   
