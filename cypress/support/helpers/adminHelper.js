@@ -77,11 +77,11 @@ export function removeUser(userName, fullName) {
 
   cy.get(adminSettingsUsersPageElements.SEARCH_LIST_HEADER).then(($searchResults) => {
     if($searchResults.find(adminSettingsUsersPageElements.SEARCH_RESULT).length > 0) {
-      cy.get(adminSettingsUsersPageElements.SEARCH_RESULT_USER_NAME).contains("User: " + fullName); // The search result should contain 1 entry with student 1's info
+      cy.get(adminSettingsUsersPageElements.SEARCH_RESULT_USER_NAME).contains(fullName).click(); // The search result should contain 1 entry with student 1's info
 
       cy.window().then((win) => {
         cy.stub(win, 'prompt').returns("DELETE");
-        cy.get(adminSettingsUsersPageElements.DELETE_USER).click(); // Click Delete link and confirm by entering DELETE in the browser prompt
+        cy.get(adminSettingsUsersPageElements.DELETE_USER) // Click Delete link and confirm by entering DELETE in the browser prompt
       });
       cy.get(flashNoticePageElements.BANNER).contains("User: " + fullName + " successfully deleted!"); // Verify banner that shows that user is successfully deleted
     }
