@@ -81,7 +81,7 @@ export function removeUser(userName, fullName) {
 
       cy.window().then((win) => {
         cy.stub(win, 'prompt').returns("DELETE");
-        cy.get(adminSettingsUsersPageElements.DELETE_USER) // Click Delete link and confirm by entering DELETE in the browser prompt
+        cy.get(adminSettingsUsersPageElements.DELETE_USER).click(); // Click Delete link and confirm by entering DELETE in the browser prompt
       });
       cy.get(flashNoticePageElements.BANNER).contains("User: " + fullName + " successfully deleted!"); // Verify banner that shows that user is successfully deleted
     }
