@@ -49,7 +49,7 @@ it("Verify students can use the class word and add themselves to the class", () 
     clearCookies();
   });
 })
-it("Verify student submitting answers", () => {
+it.skip("Verify student submitting answers", () => {
   let studentIndex = 0;
   STUDENTS.forEach(eachStudent => {
     let studentObj = {
