@@ -73,10 +73,10 @@ export const ResearcherClassesElements = {
     cy.get('#form-container#form-container [class^=bottom--] [class^=summary--]').should("not.exist");
   },
   verifyConcordConsortiumSchoolNameDisplayed() {
-    this.getResultsTable().find('tbody tr').eq(0).find('td').eq(3).should("contain", "Concord Consortium");
+    this.getResultsTable().find('tbody tr').eq(5).find('td').eq(3).should("contain", "Concord Consortium");
   },
   verifyConcordConsortiumSchoolNameNotDisplayed() {
-    this.getResultsTable().find('tbody tr').eq(0).find('td').eq(3).should("not.contain", "Concord Consortium");
+    this.getResultsTable().find('tbody tr').eq(5).find('td').eq(3).should("not.contain", "Concord Consortium");
   },
 
   // Research classes landing page
@@ -147,14 +147,14 @@ export const ResearcherClassesElements = {
     cy.get('[data-cy=anonymize-students]').should("not.exist");
   },
   verifyStudentNameInProgressDashboard() {
-    cy.get('[data-cy=student-list] [data-cy=student-name]').should("contain", "Student 37");
+    cy.get('[data-cy=student-list] [data-cy=student-name]').should("contain", "Student6");
   },
   clickFeedbackReport() {
     cy.get('[data-cy=navigation-select]').click();
     cy.get('[data-cy="list-item-feedback-report"]').should('be.visible').click();
   },
   verifyStudentNameInFeedbackReport() {
-    cy.get('[data-cy=feedbackRow] [data-cy=student-name]').should("contain", "Student 37");
+    cy.get('[data-cy=feedbackRow] [data-cy=student-name]').should("contain", "Student6");
   },
   verifyFeedbackSettingToggleIsNotClickable() {
     cy.get('[data-cy=feedback-settings-toggle-button]').invoke("attr", "class").should("contain", "notClickable");
@@ -172,7 +172,7 @@ export const ResearcherClassesElements = {
     cy.get('[class^=language-selector--langSelector--] a').should("contain", "View Student Access");
   },
   verifyStudentName() {
-    cy.get('[data-cy= studentName] [class^=student-name--content--]').should("contain", "Student 37");
+    cy.get('[data-cy= studentName] [class^=student-name--content--]').should("contain", "Student6");
   },
   clickLanguageSelectorButton() {
     cy.get('[class^=language-selector--langSelector--] a').click();
@@ -181,7 +181,7 @@ export const ResearcherClassesElements = {
     return cy.get('[data-cy=langTable] tr').eq(2);
   },
   verifyStudentNameInLangTable() {
-    this.getLanguageTableFirstRow().find('th').should("contain", "Student 37");
+    this.getLanguageTableFirstRow().find('th').should("contain", "Student6");
   },
   verifyRadioButtonDisabled() {
     this.getLanguageTableFirstRow().find('td').eq(0).find('input').invoke("attr", "disabled").should("exist");

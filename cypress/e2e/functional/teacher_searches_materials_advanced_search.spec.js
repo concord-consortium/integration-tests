@@ -71,7 +71,11 @@ context("Verify admin can filter instructional materials", () => {
     cy.get(assignPageElements.ASSIGN_TEXT).contains("Select the class(es) you want to assign this resource to below.").should('exist');
     cy.get(assignPageElements.CLASSES_HEADER).contains("Your Classes").should('exist');
     cy.get(assignPageElements.CANCEL_BUTTON).click();
-    cy.get(advancedSearchMaterialsPage.ACTIVITIES_LIST).find('[data-material_name=\"'+ ACTIVITY1 + '\"]').find(advancedSearchMaterialsPage.ACTIVITY_LINK).click();
+    cy.get(advancedSearchMaterialsPage.ACTIVITIES_LIST)
+      .find('[data-material_name=\"'+ ACTIVITY1 + '\"]')
+      .find(advancedSearchMaterialsPage.ACTIVITY_LINK)
+      .first()
+      .click();
     cy.url().should('include', '/browse/eresources/');
     cy.get(browseMaterialsPageElements.MATERIAL_TITLE).contains(ACTIVITY1).should('exist');
   });

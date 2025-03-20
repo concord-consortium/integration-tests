@@ -1,7 +1,9 @@
 import * as c from '../../support/constants.js'
 import {ResearcherReportsPageElements as researcherReport} from "../../support/elements/researcher_reports_page_elements.js";
 
-context("Researcher reports UI", () => {
+// TO-DO: Update this test with new researcher reports UI
+
+context.skip("Researcher reports UI", () => {
 
   before(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL);

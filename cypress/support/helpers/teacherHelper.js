@@ -79,7 +79,7 @@ export function archiveClass(className){
 
 export function unArchiveClass(className) {
     openManageClassesSection();
-    cy.contains('strike', className).parent().parent().contains('button', 'Unarchive', {matchCase: false}).click();
+    cy.contains('del', className).parent().parent().contains('button', 'Unarchive', {matchCase: false}).click();
 
     //verify if its unarchived.
     cy.get(teacherHomePageElements.BTN_MY_CLASSES).click();

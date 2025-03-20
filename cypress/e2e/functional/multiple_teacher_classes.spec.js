@@ -19,11 +19,11 @@ context("Verify teacher can add and edit teachers in a class", () => {
     cy.logout();
   });
 
-  it("Verify teacher is able to add a class", () => {
+  it("should verify teacher is able to add a class", () => {
     teacherHelper.addClass(CLASS_NAME, c.CLASS_DESC, CLASS_WORD); // Teacher adds a class
   });
 
-  it("Verify teacher can add other teachers to the class", () => {
+  it("should verify teacher can add other teachers to the class", () => {
     teacherHelper.openClassSetupSection(CLASS_NAME);
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER1_USERNAME);
     cy.contains(classSetupPageElements.CURRENT_TEACHERS_ITEM, c.TEACHER1_USERNAME)
@@ -38,18 +38,18 @@ context("Verify teacher can add and edit teachers in a class", () => {
     });
   });
 
-  it("Verify teacher can see all teachers in the current class in teachers list", () => {
+  it("should verify teacher can see all teachers in the current class in teachers list", () => {
     teacherHelper.openClassSetupSection(CLASS_NAME);
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER1_USERNAME);
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER2_USERNAME);
   })
 
-  it("Verify teacher can see other teacher options in teacher dropdown", () => {
+  it("should verify teacher can see other teacher options in teacher dropdown", () => {
     cy.get(classSetupPageElements.TEACHERS_DROPDOWN).find('option').contains(c.TEACHER4_USERNAME);
     cy.get(classSetupPageElements.TEACHERS_DROPDOWN).find('option').contains(c.TEACHER5_USERNAME);
   });
 
-  it("Verify newly added teacher can access the class", () => {
+  it("should verify newly added teacher can access the class", () => {
     cy.logout();
     cy.login(c.TEACHER2_USERNAME, c.TEACHER2_PASSWORD);
     teacherHelper.openClassSetupSection(CLASS_NAME);
@@ -57,7 +57,7 @@ context("Verify teacher can add and edit teachers in a class", () => {
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER2_USERNAME);
   });
 
-  it("Verify newly added teacher can add other teachers to the class", () => {
+  it("should verify newly added teacher can add other teachers to the class", () => {
     cy.get(classSetupPageElements.TEACHERS_DROPDOWN).find('option').contains(c.TEACHER4_USERNAME)
     .as('selectTeacher4').then( (selectTeacher4) => {
       cy.get(classSetupPageElements.TEACHERS_DROPDOWN).select(`${selectTeacher4.text()}`)
@@ -71,7 +71,7 @@ context("Verify teacher can add and edit teachers in a class", () => {
     cy.get(classSetupPageElements.CURRENT_TEACHERS_LIST).contains(c.TEACHER4_USERNAME);
   });
 
-  it("Verify teacher can remove newly added teacher2 from the class", () => {
+  it("should verify teacher can remove newly added teacher2 from the class", () => {
     cy.logout();
     cy.login(c.TEACHER1_USERNAME, c.TEACHER1_PASSWORD);
     teacherHelper.openClassSetupSection(CLASS_NAME);
@@ -88,7 +88,7 @@ context("Verify teacher can add and edit teachers in a class", () => {
     cy.get(classSetupPageElements.SUBMIT_BUTTON).click();
   });
 
-  it("Verify teacher can remove newly added teacher4 from the class", () => {
+  it("should verify teacher can remove newly added teacher4 from the class", () => {
     teacherHelper.openClassSetupSection(CLASS_NAME);
 
     cy.contains(classSetupPageElements.CURRENT_TEACHERS_ITEM, c.TEACHER4_USERNAME)
@@ -103,7 +103,7 @@ context("Verify teacher can add and edit teachers in a class", () => {
     cy.get(classSetupPageElements.SUBMIT_BUTTON).click();
   });
 
-  it("Verify teacher can not remove last teacher from the class", () => {
+  it("should verify teacher can not remove last teacher from the class", () => {
     teacherHelper.openClassSetupSection(CLASS_NAME);
     cy.contains(classSetupPageElements.CURRENT_TEACHERS_ITEM, c.TEACHER1_USERNAME)
       .find(classSetupPageElements.DELETE_TEACHER_DISABLED).should('exist');
