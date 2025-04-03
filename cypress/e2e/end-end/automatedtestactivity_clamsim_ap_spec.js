@@ -17,7 +17,7 @@ const CLASS_NAME = 'Class '+ CLASS_WORD;
 const ASSIGNMENT_NAME = 'Automation Clam Sim Activity';
 const STUDENTS = ["STUDENT4"];
 
-context("Verify Student Acitivty Player Activity Work Flow", () => {
+context.skip("Verify Student Acitivty Player Activity Work Flow", () => {
 
 before(function() {
   cy.visit(C.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page

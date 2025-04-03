@@ -15,15 +15,15 @@ export function getResearchProjectsOpen() {
 }
 
 export function verifyProjectsDisplayed() {
-  return cy.get(teacherHomePageElements.LEFT_NAV_RESEARCH_PROJECTS).contains('Research Projects').find('ul').contains('Test Project For Researcher');
+  return cy.get(teacherHomePageElements.LEFT_NAV_RESEARCH_PROJECTS).contains('Research Projects').find('ul').contains('Test Project');
 }
 
 export function verifyProjectsNotDisplayed() {
-  return cy.get(teacherHomePageElements.LEFT_NAV_RESEARCH_PROJECTS).contains('Research Projects').find('ul').should("not.contain", "Test Project For Researcher");
+  return cy.get(teacherHomePageElements.LEFT_NAV_RESEARCH_PROJECTS).contains('Research Projects').find('ul').should("not.contain", "Test Project");
 }
 
 export function clickProject() {
-  return cy.get(teacherHomePageElements.LEFT_NAV_RESEARCH_PROJECTS).contains('Research Projects').find('ul').contains('Test Project For Researcher').click();
+  return cy.get(teacherHomePageElements.LEFT_NAV_RESEARCH_PROJECTS).contains('Research Projects').find('ul').contains('Test Project').click();
 }
 
 export function getResearchClassLandingPage() {

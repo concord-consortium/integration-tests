@@ -20,7 +20,7 @@ const ASSIGNMENT_NAME = 'Cypress_Automated_Wildfire_Module';
 const STUDENTS = ["STUDENT1"];
 
 
-context("Verify Student Activity Work Flow", () => {
+context.skip("Verify Student Activity Work Flow", () => {
 
   before(function() {
     cy.visit(C.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page

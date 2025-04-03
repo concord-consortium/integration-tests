@@ -36,7 +36,7 @@ context("Verify the user is able to Filter Materials Collections automatically w
     cy.wait(1000);
 
     cy.log("verify filter for no materials collections");
-    materialsHelper.selectProject("Test Project For Researcher");
+    materialsHelper.selectProject("Cypress Test Project");
     materialsHelper.verifyFilterResult("No materials collections found");
 
     cy.wait(1000);

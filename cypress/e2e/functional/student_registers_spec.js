@@ -10,7 +10,7 @@ const CLASS_NAME = 'Class '+ CLASS_WORD;
 
 context("Student registration tests", () => {
 
-  before(function() {
+  beforeEach(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
   });
 

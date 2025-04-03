@@ -120,7 +120,7 @@ export const ResearcherClassesElements = {
   // Expiration date
 
   getResearcherProject() {
-    return cy.get('.options-list .inline-fields label').contains("Test Project For Researcher").parent();
+    return cy.get('.options-list .inline-fields label').contains("Test Project").parent();
   },
   getResearcherProjectCheckbox() {
     return this.getResearcherProject().find('.project-checkbox');

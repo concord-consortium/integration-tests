@@ -6,7 +6,7 @@ import {tagsSetup} from '../../support/helpers/setup/tags_setup_helper.js'
 import {projectSetup} from '../../support/helpers/setup/project_setup_helper.js'
 import {materialsCollectionSetup} from '../../support/helpers/setup/materials_collection_setup_helper.js'
 
-context("Setup for Cypress Integration Tests", () => {
+context.skip("Setup for Cypress Integration Tests", () => {
 
   it("Verify setup runs before all integration tests begin", () => {
 

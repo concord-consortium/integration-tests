@@ -4,7 +4,7 @@ import * as c from '../../support/constants.js'
 
 context("Verify user login/logout", () => {
 
-  before(function() {
+  beforeEach(function() {
     cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
   });
 

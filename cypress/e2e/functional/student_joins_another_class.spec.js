@@ -14,7 +14,7 @@ const CLASS_NAME_2 = 'Class '+ CLASS_WORD_2;
 
 context("Student joins another class tests", () => {
 
-	before(function() {
+	beforeEach(function() {
 		cy.visit(c.LEARN_PORTAL_BASE_URL); // Visit LEARN Portal home page
 	});
 
