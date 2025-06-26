@@ -109,6 +109,13 @@ export function viewTeachersFeedbackForAQuestion(activityNumber, pageNumber, que
 
 export function verifyOpenResponseQuestionAnswer(activityNumber, pageNumber, questionNumberInPage, studentObj, studentResponse){
     let studentName = studentObj.firstName + ' ' + studentObj.lastName;
+    // Wait for the iframe content to load before checking the answer
+    allReportElements.getStudentResponseElement(activityNumber, pageNumber, questionNumberInPage, studentName).then($element => {
+      // Check if the element contains "Loading..." and wait for it to change
+      if ($element.text().includes('Loading...')) {
+        cy.wrap($element).should('not.contain.text', 'Loading...', { timeout: 30000 });
+      }
+    });
     allReportElements.getStudentResponseElement(activityNumber, pageNumber, questionNumberInPage, studentName).should('contain.text', studentResponse);
 }
 

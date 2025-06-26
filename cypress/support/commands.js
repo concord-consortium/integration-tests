@@ -57,6 +57,18 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get(signinPageElements.PASSWORD_FIELD).click().clear().type(password, { log: false });
     cy.get(signinPageElements.LOGIN_BUTTON).click();
     cy.wait(1000);
+    // Check if login was successful, if not, try again
+    cy.get('body').then(($body) => {
+      if ($body.find('.flash.error').length > 0 || $body.find('.error').length > 0) {
+        cy.log("Login failed, retrying...");
+        cy.reload();
+        cy.get(landingPageElements.LOGIN_BUTTON).click({force: true});
+        cy.get(signinPageElements.USERNAME_FIELD).click().clear().type(username);
+        cy.get(signinPageElements.PASSWORD_FIELD).click().clear().type(password, { log: false });
+        cy.get(signinPageElements.LOGIN_BUTTON).click();
+        cy.wait(1000);
+      }
+    });
     cy.get(landingPageElements.LOGOUT_BUTTON).should("have.text", "Log Out");
   });
 });
@@ -159,4 +171,19 @@ Cypress.Commands.add("loginLARAWithSSO", (username, password) => {
 Cypress.Commands.add("logoutLARA", () => {
   cy.log("Logging out of LARA");
   cy.get(laraPageElements.LOGOUT_LINK).click();
+});
+
+Cypress.Commands.add('refreshSession', (username, password) => {
+  cy.log("Refreshing session for user: " + username);
+  cy.reload();
+  cy.wait(2000);
+  cy.get('body').then(($body) => {
+    // Check if we're still logged in
+    if ($body.find(landingPageElements.LOGOUT_BUTTON).length > 0) {
+      cy.log("Still logged in, session is valid");
+    } else {
+      cy.log("Session expired, logging in again");
+      cy.login(username, password);
+    }
+  });
 });
