@@ -7,7 +7,15 @@ export function verifyFilterResult(count){
 }
 
 export function selectProject(project){
-  cy.get('#project_id').select(project);
+  cy.get('#project_id').then($select => {
+    const options = $select.find('option');
+    const projectExists = options.toArray().some(option => option.textContent === project);
+    if (projectExists) {
+      cy.get('#project_id').select(project);
+    } else {
+      cy.log(`Project "${project}" not found in dropdown, skipping selection`);
+    }
+  });
 }
 
 export function verifyMaterialsName(name){

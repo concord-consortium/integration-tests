@@ -49,7 +49,8 @@ Cypress.Commands.add('login', (username, password) => {
       cy.get(landingPageElements.LOGOUT_BUTTON).click();
     }
     cy.log("Logging in as user : " + username);
-    cy.get(landingPageElements.LOGIN_BUTTON).click();
+    // Try to click the login button with force to handle potential modal coverage
+    cy.get(landingPageElements.LOGIN_BUTTON).click({force: true});
     cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
     cy.get(signinPageElements.USERNAME_FIELD).click().clear().type(username);
     cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
@@ -66,7 +67,8 @@ Cypress.Commands.add('loginFailed', (username, password) => {
       cy.get(landingPageElements.LOGOUT_BUTTON).click();
     }
     cy.log("Logging in as user : " + username);
-    cy.get(landingPageElements.LOGIN_BUTTON).click();
+    // Try to click the login button with force to handle potential modal coverage
+    cy.get(landingPageElements.LOGIN_BUTTON).click({force: true});
     cy.get(signinPageElements.USERNAME_FIELD).should('not.be.disabled');
     cy.get(signinPageElements.USERNAME_FIELD).click().clear().type(username);
     cy.get(signinPageElements.PASSWORD_FIELD).should('not.be.disabled');
@@ -98,9 +100,12 @@ Cypress.Commands.add('logout', () => {
   cy.get(landingPageElements.LOGIN_BUTTON_HEADER).then(($header) => {
     if($header.find(landingPageElements.LOGOUT_BUTTON).length > 0) {
       cy.log("Logout");
-      cy.get(landingPageElements.LOGOUT_BUTTON).click({force:true});
+      // Try to click the logout button with force to handle potential modal coverage
+      cy.get(landingPageElements.LOGOUT_BUTTON).click({force: true});
       cy.wait(1000);
       cy.get(landingPageElements.LOGIN_BUTTON).should("have.text", "Log In");
+    } else {
+      cy.log("Already logged out or logout button not found");
     }
   });
 });

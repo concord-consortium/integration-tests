@@ -98,8 +98,8 @@ export function answerImageQuestion(iFrameSelector, questionDetails, userAnswer)
   });
   cy.get('.ReactModalPortal [class^=ReactModal__Overlay]').find('iframe').then($iframe => {
     const $body1 = $iframe.contents().find('#app')
-    cy.wrap($body1).find('[class^=runtime--dialogContent]').should("exist");
-    cy.wrap($body1).find('[class^=runtime--dialogRightPanel] textarea').type(userAnswer.answer);
+    cy.wrap($body1).find('[class^=runtime--dialogContent], [data-testid="dialog-content"], .dialog-content').should("exist");
+    cy.wrap($body1).find('[class^=runtime--dialogRightPanel] textarea, [data-testid="dialog-right-panel"] textarea, .dialog-right-panel textarea').type(userAnswer.answer);
     cy.wrap($body1).find('[data-test=close-dialog-btn]').click();
   });
   cy.wait(6000);

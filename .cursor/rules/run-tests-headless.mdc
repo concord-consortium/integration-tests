@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- To run the tests on staging Headless Cypress:
+npm run test:cypress -- --config baseUrl=https://learn.portal.staging.concord.org -e password=password,testEnv=staging
