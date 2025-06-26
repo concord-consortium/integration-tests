@@ -1,9 +1,0 @@
----
-description: 
-globs: 
-alwaysApply: true
----
-
-# Your rule content
-
-- To run the tests in Cypress in the Staging environment and open Cypress:    npm run -s test:cypress:open -- -e password=password,testEnv=staging
