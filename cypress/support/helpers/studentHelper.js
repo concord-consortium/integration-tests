@@ -22,7 +22,7 @@ export function verifyNoOfferingsAvailable(className){
 }
 
 export function registerStudent(username, firstName, lastName, password, classWord){
-    cy.get(signupPageElements.BTN_REGISTER_USER).click();
+    cy.get(signupPageElements.BTN_REGISTER_USER).click({force: true});
     cy.get(signupPageElements.BTN_I_AM_STUDENT).click();
     cy.get(signupPageElements.TXT_FIRST_NAME).type(firstName);
     cy.get(signupPageElements.TXT_LAST_NAME).type(lastName);

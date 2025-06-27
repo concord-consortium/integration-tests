@@ -112,6 +112,8 @@ context("Verify Student Activity Work Flow", () => {
           LaraSequenceHelper.answerHurricaneSim();
       }
       cy.go("back");
+      // Refresh session after long activity player session
+      cy.refreshSession(studentDetails.username, studentDetails.password);
       cy.logout();
       clearCookies();
     });
@@ -119,6 +121,8 @@ context("Verify Student Activity Work Flow", () => {
 
   it("Verify teacher can verify reports and provide feedback", () => {
     cy.login(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD);
+    // Refresh session before starting report verification
+    cy.refreshSession(C.TEACHER1_USERNAME, C.TEACHER1_PASSWORD);
     cy.contains(teacherHomePageElements.LEFT_NAV_CLASSES, 'Classes').click();
     cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).click();
     cy.contains(teacherHomePageElements.LEFT_NAV_CLASS_NAME, CLASS_NAME).contains('li a', 'Assignments').click();
@@ -165,6 +169,8 @@ context("Verify Student Activity Work Flow", () => {
       }
       studentIndex++;
       cy.login(studentObj.username, studentObj.password);
+      // Refresh session before accessing reports
+      cy.refreshSession(studentObj.username, studentObj.password);
       let studentGenerateReportLnk = getLinkGenerateReport(CLASS_NAME, 'Report');
       studentGenerateReportLnk.invoke('removeAttr', 'target').click();
       let totalActivities = automatedtestSequenceHurricaneModuleData.totalActivities;
@@ -188,7 +194,9 @@ context("Verify Student Activity Work Flow", () => {
 
           }
       }
+      // Navigate back to portal and refresh session
       cy.go('back'); //Student report page do not have any links back to portal.
+      cy.refreshSession(studentObj.username, studentObj.password);
       cy.logout();
       clearCookies();
     });
